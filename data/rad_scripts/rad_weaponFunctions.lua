@@ -113,7 +113,7 @@ end)
 script.on_game_event("RAD_JAILER_RETURN_CREW", false, function()
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(1)
     for crewmem in vter(shipManager.vCrewList) do
-        if crewmem.intruder = true then
+        if crewmem.intruder == true then
             crewmem.extend:InitiateTeleport(0,0,0)
         end
     end
@@ -154,6 +154,7 @@ mods.rad.teleWeapons = {}
 local teleWeapons = mods.rad.teleWeapons
 teleWeapons["RAD_ABDUCTOR"] = 15
 teleWeapons["RAD_ABDUCTOR_ENEMY"] = 10
+teleWeapons["RAD_JAILERBEAM_PLAYER"] = 30
 
 -- Handle teleportation beams
 script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)

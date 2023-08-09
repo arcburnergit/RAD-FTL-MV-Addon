@@ -237,7 +237,6 @@
 	<fireChance>0</fireChance>
 	<breachChance>3</breachChance>
 	<cooldown>20</cooldown>
-	<sp>10</sp>
 	<speed>1</speed>
 	<power>1</power>
 	<cost>80</cost>
@@ -264,7 +263,6 @@
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>0</damage>
-	<sp>0</sp>
 	<fireChance>0</fireChance>
 	<breachChance>1</breachChance>
 	<cooldown>8</cooldown>
@@ -295,7 +293,6 @@
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>0</damage>
-	<sp>0</sp>
 	<fireChance>0</fireChance>
 	<breachChance>3</breachChance>
 	<cooldown>10</cooldown>
@@ -315,7 +312,37 @@
 	<launchSounds>
 		<sound>focus_strong</sound>
 	</launchSounds>
-	<weaponArt>rad_abductor</weaponArt>
+	<weaponArt>rad_jailerbeam</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_JAILERBEAM_PLAYER">
+	<type>BEAM</type>
+	<title>'Jailer' Teleportation Focus Beam</title>
+	<short>'Jailer'</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
+	<damage>1</damage>
+	<fireChance>6</fireChance>
+	<breachChance>6</breachChance>
+	<cooldown>20</cooldown>
+	<sp>10</sp>
+	<speed>3</speed>
+	<power>4</power>
+	<cost>100</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<color>
+		<r>20</r>
+		<g>80</g>
+		<b>200</b>
+	</color>
+	<image>beam_contact</image>
+	<length>160</length>
+	<launchSounds>
+		<sound>beam2</sound>
+	</launchSounds>
+	<weaponArt>rad_jailerbeam</weaponArt>
 	<iconImage>beam</iconImage>
 </weaponBlueprint>
 

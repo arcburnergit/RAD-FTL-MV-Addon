@@ -33,7 +33,7 @@
 	<text>Your comms unit comes online, "Alright, fine, let us live and we'll return your crew and leave the station to you, just let us live okay?"</text>
 	<choice hidden="true">
 		<text>Let the pirates go and report success to the scientists</text>
-		<ship hostile="false" />
+		
 		<event load="RAD_JAILER_RETURN_CREW" />
 	</choice>
 	<choice hidden="true">
@@ -62,6 +62,7 @@
 
 <event name="RAD_JAILER_RETURN_CREW">
 	<text>You retrieve your crew from the pirate's ship.</text>
+	<ship hostile="false" />
 	<choice hidden="true">
 		<text>Continue...</text>
 		<event load="RAD_PIRATE_QUEST_FINISH" />

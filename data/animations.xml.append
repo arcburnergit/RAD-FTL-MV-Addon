@@ -56,4 +56,15 @@
 	<chargeImage>weapon_focus/rad_abductor_glow.png</chargeImage>
 </weaponAnim>
 
+<animSheet name="rad_jailerbeam" w="714" h="86" fw="34" fh="86">weapon_beams/rad_jailerbeam.png</animSheet>
+<weaponAnim name="rad_jailerbeam">
+	<sheet>rad_jailerbeam</sheet>
+	<desc length="21" x="0" y="0" />
+	<chargedFrame>13</chargedFrame>
+	<fireFrame>14</fireFrame>
+	<firePoint x="18" y="52" />
+	<mountPoint x="4" y="70" />
+	<chargeImage>weapon_beams/rad_jailerbeam_glow.png</chargeImage>
+</weaponAnim>
+
 </FTL>

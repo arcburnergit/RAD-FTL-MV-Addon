@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+<!--<status type="limit" target="enemy" system="teleporter" amount="0" />-->
+<ship name="SHIP_CIVILIAN_LAB" auto_blueprint="MU_CIVILIAN_LAB">
+	<surrender  chance="0.8" min="2" max="3" load="SURRENDER_RAD_LAB"/>
+	<destroyed load="DESTROYED_RAD_LAB"/>
+	<deadCrew load="DEAD_CREW_RAD_LAB"/>
+</ship>
+
+<ship name="MU_PIRATE_REBEL_RAD_1" auto_blueprint="MU_PIRATE_REBEL_RAD_1">
+	<!--<surrender  chance="1" min="1" max="6" load="SURRENDER_RAD_PIRATE_1"/>-->
+	<escape chance="0" min="6" max="6" load="ESCAPE_RAD_PIRATE_1" />
+	<gotaway load="GOTAWAY_RAD_PIRATE_1"/>
+	<destroyed load="DESTROYED_RAD_PIRATE_1"/>
+	<deadCrew load="DEAD_CREW_RAD_PIRATE_1"/>
+</ship>
+
+<ship name="MU_PIRATE_REBEL_RAD_2" auto_blueprint="MU_PIRATE_REBEL_RAD_2">
+	<!--<surrender  chance="1" min="1" max="6" load="SURRENDER_RAD_PIRATE_1"/>-->
+	<escape chance="0" min="6" max="6" load="ESCAPE_RAD_PIRATE_2" />
+	<gotaway load="GOTAWAY_RAD_PIRATE_2"/>
+	<destroyed load="DESTROYED_RAD_PIRATE_2"/>
+	<deadCrew load="DEAD_CREW_RAD_PIRATE_2"/>
+</ship>
+
+<ship name="RAD_JAILER" auto_blueprint="RAD_JAILER">
+	<surrender  chance="0" min="6" max="6" load="SURRENDER_RAD_JAILER_1"/>
+	<destroyed load="DESTROYED_RAD_JAILER_1"/>
+	<deadCrew load="DEAD_CREW_RAD_JAILER_1"/>
+</ship>
+
+<event name="SURRENDER_RAD_JAILER_1">
+	<text>Your comms unit comes online, "Alright, fine, let us live and we'll return your crew and leave the station to you, just let us live okay?"</text>
+	<choice hidden="true">
+		<text>Let the pirates go and report success to the scientists</text>
+		<ship hostile="false" />
+		<event load="RAD_JAILER_RETURN_CREW" />
+	</choice>
+	<choice hidden="true">
+		<text>Screw that, you'll take their scrap and the station once they're dead!</text>
+		<event />
+	</choice>
+</event>
+
+<event name="DESTROYED_RAD_JAILER_1">
+	<text>The pirate ship explodes, anyone who was on that ship certainly isn't alive anymore. You report your success to the scientists.</text>
+	<autoReward level="MED">standard</autoReward>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="RAD_PIRATE_QUEST_FINISH" />
+	</choice>
+</event>
+
+<event name="DEAD_CREW_RAD_JAILER_1">
+	<text>You've killed all the pirates, now you can rescue your crew, and report your success to the scientists.</text>
+	<autoReward level="HIGH">standard</autoReward>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="RAD_JAILER_RETURN_CREW" />
+	</choice>
+</event>
+
+<event name="RAD_JAILER_RETURN_CREW">
+	<text>You retrieve your crew from the pirate's ship.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="RAD_PIRATE_QUEST_FINISH" />
+	</choice>
+</event>
+
+<event name="SURRENDER_RAD_PIRATE_1">
+	<text>The pirate ship powers up their ftl drive, it looks like they're trying to jump away!</text>
+	<!--<escape timer="30" min="999" max="999" load="ESCAPE_RAD_PIRATE_1"/>-->
+</event>
+
+<event name="GOTAWAY_RAD_PIRATE_1">
+	<text>The pirate jumps away, likely towards where ever they left the stolen station.</text>
+	<choice hidden="true" req="RAD_JUMP_TRACER" blue="true">
+		<text>Use the Jump Tracer to track the pirate ship's FTL jump.</text>
+		<event>
+			<text>You trace the pirate ship, hopefully they'll lead you straight to the station.</text>
+			<quest event="RAD_PIRATE_TRACKING_2"/>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Do Nothing...</text>
+		<event>
+			<text>Well looks like you should have kept the jump tracer, no chance you'll find the station now.</text>
+		</event>
+	</choice>
+</event>
+
+<event name="ESCAPE_RAD_PIRATE_1">
+	<text>The pirate powers up their jump drive, now you just have to make sure they get away alive.</text>
+</event>
+
+<event name="DESTROYED_RAD_PIRATE_1">
+	<text>You've destroyed the pirate ship, now there's no way you'll ever find that station.</text>
+	<autoReward level="MED">standard</autoReward>
+</event>
+
+<event name="DEAD_CREW_RAD_PIRATE_1">
+	<text>You've killed the pirates, and despite searching through their systems, you're unable to locate the station, you should have taken the scientist's advice.</text>
+	<autoReward level="HIGH">standard</autoReward>
+</event>
+
+<event name="GOTAWAY_RAD_PIRATE_2">
+	<text>The pirate enforcer jumps away, likely towards where ever they left the stolen station.</text>
+	<choice hidden="true" req="RAD_JUMP_TRACER" blue="true">
+		<text>Use the Jump Tracer to track the pirate ship's FTL jump.</text>
+		<event>
+			<text>You trace the pirate ship, hopefully they'll lead you straight to the station.</text>
+			<quest event="RAD_PIRATE_TRACKING_3_E"/>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Do Nothing...</text>
+		<event>
+			<text>Well looks like you should have kept the jump tracer, no chance you'll find the station now.</text>
+		</event>
+	</choice>
+</event>
+
+<event name="ESCAPE_RAD_PIRATE_2">
+	<text>The pirate powers up their jump drive, now you just have to make sure they get away alive.</text>
+</event>
+
+<event name="DESTROYED_RAD_PIRATE_2">
+	<text>You've destroyed the pirate ship, now you'll have to rely on the damaged pirate ship.</text>
+	<autoReward level="MED">standard</autoReward>
+</event>
+
+<event name="DEAD_CREW_RAD_PIRATE_2">
+	<text>You've killed the pirates, now you'll have to rely on the damaged pirate ship.</text>
+	<autoReward level="HIGH">standard</autoReward>
+</event>
+
+<event name="SURRENDER_RAD_LAB">
+	<text>"Stop this! You've disproved our hypothesis, no need to destory all our work and set us back weeks. Take this scrap and leave.</text>
+	<choice>
+		<text>Accept their surrender.</text>
+		<event>
+			<ship hostile="false" />
+			<autoReward level="RANDOM">stuff</autoReward>
+		</event>
+	</choice>
+	<choice>
+		<text load="GENERIC_SURRENDER_CHOICE_NOMERCY" />
+		<event/>
+	</choice>
+</event>
+
+<event name="DESTROYED_RAD_LAB">
+	<text>You watch as the lab splits apart, only being held together by masses of cables. A section of the lab breaks off and jumps away before you can stop it.</text>
+	<autoReward level="MED">standard</autoReward>
+</event>
+
+<event name="DEAD_CREW_RAD_LAB">
+	<text>The Scientists are dead, but you can't help but feel there was more at play here.
+	You find an advanced missile prototype in the lab.</text>
+	<autoReward level="HIGH">standard</autoReward>
+	<weapon name="RAD_CLUSTER_MISSILE_3"/>
+</event>
+
+<event name="RAD_LAB_QUEST_START" unique="true">
+	<beaconType id="map_icon_rad_lab" global="true">
+		<color r="146" g="232" b="228" a="1"/>
+	</beaconType>
+	<preventFleet />
+	<quest>
+		<nebulaBeacon>false</nebulaBeacon>
+		<createNebula>false</createNebula>
+		<nextSector>true</nextSector>
+		<aggressive>2</aggressive>
+	</quest>
+	<ship load="SHIP_CIVILIAN_LAB" hostile="false"/>
+	<text> It looks like you've come across a strange labratory, as soon you arrive the labratory powers up what looks like a weapon and you detect them lining up your ship...</text>
+	<choice hidden="true">
+		<text>Wait.</text>
+		<event>
+			<text>Unexpectedly the station imidietly fires on you, you brace for impact.
+			Just as it's about to hit the ship, you see a flash of light, and once your vision returns you're standing in the middle of the station.
+			
+			A scientist is waiting for you, "Uh, sorry about contacting you this way, we just couldn't risk this information leaking out, your ship is fine by the way."
+			The Scientist gestures to the weapons console beside you, your ship appears on the screen, unharmed.
+			"Oh right, I'm Goose, I'm the head of this labratory. You're the renegade we've been hearing about right?"</text>
+			<choice hidden="true">
+				<text>Right.</text>
+				<event>
+					<text>"Excellent, We need your help with a certain issue regarding some rogue technology, however we can't give you the details unless you're absolutly sure about helping."
+					"Either way, feel free to browse our commercial technology, I'm sure someone like you could make use of it"</text>
+					<choice hidden="true">
+						<text>You'll help.</text>
+						<event load="RAD_LAB_QUEST_LIST"/>
+					</choice>
+					<choice hidden="true">
+						<text>Sounds Risky, Just shop.</text>
+						<event>
+							<text>"A shame, but understandable given the way you got here. Follow Duck over there to see our store of sorts."</text>
+							<store>STORE_RADLAB</store>
+						</event>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>You don't know what they want, but you aren't going to wait to see what happens. Attack!</text>
+		<event>
+			<text>You Power up your weapons! The Lab hails you, "You're making a mistake."</text>
+			<ship hostile="true" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK" />
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_LAB_QUEST_1">
+	<text>"Most excellent, to begin with, understand that alot of this is highly advanced, try to keep it underwraps."
+	Goose walks you over to a terminal on the wall.
+	"Our current issue revolves this station design here," The scientist says, gesturing to the strange looking station design on the terminals screen.
+	"As you can see, we've equiped this station with a prototype jump drive, allowing us to move it between systems, it's not agile, but it works. Anyway, on a recent test drive, it was captured by pirates, well a pirate, and due to our overconfidence in the station defences we have no way of tracking it down."
+	</text>
+	<choice hidden="true">
+		<text>Seems bleak, what do you want us to do?</text>
+		<event>
+			<text>"Ah, well luckily we've actually managed to track down the pirates who stole our station, unfortunetly we don't know where they've put it."
+			The scientist transmits you some cooridinates.
+			"What we need is for you to go find them, and attack them, but DON'T KILL THEM, just damage them enough that they try to jump away, and when they do, follow them, we'll give you a device that you can use to follow them when they jump away."
+			"Oh, and once you find the station we'll come and meet you with the payment, good hunting."</text>
+			<augment name="RAD_JUMP_TRACKER"/>
+			<quest event="RAD_PIRATE_TRACKING_1"/>
+			<store>STORE_RADLAB</store>
+		</event>
+	</choice>
+</event>
+
+<event name ="RAD_PIRATE_TRACKING_1">
+	<beaconType id="map_icon_rad_pirate" global="true">
+		<color r="242" g="50" b="29"/>
+	</beaconType>
+	<preventFleet/>
+	<text>You arrive to the beacon and pickup the pirate ship on your scanners.
+	Remember, you don't want to destroy them, just get them to run away.</text>
+	<ship load="MU_PIRATE_REBEL_RAD_1" hostile="true"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK" />
+	</choice>
+</event>
+
+<event name ="RAD_PIRATE_TRACKING_2">
+	<beaconType id="map_icon_rad_pirate" global="true">
+		<color r="242" g="50" b="29"/>
+	</beaconType>
+	<preventFleet/>
+	<text>You arrive to the beacon and pickup the damaged pirate ship on your scanners, however there's a second larger pirate enforcer nearby.
+	As you watch, the damaged ship jumps away.</text>
+	<choice hidden="true" req="RAD_JUMP_TRACER" blue="true">
+		<text>Use the Jump Tracer to track the pirate ship's FTL jump.</text>
+		<event>
+		<ship load="MU_PIRATE_REBEL_RAD_2" hostile="false"/>
+			<text>You trace the pirate ship, Now you can try to do the same thing with the pirate enforcer, or just hope that the damaged ship will lead you to the right place.</text>
+			<quest event="RAD_PIRATE_TRACKING_3_D"/>
+			<choice hidden="true">
+				<text>Fight the enforcer.</text>
+				<event>
+					<text>You power up your weapons and engage the pirate ship.</text>
+					<ship hostile="true" />
+					<choice hidden="true">
+						<text>Continue...</text>
+						<event load="COMBAT_CHECK" />
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Just leave.</text>
+				<event>
+					<text>Guess you'll just have to hope the damaged ship leads you to the right place...</text>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Do Nothing...</text>
+		<event>
+			<text>The ships jump away, there goes any hope of tracking down that station.
+			Guess you should have kept the jump tracer...</text>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_PIRATE_TRACKING_3_D">
+	<beaconType id="map_icon_rad_pirate_d" global="true">
+		<color r="255" g="96" b="23"/>
+	</beaconType>
+	<preventFleet/>
+	<text>You've arrived at the beacon, now to see where the damaged ship has lead you.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="RAD_PIRATE_TRACKING_3_LIST" />
+	</choice>
+</event>
+
+<event name="RAD_PIRATE_TRACKING_3_E">
+	<beaconType id="map_icon_rad_pirate_e" global="true">
+		<color r="255" g="31" b="23"/>
+	</beaconType>
+	<preventFleet/>
+	<text>You've arrived at the beacon, now to see where the enforcer has lead you.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="RAD_PIRATE_TRACKING_3_LIST"/>
+	</choice>
+</event>
+
+<event name="RAD_PIRATE_TRACKING_4_REAL" unique="true">
+	<text>Your sensors pickup the station floating nearby the beacon. You transmit the coordinates back to the scientists and move to secure it.
+	Your sensors indicate that the station is unarmed</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<ship load="RAD_JAILER" hostile="true"/>
+			<text>As you approach the station a pirate jailer comes out from behind it, weapons primed, these must be the pirates who captured the station.
+			It looks like the jailer has equiped itself with some of the prototype weapons, becareful in how you engage it, or else you could loose your crew.</text>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="RAD_PIRATE_FIGHT_TRIGGER"/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_PIRATE_FIGHT_TRIGGER">
+	<text>You power up your weapons.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+
+<event name="RAD_PIRATE_TRACKING_4_FAKE" unique="true">
+	<text>There's no sign of the station, looks like you're at the wrong place.</text>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="PIRATE_CIVILIAN" />
+	</choice>
+</event>
+
+<eventList name="RAD_LAB_QUEST_LIST">
+	<event load="RAD_LAB_QUEST_1"/>
+</eventList>
+
+<eventList name="RAD_PIRATE_TRACKING_3_LIST">
+	<event load="RAD_PIRATE_TRACKING_4_REAL"/>
+	<event load="RAD_PIRATE_TRACKING_4_FAKE"/>
+</eventList>
+
+<event name="RAD_PIRATE_QUEST_FINISH">
+	<text>Shortly after a new ship arrives, it's the scientists.
+	"Ah, Renegade, excellent work, You'll be paid hansomely for this, We'll even throw the blueprints for the station in there too, perhaps you could make use of it."</text>
+	<choice hidden="false">
+		<text>Continue...</text>
+		<event>
+			<text>The scientists transport over a high amount of scrap, and one of their most advanced weapons.</text>
+			<autoReward level="HIGH">standard</autoReward>
+			<weapon name="RAD_CLUSTER_MISSILE_3">
+			<!--Unlock Cruiser at some point here-->
+		</event>
+	</choice>
+</event>
+
+</FTL>

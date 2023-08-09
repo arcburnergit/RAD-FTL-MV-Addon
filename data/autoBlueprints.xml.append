@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+<mod:findName type="blueprintList" name="LIST_WEAPONS_ALL">
+	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
+	<mod-append:name>RAD_CLUSTER_MISSILE_2</mod-append:name>
+	<mod-append:name>RAD_CLUSTER_MISSILE_3</mod-append:name>
+	<mod-append:name>RAD_ABDUCTOR</mod-append:name>
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_WEAPONS_ALL_CRAPBUCKET">
+	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
+	<mod-append:name>RAD_CLUSTER_MISSILE_2</mod-append:name>
+	<mod-append:name>RAD_CLUSTER_MISSILE_3</mod-append:name>
+</mod:findName>
+
+
+<mod:findName type="blueprintList" name="LIST_DRONES_ALL">
+	<!--<mod-append:name>TRC_SCATTERSHOT</mod-append:name>-->
+</mod:findName>
+<mod:findName type="blueprintList" name="LIST_DRONES_ALL_CRAPBUCKET">
+	<!--<mod-append:name>TRC_SCATTERSHOT</mod-append:name>-->
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_WEAPONS_HEAVY">
+	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
+	<mod-append:name>RAD_CLUSTER_MISSILE_2</mod-append:name>
+	<mod-append:name>RAD_CLUSTER_MISSILE_3</mod-append:name>
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_MISSILES_ALL">
+	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
+	<mod-append:name>RAD_CLUSTER_MISSILE_2</mod-append:name>
+	<mod-append:name>RAD_CLUSTER_MISSILE_3</mod-append:name>
+</mod:findName>
+
+<mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MISSILES_SPECIAL">
+	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
+	<mod-append:name>RAD_CLUSTER_MISSILE_2</mod-append:name>
+</mod:findName>
+
+<blueprintList name="LABRATORY_WEAPONS">
+	<name>RAD_ABDUCTOR</name>
+	<name>RAD_CLUSTER_MISSILE</name>
+	<name>RAD_CLUSTER_MISSILE_2</name>
+</blueprintList>
+
+<!--STATION-->
+<shipBlueprint name="MU_CIVILIAN_LAB" layout="mu_civilian_lab" img="mu_civilian_lab">
+	<class>Union Labratory</class>
+	<systemList>
+		<battery power="1" max="2" room="10" start="false" />
+		<doors power="1" max="3" room="8" start="true" />
+		<drones power="1" max="8" room="17" start="false" />
+		<medbay power="1" max="3" room="0" start="false" />
+		<oxygen power="1" max="1" room="4" start="true" />
+		<shields power="3" max="8" room="3" start="true" />
+		<teleporter power="1" max="2" room="16" start="false" />
+		<weapons power="4" max="8" room="2" start="true" />
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="30" count="4" load="LIST_WEAPONS_LAB" />
+	<droneList drones="10" count="0" load="LIST_DRONES_ENEMY_STANDARD" />
+	<health amount="32" />
+	<maxPower amount="18" />
+	<crewCount amount="8" max="12" class="human" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_TECH_RESPIRATOR" />
+</shipBlueprint>
+
+<shipBlueprint name="MU_PIRATE_REBEL_RAD_2" layout="mu_pirate_rebel_dropship" img="mu_pirate_rebel_dropship">
+	<class>Pirate Enforcer</class>
+	<systemList>
+		<clonebay power="1" max="3" room="7" start="false" />
+		<doors power="1" max="3" room="11" start="false" />
+		<engines power="1" max="6" room="2" start="true" />
+		<medbay power="1" max="3" room="7" start="false" />
+		<oxygen power="1" max="3" room="10" start="true" />
+		<pilot power="1" max="1" room="0" start="true" />
+		<shields power="4" max="10" room="3" start="true" />
+		<teleporter power="2" max="3" room="1" start="true" />
+		<weapons power="4" max="8" room="4" start="true" />
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="15" count="4" load="LIST_WEAPONS_REBEL" />
+	<droneList drones="0" count="0" />
+	<health amount="18" />
+	<maxPower amount="25" />
+	<crewCount amount="7" max="11" class="LIST_CREW_PIRATE_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+</shipBlueprint>
+
+<shipBlueprint name="MU_PIRATE_REBEL_RAD_1" layout="mu_pirate_rebel_guard_elite" img="mu_pirate_rebel_guard_elite">
+	<class>Pirate</class>
+	<systemList>
+		<cloaking power="1" max="3" room="4" start="false" />
+		<doors power="1" max="3" room="3" start="false" />
+		<engines power="1" max="1" room="6" start="true" />
+		<oxygen power="1" max="2" room="2" start="true" />
+		<pilot power="2" max="3" room="0" start="true" />
+		<shields power="4" max="8" room="5" start="true" />
+		<weapons power="4" max="8" room="7" start="true" />
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="30" count="4">
+		<weapon name="RAD_ABDUCTOR_ENEMY" />
+		<weapon name="RAD_ABDUCTOR_ENEMY" />
+		<weapon name="LIST_WEAPONS_REBEL" />
+		<weapon name="LIST_WEAPONS_REBEL" />
+	</weaponList>
+	<droneList drones="0" count="0" />
+	<health amount="14" />
+	<maxPower amount="25" />
+	<crewCount amount="5" max="8" class="LIST_CREW_PIRATE_RANDOM" />
+	<boardingAI>sabotage</boardingAI>
+	<cloakImage>mu_pirate_rebel_guard_elite</cloakImage>
+</shipBlueprint>
+
+<shipBlueprint name="RAD_JAILER" layout="rad_jailer" img="rad_jailer">
+	<class>Pirate Jailer</class>
+	<systemList>
+		<doors power="1" max="3" room="4" start="true" />
+		<engines power="1" max="6" room="1" start="true" />
+		<medbay power="1" max="3" room="7" start="false" />
+		<oxygen power="1" max="3" room="5" start="true" />
+		<pilot power="1" max="2" room="0" start="true" />
+		<shields power="2" max="10" room="2" start="true" />
+		<teleporter power="1" max="3" room="8" start="false" />
+		<weapons power="4" max="8" room="3" start="true" />
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="50" count="4">
+		<weapon name="RAD_JAILERBEAM" />
+		<weapon name="RAD_JAILERBEAM" />
+		<weapon name="LASER_PIERCE_2" />
+		<weapon name="RAD_CLUSTER_MISSILE" />
+	</weaponList>
+	<droneList drones="0" count="0" />
+	<health amount="20" />
+	<maxPower amount="25" />
+	<crewCount amount="8" max="12" class="human_soldier" />
+	<boardingAI>sabotage</boardingAI>
+</shipBlueprint>
+
+<blueprintList name="LIST_WEAPONS_LAB">
+	<name>RAD_CLUSTER_MISSILE</name>
+	<name>RAD_CLUSTER_MISSILE_2</name>
+	<name>RAD_CLUSTER_MISSILE_3</name>
+	<name>BEAM_MINING</name>
+	<name>CRYSTAL_HEAVY_2</name>
+	<name>KERNEL_FIRE</name>
+	<name>LANCE_1</name>
+	<name>RAD_ABDUCTOR</name>
+</blueprintList>
+
+</FTL>

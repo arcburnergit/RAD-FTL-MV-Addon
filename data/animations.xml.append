@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+
+<animSheet name="missile_cluster" w="32" h="80" fw="32" fh="80">projectiles/missile_cluster.png</animSheet>
+<anim name="missile_cluster">
+	<sheet>missile_cluster</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1</time>
+</anim>
+
+<animSheet name="missiles_cluster" w="464" h="65" fw="29" fh="65">weapon_missile/missiles_cluster.png</animSheet>
+<weaponAnim name="missiles_cluster">
+	<sheet>missiles_cluster</sheet>
+	<desc length="16" x="0" y="0"/>
+	<chargedFrame>13</chargedFrame>
+	<fireFrame>14</fireFrame>
+	<firePoint  x="18" y="0"/>
+	<mountPoint x="7" y="42"/>
+</weaponAnim>
+
+<animSheet name="missile_cluster3" w="32" h="80" fw="32" fh="80">projectiles/missile_cluster3.png</animSheet>
+<anim name="missile_cluster3">
+	<sheet>missile_cluster3</sheet>
+	<desc length="1" x="0" y="0"/>
+	<time>1</time>
+</anim>
+
+<animSheet name="missiles_cluster3" w="476" h="75" fw="34" fh="75">weapon_missile/missiles_cluster3.png</animSheet>
+<weaponAnim name="missiles_cluster3">
+	<sheet>missiles_cluster3</sheet>
+	<desc length="14" x="0" y="0"/>
+	<chargedFrame>5</chargedFrame>
+	<fireFrame>6</fireFrame>
+	<firePoint  x="21" y="27"/>
+	<mountPoint x="7" y="49"/>
+</weaponAnim>
+
+<animSheet name="missiles_cluster2" w="1054" h="75" fw="34" fh="75">weapon_missile/missiles_cluster2.png</animSheet>
+<weaponAnim name="missiles_cluster2">
+	<sheet>missiles_cluster2</sheet>
+	<desc length="31" x="0" y="0"/>
+	<chargedFrame>28</chargedFrame>
+	<fireFrame>29</fireFrame>
+	<firePoint  x="21" y="27"/>
+	<mountPoint x="7" y="49"/>
+</weaponAnim>
+
+<animSheet name="rad_abductor" w="279" h="81" fw="31" fh="81">weapon_focus/rad_abductor.png</animSheet>
+<weaponAnim name="rad_abductor">
+	<sheet>rad_abductor</sheet>
+	<desc length="9" x="0" y="0" />
+	<chargedFrame>1</chargedFrame>
+	<fireFrame>2</fireFrame>
+	<firePoint x="19" y="35" />
+	<mountPoint x="5" y="62" />
+	<chargeImage>weapon_focus/rad_abductor_glow.png</chargeImage>
+</weaponAnim>
+
+</FTL>

@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+
+<!--
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+		Example LASER
+		<weaponBlueprint name="(WRITE THE NAME OF THE WEAPON HERE)"> 
+		<type>WEAPON TYPE HERE! Such as "BURST" "LASER" "MISSILE" "BEAM" etc</type>
+		<title>What is the weapon's name?</title>
+		<short>What is the weapon's shortened name?</short>
+		<desc>What will the player read for the weapon's flavor text?</desc>
+		<tooltip>An optional tooltip for the weapon if the player should be given advise on its purpose or usage</tooltip>
+		<damage>How much hull damage does it do? must be a number, no letters</damage>
+		<shots>How many times does it fire, per charge?</shots>
+		<sp>Shield piercing: How many layers of the enemy ship's shield does the weapon pierce through?</sp>
+		<fireChance>Chance of weapon starting a fire. Every number stands for 10%, up to 100%. So if you set this to "5" then the weapon has a 50% chance to create a fire</fireChance>
+		<breachChance>Same as fire chance, chance to create a hull breach</breachChance>
+		<cooldown>How many seconds until the weapon can fully charge and fire? must be a number, no letters</cooldown>
+		<power>The amount of power needed to power and use the weapon</power>
+		<cost>How much scrap does it cost? Note: half of this number is the sell price</cost>
+		<bp>I believe this is the blueprint group, not too important for this lesson</bp>
+		<rarity>How often will it appear in stores or events? "0" makes it never appear except for specific conditions you would have to code</rarity>
+		<image>I believe this involves the weapon's icon? This part was never clear to me, but isn't TOO important</image>
+		<launchSounds>What sound effects does the game play when this weapon is fired? Can customize, but leave it default for now</launchSounds>
+		<hitShipSounds>What sound effects does the game play when this weapon's projectile hits a ship? Can customize, but leave it default for now</hitShipSounds>
+		<hitShieldSounds>What sound effects does the game play when this weapon's projectile hits a shield? Can customize, but leave it default for now</hitShieldSounds>
+		<missSounds>What sound effects does the game play when this weapon's projectile misses a ship? Can customize, but leave it default for now</missSounds>
+		<weaponArt>This line declares what animation sheet the weapon will use (and then the animation sheet declares which sprite sheet). WILL BE COVERED in another guide, leave it default</weaponArt>
+		<iconImage>Same as <image>, I'm not entirely sure of its purpose yet. Will have to ask around</image></iconImage>
+		</weaponBlueprint> This line is the end of the weapon's code. Make sure every new weapon you make STARTS with "<weaponBlueprint>" and ENDS with "</weaponBlueprint>"
+		
+		That goes for all of the above lines I covered. Make sure they are always "opened" with the <(name of command here)> and then "closed" with the </(name of command here>
+		The "/" just designates you are closing it. Folders are also created using the "Open" line of the command, for easy organization!
+	
+	
+	\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	-->
+	
+<weaponBlueprint name="RAD_CLUSTER_MISSILE"> 
+	<type>MISSILES</type>
+	<tip>tip_cascade</tip>
+	<title>Cluster Missile Mk1</title>
+	<short>Cluster 1</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<descriptionOverride>In an attempt to create more widespread destruction, this missile houses several smaller warheads that are spun out to hit adjacent rooms, unfortunatly this left no room in the main missile for any explosives.
+
+		Stats:
+		Required Power: 2
+		Charge Time: 14 seconds
+		Missile Consumption: 1
+
+		Shots Per Charge: 1
+		
+		Base Hull Damage: 0
+		Total System Damage: 0
+		Total Crew Damage: 0
+		Shield Piercing: 10
+		Adjacent System Damage: 2
+		
+		Buy/Sell Price: 50~/25~
+	</descriptionOverride>
+	<tooltip>Fires 1 missile; Only damages adjacent rooms; pierces all shields.</tooltip>
+	<damage>0</damage>
+	<missiles>1</missiles>
+	<speed>50</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>14</cooldown>
+	<power>2</power>
+	<cost>50</cost>
+	<bp>2</bp>
+	<rarity>3</rarity>
+	<image>missile_cluster</image>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>explosion_heavy</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_cluster</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_CLUSTER_MISSILE_2"> 
+	<type>MISSILES</type>
+	<tip>tip_cascade</tip>
+	<title>Cluster Missile Mk2</title>
+	<short>Cluster 2</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<descriptionOverride>In an attempt to create more widespread destruction, this missile uses a belt to load many smaller warheads into the missile, which are then spun out to hit adjacent rooms just before impact, unfortunatly this left no room in the main missile for any explosives.
+
+		Stats:
+		Required Power: 3
+		Charge Time: 16 seconds
+		Missile Consumption: 1
+
+		Shots Per Charge: 1
+		
+		Base Hull Damage: 0
+		Total System Damage: 0
+		Total Crew Damage: 0
+		Shield Piercing: 10
+		Adjacent Hull Damage: 1
+		Adjacent System Damage: 2
+
+		
+		Buy/Sell Price: 70~/35~
+	</descriptionOverride>
+	<tooltip>Fires 1 missile; Only damages adjacent rooms; pierces all shields.</tooltip>
+	<damage>0</damage>
+	<missiles>1</missiles>
+	<speed>50</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>16</cooldown>
+	<power>3</power>
+	<cost>50</cost>
+	<bp>2</bp>
+	<rarity>4</rarity>
+	<image>missile_cluster</image>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>explosion_heavy</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_cluster2</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_CLUSTER_MISSILE_3"> 
+	<type>MISSILES</type>
+	<tip>tip_cascade</tip>
+	<title>Prototype Cluster Missile</title>
+	<short>Adv. Cluster</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<descriptionOverride>This missile was an attempt by some scientists to miniaturize the crystal lockdown tech into many small warheads, which they then loaded into a cluster missile.
+
+		Stats:
+		Required Power: 4
+		Charge Time: 14 seconds
+		Missile Consumption: 1
+
+		Shots Per Charge: 1
+		
+		Base Hull Damage: 0
+		Total System Damage: 0
+		Total Crew Damage: 0
+		Shield Piercing: 10
+		Adjacent Hull Damage: 2
+		Adjacent System Damage: 3
+		
+		Applies lockdown effect to adjacent rooms.
+		
+		Buy/Sell Price: 90~/45~
+	</descriptionOverride>
+	<tooltip>Fires 1 missile; Only damages adjacent rooms; pierces all shields.</tooltip>
+	<damage>0</damage>
+	<missiles>1</missiles>
+	<speed>50</speed>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>0</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>14</cooldown>
+	<power>4</power>
+	<cost>50</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>missile_cluster3</image>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>explosion_heavy</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>missiles_cluster3</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_ABDUCTOR">
+	<type>BEAM</type>
+	<title>'Abductor' Teleportation Focus Beam</title>
+	<short>'Abductor'</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<descriptionOverride>Someone had the bright idea of taking the technology inside a teleporter, and putting it behind a bunch of lenses and science so that it could be focused on a specific person on a different ship. It's not going to do much to them in transit, so be prepared to meet them in your weapons room.
+	
+	Stats:
+	Required Power: 1
+	Charge Time: 20 seconds
+
+	Shots Per Charge: 1
+	
+	Base Hull Damage: 0
+	Total System Damage: 0
+	Total Crew Damage: 0
+	Shield Piercing: 10
+	
+	Breach Chance: 30% (Adjusted: 30%)
+	
+	Buy/Sell Price: 80~/40~
+	</descriptionOverride>
+	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>3</breachChance>
+	<cooldown>20</cooldown>
+	<sp>10</sp>
+	<speed>1</speed>
+	<power>1</power>
+	<cost>80</cost>
+	<bp>2</bp>
+	<rarity>4</rarity>
+	<color>
+		<r>20</r>
+		<g>80</g>
+		<b>200</b>
+	</color>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_strong</sound>
+	</launchSounds>
+	<weaponArt>rad_abductor</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_ABDUCTOR_ENEMY">
+	<type>BEAM</type>
+	<title>'Abductor' Teleportation Focus Beam</title>
+	<short>'Abductor'</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>1</breachChance>
+	<cooldown>8</cooldown>
+	<sp>10</sp>
+	<speed>1</speed>
+	<power>1</power>
+	<cost>80</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<color>
+		<r>20</r>
+		<g>80</g>
+		<b>200</b>
+	</color>
+	<image>beam_contact</image>
+	<length>1</length>
+	<launchSounds>
+		<sound>focus_strong</sound>
+	</launchSounds>
+	<weaponArt>rad_abductor</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_JAILERBEAM">
+	<type>BEAM</type>
+	<title>'Abductor' Teleportation Focus Beam</title>
+	<short>'Abductor'</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
+	<damage>0</damage>
+	<sp>0</sp>
+	<fireChance>0</fireChance>
+	<breachChance>3</breachChance>
+	<cooldown>10</cooldown>
+	<sp>10</sp>
+	<speed>3</speed>
+	<power>1</power>
+	<cost>80</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<color>
+		<r>20</r>
+		<g>80</g>
+		<b>200</b>
+	</color>
+	<image>beam_contact</image>
+	<length>160</length>
+	<launchSounds>
+		<sound>focus_strong</sound>
+	</launchSounds>
+	<weaponArt>rad_abductor</weaponArt>
+	<iconImage>beam</iconImage>
+</weaponBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_RADLAB_1" layout="rdp_lab_a" img="rdp_lab_a">
+	<class>R&amp;D Laboratory</class>
+	<name>Station 37-A</name>
+	<desc>A heavily modified civilian station. The Scientists installed a pair of engines, however they're barely enough to make the station jump capable, it's unlikely you'll be able to dodge much with it.</desc>
+	<systemList>
+		<battery power="1" room="27" start="false" img="room_battery_16" />
+		<cloaking power="1" room="11" start="false" img="radlab_cloaking" />
+		<clonebay power="1" room="7" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="3" start="true" img="room_doors_2">
+			<slot>
+				<direction>down</direction>
+				<number>0</number>
+			</slot>
+		</doors>
+		<drones power="1" room="11" start="false" img="room_drones_9" />
+		<engines power="1" max="1" room="24" start="true" img="room_engines_radlab_a">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="11" start="false" img="room_hacking_7" />
+		<medbay power="1" room="7" start="true" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="11" start="false" img="room_mind_4" />
+		<oxygen power="1" room="12" start="true" img="room_oxygen_13" />
+		<pilot power="1" room="16" start="true" img="room_pilot_radlab_a">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="2" room="26" start="true" img="room_sensors_2">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="6" start="true" img="room_shields_radlab_a">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="8" start="false" />
+		<weapons power="3" max="8" room="15" start="true" img="room_weapons_radlab_a">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="12" count="4">
+		<weapon name="RAD_CLUSTER_MISSILE" />
+		<weapon name="LASER_BURST_2" />
+	</weaponList>
+	<droneList drones="0" count="2" />
+	<health amount="30" />
+	<maxPower amount="6" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human" />
+	<aug name="RAD_LOCKED_SHRAPNEL_COATING" />
+</shipBlueprint>
+
+<augBlueprint name="RAD_SHRAPNEL_COATING">
+	<title>Shrapnel Coating</title>
+	<desc>Allows you to apply a shrapnel coating to the ammo of one weapon, or weapon class, granting that weapon 1 system damage to adjacent rooms.</desc>
+	<cost>80</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+</augBlueprint>
+
+<augBlueprint name="RAD_JUMP_TRACKER">
+	<title>Jump Tracer</title>
+	<desc>Through the use of advanced sensors and science this device allows your ship to trace the jumps of certain ships.</desc>
+	<cost>100</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+</augBlueprint>
+
+<augBlueprint name="LOCKED_RAD_SHRAPNEL_COATING">
+	<title>Shrapnel Coating</title>
+	<desc>Allows you to apply a shrapnel coating to the ammo of one weapon, or weapon class, granting that weapon 1 system damage to adjacent rooms.</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+</augBlueprint>
+
+</FTL>

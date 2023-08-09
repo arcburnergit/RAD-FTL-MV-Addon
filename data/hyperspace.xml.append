@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+<!-- 
+    If <ship name="MY_SHIP" ... /> already exists, adding another <ship name="MY_SHIP" ... /> will cause ship duplication.
+    If we only look for the ship and turn on the slot, then nothing will happen if that <ship> doesn't exist.
+
+    This code adds a new <ship name="MY_SHIP" ... />, in case the ship does not exist.
+    Then we look to see if there is a <ship> with the same name defined before. If not, that's it!
+    But if so, we remove the line we just added, and go to that existing <ship> and set our layout slot to true.
+
+    The code looks this way to cover all edge cases and ensure it works no matter the existing state of hyperspace.xml.
+    Use it as a single chunk and don't mix with other Slipstream tags code, otherwise it may not work correctly.
+-->
+<!-- start of chunk -->
+
+<!--<ships>
+	<ship name="PLAYER_SHIP_RADLAB_1" a="true" b="false" c="false" secret="true" super="luminal">
+		<unlock varient="a" silent="false">
+			<type>4</type>
+		</unlock>
+	</ship>
+	<customShip name="PLAYER_SHIP_RADLAB_1">
+		<hiddenAug>ADV_SCANNERS</hiddenAug>
+		<crewLimit>10</crewLimit>
+	</customShip>
+	
+	<ship name="PLAYER_SHIP_HORSE" b="true" c="true" secret="true">
+		<unlock variant="a" silent="false">
+            <type>4</type>
+        </unlock>
+		<unlock variant="b" silent="false">
+            <type>1</type>
+            <shipReq>PLAYER_SHIP_HORSE</shipReq>
+            <value>5</value>
+        </unlock>
+		<unlock variant="c" silent="false">
+            <type>1</type>
+            <shipReq>PLAYER_SHIP_HORSE_2</shipReq>
+            <value>5</value>
+        </unlock>
+		<unlock variant="c" silent="false">
+            <type>2</type>
+            <shipReq>PLAYER_SHIP_HORSE</shipReq>
+        </unlock>
+    </ship>
+</ships>-->
+
+<augments>
+	<aug name="LOCKED_RAD_SHRAPNEL_COATING">
+		<function name="SHRAPNEL_COATING" value="1" useForReqs="true" warning="false"/>
+    	<locked />
+	</aug>
+	<aug name="RAD_SHRAPNEL_COATING">
+		<function name="SHRAPNEL_COATING" value="1" useForReqs="true" warning="false"/>
+	</aug>
+	<aug name="RAD_JUMP_TRACKER"/>
+</augments>
+
+<mod:findWithChildLike type="ships" child-type="ship" reverse="true" start="1" limit="1">
+	<mod:selector name="PLAYER_SHIP_RADLAB_1" />
+	<mod:findName type="ship" name="PLAYER_SHIP_RADLAB_1">
+		<mod:setAttributes super="luminal" a="true" />
+	</mod:findName>
+</mod:findWithChildLike>
+<mod:findWithChildLike type="ships" child-type="ship" start="1">
+	<mod:selector super="luminal" />
+	<mod:findLike type="ship">
+		<mod:selector super="luminal" />
+		<mod:removeTag />
+	</mod:findLike>
+</mod:findWithChildLike>
+<mod:findLike type="ships">
+	<mod:findLike type="ship">
+		<mod:selector super="luminal" />
+		<mod:removeAttributes super="" />
+	</mod:findLike>
+</mod:findLike>
+
+<events>
+	<!--<bossShip>MU_COLLECTOR</bossShip>
+	<bossShip>MU_CONTINUITY_BOSS</bossShip>
+	
+	<variable name="addon_extraequipment_enabled" op="set" val="1"/>
+	
+	<variable name="trc_collector" op="set" val="0"/>
+	<metaVariable name="trc_found_collector" op="set" val="0"/>
+	<metaVariable name="trc_fed" op="set" val="0"/>
+	<metaVariable name="trc_zoltan" op="set" val="0"/>
+	<metaVariable name="trc_auto" op="set" val="0"/>
+	<metaVariable name="trc_rock" op="set" val="0"/>
+	<metaVariable name="trc_lanius" op="set" val="0"/>
+	<metaVariable name="trc_probe" op="set" val="0"/>-->
+	
+	
+	<req name="LABRATORY_SPAWN_CHECK" type="all">
+		<req lvl="2" max_lvl="2">
+			<name>loc_sector_count</name>
+		</req>
+	</req>
+	
+	<req name="RAD_JUMP_TRACER" type="all">
+		<name>RAD_JUMP_TRACKER</name>
+	</req>
+	
+</events>
+
+<store>
+	<customStore id="STORE_RADLAB ">
+		<resource>
+		  <type>drones</type>
+		  <count min="4" max="7"/>
+          <price>-1</price>
+		</resource>
+		<resource>
+		  <type>missiles</type>
+		  <count min="2" max="5"/>
+          <price>-1</price>
+		</resource>
+        <itemPurchaseLimit>2</itemPurchaseLimit>
+		<category type="WEAPONS">
+			<item>
+                <blueprint>LABRATORY_WEAPONS</blueprint>
+                <price>-1</price>
+            </item>    
+            <item>
+                <blueprint>LABRATORY_WEAPONS</blueprint>
+                <price>-1</price>
+            </item>    
+            <item>
+                <blueprint>LABRATORY_WEAPONS</blueprint>
+                <price>-1</price>
+            </item>    
+        </category>
+    </customStore>
+</store>
+
+<mod:findLike type="scripts">
+    <mod-append:script>data/rad_scripts/rad_weaponFunctions.lua</mod-append:script>
+	<mod-append:script>data/rad_scripts/triggered_events.lua</mod-append:script>
+</mod:findLike>
+
+<!-- end of chunk -->
+</FTL>

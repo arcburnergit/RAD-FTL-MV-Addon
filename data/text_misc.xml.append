@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<FTL>
+
+<text name="map_icon_rad_lab">R&amp;D LAB</text>
+<text name="map_icon_rad_pirate">PIRATE</text>
+<text name="map_icon_rad_pirate_d">DAMAGED PIRATE</text>
+<text name="map_icon_rad_pirate_e">PIRATE ENFORCER</text>
+
+</FTL>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+<!--<mod:findLike type="sectorDescription">
+	<mod-append:priorityEvent name="" min="1" max="1" priority="1" req="" lvl="1"/>
+</mod:findLike>-->
+
+<mod:findLike type="sectorDescription">
+	<mod-append:priorityEvent name="RAD_LAB_QUEST_START" min="1" max="1" priority="1" req="LABRATORY_SPAWN_CHECK" lvl="1"/>
+</mod:findLike>
+
+<mod:findName type="sectorDescription" name="SECRET_ANCIENT">
+	<mod:findLike type="rarityList">
+		<mod-append:blueprint name="RAD_CLUSTER_MISSILE" rarity="0" />
+		
+	</mod:findLike>
+</mod:findName>
+
+<mod:findName type="sectorDescription" name="SECRET_ROYAL">
+	<mod:findLike type="rarityList">
+		<mod-append:blueprint name="RAD_CLUSTER_MISSILE" rarity="0" />
+		
+	</mod:findLike>
+</mod:findName>
+</FTL>

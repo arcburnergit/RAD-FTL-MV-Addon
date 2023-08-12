@@ -67,4 +67,153 @@
 	<chargeImage>weapon_beams/rad_jailerbeam_glow.png</chargeImage>
 </weaponAnim>
 
+<animSheet name="phantom_experiment_alpha" w="315" h="455" fw="35" fh="35">people/phantom_experiment_alpha_base.png</animSheet>
+<anim name="phantom_experiment_alpha_clone">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="6" x="0" y="2" />
+	<time>0.75</time>
+</anim>
+<anim name="phantom_experiment_alpha_death_right">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="5" x="3" y="0" />
+	<time>0.75</time>
+</anim>
+<anim name="phantom_experiment_alpha_death_left">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="5" x="0" y="2" />
+	<time>0.75</time>
+</anim>
+<anim name="phantom_experiment_alpha_walk_down">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="0" y="12" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_walk_right">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="4" y="12" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_walk_up">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="0" y="11" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_walk_left">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="4" y="11" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_shoot_down">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="3" x="0" y="10" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_shoot_right">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="3" x="3" y="10" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_shoot_up">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="3" x="6" y="10" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_shoot_left">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="3" x="0" y="1" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_fire_down">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="0" y="9" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_fire_right">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="4" y="9" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_fire_up">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="0" y="8" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_fire_left">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="4" y="8" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_repair">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="9" x="0" y="7" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_punch_up">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="6" x="3" y="1" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_punch_down">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="6" x="0" y="6" />
+	<time>1.0</time>
+</anim>
+<anim name="phantom_experiment_alpha_teleport">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="9" x="0" y="3" />
+	<time>0.5</time>
+</anim>
+<anim name="phantom_experiment_alpha_type_right">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="0" y="5" />
+	<time>0.75</time>
+</anim>
+<anim name="phantom_experiment_alpha_type_left">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="4" y="5" />
+	<time>0.75</time>
+</anim>
+<anim name="phantom_experiment_alpha_type_up">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="0" y="4" />
+	<time>0.75</time>
+</anim>
+<anim name="phantom_experiment_alpha_type_down">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="4" x="4" y="4" />
+	<time>0.75</time>
+</anim>
+<anim name="phantom_experiment_alpha_portrait">
+	<sheet>phantom_experiment_alpha</sheet>
+	<desc length="1" x="0" y="0" />
+	<time>1</time>
+</anim>
+
+<animSheet name="rad_gatling" w="320" h="67" fw="32" fh="67">weapon_laser/rad_gatling.png</animSheet>
+<weaponAnim name="rad_gatling">
+	<sheet>rad_gatling</sheet>
+	<desc length="10" x="0" y="0" />
+	<chargedFrame>4</chargedFrame>
+	<fireFrame>5</fireFrame>
+	<firePoint x="18" y="23" />
+	<mountPoint x="4" y="49" />
+</weaponAnim>
+
+<animSheet name="chainlaser_damage_rad_charge" w="100" h="64" fw="25" fh="64">weapon_laser/laser_chaindamage_rad_chargeglow.png</animSheet>
+<anim name="chainlaser_damage_rad_charge">
+	<sheet>chainlaser_damage_charge</sheet>
+	<desc length="4" x="0" y="0" />
+	<time>1.0</time>
+</anim>
+<animSheet name="chainlaser_damage_rad" w="300" h="64" fw="25" fh="64">weapon_laser/laser_chaindamage_rad.png</animSheet>
+<weaponAnim name="chainlaser_damage_rad">
+	<sheet>chainlaser_damage_rad</sheet>
+	<desc length="12" x="0" y="0" />
+	<chargedFrame>5</chargedFrame>
+	<fireFrame>6</fireFrame>
+	<firePoint x="15" y="8" />
+	<mountPoint x="2" y="46" />
+	<boost>chainlaser_damage_rad_charge</boost>
+</weaponAnim>
+
 </FTL>

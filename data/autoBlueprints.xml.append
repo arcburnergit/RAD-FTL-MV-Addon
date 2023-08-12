@@ -5,11 +5,14 @@
 	<mod-append:name>RAD_CLUSTER_MISSILE_2</mod-append:name>
 	<mod-append:name>RAD_CLUSTER_MISSILE_3</mod-append:name>
 	<mod-append:name>RAD_ABDUCTOR</mod-append:name>
+	<mod-append:name>RAD_JAILERBEAM_PLAYER</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_WEAPONS_ALL_CRAPBUCKET">
 	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
 	<mod-append:name>RAD_CLUSTER_MISSILE_2</mod-append:name>
 	<mod-append:name>RAD_CLUSTER_MISSILE_3</mod-append:name>
+	<mod-append:name>RAD_ABDUCTOR</mod-append:name>
+	<mod-append:name>RAD_JAILERBEAM_PLAYER</mod-append:name>
 </mod:findName>
 
 
@@ -67,6 +70,8 @@
 	<aug name="UPG_TECH_RESPIRATOR" />
 </shipBlueprint>
 
+<!--QUEST PIRATE TRACKING-->
+
 <shipBlueprint name="MU_PIRATE_REBEL_RAD_2" layout="mu_pirate_rebel_dropship" img="mu_pirate_rebel_dropship">
 	<class>Pirate Enforcer</class>
 	<systemList>
@@ -104,10 +109,10 @@
 	<weaponSlots>4</weaponSlots>
 	<droneSlots>0</droneSlots>
 	<weaponList missiles="30" count="4">
-		<weapon name="RAD_ABDUCTOR_ENEMY" />
-		<weapon name="RAD_ABDUCTOR_ENEMY" />
 		<weapon name="LIST_WEAPONS_REBEL" />
 		<weapon name="LIST_WEAPONS_REBEL" />
+		<weapon name="RAD_ABDUCTOR_ENEMY" />
+		<weapon name="RAD_ABDUCTOR_ENEMY" />
 	</weaponList>
 	<droneList drones="0" count="0" />
 	<health amount="14" />
@@ -132,10 +137,10 @@
 	<weaponSlots>4</weaponSlots>
 	<droneSlots>0</droneSlots>
 	<weaponList missiles="50" count="4">
-		<weapon name="RAD_JAILERBEAM" />
-		<weapon name="RAD_JAILERBEAM" />
 		<weapon name="LASER_PIERCE_2" />
 		<weapon name="RAD_CLUSTER_MISSILE" />
+		<weapon name="RAD_JAILERBEAM" />
+		<weapon name="RAD_JAILERBEAM" />
 	</weaponList>
 	<droneList drones="0" count="0" />
 	<health amount="20" />
@@ -154,5 +159,74 @@
 	<name>LANCE_1</name>
 	<name>RAD_ABDUCTOR</name>
 </blueprintList>
+
+<!--QUEST GHOST-->
+
+<shipBlueprint name="MU_RADLAB_FIGHTER" layout="mu_radlab_fighter" img="mu_radlab_fighter">
+	<class>Science Fighter</class>
+	<systemList>
+		<cloaking power="2" max="3" room="5" start="true" />
+		<engines power="1" max="4" room="8" start="true" />
+		<hacking power="1" max="2" room="10" start="true" />
+		<medbay power="1" max="3" room="2" start="true" />
+		<oxygen power="1" max="2" room="0" start="true" />
+		<pilot power="1" max="1" room="9" start="true" />
+		<shields power="5" max="8" room="4" start="true" />
+		<teleporter power="1" max="3" room="3" start="true" />
+		<weapons power="8" max="12" room="1" start="true" />
+	</systemList>
+	<weaponSlots>6</weaponSlots>
+	<droneSlots>0</droneSlots>
+	<weaponList missiles="14" count="6">
+		<weapon name="RAD_CHAINGUN_DAMAGE" />
+		<weapon name="RAD_CHAINGUN_DAMAGE" />
+		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY" />
+		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY" />
+		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY" />
+		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY" />
+	</weaponList>
+	<droneList drones="8" count="0" />
+	<health amount="30" />
+	<maxPower amount="35" />
+	<crewCount amount="1" max="2" class="human_medic" />
+	<crewCount amount="2" max="4" class="easter_tommy" />
+	<crewCount amount="2" max="4" class="human_engineer" />
+	<crewCount amount="3" max="6" class="human_soldier" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="SUPER_ARMOR" />
+</shipBlueprint>
+
+<shipBlueprint name="MU_RADLAB_STATION" layout="mu_radlab_station" img="mu_radlab_station">
+	<class>R&amp;D Labratory</class>
+	<minSector>8</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<cloaking power="1" max="1" room="4" start="false" />
+		<clonebay power="1" max="3" room="2" start="false" />
+		<doors power="1" max="3" room="7" start="false" />
+		<drones power="3" max="10" room="16" start="true" />
+		<hacking power="1" max="3" room="3" start="false" />
+		<oxygen power="2" max="3" room="6" start="true" />
+		<shields power="4" max="10" room="17" start="true" />
+		<weapons power="4" max="8" room="5" start="true" />
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>4</droneSlots>
+	<weaponList missiles="6" count="4">
+		<weapon name="LASER_CHAINGUN_DAMAGE" />
+		<weapon name="LASER_CHAINGUN_DAMAGE" />
+		<weapon name="LASER_CHAINGUN_DAMAGE" />
+		<weapon name="LASER_CHAINGUN_DAMAGE" />
+	</weaponList>
+	<droneList drones="9" count="4" load="LIST_DRONES_ARCADIA" />
+	<health amount="30" />
+	<maxPower amount="30" />
+	<crewCount amount="3" max="6" class="human" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="UPG_TECH_RESPIRATOR" />
+	<aug name="UPG_DRONE_SPEED" />
+</shipBlueprint>
+
+<!--QUEST PIRATE TRACKING-->
 
 </FTL>

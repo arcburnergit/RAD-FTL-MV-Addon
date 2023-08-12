@@ -1,11 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FTL>
 <!--<status type="limit" target="enemy" system="teleporter" amount="0" />-->
+<!-- QUEST START LOCATION -->
+
 <ship name="SHIP_CIVILIAN_LAB" auto_blueprint="MU_CIVILIAN_LAB">
 	<surrender  chance="0.8" min="2" max="3" load="SURRENDER_RAD_LAB"/>
 	<destroyed load="DESTROYED_RAD_LAB"/>
 	<deadCrew load="DEAD_CREW_RAD_LAB"/>
 </ship>
+
+<event name="RAD_LAB_QUEST_START" unique="true">
+	<beaconType id="map_icon_rad_lab" global="true">
+		<color r="146" g="232" b="228" a="1"/>
+	</beaconType>
+	<preventFleet />
+	<quest>
+		<nebulaBeacon>false</nebulaBeacon>
+		<createNebula>false</createNebula>
+		<nextSector>true</nextSector>
+		<aggressive>2</aggressive>
+	</quest>
+	<ship load="SHIP_CIVILIAN_LAB" hostile="false"/>
+	<text> It looks like you've come across a strange labratory, as soon you arrive the labratory powers up what looks like a weapon and you detect them lining up your ship...</text>
+	<choice hidden="true">
+		<text>Wait.</text>
+		<event>
+			<text>Unexpectedly the station imidietly fires on you, you brace for impact.
+			Just as it's about to hit the ship, you see a flash of light, and once your vision returns you're standing in the middle of the station.
+			
+			A scientist is waiting for you, "Uh, sorry about contacting you this way, we just couldn't risk this information leaking out, your ship is fine by the way."
+			The Scientist gestures to the weapons console beside you, your ship appears on the screen, unharmed.
+			"Oh right, I'm Goose, I'm the head of this labratory. You're the renegade we've been hearing about right?"</text>
+			<choice hidden="true">
+				<text>Right.</text>
+				<event>
+					<text>"Excellent, We need your help with a certain issue regarding some rogue technology, however we can't give you the details unless you're absolutly sure about helping."
+					"Either way, feel free to browse our commercial technology, I'm sure someone like you could make use of it"</text>
+					<choice hidden="true">
+						<text>You'll help.</text>
+						<event load="RAD_LAB_QUEST_LIST"/>
+					</choice>
+					<choice hidden="true">
+						<text>Sounds Risky, Just shop.</text>
+						<event>
+							<text>"A shame, but understandable given the way you got here. Follow Duck over there to see our store of sorts."</text>
+							<store>STORE_RADLAB</store>
+						</event>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>You don't know what they want, but you aren't going to wait to see what happens. Attack!</text>
+		<event>
+			<text>You Power up your weapons! The Lab hails you, "You're making a mistake."</text>
+			<ship hostile="true" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK" />
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<eventList name="RAD_LAB_QUEST_LIST">
+	<event load="RAD_LAB_QUEST_1"/>
+	<event load="RAD_LAB_GHOST_1"/>
+</eventList>
+
+<!-- QUEST PIRATE TRACKING -->
 
 <ship name="MU_PIRATE_REBEL_RAD_1" auto_blueprint="MU_PIRATE_REBEL_RAD_1">
 	<!--<surrender  chance="1" min="1" max="6" load="SURRENDER_RAD_PIRATE_1"/>-->
@@ -163,61 +227,6 @@
 	<weapon name="RAD_CLUSTER_MISSILE_3"/>
 </event>
 
-<event name="RAD_LAB_QUEST_START" unique="true">
-	<beaconType id="map_icon_rad_lab" global="true">
-		<color r="146" g="232" b="228" a="1"/>
-	</beaconType>
-	<preventFleet />
-	<quest>
-		<nebulaBeacon>false</nebulaBeacon>
-		<createNebula>false</createNebula>
-		<nextSector>true</nextSector>
-		<aggressive>2</aggressive>
-	</quest>
-	<ship load="SHIP_CIVILIAN_LAB" hostile="false"/>
-	<text> It looks like you've come across a strange labratory, as soon you arrive the labratory powers up what looks like a weapon and you detect them lining up your ship...</text>
-	<choice hidden="true">
-		<text>Wait.</text>
-		<event>
-			<text>Unexpectedly the station imidietly fires on you, you brace for impact.
-			Just as it's about to hit the ship, you see a flash of light, and once your vision returns you're standing in the middle of the station.
-			
-			A scientist is waiting for you, "Uh, sorry about contacting you this way, we just couldn't risk this information leaking out, your ship is fine by the way."
-			The Scientist gestures to the weapons console beside you, your ship appears on the screen, unharmed.
-			"Oh right, I'm Goose, I'm the head of this labratory. You're the renegade we've been hearing about right?"</text>
-			<choice hidden="true">
-				<text>Right.</text>
-				<event>
-					<text>"Excellent, We need your help with a certain issue regarding some rogue technology, however we can't give you the details unless you're absolutly sure about helping."
-					"Either way, feel free to browse our commercial technology, I'm sure someone like you could make use of it"</text>
-					<choice hidden="true">
-						<text>You'll help.</text>
-						<event load="RAD_LAB_QUEST_LIST"/>
-					</choice>
-					<choice hidden="true">
-						<text>Sounds Risky, Just shop.</text>
-						<event>
-							<text>"A shame, but understandable given the way you got here. Follow Duck over there to see our store of sorts."</text>
-							<store>STORE_RADLAB</store>
-						</event>
-					</choice>
-				</event>
-			</choice>
-		</event>
-	</choice>
-	<choice hidden="true">
-		<text>You don't know what they want, but you aren't going to wait to see what happens. Attack!</text>
-		<event>
-			<text>You Power up your weapons! The Lab hails you, "You're making a mistake."</text>
-			<ship hostile="true" />
-			<choice hidden="true">
-				<text>Continue...</text>
-				<event load="COMBAT_CHECK" />
-			</choice>
-		</event>
-	</choice>
-</event>
-
 <event name="RAD_LAB_QUEST_1">
 	<text>"Most excellent, to begin with, understand that alot of this is highly advanced, try to keep it underwraps."
 	Goose walks you over to a terminal on the wall.
@@ -238,7 +247,7 @@
 	</choice>
 </event>
 
-<event name ="RAD_PIRATE_TRACKING_1">
+<event name="RAD_PIRATE_TRACKING_1">
 	<beaconType id="map_icon_rad_pirate" global="true">
 		<color r="242" g="50" b="29"/>
 	</beaconType>
@@ -252,7 +261,7 @@
 	</choice>
 </event>
 
-<event name ="RAD_PIRATE_TRACKING_2">
+<event name="RAD_PIRATE_TRACKING_2">
 	<beaconType id="map_icon_rad_pirate" global="true">
 		<color r="242" g="50" b="29"/>
 	</beaconType>
@@ -350,10 +359,6 @@
 	</choice>
 </event>
 
-<eventList name="RAD_LAB_QUEST_LIST">
-	<event load="RAD_LAB_QUEST_1"/>
-</eventList>
-
 <eventList name="RAD_PIRATE_TRACKING_3_LIST">
 	<event load="RAD_PIRATE_TRACKING_4_REAL"/>
 	<event load="RAD_PIRATE_TRACKING_4_FAKE"/>
@@ -367,10 +372,260 @@
 		<event>
 			<text>The scientists transport over a high amount of scrap, and one of their most advanced weapons.</text>
 			<autoReward level="HIGH">standard</autoReward>
-			<weapon name="RAD_CLUSTER_MISSILE_3">
+			<weapon name="RAD_JAILERBEAM_PLAYER"/>
+			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION</unlockCustomShip>
 			<!--Unlock Cruiser at some point here-->
 		</event>
 	</choice>
 </event>
+
+<ship name="MU_RAD_GHOST_STATION" auto_blueprint="MU_DYNASTY_STATION">
+	<destroyed load="DESTROYED_RAD_DYNASTY_2"/>
+	<deadCrew load="DEAD_CREW_RAD_DYNASTY_2"/>
+</ship>
+
+<ship name="MU_RAD_DYNASTY_FIGHT" auto_blueprint="MU_DYNASTY_FIGHTER_ELITE">
+	<surrender  chance="0" min="6" max="6" load="SURRENDER_RAD_DYNASTY_1"/>
+	<destroyed load="DESTROYED_RAD_DYNASTY_1"/>
+	<deadCrew load="DEAD_CREW_RAD_DYNASTY_1"/>
+</ship>
+
+<event name="DESTROYED_RAD_DYNASTY_1">
+	<text>You've destroyed the Dynasty ship, unfortunately  that's left no one else to fulfil your request for information.</text>
+	<autoReward level="MED">standard</autoReward>
+</event>
+
+<event name="DEAD_CREW_RAD_DYNASTY_1">
+	<text>Well you've killed all their crew, unfortunately  that's left no one else to fulfil your request for information.</text>
+	<autoReward level="HIGH">standard</autoReward>
+</event>
+
+<event name="SURRENDER_RAD_DYNASTY_1">
+	<text>The ship hails you, "Alright what do you want, this isn't worth getting us killed for."</text>
+	<ship hostile="false"/>
+	<choice hidden="true">
+		<text>"We need any information about a fire of some kind, apparently it came through here recently."</text>
+		<event>
+			<text>"Well, I'm not sure if I'm supposed to be telling you this, but a ship came through here with something like that, said they'd be heading to a military station nearby, I'll transmit you the cooridinates now"</text>
+			<quest event="RAD_GHOST_4"/>
+		</event>
+	</choice>
+</event>
+
+<event name="DESTROYED_RAD_DYNASTY_2">
+	<text>You've destroyed the Dynasty ship, Time to report back to the scientists.</text>
+	<autoReward level="MED">standard</autoReward>
+	<choice hidden="true">
+		<text>Contact the scientists.</text>
+		<event>
+			<text>The scientists give you a rendezvous location nearby.</text>
+			<quest event="RAD_GHOST_5"/>
+		</event>
+	</choice>
+</event>
+
+<event name="DEAD_CREW_RAD_DYNASTY_2">
+	<text>Well you've killed all their crew, Time to report back to the scientists.</text>
+	<autoReward level="HIGH">standard</autoReward>
+	<choice hidden="true">
+		<text>Contact the scientists.</text>
+		<event>
+			<text>The scientists give you a rendezvous location nearby.</text>
+			<quest event="RAD_GHOST_5"/>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_LAB_GHOST_1">
+	<text>"Most excellent, to begin with, understand that alot of this is highly advanced, try to keep it underwraps."
+	Goose walks you over to a terminal on the wall.
+	"The problem is rather simple, one of our, uh, assets, ran away, and we'd like it back, and we're prepared to pay hansomely for it's return."</text>
+	<choice hidden="true">
+		<text>Seems simple enough, what's the catch?</text>
+		<event>
+			<text>"Well we don't exactly know where it went, but we have some ideas on where to look, it'll be on you to find it."
+			The scientist transmits you the cooridinates for the first place to look.
+			"When you get there, just start asking around to see if anyone has seen any large fires running around, you'll understand when you find it."
+			
+			"Oh and you'll want this to contain the fire, once you find it."</text>
+			<augment name="EX_FIRE_EXTINGUISHERS"/>
+			<quest event="RAD_GHOST_2"/>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_GHOST_2">
+	<quest>
+		<nebulaBeacon>true</nebulaBeacon>
+		<createNebula>true</createNebula>
+		<nextSector>true</nextSector>
+		<aggressive>2</aggressive>
+	</quest>
+	<text>You arrive at the beacon, there's a nearby station, this must be where the scientist wanted you to look.</text>
+	<choice hidden="true">
+		<text>Enter the station.</text>
+		<event>
+			<ship load="MU_RAD_GHOST_STATION" hostile="false"/>
+			<text>As soon as you're out the airlock, you notice imidietly that there's only ghosts here.
+			Time to ask around and see if anyone knows anything.</text>
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event>
+					<text>After a few dismissals, you find one ghost who's willing to talk.
+					"I think I know what you're looking for, something like it came through here recently, however the Dynasty took it away, if you wanna find it, you're going to have to talk to the dynasty."
+					"I'll transmit you the coordinates to their nearest outpost, it's most likely it went through there."</text>
+					<quest event="RAD_GHOST_3"/>
+					<event load="STORAGE_CHECK_REAL"/>
+				</event>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_GHOST_3">
+	<beaconType id="map_icon_rad_dynasty_out" global="true">
+		<color r="29" g="50" b="242"/>
+	</beaconType>
+	<quest>
+		<nebulaBeacon>true</nebulaBeacon>
+		<createNebula>true</createNebula>
+		<nextSector>true</nextSector>
+		<aggressive>2</aggressive>
+	</quest>
+	<ship load="MU_RAD_DYNASTY_FIGHT" hostile="false"/>
+	<text>You arrive and are immediately hailed by a dynasty cruiser, behind the cruiser the outpost appears heavily damaged.
+	"Leave now, We can't help you, if you want anything come back later."
+	
+	It appears that if you want the information, you'll have to make them listen.</text>
+	<choice hidden="true">
+		<text>Insist</text>
+		<event>
+			<ship hostile="true"/>
+			<text>Looks like they'd rather kill you than deal with you right now, you'll have to damage them a bit to make them listen</text>
+			<choice>
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK"/>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Leave.</text>
+		<event>
+			<text>Guess you'll never find it now</text>
+			<choice hidden="true">
+				<text> Continue...</text>
+				<event load="STORAGE_CHECK_REAL"/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_GHOST_4">
+	<beaconType id="map_icon_rad_dynasty_sta" global="true">
+		<color r="29" g="50" b="242"/>
+	</beaconType>
+	<quest>
+		<nebulaBeacon>true</nebulaBeacon>
+		<createNebula>true</createNebula>
+		<nextSector>true</nextSector>
+		<aggressive>2</aggressive>
+	</quest>
+	<ship load="MU_RAD_GHOST_STATION" hostile="false"/>
+	<text>You arrive at the beacon, your sensors pick up the station and you send out a hail
+	
+	After waiting for a while no one picks up.</text>
+	<choice hidden="true">
+		<text>Dock with the station.</text>
+		<event>
+			<text>You open the airlock and imidietly you feel the heat, looks like there's a fire in the station.
+			Just as you start heading back to your ship, a voice calls out behind you, you turn around and are met by a wall of flames, looking closer you make out a phantom inside, this must be what the scientists were talking about.
+			"Please, you've got to help me, they're trying to kill me!"</text>
+			<choice>
+				<text>Who?</text>
+				<event>
+					<text>"The Dynasty, they're after me becuase I accidently set the break room on fire. Please take me back to your ship!"</text>
+					<choice hidden="true">
+						<text>Alright, we'll help</text>
+						<event load="RAD_GHOST_BEFORE_FIGHT"/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Leave.</text>
+		<event>
+			<text>Guess you'll never find it now</text>
+			<choice hidden="true">
+				<text> Continue...</text>
+				<event load="STORAGE_CHECK_REAL"/>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_GHOST_BEFORE_FIGHT">
+	<crewMember amount="1" class="phantom_experiment_alpha">Experiment 26</crewMember>
+	<ship hostile="true"/>
+	<text>As you pull away from the station, it turns its weapons on, looks like someone got back in command in time to take you out.</text>
+	<choice>
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+
+<ship name="RAD_SCIENCE_FIGHTER" auto_blueprint="MU_RADLAB_FIGHTER">
+	<destroyed load="DESTROYED_RAD_SCIENCE"/>
+	<deadCrew load="DESTROYED_RAD_SCIENCE"/>
+</ship>
+
+<event name="DESTROYED_RAD_SCIENCE">
+	<text>You've taken care of the scientists, looks like you'll and your new crew member will be safe for now.</text>
+	<weapon name="RAD_GATLING"/>
+	<autoReward level="HIGH">standard</autoReward>
+</event>
+
+<event name="RAD_GHOST_5">
+	<text>Finall you arrive at the rendezvous point, there's a strange ship nearby, it must be the scientists.</text>
+	<ship load="RAD_SCIENCE_FIGHTER" hostile="false"/>
+	<choice hidden="true">
+		<text>Hail them.</text>
+		<event>
+			<text>A some what well armed scientist picks up, "Excellent job renegade, transfer the entity over to me and we'll deliver your payment."
+			
+			The entity in question comes into the room. "Don't give me over to them, they did this to me, it's torture!" the entity proclaims.</text>
+			<choice hidden="true">
+				<text>Give them the experiment.</text>
+				<event>
+					<removeCrew class="phantom_experiment_alpha">
+						<clone>false</clone>
+							<text>Your crew cannot be cloned, as they are still alive.</text>
+					</removeCrew>
+					<text>You dock with the ship and the scientists come aboard armed with some strange stun weapons which they use to take the entity aboard their own ship.</text>
+					<choice hidden="true">
+						<text>Continue</text>
+						<event>
+							<text>The scientists transfer you some scrap and one of their weapons.</text>
+							<weapon name="RAD_CHAINGUN_DAMAGE"/>
+							<autoReward level="HIGH">standard</autoReward>
+						</event>
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Save it from certain imprisonment and torture.</text>
+				<event>
+					<text>You power up your weapons and the science fighter does the same.</text>
+					<ship hostile="true"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="COMBAT_CHECK"/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+</event>
+
 
 </FTL>

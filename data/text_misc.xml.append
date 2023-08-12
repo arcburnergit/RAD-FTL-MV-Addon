@@ -6,5 +6,7 @@
 <text name="map_icon_rad_pirate">PIRATE</text>
 <text name="map_icon_rad_pirate_d">DAMAGED PIRATE</text>
 <text name="map_icon_rad_pirate_e">PIRATE ENFORCER</text>
+<text name="map_icon_rad_dynasty_out">DYNASTY OUTPOST</text>
+<text name="map_icon_rad_dynasty_sta">DYNASTY STATION</text>
 
 </FTL>

@@ -45,6 +45,38 @@
     </ship>
 </ships>-->
 
+<mod:findLike type="ships">
+	<mod:findLike type="shipOrder">
+		<mod-append:ship>PLAYER_SHIP_RAD_STATION</mod-append:ship>
+		<mod-append:empty/>
+		<mod-append:empty/>
+		<mod-append:empty/>
+		<!-- -->
+		<mod-append:empty/>
+		<mod-append:empty/>
+
+		<mod-append:empty/>
+		<mod-append:empty/>
+		<mod-append:empty/>
+		<mod-append:empty/>
+
+	</mod:findLike>
+
+	<!--PLAYER SHIPS -->
+
+	<mod-append:ship name="PLAYER_SHIP_RAD_STATION" b="false" c="false" >
+		<unlock variant="a" silent="false">
+			<type>4</type>
+		</unlock>
+	</mod-append:ship>
+	
+	<mod-append:customShip name="PLAYER_SHIP_RAD_STATION">
+		<customReactor maxLevel="30" />
+		<crewLimit>11</crewLimit>
+	</mod-append:customShip>
+
+</mod:findLike>
+
 <augments>
 	<aug name="LOCKED_RAD_SHRAPNEL_COATING">
 		<function name="SHRAPNEL_COATING" value="1" useForReqs="true" warning="false"/>
@@ -133,10 +165,34 @@
         </category>
     </customStore>
 </store>
+	
+<crew>
+	<race name="phantom_experiment_alpha">
+		<maxHealth>110</maxHealth>
+		<canBurn>false</canBurn>
+		<canRepair>false</canRepair>
+		<canSuffocate>false</canSuffocate>
+		<canPhaseThroughDoors>true</canPhaseThroughDoors>
+		<sabotageSpeedMultiplier>2</sabotageSpeedMultiplier>
+		<moveSpeedMultiplier>0.8</moveSpeedMultiplier>
+		<deathSounds>
+			<deathSound>ghostDeath</deathSound>
+		</deathSounds>
+		<powerEffect>
+			<cooldown>5</cooldown>
+			<jumpCooldown>continue</jumpCooldown>
+			<buttonText>FLAME</buttonText>
+			<tooltip>Starts a fire in the current room.</tooltip>
+			<cooldownColor r="235" g="132" b="112" />
+			<activateWhenReady>true</activateWhenReady>
+			<fireChance>10</fireChance>
+			<shipFriendlyFire>true</shipFriendlyFire>
+		</powerEffect>
+	</race>
+</crew>
 
 <mod:findLike type="scripts">
-    <mod-append:script>data/rad_scripts/rad_weaponFunctions.lua</mod-append:script>
-	<mod-append:script>data/rad_scripts/triggered_events.lua</mod-append:script>
+    <mod-append:script>data/rad_scripts/rad_functions.lua</mod-append:script>
 </mod:findLike>
 
 <!-- end of chunk -->

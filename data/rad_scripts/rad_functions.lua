@@ -141,15 +141,15 @@ script.on_game_event("RAD_JAILER_RETURN_CREW", false, function()
     end
 end)
 
---[[script.on_game_event("RAD_GHOST_BEFORE_FIGHT", false, function()
+script.on_game_event("RAD_GHOST_BEFORE_FIGHT", false, function()
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(1)
-    for i=1,10 do 
+    for i=1,8 do 
         location = shipManager:GetRandomRoomCenter() 
         local damage = Hyperspace.Damage()
-        damage.fireChance = 2
+        damage.fireChance = 8
         shipManager:DamageArea(location, damage, true)
     end
-end)]]
+end)
 
 mods.rad.aoeWeapons = {}
 local aoeWeapons = mods.rad.aoeWeapons
@@ -276,6 +276,11 @@ local overheatWeapons = mods.rad.overheatWeapons
 overheatWeapons["RAD_GATLING"] = {
     maxShots = 17,
     power = 3,
+    cDown = 1
+}
+overheatWeapons["RAD_CHAINGUN_DAMAGE_ENEMY"] = {
+    maxShots = 15,
+    power = 2,
     cDown = 5
 }
 
@@ -390,11 +395,14 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
     local slot1X = 106
     local slotY = 623
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
-    for system in vter(shipManager.vSystemList) do
-        if (system.iSystemType == 0 or system.iSystemType == 1 or system.iSystemType == 2 or system.iSystemType == 5 or system.iSystemType == 13) then
-            slot1X = slot1X + 36
-        elseif (system.iSystemType == 9 or system.iSystemType == 10 or system.iSystemType == 11 or system.iSystemType == 14 or system.iSystemType >= 15) then
-            slot1X = slot1X + 54
+    if shipManager then
+        weaponlist = shipManager:GetWeaponList()
+        for system in vter(shipManager.vSystemList) do
+            if (system.iSystemType == 0 or system.iSystemType == 1 or system.iSystemType == 2 or system.iSystemType == 5 or system.iSystemType == 13) then
+                slot1X = slot1X + 36
+            elseif (system.iSystemType == 9 or system.iSystemType == 10 or system.iSystemType == 11 or system.iSystemType == 14 or system.iSystemType >= 15) then
+                slot1X = slot1X + 54
+            end
         end
     end
     local slot2X = slot1X+97
@@ -402,7 +410,7 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
     local slot4X = slot3X+97
     local weaponlist = {}
     local weaponData = nil
-    weaponlist = shipManager:GetWeaponList()  
+      
     --log("before")
     --log(weaponlist[0].blueprint.name)
     --if not weaponlist[0] then return end
@@ -417,7 +425,7 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
                     local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
                     log(renderString)
                     Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot1X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                    --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot1X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
             elseif oHTable.oHCDown then
                 log("on cooldown")
@@ -437,7 +445,7 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
                     local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
                     log(renderString)
                     Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot2X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot2X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                    --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot2X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
             elseif oHTable.oHCDown then
                 log("on cooldown")
@@ -456,12 +464,12 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
                 if oHTable.oHShots <= 10 then
                     local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
                     log(renderString)
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                    --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
             elseif oHTable.oHCDown then
                 log("on cooldown")
-                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
             end
         end
     end

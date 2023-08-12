@@ -233,7 +233,7 @@
 	</descriptionOverride>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>0</damage>
-	<sp>0</sp>
+	<sp>10</sp>
 	<fireChance>0</fireChance>
 	<breachChance>3</breachChance>
 	<cooldown>20</cooldown>
@@ -321,6 +321,25 @@
 	<title>'Jailer' Teleportation Focus Beam</title>
 	<short>'Jailer'</short>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<descriptionOverride>An even more powerful abduction beam, this weapon is able to sweep across a ship and deals 1 damage to all systems, while still abducting any crew it hits, and sometimes even part of the floor.
+
+		Stats:
+		Required Power: 4
+		Charge Time: 20 seconds
+
+		Beam Length: 160
+		Beam Speed: 3
+		
+		Base Hull Damage: 1
+		Total System Damage: 1
+		Total Crew Damage: 15
+		Shield Piercing: 10
+		
+		Fire Chance: 60%
+		Breach Chance: 60% (Adjusted 24%)
+		
+		Buy/Sell Price: 100~/50~
+	</descriptionOverride>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>1</damage>
 	<fireChance>6</fireChance>
@@ -344,6 +363,142 @@
 	</launchSounds>
 	<weaponArt>rad_jailerbeam</weaponArt>
 	<iconImage>beam</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_GATLING">
+	<type>BURST</type>
+	<drone_targetable>0</drone_targetable>
+	<title>OverHeater Chain Cannon</title>
+	<short>OverHeater</short>
+	<desc>This Laser weapon takes a long time to warm up. Each time it fires it decreases the cooldown, eventually able to take down any amount of shields.</desc>
+	<tooltip>Cooldown drops the more it fires, until it overheats and turns off.</tooltip>
+	<radius>50</radius>
+	<damage>0</damage>
+	<sysDamage>1</sysDamage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>8.5</cooldown>
+	<power>3</power>
+	<cost>95</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<boost>
+		<type>cooldown</type>
+		<amount>2</amount>
+		<count>4</count>
+	</boost>
+	<projectiles>
+		<projectile count="1" fake="false">laser_burst</projectile>
+	</projectiles>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>rad_gatling</weaponArt> 
+	<iconImage>laser_chain</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_CHAINGUN_DAMAGE_ENEMY"> 
+	<type>LASER</type>
+	<title>Science Adaptive Laser</title>
+	<short>Science A-L.</short>
+	<tip>tip_adapter</tip>
+	<desc>Laser weapon that adapts to its situation, increasing its damage with every 2 volleys shot.</desc>
+	<tooltip>Fires two lasers that deal 1 damage each. Cooldown drops the more it fires.</tooltip>
+	<damage>1</damage>
+	<shots>2</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>11</cooldown>
+	<power>2</power>
+	<cost>60</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_hull</image>
+	<boost>
+		<type>damage</type>
+		<amount>0.5</amount>
+		<count>4</count>
+	</boost>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>chainlaser_damage_rad</weaponArt> 
+	<iconImage>laser_chain</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_CHAINGUN_DAMAGE"> 
+	<type>LASER</type>
+	<title>Science Adaptive Laser</title>
+	<short>Science A-L.</short>
+	<tip>tip_adapter</tip>
+	<desc>Laser weapon that adapts to its situation, increasing its damage with every 2 volleys shot.</desc>
+	<tooltip>Fires two lasers that deal 1 damage each. Cooldown drops the more it fires.</tooltip>
+	<damage>1</damage>
+	<shots>2</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>10</cooldown>
+	<power>2</power>
+	<cost>60</cost>
+	<bp>2</bp>
+	<rarity>5</rarity>
+	<image>laser_hull</image>
+	<boost>
+		<type>damage</type>
+		<amount>1</amount>
+		<count>4</count>
+	</boost>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>chainlaser_damage_rad</weaponArt> 
+	<iconImage>laser_chain</iconImage>
 </weaponBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_RADLAB_1" layout="rdp_lab_a" img="rdp_lab_a">
@@ -443,5 +598,100 @@
 	<rarity>0</rarity>
 	<stackable>false</stackable>
 </augBlueprint>
+
+<crewBlueprint name="phantom_experiment_alpha">
+    <desc>Alpha Experiment Crew. Once a powerful phantom at the end of its lifespan, it has been experimented and modified to set everything it touches on fire.
+	
+	Inherited Phantom stats: takes no damage from hazards, 0.8x speed, has door phasing properties</desc>
+	Leaves a trail of fire where ever it walks.
+    <cost>90</cost>
+    <bp>2</bp>
+    <title>Alpha Wraith</title>
+    <short>A. Wraith</short>
+    <rarity>0</rarity>
+    <powerList>
+        <power>Max Health of 110, 2x sabotage speed</power>
+    </powerList>
+    <colorList>
+        <layer>
+            <color r="255" g="255" b="255" a="1" />
+        </layer>
+    </colorList>
+</crewBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_RAD_STATION" layout="radp_lab_station" img="radp_lab_station">
+	<class>Advanced Station</class>
+	<name>Station 27A</name>
+	<unlock id="ship_PLAYER_SHIP_RAD_STATION_unlock"/>
+	<desc>This is one of the R&amp;D Lab's most advanced prototype stations, it's equiped with engines, however they aren't really useful for anything more than getting from A to B, It has to rely on other methods to avoid getting hit.</desc>
+	<systemList>
+		<battery power="1" room="5" start="false" img="room_battery_14" />
+		<cloaking power="1" room="3" start="false" img="room_cloaking" />
+		<clonebay power="1" room="4" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="18" start="true" img="room_doors_4">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</doors>
+		<drones power="2" room="14" start="true" img="room_drones_5" />
+		<engines power="1" max="1" room="7" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="13" start="false" img="room_hacking_8" />
+		<medbay power="1" room="4" start="true" img="room_medbay_3">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="8" start="false" img="room_mind_3" />
+		<oxygen power="1" room="6" start="true" img="room_oxygen_2" />
+		<pilot power="1" room="10" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="17" start="true" img="room_sensors_6">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="3" room="11" start="true" img="room_shields_6">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="0" start="false" />
+		<weapons power="3" room="12" start="true" img="room_weapons_3">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>4</droneSlots>
+	<weaponList missiles="0" count="1">
+		<weapon name="RAD_CHAINGUN_DAMAGE" />
+	</weaponList>
+	<droneList drones="12" count="1">
+		<drone name="DEFENSE_TRINITY_PROJECTILE" />
+	</droneList>
+	<health amount="45" />
+	<maxPower amount="8" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_medic" />
+</shipBlueprint>
 
 </FTL>

@@ -497,3 +497,18 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
 end, function() end)
 
 --script.on_internal_event(Defines)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
+    local weaponData = nil
+    --log("shiploop")
+    for weapon in vter(shipManager:GetWeaponList()) do
+        --log(tostring(weapon.blueprint.name))
+        pcall(function() weaponData = overheatWeapons[weapon.blueprint.name] end)
+        if weaponData then
+            local oHTable = userdata_table(weapon, "mods.overheatweapons.shots")
+            if oHTable.oHShots then
+                oHTable.oHShots = nil
+            end
+        end
+    end
+end)

@@ -3,7 +3,7 @@
 <!--<status type="limit" target="enemy" system="teleporter" amount="0" />-->
 <!-- QUEST START LOCATION -->
 
-<ship name="SHIP_CIVILIAN_LAB" auto_blueprint="MU_CIVILIAN_LAB">
+<ship name="SHIP_CIVILIAN_LAB" auto_blueprint="MU_RADLAB_STATION">
 	<surrender  chance="0.8" min="2" max="3" load="SURRENDER_RAD_LAB"/>
 	<destroyed load="DESTROYED_RAD_LAB"/>
 	<deadCrew load="DEAD_CREW_RAD_LAB"/>
@@ -379,6 +379,8 @@
 	</choice>
 </event>
 
+<!-- GHOST QUEST -->
+
 <ship name="MU_RAD_GHOST_STATION" auto_blueprint="MU_DYNASTY_STATION">
 	<destroyed load="DESTROYED_RAD_DYNASTY_2"/>
 	<deadCrew load="DEAD_CREW_RAD_DYNASTY_2"/>
@@ -586,6 +588,9 @@
 </event>
 
 <event name="RAD_GHOST_5">
+	<beaconType id="map_icon_rad_science_meet" global="true">
+		<color r="242" g="50" b="29"/>
+	</beaconType>
 	<text>Finall you arrive at the rendezvous point, there's a strange ship nearby, it must be the scientists.</text>
 	<ship load="RAD_SCIENCE_FIGHTER" hostile="false"/>
 	<choice hidden="true">

@@ -279,7 +279,7 @@ overheatWeapons["RAD_GATLING"] = {
     cDown = 1
 }
 overheatWeapons["RAD_CHAINGUN_DAMAGE_ENEMY"] = {
-    maxShots = 15,
+    maxShots = 7,
     power = 2,
     cDown = 5
 }
@@ -309,7 +309,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
             if oHTable.oHShots == 0 then
                 oHTable.oHShots = nil
                 weapon.powered = false
-                weapon.requiredPower = 10
+                weapon.requiredPower = 16
                 oHTable.oHCDown = overHeatData.cDown
             end
         else
@@ -392,9 +392,11 @@ fireSpreaders["phantom_experiment_alpha"] = 1
 end)]]
 
 script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
+    log("RENDERSTART")
     local slot1X = 106
     local slotY = 623
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    local weaponlist = {}
     if shipManager then
         weaponlist = shipManager:GetWeaponList()
         for system in vter(shipManager.vSystemList) do
@@ -408,7 +410,6 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
     local slot2X = slot1X+97
     local slot3X = slot2X+97
     local slot4X = slot3X+97
-    local weaponlist = {}
     local weaponData = nil
       
     --log("before")
@@ -464,12 +465,12 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
                 if oHTable.oHShots <= 10 then
                     local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
                     log(renderString)
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                    --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
             elseif oHTable.oHCDown then
                 log("on cooldown")
-                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
             end
         end
     end

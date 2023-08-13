@@ -425,7 +425,7 @@
 	<sp>0</sp>
 	<fireChance>1</fireChance>
 	<breachChance>0</breachChance>
-	<cooldown>11</cooldown>
+	<cooldown>15</cooldown>
 	<power>2</power>
 	<cost>60</cost>
 	<bp>2</bp>
@@ -467,17 +467,17 @@
 	<damage>1</damage>
 	<shots>2</shots>
 	<sp>0</sp>
-	<fireChance>1</fireChance>
-	<breachChance>0</breachChance>
+	<fireChance>2</fireChance>
+	<breachChance>4</breachChance>
 	<cooldown>10</cooldown>
 	<power>2</power>
-	<cost>60</cost>
+	<cost>70</cost>
 	<bp>2</bp>
 	<rarity>5</rarity>
 	<image>laser_hull</image>
 	<boost>
 		<type>damage</type>
-		<amount>1</amount>
+		<amount>0.5</amount>
 		<count>4</count>
 	</boost>
 	<launchSounds>

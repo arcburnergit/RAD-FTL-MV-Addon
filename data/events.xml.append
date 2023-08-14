@@ -656,7 +656,7 @@
 	You manage to recover one of the drones from the wreckage.</text>
 	<autoReward level="MED">standard</autoReward>
 	<drone name="RAD_REPULSOR"/>
-	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION</unlockCustomShip>
+	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION_2</unlockCustomShip>
 </event>
 
 <event name="DEAD_CREW_RAD_OPERATOR_1">
@@ -672,7 +672,7 @@
 			<text>A short while later a science ship comes to collect the vessel you recovered.
 			The ship drops off a weapon for you as payment.</text>
 			<weapon name="RAD_BEAM_BURST_2"/> <!-- Make this a beam burst 3 at some point-->
-			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION</unlockCustomShip>
+			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION_2</unlockCustomShip>
 		</event>
 	</choice>
 </event>

@@ -370,9 +370,9 @@
 	<drone_targetable>0</drone_targetable>
 	<title>OverHeater Chain Cannon</title>
 	<short>OverHeater</short>
-	<desc>This Laser weapon takes a long time to warm up. Each time it fires it decreases the cooldown, eventually able to take down any amount of shields.</desc>
+	<desc>This weapon actually loads superheated pellets into the barrels, turning the pellets into plasma, unfortunatly the cooling system is rather lacking and can't deal with extended periods of firing.</desc>
 	<tooltip>Cooldown drops the more it fires, until it overheats and turns off.</tooltip>
-	<radius>50</radius>
+	<radius>35</radius>
 	<damage>0</damage>
 	<sysDamage>1</sysDamage>
 	<shots>1</shots>
@@ -383,7 +383,7 @@
 	<power>3</power>
 	<cost>95</cost>
 	<bp>2</bp>
-	<rarity>0</rarity>
+	<rarity>5</rarity>
 	<boost>
 		<type>cooldown</type>
 		<amount>2</amount>
@@ -420,12 +420,12 @@
 	<tip>tip_adapter</tip>
 	<desc>Laser weapon that adapts to its situation, increasing its damage with every 2 volleys shot.</desc>
 	<tooltip>Fires two lasers that deal 1 damage each. Cooldown drops the more it fires.</tooltip>
-	<damage>1</damage>
-	<shots>2</shots>
+	<damage>1.25</damage>
+	<shots>1</shots>
 	<sp>0</sp>
 	<fireChance>1</fireChance>
 	<breachChance>0</breachChance>
-	<cooldown>15</cooldown>
+	<cooldown>8</cooldown>
 	<power>2</power>
 	<cost>60</cost>
 	<bp>2</bp>
@@ -433,7 +433,51 @@
 	<image>laser_hull</image>
 	<boost>
 		<type>damage</type>
-		<amount>0.5</amount>
+		<amount>0.75</amount>
+		<count>4</count>
+	</boost>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>chainlaser_damage_rad</weaponArt> 
+	<iconImage>laser_chain</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_CHAINGUN_DAMAGE_ENEMY_OFFSET"> 
+	<type>LASER</type>
+	<title>Science Adaptive Laser</title>
+	<short>Science A-L.</short>
+	<tip>tip_adapter</tip>
+	<desc>Laser weapon that adapts to its situation, increasing its damage with every 2 volleys shot.</desc>
+	<tooltip>Fires two lasers that deal 1 damage each. Cooldown drops the more it fires.</tooltip>
+	<damage>1.25</damage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>9</cooldown>
+	<power>2</power>
+	<cost>60</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<image>laser_hull</image>
+	<boost>
+		<type>damage</type>
+		<amount>0.75</amount>
 		<count>4</count>
 	</boost>
 	<launchSounds>
@@ -499,6 +543,163 @@
 	</missSounds>
 	<weaponArt>chainlaser_damage_rad</weaponArt> 
 	<iconImage>laser_chain</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_PROJECTILE_BEAM_FOCUS_1">
+	<type>BEAM</type>
+	<tip>tip_focus</tip>
+	<title>Burst Beam Projectile</title>
+	<short>Burst Beam Projectile</short>
+	<desc>YOU SOULD NEVER SEE THIS</desc>
+	<tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
+	<damage>0</damage>
+	<sysDamage>1</sysDamage>
+	<sp>0</sp>
+    <fireChance>1</fireChance> 
+    <breachChance>1</breachChance>
+	<cooldown>14</cooldown>
+	<speed>1</speed>
+	<length>1</length>
+	<power>2</power>
+	<cost>45</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<color>
+		<r>255</r>
+		<g>150</g>
+		<b>0</b>
+	</color>
+	<image>beam_contact</image>
+	<launchSounds>
+		<sound>ra_focusbeam1</sound>
+		<sound>ra_focusbeam2</sound>
+		<sound>ra_focusbeam3</sound>
+	</launchSounds>
+	<weaponArt>ra_beam_auto</weaponArt> 
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_LIGHT_BEAM">
+    <type>BURST</type>
+    <flavorType>Pinpoint</flavorType>
+    <!--tip>rad_tip_focus_burst</tip-->
+    <title>Light Pinpoint</title>
+    <short>Light Pinpoint</short>
+    <desc>This beam makes more efficient use of the power by firing a short low power beam that pops shields.</desc>
+    <tooltip>Fires a of beam quickly.</tooltip>
+    <radius>10</radius> 
+    <damage>0</damage>
+	<sysDamage>1</sysDamage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>1</fireChance> 
+    <breachChance>1</breachChance>
+    <cooldown>4</cooldown>
+    <power>1</power>
+    <cost>45</cost>
+    <bp>2</bp>
+    <speed>0</speed> 
+    <rarity>5</rarity>	
+    <projectiles>
+        <projectile count="1" fake="false">laser_burst</projectile> 
+    </projectiles>
+    
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+    <weaponArt>beam_burst_1</weaponArt>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_BEAM_BURST_1">
+    <type>BURST</type>
+    <flavorType>Pinpoint</flavorType>
+    <tip>rad_tip_focus_burst</tip>
+    <title>Burst Pinpoint Mark I</title>
+    <short>Burst Pin I</short>
+    <desc>This beam makes more efficient use of the power by firing multiple short low power beams that pop shields.</desc>
+    <tooltip>Fires a pair of beams across a random area doing up to 2 damage.</tooltip>
+    <radius>10</radius> 
+    <damage>0</damage>
+	<sysDamage>1</sysDamage>
+    <shots>2</shots>
+    <sp>0</sp>
+    <fireChance>1</fireChance> 
+    <breachChance>1</breachChance>
+    <cooldown>10</cooldown>
+    <power>1</power>
+    <cost>45</cost>
+    <bp>2</bp>
+    <speed>0</speed> 
+    <rarity>4</rarity>	
+    <projectiles>
+        <projectile count="1" fake="false">laser_burst</projectile> 
+    </projectiles>
+    
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+    <weaponArt>beam_burst_2</weaponArt>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_BEAM_BURST_2">
+    <type>BURST</type>
+    <flavorType>Pinpoint</flavorType>
+    <tip>rad_tip_focus_burst</tip>
+    <title>Burst Pinpoint Mark II</title> 
+    <short>Burst Pin II</short>
+    <desc>This beam makes more efficient use of the power by firing multiple short low power beams that pop shields.</desc>
+    <tooltip>Fires a pair of beams across a random area doing up to 2 damage.</tooltip>
+    <radius>10</radius> 
+    <damage>0</damage>
+	<sysDamage>1</sysDamage>
+    <shots>3</shots>
+    <sp>0</sp>
+    <fireChance>1</fireChance> 
+    <breachChance>1</breachChance>
+    <cooldown>12</cooldown>
+    <power>2</power>
+    <cost>60</cost>
+    <bp>2</bp>
+    <speed>0</speed> 
+    <rarity>4</rarity>	
+    <projectiles>
+        <projectile count="1" fake="false">laser_burst</projectile>
+    </projectiles>
+    
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+    <weaponArt>beam_burst_3</weaponArt>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_BEAM_BURST_3">
+    <type>BURST</type>
+    <flavorType>Pinpoint</flavorType>
+    <tip>rad_tip_focus_burst</tip>
+    <title>Burst Pinpoint Mark III</title> 
+    <short>Burst Pin III</short>
+    <desc>This beam makes more efficient use of the power by firing multiple short low power beams that pop shields.</desc>
+    <tooltip>Fires multiple beams across a small area doing up to 5 damage.</tooltip>
+    <radius>10</radius> 
+    <damage>0</damage>
+	<sysDamage>1</sysDamage>
+    <shots>5</shots>
+    <sp>0</sp>
+    <fireChance>1</fireChance> 
+    <breachChance>1</breachChance>
+    <cooldown>15</cooldown>
+    <power>3</power>
+    <cost>72</cost>
+    <bp>2</bp>
+    <speed>0</speed> 
+    <rarity>4</rarity>	
+    <projectiles>
+        <projectile count="1" fake="false">laser_burst</projectile>
+    </projectiles>
+    
+	<launchSounds>
+		<sound>focus_weak</sound>
+	</launchSounds>
+    <weaponArt>beam_burst_5</weaponArt>
 </weaponBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_RADLAB_1" layout="rdp_lab_a" img="rdp_lab_a">
@@ -602,12 +803,12 @@
 <crewBlueprint name="phantom_experiment_alpha">
     <desc>Alpha Experiment Crew. Once a powerful phantom at the end of its lifespan, it has been experimented and modified to set everything it touches on fire.
 	
-	Inherited Phantom stats: takes no damage from hazards, 0.8x speed, has door phasing properties</desc>
-	Leaves a trail of fire where ever it walks.
+	Inherited Phantom stats: takes no damage from hazards, 0.8x speed, has door phasing properties
+	Leaves a trail of fire where ever it walks.</desc>
     <cost>90</cost>
     <bp>2</bp>
-    <title>Alpha Wraith</title>
-    <short>A. Wraith</short>
+    <title>Experiment 26</title>
+    <short>Ex. 26</short>
     <rarity>0</rarity>
     <powerList>
         <power>Max Health of 110, 2x sabotage speed</power>
@@ -618,6 +819,31 @@
         </layer>
     </colorList>
 </crewBlueprint>
+
+<crewBlueprint name="drone_repulsor">
+	<title>Repulsor Drone</title>
+	<short>Repulsor Drone</short>
+	<desc>YOU SHOULD NEVER SEE THIS.</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<powerList>
+		<power>DRONE</power>
+	</powerList>
+</crewBlueprint>
+<droneBlueprint name="RAD_REPULSOR">
+	<type>BATTLE</type>
+	<locked>1</locked>
+	<tip>tip_crew</tip>
+	<title>Repulsor Drone</title>
+	<short>Repulsor</short>
+	<desc>Controllable utility drone that provides protection to the room it's in by repelling any projectiles targetting that room.
+    
+-75 HP, 2x movement speed</desc>
+	<power>2</power>
+	<cost>50</cost>
+	<rarity>0</rarity>
+	<iconImage>battle</iconImage>
+</droneBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_RAD_STATION" layout="radp_lab_station" img="radp_lab_station">
 	<class>Advanced Station</class>
@@ -638,7 +864,7 @@
 				<number>0</number>
 			</slot>
 		</doors>
-		<drones power="2" room="14" start="true" img="room_drones_5" />
+		<drones power="3" max="8" room="14" start="true" img="room_drones_5" />
 		<engines power="1" max="1" room="7" start="true" img="room_engines_2">
 			<slot>
 				<direction>down</direction>
@@ -648,7 +874,7 @@
 		<hacking power="1" room="13" start="false" img="room_hacking_8" />
 		<medbay power="1" room="4" start="true" img="room_medbay_3">
 			<slot>
-				<number>1</number>
+				<number>3</number>
 			</slot>
 		</medbay>
 		<mind power="1" room="8" start="false" img="room_mind_3" />
@@ -665,14 +891,14 @@
 				<number>1</number>
 			</slot>
 		</sensors>
-		<shields power="3" room="11" start="true" img="room_shields_6">
+		<shields power="3" max="8" room="11" start="true" img="room_shields_6">
 			<slot>
 				<direction>left</direction>
 				<number>0</number>
 			</slot>
 		</shields>
 		<teleporter power="1" room="0" start="false" />
-		<weapons power="3" room="12" start="true" img="room_weapons_3">
+		<weapons power="2" max="8" room="12" start="true" img="room_weapons_3">
 			<slot>
 				<direction>up</direction>
 				<number>1</number>
@@ -680,7 +906,7 @@
 		</weapons>
 	</systemList>
 	<weaponSlots>4</weaponSlots>
-	<droneSlots>4</droneSlots>
+	<droneSlots>3</droneSlots>
 	<weaponList missiles="0" count="1">
 		<weapon name="RAD_CHAINGUN_DAMAGE" />
 	</weaponList>
@@ -689,6 +915,82 @@
 	</droneList>
 	<health amount="45" />
 	<maxPower amount="8" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="human_medic" />
+</shipBlueprint>
+
+
+<shipBlueprint name="PLAYER_SHIP_RAD_STATION_2" layout="radp_lab_stationb" img="radp_lab_stationb">
+	<class>Advanced Station</class>
+	<name>Station 33B</name>
+	<unlock id="ship_PLAYER_SHIP_RAD_STATION_2_unlock"/>
+	<desc>This station uses advanced drones to protect itself from projectiles to make up for the lack of engine power.</desc>
+	<systemList>
+		<cloaking power="1" room="14" start="false" img="room_cloaking_2" />
+		<clonebay power="1" room="15" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="16" start="true" img="room_doors_2">
+			<slot>
+				<direction>down</direction>
+				<number>0</number>
+			</slot>
+		</doors>
+		<drones power="6" max="8" room="3" start="true" img="room_drones_10" />
+		<engines power="1" max="1" room="5" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="9" start="false" img="room_hacking_9" />
+		<medbay power="1" room="15" start="true" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="17" start="false" img="room_mind_8" />
+		<oxygen power="1" room="6" start="true" img="room_oxygen_10" />
+		<pilot power="1" room="10" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="11" start="true" img="room_sensors_2">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="6" room="8" start="false" img="room_shields_6">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<weapons power="2" max="8" room="7" start="true" img="room_weapons_6">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>3</weaponSlots>
+	<droneSlots>4</droneSlots>
+	<weaponList missiles="0" count="1">
+		<weapon name="RAD_BEAM_BURST_2" />
+	</weaponList>
+	<droneList drones="16" count="3">
+		<drone name="RAD_REPULSOR" />
+		<drone name="RAD_REPULSOR" />
+		<drone name="RAD_REPULSOR" />
+	</droneList>
+	<health amount="45" />
+	<maxPower amount="10" />
 	<crewCount amount="1" class="human" />
 	<crewCount amount="1" class="human_engineer" />
 	<crewCount amount="1" class="human_medic" />

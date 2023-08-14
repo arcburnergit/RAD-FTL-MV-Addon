@@ -11,14 +11,28 @@
 <mod:findName type="sectorDescription" name="SECRET_ANCIENT">
 	<mod:findLike type="rarityList">
 		<mod-append:blueprint name="RAD_CLUSTER_MISSILE" rarity="0" />
-		
+		<mod-append:blueprint name="RAD_CLUSTER_MISSILE_2" rarity="0" />
+		<mod-append:blueprint name="RAD_ABDUCTOR" rarity="0" />
+		<mod-append:blueprint name="RAD_GATLING" rarity="0" />
+		<mod-append:blueprint name="RAD_CHAINGUN_DAMAGE" rarity="0" />
+		<mod-append:blueprint name="RAD_LIGHT_BEAM" rarity="0" />
+		<mod-append:blueprint name="RAD_BEAM_BURST_1" rarity="0" />
+		<mod-append:blueprint name="RAD_BEAM_BURST_2" rarity="0" />
+		<mod-append:blueprint name="RAD_BEAM_BURST_3" rarity="0" />
 	</mod:findLike>
 </mod:findName>
 
 <mod:findName type="sectorDescription" name="SECRET_ROYAL">
 	<mod:findLike type="rarityList">
 		<mod-append:blueprint name="RAD_CLUSTER_MISSILE" rarity="0" />
-		
+		<mod-append:blueprint name="RAD_CLUSTER_MISSILE_2" rarity="0" />
+		<mod-append:blueprint name="RAD_ABDUCTOR" rarity="0" />
+		<mod-append:blueprint name="RAD_GATLING" rarity="0" />
+		<mod-append:blueprint name="RAD_CHAINGUN_DAMAGE" rarity="0" />
+		<mod-append:blueprint name="RAD_LIGHT_BEAM" rarity="0" />
+		<mod-append:blueprint name="RAD_BEAM_BURST_1" rarity="0" />
+		<mod-append:blueprint name="RAD_BEAM_BURST_2" rarity="0" />
+		<mod-append:blueprint name="RAD_BEAM_BURST_3" rarity="0" />
 	</mod:findLike>
 </mod:findName>
 </FTL>

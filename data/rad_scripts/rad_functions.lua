@@ -3,23 +3,6 @@ mods.rad = {}
 -----------------------
 -- UTILITY FUNCTIONS --
 -----------------------
---[[
-local slot1X = 117
-local slot2X = slot1X+97
-local slot3X = slot2X+97
-local slot4X = slot3X+97
-local slotY = 623
-local slot1oh1 = Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_1.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
-local slot1oh2 = Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_2.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
-local slot1oh3 = Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_3.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
-local slot1oh4 = Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_4.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
-local slot1oh5 = Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_5.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
-local slot1oh6 = Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_6.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
-local slot1oh7 = Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_7.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
-local slot1oh8 = Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_8.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
-local slot1oh9 = Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_9.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
-local slot1oh10 = Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_10.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false)
-]]
 
 
 -- Get a table for a userdata value by name
@@ -342,7 +325,13 @@ mods.rad.popWeapons = {}
 local popWeapons = mods.rad.popWeapons
 popWeapons["RAD_GATLING"] = {
     count = 1,
-    countSuper = 1
+    countSuper = 1,
+    delete = false
+}
+popWeapons["RAD_PROJECTILE_BEAM_FOCUS_1"] = {
+    count =1,
+    countSuper =1,
+    delete = true
 }
 
 script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
@@ -353,19 +342,25 @@ script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipM
             if popData.countSuper > 0 then
                 shipManager.shieldSystem:CollisionReal(projectile.position.x, projectile.position.y, Hyperspace.Damage(), true)
                 shieldPower.super.first = math.max(0, shieldPower.super.first - popData.countSuper)
+                if popData.delete == true then
+                    projectile:Kill()
+                end
             end
         else
             shipManager.shieldSystem:CollisionReal(projectile.position.x, projectile.position.y, Hyperspace.Damage(), true)
             shieldPower.first = math.max(0, shieldPower.first - popData.count)
+            if popData.delete == true then
+                projectile:Kill()
+            end
         end
     end
 end)
 
-mods.rad.fireSpreaders = {}
+--[[mods.rad.fireSpreaders = {}
 local fireSpreaders = mods.rad.fireSpreaders
 fireSpreaders["phantom_experiment_alpha"] = 1
 
---[[script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
+script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
     log("CREWLOOOP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     log(crewmem.type)
     local fireSpreader = nil
@@ -390,9 +385,30 @@ fireSpreaders["phantom_experiment_alpha"] = 1
 
     end
 end)]]
+local pinpoint1 = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_PROJECTILE_BEAM_FOCUS_1")
+--local pinpoint2 = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_PROJECTILE_BEAM_FOCUS_2")
+local burstsToBeams = {}
+burstsToBeams.RAD_BEAM_BURST_1 = pinpoint1
+burstsToBeams.RAD_BEAM_BURST_2 = pinpoint1
+burstsToBeams.RAD_BEAM_BURST_3 = pinpoint1
+burstsToBeams.RAD_LIGHT_BEAM = pinpoint1
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    local beamReplacement = burstsToBeams[weapon.blueprint.name]
+    if beamReplacement then
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+        local beam = spaceManager:CreateBeam(
+            beamReplacement, projectile.position, projectile.currentSpace, projectile.ownerId,
+            projectile.target, Hyperspace.Pointf(projectile.target.x, projectile.target.y + 1),
+            projectile.destinationSpace, 1, projectile.heading)
+        beam.sub_start.x = 500*math.cos(projectile.entryAngle)
+        beam.sub_start.y = 500*math.sin(projectile.entryAngle) 
+        projectile:Kill()
+    end
+end)
+
 
 script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
-    log("RENDERSTART")
+    --log("RENDERSTART")
     local slot1X = 106
     local slotY = 623
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
@@ -416,10 +432,10 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
     --log(weaponlist[0].blueprint.name)
     --if not weaponlist[0] then return end
     if weaponlist[0] then
-        log("render")
+        --log("render")
         pcall(function() weaponData = overheatWeapons[weaponlist[0].blueprint.name] end)
         if weaponData then
-            log("pass name check")
+            --log("pass name check")
             local oHTable = userdata_table(weaponlist[0], "mods.overheatweapons.shots")
             if oHTable.oHShots then
                 if oHTable.oHShots <= 10 then
@@ -429,17 +445,17 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
                     --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot1X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
             elseif oHTable.oHCDown then
-                log("on cooldown")
+                --log("on cooldown")
                 Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
             end
         end
     end
 
     if weaponlist[1] then
-        log("render")
+        --log("render")
         pcall(function() weaponData = overheatWeapons[weaponlist[1].blueprint.name] end)
         if weaponData then
-            log("pass name check")
+            --log("pass name check")
             local oHTable = userdata_table(weaponlist[1], "mods.overheatweapons.shots")
             if oHTable.oHShots then
                 if oHTable.oHShots <= 10 then
@@ -449,17 +465,17 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
                     --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot2X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
             elseif oHTable.oHCDown then
-                log("on cooldown")
+                --log("on cooldown")
                 Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot2X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
             end
         end
     end
 
     if weaponlist[2] then
-        log("render")
+        --log("render")
         pcall(function() weaponData = overheatWeapons[weaponlist[2].blueprint.name] end)
         if weaponData then
-            log("pass name check")
+            --log("pass name check")
             local oHTable = userdata_table(weaponlist[2], "mods.overheatweapons.shots")
             if oHTable.oHShots then
                 if oHTable.oHShots <= 10 then
@@ -469,27 +485,27 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
                     --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
             elseif oHTable.oHCDown then
-                log("on cooldown")
+                --log("on cooldown")
                 Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
             end
         end
     end
 
     if weaponlist[3] then
-        log("render")
+        --log("render")
         pcall(function() weaponData = overheatWeapons[weaponlist[3].blueprint.name] end)
         if weaponData then
-            log("pass name check")
+            --log("pass name check")
             local oHTable = userdata_table(weaponlist[3], "mods.overheatweapons.shots")
             if oHTable.oHShots then
                 if oHTable.oHShots <= 10 then
                     local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
-                    log(renderString)
+                    --log(renderString)
                     Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                     --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
             elseif oHTable.oHCDown then
-                log("on cooldown")
+                --log("on cooldown")
                 Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
             end
         end
@@ -512,3 +528,16 @@ script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManage
         end
     end
 end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, evasion, friendlyfire) 
+    local roomId = get_room_at_location(shipManager, location, true)
+    --log("damagearea -------------------------------------------------------------------")
+    for i, crewmem in ipairs(get_ship_crew_room(shipManager, roomId)) do
+        log(crewmem:GetSpecies())
+        if crewmem:GetSpecies() == "drone_repulsor" and crewmem:Functional() then
+            --log("projectile miss make")
+            return Defines.Chain.CONTINUE, Defines.Evasion.MISS
+        end
+    end
+end)
+

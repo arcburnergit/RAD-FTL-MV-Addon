@@ -67,6 +67,7 @@
 <eventList name="RAD_LAB_QUEST_LIST">
 	<event load="RAD_LAB_QUEST_1"/>
 	<event load="RAD_LAB_GHOST_1"/>
+	<event load="RAD_LAB_ROGUE_1"/>
 </eventList>
 
 <!-- QUEST PIRATE TRACKING -->
@@ -452,6 +453,7 @@
 			"Oh and you'll want this to contain the fire, once you find it."</text>
 			<augment name="EX_FIRE_EXTINGUISHERS"/>
 			<quest event="RAD_GHOST_2"/>
+			<store>STORE_RADLAB</store>
 		</event>
 	</choice>
 </event>
@@ -632,5 +634,146 @@
 	</choice>
 </event>
 
+<!-- ROGUE EMPLOYEE -->
+
+<ship name="MU_RAD_SCIENCE_OPERATOR" auto_blueprint="MU_SCIENCE_OPERATOR">
+	<destroyed load="DESTROYED_RAD_OPERATOR_1"/>
+	<deadCrew load="DEAD_CREW_RAD_OPERATOR_1"/>
+</ship>
+
+<ship name="MU_RAD_ZOLTAN_STATION" auto_blueprint="MU_RAD_ZOLTAN_STATION">
+	<destroyed load="DESTROYED_RAD_ZOLTAN_1"/>
+	<deadCrew load="DEAD_CREW_RAD_ZOLTAN_1"/>
+</ship>
+
+<ship name="MU_RAD_ZOLTAN_ELITE" auto_blueprint="MU_ZOLTAN_ENFORCER_ELITE">
+	<destroyed load="DESTROYED_RAD_ZOLTAN_2"/>
+	<deadCrew load="DEAD_CREW_RAD_ZOLTAN_2"/>
+</ship>
+
+<event name="DESTROYED_RAD_OPERATOR_1">
+	<text>You've destroyed the ship, and the rogue employee, you might not have recovered the ship, but atleast there's no way it can be sold off now.
+	You manage to recover one of the drones from the wreckage.</text>
+	<autoReward level="MED">standard</autoReward>
+	<drone name="RAD_REPULSOR"/>
+	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION</unlockCustomShip>
+</event>
+
+<event name="DEAD_CREW_RAD_OPERATOR_1">
+	<text>You've taken out the rogue employee and their friends, The scientists will be happy to know you recovered the vessel.
+	You search the ship for anything useful, you find a sizable amount of scrap and an undamaged drone.</text>
+	<item_modify>
+		<item type="scrap" min="43" max="57" />
+	</item_modify>
+	<drone name="RAD_REPULSOR"/>
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text>A short while later a science ship comes to collect the vessel you recovered.
+			The ship drops off a weapon for you as payment.</text>
+			<weapon name="RAD_BEAM_BURST_2"/> <!-- Make this a beam burst 3 at some point-->
+			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION</unlockCustomShip>
+		</event>
+	</choice>
+</event>
+
+<event name="DESTROYED_RAD_ZOLTAN_1">
+	<text>You've destroyed the station.</text>
+	<autoReward level="MED">standard</autoReward>
+</event>
+
+<event name="DEAD_CREW_RAD_ZOLTAN_1">
+	<text>You've killed off the rest of the crew on the station.</text>
+	<autoReward level="HIGH">standard</autoReward>
+</event>
+
+<event name="DESTROYED_RAD_ZOLTAN_2">
+	<text>You've destroyed the elite and your crew managed to decrypt the signal, looks like the science ship has traveled to a different beacon nearby.</text>
+	<quest event="RAD_ROGUE_4"/>
+	<autoReward level="MED">standard</autoReward>
+</event>
+
+<event name="DEAD_CREW_RAD_ZOLTAN_2">
+	<text>You've dealt with the elite and your crew managed to decrypt the signal, looks like the science ship has traveled to a different beacon nearby.</text>
+	<quest event="RAD_ROGUE_4"/>
+	<autoReward level="HIGH">standard</autoReward>
+</event>
+
+<event name="RAD_LAB_ROGUE_1">
+	<text>Most excellent, to begin with, understand that alot of this is highly advanced, try to keep it underwraps."
+	Goose walks you over to a terminal on the wall.
+	"The issue we're facing is one of treachery, one of our own made off with one of our advanced ships, from what we gathered they're looking to sell off the tech to the zoltans, we need you to go intercept him and recover the ship, or at the very least stop it from getting sold off."</text>
+	<choice hidden="true">
+		<text>"Where do we start?"</text>
+		<event>
+			<text>"Ah, we tracked the ship as far as a Zoltan station nearby, head there and extract any information they have."</text>
+			<quest event="RAD_ROGUE_2"/>
+			<store>STORE_RADLAB</store>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_ROGUE_2">
+	<ship load="MU_RAD_ZOLTAN_STATION" hostile="false"/>
+	<text> you arrive at the station, after a quick exchange you're granted docking rights.
+	
+	Now on the station you need to decide what to do.</text>
+	<choice hidden="true">
+		<text>Sneak in and try to download the info.</text>
+		<event>
+			<text>You decide to try and download the data.
+			After a quick scope out of the public area you identify a security station.
+			You organise with your crew and quickly break down the door, inside there are a few guards and a computer termincal.
+			You kill the guards and check the terminal, luckily the guards left it logged in.
+			After a quick search you find what you're looking for, it seems like the rogue employee came through here sold off some minor tech and was sent on to meet with an elite zoltan cruiser.
+			Time to leave.</text>
+			<quest event="RAD_ROGUE_3"/>
+			<choice hidden="true">
+				<text>Return to your ship.</text>
+				<event>
+					<text>Just as you're making it back to your ship, you hear yelling behind you, looks like the found you out quicker than you expected, get ready for a fight.</text>
+					<ship hostile="true"/>
+					<choice>
+						<text>Continue...</text>
+						<event load="COMBAT_CHECK"/>
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Bribe someone for the info.</text>
+		<event>
+			<text>After a quick scout of the station, you identify a security guard, after a quick exchange of scrap you recieve the information you need and return to your ship.</text>
+			<item_modify>
+				<item type="scrap" min="-40" max="-40" />
+			</item_modify>
+			<quest event="RAD_ROGUE_3"/>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_ROGUE_3">
+	<ship load="MU_RAD_ZOLTAN_ELITE" hostile="true"/>
+	<text>You arrive at the beacon just in time to see an exchange between the science vessel your after, and the elite zoltan ship.
+	
+	You send a shot out towards the two ships and they break apart, you intercept an encrypted signal between the two ships.
+	
+	Looks like the zoltan vessel is going to try to destroy you while the science ship gets to a new meeting place.</text>
+	<choice>
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
+
+<event name="RAD_ROGUE_4">
+	<ship load="MU_RAD_SCIENCE_OPERATOR" hostile="true"/>
+	<text>You arrive at the beacon and you pickup the science vessel waiting, seems like they were expecting the zoltan ship.
+	The surprise doesn't hold them for long and they've turned on their weapons.</text>
+	<choice>
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK"/>
+	</choice>
+</event>
 
 </FTL>

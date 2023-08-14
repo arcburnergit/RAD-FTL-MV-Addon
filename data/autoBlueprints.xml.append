@@ -6,6 +6,10 @@
 	<mod-append:name>RAD_CLUSTER_MISSILE_3</mod-append:name>
 	<mod-append:name>RAD_ABDUCTOR</mod-append:name>
 	<mod-append:name>RAD_JAILERBEAM_PLAYER</mod-append:name>
+	<mod-append:name>RAD_BEAM_BURST_1</mod-append:name>
+	<mod-append:name>RAD_BEAM_BURST_2</mod-append:name>
+	<mod-append:name>RAD_BEAM_BURST_3</mod-append:name>
+	<mod-append:name>RAD_LIGHT_BEAM</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_WEAPONS_ALL_CRAPBUCKET">
 	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
@@ -13,8 +17,11 @@
 	<mod-append:name>RAD_CLUSTER_MISSILE_3</mod-append:name>
 	<mod-append:name>RAD_ABDUCTOR</mod-append:name>
 	<mod-append:name>RAD_JAILERBEAM_PLAYER</mod-append:name>
+	<mod-append:name>RAD_BEAM_BURST_1</mod-append:name>
+	<mod-append:name>RAD_BEAM_BURST_2</mod-append:name>
+	<mod-append:name>RAD_BEAM_BURST_3</mod-append:name>
+	<mod-append:name>RAD_LIGHT_BEAM</mod-append:name>
 </mod:findName>
-
 
 <mod:findName type="blueprintList" name="LIST_DRONES_ALL">
 	<!--<mod-append:name>TRC_SCATTERSHOT</mod-append:name>-->
@@ -35,15 +42,43 @@
 	<mod-append:name>RAD_CLUSTER_MISSILE_3</mod-append:name>
 </mod:findName>
 
+<mod:findName type="blueprintList" name="BLUELIST_ION">
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_BEAMS_ALL">
+	
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_BEAMS_DAMAGE">
+	
+</mod:findName>
+
+<mod:findName type="blueprintList" name="BLUELIST_FOCUS_ALL">
+	<mod-append:name>RAD_BEAM_BURST_1</mod-append:name>
+	<mod-append:name>RAD_BEAM_BURST_2</mod-append:name>
+	<mod-append:name>RAD_BEAM_BURST_3</mod-append:name>
+	<mod-append:name>RAD_LIGHT_BEAM</mod-append:name>
+</mod:findName>
+<mod:findName type="blueprintList" name="BLUELIST_FOCUS_DAMAGE">
+	<mod-append:name>RAD_BEAM_BURST_1</mod-append:name>
+	<mod-append:name>RAD_BEAM_BURST_2</mod-append:name>
+	<mod-append:name>RAD_BEAM_BURST_3</mod-append:name>
+	<mod-append:name>RAD_LIGHT_BEAM</mod-append:name>
+</mod:findName>
+
 <mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MISSILES_SPECIAL">
 	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
 	<mod-append:name>RAD_CLUSTER_MISSILE_2</mod-append:name>
 </mod:findName>
 
+
 <blueprintList name="LABRATORY_WEAPONS">
 	<name>RAD_ABDUCTOR</name>
 	<name>RAD_CLUSTER_MISSILE</name>
 	<name>RAD_CLUSTER_MISSILE_2</name>
+	<name>RAD_BEAM_BURST_1</name>
+	<name>RAD_BEAM_BURST_2</name>
+	<name>RAD_BEAM_BURST_3</name>
+	<name>RAD_LIGHT_BEAM</name>
 </blueprintList>
 
 <!--STATION-->
@@ -165,7 +200,7 @@
 <shipBlueprint name="MU_RADLAB_FIGHTER" layout="mu_radlab_fighter" img="mu_radlab_fighter">
 	<class>Science Fighter</class>
 	<systemList>
-		<cloaking power="2" max="3" room="5" start="true" />
+		<cloaking power="1" max="1" room="5" start="true" />
 		<engines power="1" max="4" room="8" start="true" />
 		<hacking power="1" max="2" room="10" start="true" />
 		<medbay power="1" max="3" room="2" start="true" />
@@ -182,11 +217,11 @@
 		<weapon name="RAD_CHAINGUN_DAMAGE" />
 		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY" />
 		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY" />
-		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY" />
-		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY" />
+		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY_OFFSET" />
+		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY_OFFSET" />
 	</weaponList>
 	<droneList drones="8" count="0" />
-	<health amount="25" />
+	<health amount="15" />
 	<maxPower amount="35" />
 	<crewCount amount="1" max="2" class="human_medic" />
 	<crewCount amount="2" max="4" class="easter_tommy" />
@@ -228,16 +263,16 @@
 <shipBlueprint name="MU_SCIENCE_OPERATOR" layout="mu_radlab_operator" img="mu_radlab_operator">
 	<class>Science Operator</class>
 	<systemList>
-		<cloaking power="1" max="5" room="14" start="true" />
+		<cloaking power="1" max="3" room="14" start="true" />
 		<doors power="1" max="3" room="5" start="true" />
-		<drones power="3" max="10" room="15" start="true" />
+		<drones power="10" max="10" room="15" start="true" />
 		<engines power="1" max="3" room="7" start="true" />
 		<medbay power="3" max="3" room="4" start="true" />
 		<oxygen power="1" max="3" room="6" start="true" />
 		<pilot power="1" max="3" room="0" start="true" />
 		<shields power="2" max="6" room="8" start="true" />
 		<teleporter power="1" max="2" room="1" start="true" />
-		<weapons power="5" max="10" room="9" start="true" />
+		<weapons power="10" max="10" room="9" start="true" />
 	</systemList>
 	<weaponSlots>4</weaponSlots>
 	<droneSlots>4</droneSlots>
@@ -250,17 +285,49 @@
 	<droneList drones="30" count="4">
 		<drone name="DEFENSE_3_PLAYER_PLAYER" />
 		<drone name="GUARDIAN_2_DRONE" />
-		<drone name="COMBAT_ENGINEER" />
-		<drone name="COMBAT_ENGINEER" />
+		<drone name="RAD_REPULSOR" />
+		<drone name="RAD_REPULSOR" />
 	</droneList>
-	<health amount="25" />
-	<maxPower amount="30" />
-	<crewCount amount="4" max="9" class="unique_jerry_pony_crystal" />
-	<crewCount amount="3" max="7" class="human_engineer" />
+	<health amount="15" />
+	<maxPower amount="35" />
+	<crewCount amount="5" max="10" class="human_engineer" />
 	<boardingAI>sabotage</boardingAI>
 	<aug name="UPG_SHIELDS_PERFORMANCE" />
 </shipBlueprint>
 
-<!--QUEST PIRATE TRACKING-->
+<!--QUEST ROGUE EMPLOYEE-->
+
+<shipBlueprint name="MU_RAD_ZOLTAN_STATION" layout="mu_rad_zoltan_station" img="mu_rad_zoltan_station">
+	<class>Ministry Station</class>
+	<minSector>8</minSector>
+	<maxSector>8</maxSector>
+	<systemList>
+		<battery power="1" max="2" room="5" start="false" />
+		<clonebay power="1" max="3" room="8" start="false" />
+		<doors power="1" max="3" room="10" start="false" />
+		<drones power="8" max="8" room="9" start="true" />
+		<medbay power="1" max="3" room="8" start="false" />
+		<mind power="1" max="3" room="3" start="false" />
+		<oxygen power="1" max="3" room="4" start="true" />
+		<shields power="3" max="10" room="7" start="true" />
+		<weapons power="2" max="8" room="0" start="true" />
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>4</droneSlots>
+	<weaponList missiles="14" count="4" load="LIST_WEAPONS_ZOLTAN" />
+	<droneList drones="12" count="4">
+		<drone name="RAD_REPULSOR" />
+		<drone name="RAD_REPULSOR" />
+		<drone name="RAD_REPULSOR" />
+		<drone name="RAD_REPULSOR" />
+	</droneList>
+	<health amount="15" />
+	<maxPower amount="35" />
+	<crewCount amount="4" max="9" class="zoltan" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="ENERGY_SHIELD" />
+	<aug name="UPG_TECH_RESPIRATOR" />
+</shipBlueprint>
+
 
 </FTL>

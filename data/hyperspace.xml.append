@@ -64,15 +64,26 @@
 
 	<!--PLAYER SHIPS -->
 
-	<mod-append:ship name="PLAYER_SHIP_RAD_STATION" b="false" c="false" >
+	<mod-append:ship name="PLAYER_SHIP_RAD_STATION" b="true" c="false" >
 		<unlock variant="a" silent="false">
 			<type>4</type>
 		</unlock>
+		<unlock variant="b" silent="false">
+            <type>4</type>
+        </unlock>
 	</mod-append:ship>
 	
 	<mod-append:customShip name="PLAYER_SHIP_RAD_STATION">
 		<customReactor maxLevel="30" />
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
+		<systemLimit>7</systemLimit>
+	</mod-append:customShip>
+	<mod-append:customShip name="PLAYER_SHIP_RAD_STATION_2">
+		<customReactor maxLevel="30" />
+		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
+		<crewLimit>11</crewLimit>
+		<systemLimit>7</systemLimit>
 	</mod-append:customShip>
 
 </mod:findLike>
@@ -189,7 +200,32 @@
 			<shipFriendlyFire>true</shipFriendlyFire>
 		</powerEffect>
 	</race>
+	<race name="drone_repulsor">
+		<canFight>false</canFight>
+		<canRepair>false</canRepair>
+		<canSabotage>false</canSabotage>
+		<canSuffocate>false</canSuffocate>
+		<canMan>false</canMan>
+		<maxHealth>75</maxHealth>
+		<stunMultiplier>0</stunMultiplier>
+		<healSpeed>0</healSpeed>
+		<trueHealAmount>0</trueHealAmount>
+		<droneAI>
+			<batteryAI/>
+		</droneAI>
+		<fireDamageMultiplier>0.25</fireDamageMultiplier>
+		<moveSpeedMultiplier>2</moveSpeedMultiplier>
+		<controllable>true</controllable>
+	</race>
 </crew>
+
+
+<drones>
+	<drone name="RAD_REPULSOR">
+		<crewBlueprint>drone_repulsor</crewBlueprint>
+		<tooltipName>Repulsor Drone</tooltipName>
+	</drone>
+</drones>
 
 <mod:findLike type="scripts">
     <mod-append:script>data/rad_scripts/rad_functions.lua</mod-append:script>

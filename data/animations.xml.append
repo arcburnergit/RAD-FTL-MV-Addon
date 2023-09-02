@@ -330,4 +330,23 @@
 	<mountPoint x="6" y="45" />
 </weaponAnim>
 
+<animSheet name="laser_rad_smart" w="270" h="60" fw="30" fh="60">weapon_focus/laser_rad_smart.png</animSheet>
+<weaponAnim name="laser_rad_smart">
+	<sheet>laser_rad_smart</sheet>
+	<desc length="9" x="0" y="0"/>
+	<chargedFrame>4</chargedFrame>
+	<fireFrame>5</fireFrame>
+	<firePoint x="17" y="0" />
+	<mountPoint x="6" y="48" />
+</weaponAnim>
+
+<animSheet name="laser_rad_combiner" w="504" h="74" fw="42" fh="74">weapon_laser/laser_rad_combiner.png</animSheet>
+<weaponAnim name="laser_rad_combiner">
+	<sheet>laser_rad_combiner</sheet>
+	<desc length="12" x="0" y="0"/>
+	<chargedFrame>6</chargedFrame>
+	<fireFrame>7</fireFrame>
+	<firePoint x="25" y="3" />
+	<mountPoint x="6" y="49" />
+</weaponAnim>
 </FTL>

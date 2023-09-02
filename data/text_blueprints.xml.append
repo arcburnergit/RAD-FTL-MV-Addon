@@ -2,4 +2,6 @@
 <FTL>
 <text name="ship_PLAYER_SHIP_RAD_STATION_unlock">Retrieve this station from some pirates.</text>
 <text name="ship_PLAYER_SHIP_RAD_STATION_2_unlock">Hunt down a rogue employee.</text>
+<text name="ship_PLAYER_SHIP_RAD_FLESH_unlock">Recover a prototype cruiser.</text>
+<text name="ship_PLAYER_SHIP_RAD_GHOST_unlock">Retrieve and save a tortured phantom.</text>
 </FTL>

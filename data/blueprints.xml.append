@@ -702,6 +702,91 @@
     <weaponArt>beam_burst_5</weaponArt>
 </weaponBlueprint>
 
+<weaponBlueprint name="RAD_LASER_COMBINER">
+    <type>BURST</type>
+    <flavorType>Laser</flavorType>
+    <tip>rad_tip_combiner</tip>
+    <title>Multi-Laser</title> 
+    <short>Multi-Laser</short>
+    <desc>This laser is actually multiple lasers forced into the one barrel.</desc>
+    <tooltip>Fires multiple lasers across a small area doing up to 4 damage.</tooltip>
+    <radius>10</radius> 
+    <damage>1</damage>
+	<!--sysDamage>1</sysDamage-->
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>1</fireChance> 
+    <breachChance>1</breachChance>
+    <cooldown>15</cooldown>
+    <power>3</power>
+    <cost>72</cost>
+    <bp>2</bp>
+    <speed>0</speed> 
+    <rarity>4</rarity>	
+    <projectiles>
+        <projectile count="4" fake="false">laser_burst</projectile>
+    </projectiles>
+    <launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+    <weaponArt>laser_rad_combiner</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_LASER_SMART">
+    <type>LASER</type>
+    <flavorType>Laser</flavorType>
+    <tip>rad_tip_laser_smart</tip>
+    <title>Smart Laser</title> 
+    <short>Smart Laser</short>
+    <desc>This weapon has a built in AI that takes targetting control out of your hands, the weapon will prioritize taking down shields, and then weapons and then piloting/engines.</desc>
+    <tooltip>Fires multiple lasers and automatically targets different systems.</tooltip> 
+    <damage>1</damage>
+    <shots>3</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>14</cooldown>
+	<power>2</power>
+	<cost>80</cost>
+	<bp>4</bp>
+	<rarity>3</rarity>
+	<image>laser_burst</image>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+		<sound>lightLaser2</sound>
+		<sound>lightLaser3</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>laser_rad_smart</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+
 <shipBlueprint name="PLAYER_SHIP_RADLAB_1" layout="rdp_lab_a" img="rdp_lab_a">
 	<class>R&amp;D Laboratory</class>
 	<name>Station 37-A</name>
@@ -792,6 +877,16 @@
 	<stackable>false</stackable>
 </augBlueprint>
 
+<augBlueprint name="FLESH_HULL">
+	<title>Flesh Hull Plating</title>
+	<desc>Through use of advanced bio-engineering, your hull is able to repair itself over time, however it's quite unstable. 
+	Whenever you fire a weapon your hull takes 1 damage, or damage equal to the hull damage of the weapon, whichever is higher. 
+	The flesh also gives you a 50% chance to take double damage when getting hit</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+</augBlueprint>
+
 <augBlueprint name="LOCKED_RAD_SHRAPNEL_COATING">
 	<title>Shrapnel Coating</title>
 	<desc>Allows you to apply a shrapnel coating to the ammo of one weapon, or weapon class, granting that weapon 1 system damage to adjacent rooms.</desc>
@@ -831,6 +926,31 @@
 	</powerList>
 </crewBlueprint>
 <droneBlueprint name="RAD_REPULSOR">
+	<type>BATTLE</type>
+	<locked>1</locked>
+	<tip>tip_crew</tip>
+	<title>Repulsor Drone</title>
+	<short>Repulsor</short>
+	<desc>Controllable utility drone that provides protection to the room it's in by repelling any projectiles targetting that room.
+    
+-75 HP, 2x movement speed</desc>
+	<power>2</power>
+	<cost>50</cost>
+	<rarity>0</rarity>
+	<iconImage>battle</iconImage>
+</droneBlueprint>
+
+<crewBlueprint name="drone_repulsor_enemy">
+	<title>Repulsor Drone</title>
+	<short>Repulsor Drone</short>
+	<desc>YOU SHOULD NEVER SEE THIS.</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<powerList>
+		<power>DRONE</power>
+	</powerList>
+</crewBlueprint>
+<droneBlueprint name="RAD_REPULSOR_ENEMY">
 	<type>BATTLE</type>
 	<locked>1</locked>
 	<tip>tip_crew</tip>
@@ -995,5 +1115,205 @@
 	<crewCount amount="1" class="human_engineer" />
 	<crewCount amount="1" class="human_medic" />
 </shipBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_RAD_FLESH" layout="radp_flesh_cruisera" img="radp_flesh_cruisera">
+	<class>Flesh Cruiser</class>
+	<name>Not for human consumption</name>
+	<unlock id="ship_PLAYER_SHIP_RAD_FLESH_unlock"/>
+	<desc>Someone really should have stopped this from coming into existence.&#xD;
+The meaty exterior isn't very strong, but repairs itself quickly, you'll have to pay attention in order to not overstress the meat and destroy the hull.</desc>
+	<systemList>
+		<artillery power="1" max="4" room="1" start="true" weapon="ARTILLERY_FLESH" img="Sprite-0005" />
+		<battery power="1" room="8" start="false" img="room_battery_8" />
+		<cloaking power="1" room="6" start="false" img="room_cloaking_10" />
+		<clonebay power="1" room="4" start="true">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="11" start="false" img="room_doors">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="1" max="8" room="2" start="false" img="room_drones_4" />
+		<engines power="1" room="9" start="true" img="room_engines">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<medbay power="1" room="4" start="false" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="15" start="false" img="room_mind_12" />
+		<oxygen power="1" room="7" start="true" img="room_oxygen_6" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="14" start="true" img="room_sensors">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="4" room="3" start="true" img="room_shields_4">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="12" start="false" />
+		<weapons power="3" max="8" room="10" start="true" img="room_weapons_6">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="5" count="4">
+		<weapon name="RAD_LASER_COMBINER" />
+	</weaponList>
+	<droneList drones="5" count="2" />
+	<health amount="45" />
+	<maxPower amount="8" />
+	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="human_medic" />
+	<crewCount amount="1" class="human_medic" />
+	<aug name="FLESH_HULL" />
+</shipBlueprint>
+
+<weaponBlueprint name="ARTILLERY_FLESH">
+	<type>LASER</type>
+	<title>Fleshy Heart</title>
+	<short>Fleshy Heart</short>
+	<desc>[BASE COOLDOWN: 4] This Heart is quite literally the heart of your ship.
+	Every time it charges it will repair 1 hull damage.</desc>
+	<tooltip>Heals the ship</tooltip>
+	<damage>0</damage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>4</cooldown>
+	<power>1</power>
+	<cost>80</cost>
+	<bp>4</bp>
+	<rarity>0</rarity>
+</weaponBlueprint>
+
+<weaponBlueprint name="ARTILLERY_FLESH_ENEMY">
+	<type>LASER</type>
+	<title>Fleshy Heart</title>
+	<short>Fleshy Heart</short>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
+	<tooltip>Heals the ship</tooltip>
+	<damage>0</damage>
+	<shots>1</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>1</cooldown>
+	<power>1</power>
+	<cost>80</cost>
+	<bp>4</bp>
+	<rarity>0</rarity>
+</weaponBlueprint>
+
+<shipBlueprint name="PLAYER_SHIP_RAD_EXPERIMENT" layout="radp_ghost_player" img="radp_ghost_player">
+	<class>Experimental Ghost Cruiser</class>
+	<name>26's Cruiser</name>
+	<unlock id="ship_PLAYER_SHIP_RAD_GHOST_unlock"/>
+	<desc>This ship is able to set enemy ships alight with use of its experimental ghost crew, and a piercing torch beam.&#xD;
+Luckily the teleporter is equiped with a special failsafe feature that recovers crew if they're on an enemy ship as it explodes.</desc>
+	<systemList>
+		<battery power="1" room="7" start="false" img="room_battery_14" />
+		<cloaking power="1" room="4" start="false" img="room_cloaking_11" />
+		<clonebay power="1" room="10" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="17" start="false" img="room_doors">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="1" room="3" start="true" img="room_drones_14" />
+		<engines power="1" room="11" start="true" img="room_engines_radlab_a">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="5" start="false" img="room_hacking_7" />
+		<medbay power="1" room="10" start="true" img="room_medbay_7">
+			<slot>
+				<number>2</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="8" start="false" img="room_mind_9" />
+		<oxygen power="1" room="6" start="false" img="room_oxygen" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="16" start="true" img="room_sensors">
+			<slot>
+				<direction>down</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="9" start="true" img="room_shields_10">
+			<slot>
+				<direction>down</direction>
+				<number>3</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="1" start="true" />
+		<weapons power="2" max="8" room="2" start="true" img="room_weapons">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="0" count="4">
+		<weapon name="BEAM_FIRE_PIERCE" />
+	</weaponList>
+	<droneList drones="3" count="3">
+		<drone name="REPAIR" />
+	</droneList>
+	<droneList drones="0" count="2" />
+	<health amount="30" />
+	<maxPower amount="7" />
+	<crewCount amount="1" class="phantom_alpha" />
+	<crewCount amount="1" class="phantom_experiment_alpha" />
+	<crewCount amount="1" class="phantom_experiment_alpha" />
+	<aug name="TELE_EVAC" />
+	<aug name="UPG_TECH_EXTINGUISHERS" />
+</shipBlueprint>
+
+<augBlueprint name="TELE_EVAC">
+	<title>Emergency Evacuator</title>
+	<desc>This device attaches to your teleportation system and provides a burst of power to evacuate your crew in case the ship they're on is about to blow up.
+	It works by determining if the weapon you're about to fire can destroy the enemy ship, in which case it will recall your crew, however this won't work for things like fires, or other sources of damage.</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+</augBlueprint>
 
 </FTL>

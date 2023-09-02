@@ -356,6 +356,11 @@ script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipM
     end
 end)
 
+
+--script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
+
+--end)
+
 --[[mods.rad.fireSpreaders = {}
 local fireSpreaders = mods.rad.fireSpreaders
 fireSpreaders["phantom_experiment_alpha"] = 1
@@ -406,6 +411,57 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
     end
 end)
 
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    if weapon.blueprint.name == "RAD_LASER_SMART" then
+        local ship = Hyperspace.Global.GetInstance():GetShipManager(weapon.iShipId)
+        local otherShip = Hyperspace.Global.GetInstance():GetShipManager((weapon.iShipId + 1)%2)
+        local targetRoom = nil
+
+        if not otherShip:GetSystem(0):CompletelyDestroyed() then
+            targetRoom = otherShip:GetSystemRoom(0)
+            --log("Target Shields")
+        elseif not otherShip:GetSystem(3):CompletelyDestroyed() then
+            targetRoom = otherShip:GetSystemRoom(3)
+            --log("Target Weapons")
+        elseif not otherShip:GetSystem(4):CompletelyDestroyed() then
+            targetRoom = otherShip:GetSystemRoom(4)
+            --log("Target Drones")
+        elseif not otherShip:GetSystem(10):CompletelyDestroyed() then
+            targetRoom = otherShip:GetSystemRoom(10)
+            --log("Target Cloaking")
+        elseif not otherShip:GetSystem(1):CompletelyDestroyed() then
+            targetRoom = otherShip:GetSystemRoom(1)
+            --log("Target Engines")
+        end
+        
+        -- Retarget the bomb to that room
+        if targetRoom then
+            log(tostring(targetRoom))
+            projectile.target = otherShip:GetRoomCenter(targetRoom)
+            userdata_table(projectile, "mods.radsmartlaser.comhead").notComputed = true
+            --projectile:ComputeHeading()
+            --projectile.heading = 0
+            --log("projectile space=======================================================================")
+            --log(tostring(projectile.currentSpace))
+            --log(tostring(projectile.destinationSpace))
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_PRE, function(projectile)
+    --local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+    local weaponName = projectile.extend.name
+    if weaponName == "RAD_LASER_SMART" then
+        --log("projectile space update=======================================================================update")
+        --log(tostring(projectile.currentSpace))
+        --log(tostring(projectile.destinationSpace))
+        local chTable = userdata_table(projectile, "mods.radsmartlaser.comhead")
+        if projectile.currentSpace == 1.0 and chTable.notComputed then 
+            chTable.notComputed = nil
+            projectile:ComputeHeading()
+        end
+    end
+end)
 
 script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
     --log("RENDERSTART")
@@ -431,7 +487,7 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
     --log("before")
     --log(weaponlist[0].blueprint.name)
     --if not weaponlist[0] then return end
-    if weaponlist[0] then
+    if 0 < weaponlist:size() then
         --log("render")
         pcall(function() weaponData = overheatWeapons[weaponlist[0].blueprint.name] end)
         if weaponData then
@@ -451,7 +507,7 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
         end
     end
 
-    if weaponlist[1] then
+    if 1 < weaponlist:size() then
         --log("render")
         pcall(function() weaponData = overheatWeapons[weaponlist[1].blueprint.name] end)
         if weaponData then
@@ -471,7 +527,7 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
         end
     end
 
-    if weaponlist[2] then
+    if 2 < weaponlist:size() then
         --log("render")
         pcall(function() weaponData = overheatWeapons[weaponlist[2].blueprint.name] end)
         if weaponData then
@@ -491,7 +547,7 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
         end
     end
 
-    if weaponlist[3] then
+    if 3 < weaponlist:size() then
         --log("render")
         pcall(function() weaponData = overheatWeapons[weaponlist[3].blueprint.name] end)
         if weaponData then
@@ -541,3 +597,62 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManage
     end
 end)
 
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+    if shipManager:HasAugmentation("FLESH_HULL") > 0 then
+        local weaponDamage = weapon.blueprint.damage;
+        local hulldamage = weaponDamage.iDamage
+        if weapon.blueprint.name == "ARTILLERY_FLESH" then
+            shipManager:DamageHull(-1, true)
+            projectile:Kill()
+        elseif hulldamage > 1 then
+            shipManager:DamageHull(hulldamage, true)
+        else
+            shipManager:DamageHull(1, true)
+        end
+    end
+    if weapon.blueprint.name == "ARTILLERY_FLESH_ENEMY" then
+        shipManager:DamageHull(-1, true)
+        projectile:Kill()
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
+    log("Damage Area Hit")
+    if shipManager:HasAugmentation("FLESH_HULL") > 0 then
+        local rnd = math.random(2);
+        log(tostring(rnd))
+        if rnd == 2 then
+            local hDamage = damage.iDamage
+            if hDamage > 0 then
+                shipManager:DamageHull(hDamage, true)
+            end
+        end
+    end
+end)
+
+--[[script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("FLESH_HULL") > 0 then
+        local regenTable = userdata_table(shipManager, "mods.radfleshhull.regen")
+        if regenTable.regenTime then
+            regenTable.regenTime = math.max(regenTable.regenTime - Hyperspace.FPS.SpeedFactor/16, 0)
+            if regenTable.regenTime == 0 then
+                regenTable.regenTime = 5
+                shipManager:DamageHull(-2, true)
+            end
+        else
+            regenTable.regenTime = 5
+        end
+    end
+end)]]--
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2)
+    if shipManager:HasAugmentation("TELE_EVAC") > 0 and otherShip.bDestroyed == true then
+        for crewmem in vter(otherShip.vCrewList) do
+            if crewmem.intruder == true then
+                crewmem.extend:InitiateTeleport(0,0,0)
+            end
+        end
+    end
+end)

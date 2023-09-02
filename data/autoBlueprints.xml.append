@@ -224,7 +224,7 @@
 	<health amount="15" />
 	<maxPower amount="35" />
 	<crewCount amount="1" max="2" class="human_medic" />
-	<crewCount amount="2" max="4" class="easter_tommy" />
+	<crewCount amount="2" max="4" class="human" />
 	<crewCount amount="2" max="4" class="human_engineer" />
 	<crewCount amount="3" max="6" class="human_soldier" />
 	<boardingAI>sabotage</boardingAI>
@@ -299,8 +299,6 @@
 
 <shipBlueprint name="MU_RAD_ZOLTAN_STATION" layout="mu_rad_zoltan_station" img="mu_rad_zoltan_station">
 	<class>Ministry Station</class>
-	<minSector>8</minSector>
-	<maxSector>8</maxSector>
 	<systemList>
 		<battery power="1" max="2" room="5" start="false" />
 		<clonebay power="1" max="3" room="8" start="false" />
@@ -316,10 +314,10 @@
 	<droneSlots>4</droneSlots>
 	<weaponList missiles="14" count="4" load="LIST_WEAPONS_ZOLTAN" />
 	<droneList drones="12" count="4">
-		<drone name="RAD_REPULSOR" />
-		<drone name="RAD_REPULSOR" />
-		<drone name="RAD_REPULSOR" />
-		<drone name="RAD_REPULSOR" />
+		<drone name="RAD_REPULSOR_ENEMY" />
+		<drone name="RAD_REPULSOR_ENEMY" />
+		<drone name="RAD_REPULSOR_ENEMY" />
+		<drone name="RAD_REPULSOR_ENEMY" />
 	</droneList>
 	<health amount="15" />
 	<maxPower amount="35" />
@@ -329,5 +327,65 @@
 	<aug name="UPG_TECH_RESPIRATOR" />
 </shipBlueprint>
 
+<shipBlueprint name="ENEMY_SHIP_RAD_FLESH" layout="rad_flesh_enemy" img="rad_flesh_enemy">
+	<class>Flesh Cruiser</class>
+	<systemList>
+		<artillery power="1" max="1" room="1" start="true" weapon="ARTILLERY_FLESH_ENEMY" />
+		<cloaking power="1" max="2" room="6" start="false" />
+		<clonebay power="3" max="3" room="3" start="true" />
+		<doors power="1" max="2" room="11" start="true" />
+		<drones power="1" max="8" room="2" start="false" />
+		<engines power="1" max="2" room="9" start="true" />
+		<mind power="1" max="1" room="5" start="false" />
+		<oxygen power="1" max="1" room="8" start="true" />
+		<pilot power="1" max="1" room="0" start="true" />
+		<shields power="2" max="8" room="4" start="true" />
+		<teleporter power="1" max="1" room="12" start="true" />
+		<weapons power="2" max="8" room="10" start="true" />
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="5" count="4">
+		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY" />
+		<weapon name="RAD_CHAINGUN_DAMAGE_ENEMY" />
+		<weapon name="RAD_CLUSTER_MISSILE_2" />
+		<weapon name="RAD_CLUSTER_MISSILE_2" />
+	</weaponList>
+	<droneList drones="0" count="0" load="DRONES_STANDARD" />
+	<health amount="15" />
+	<maxPower amount="35" />
+	<crewCount amount="2" max="4" class="zoltan" />
+	<crewCount amount="2" max="4" class="human" />
+	<crewCount amount="2" max="4" class="mantis_free" />
+	<crewCount amount="2" max="4" class="slug" />
+	<boardingAI>sabotage</boardingAI>
+</shipBlueprint>
+
+<shipBlueprint name="MU_BEAM_MASTER_RAD" layout="mu_rad_beam_master" img="mu_rad_beam_master">
+	<class>The Beam Master</class>
+	<systemList>
+		<doors power="3" max="3" room="3" start="true" />
+		<drones power="2" max="6" room="1" start="true" />
+		<engines power="1" max="2" room="2" start="true" />
+		<medbay power="2" max="2" room="5" start="true" />
+		<oxygen power="1" max="3" room="8" start="true" />
+		<pilot power="1" max="3" room="0" start="true" />
+		<shields power="2" max="8" room="4" start="true" />
+		<weapons power="6" max="8" room="7" start="true" />
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="4" count="4">
+		<weapon name="RAD_JAILERBEAM" />
+		<weapon name="RAD_JAILERBEAM" />
+		<weapon name="RAD_ABDUCTOR_ENEMY" />
+		<weapon name="RAD_ABDUCTOR_ENEMY" />
+	</weaponList>
+	<droneList drones="8" count="3" load="LIST_DRONES_BEAM_MASTER" />
+	<health amount="10" />
+	<maxPower amount="35" />
+	<boardingAI>sabotage</boardingAI>
+	<aug name="EX_FIRE_EXTINGUISHERS" />
+</shipBlueprint>
 
 </FTL>

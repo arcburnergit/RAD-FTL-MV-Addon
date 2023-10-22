@@ -66,7 +66,7 @@
 	</event>
 	
 	<event name="STORAGE_CHECK_SHRAP_REGULAR">
-		<text>You apply the coating to all of your regular missiles giving them +1 adjacent room damage.</text>
+		<text>You apply the coating to all of your regular missiles, giving them +1 adjacent room damage.</text>
 		<choice hidden="true">
 			<text>Continue...</text>
 			<event load="STORAGE_CHECK"/>
@@ -74,7 +74,7 @@
 	</event>
 	
 	<event name="STORAGE_CHECK_SHRAP_KERNAL">
-		<text>You apply the coating to all of your orchid kernals giving them +1 adjacent room damage.</text>
+		<text>You apply the coating to all of your orchid kernals, giving them +1 adjacent room damage.</text>
 		<choice hidden="true">
 			<text>Continue...</text>
 			<event load="STORAGE_CHECK"/>
@@ -82,7 +82,7 @@
 	</event>
 	
 	<event name="STORAGE_CHECK_SHRAP_MODULAR">
-		<text>You apply the coating to all of your modular missiles giving them +1 adjacent room damage.</text>
+		<text>You apply the coating to all of your modular missiles, giving them +1 adjacent room damage.</text>
 		<choice hidden="true">
 			<text>Continue...</text>
 			<event load="STORAGE_CHECK"/>
@@ -90,7 +90,7 @@
 	</event>
 	
 	<event name="STORAGE_CHECK_SHRAP_ELITE">
-		<text>You apply the coating to all of your elite missiles giving them +1 adjacent room damage.</text>
+		<text>You apply the coating to all of your elite missiles, giving them +1 adjacent room damage.</text>
 		<choice hidden="true">
 			<text>Continue...</text>
 			<event load="STORAGE_CHECK"/>

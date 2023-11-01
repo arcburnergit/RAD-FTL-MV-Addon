@@ -349,4 +349,33 @@
 	<firePoint x="25" y="3" />
 	<mountPoint x="6" y="49" />
 </weaponAnim>
+
+<animSheet name="beam_rad_zap" w="348" h="85" fw="29" fh="85">weapon_beams/rad_drone_zapper.png</animSheet>
+<weaponAnim name="beam_rad_zap">
+	<sheet>beam_rad_zap</sheet>
+	<desc length="12" x="0" y="0" />
+	<chargedFrame>1</chargedFrame>
+	<fireFrame>3</fireFrame>
+	<firePoint x="16" y="8" />
+	<mountPoint x="4" y="70" />
+	<chargeImage>weapon_beams/rad_drone_zapper_glow.png</chargeImage>
+</weaponAnim>
+
+<animSheet name="rad_singularity_mine" w="344" h="46" fw="43" fh="46">weapon_ancient/rad_singularity.png</animSheet>
+<weaponAnim name="rad_singularity_mine">
+	<sheet>rad_singularity_mine</sheet>
+	<desc length="8" x="0" y="0" />
+	<chargedFrame>6</chargedFrame>
+	<fireFrame>7</fireFrame>
+	<firePoint x="22" y="21" />
+	<mountPoint x="2" y="20" />
+	<chargeImage>weapon_ancient/rad_singularity_glow.png</chargeImage>
+</weaponAnim>
+<animSheet name="mine_rad_singularity" w="24" h="24" fw="24" fh="24">weapon_ancient/mine_rad_singularity.png</animSheet>
+<anim name="mine_rad_singularity">
+	<sheet>mine_rad_singularity</sheet>
+	<desc length="3" x="0" y="0" />
+	<time>3</time>
+</anim>
+
 </FTL>

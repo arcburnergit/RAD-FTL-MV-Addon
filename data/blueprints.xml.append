@@ -42,7 +42,7 @@
 	<title>Cluster Missile Mk1</title>
 	<short>Cluster 1</short>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
-	<descriptionOverride>In an attempt to create more widespread destruction, this missile houses several smaller warheads that are spun out to hit adjacent rooms, unfortunatly this left no room in the main missile for any explosives.
+	<descriptionOverride>In an attempt to create more widespread destruction, this missile houses several smaller warheads that are spun out to hit adjacent rooms. Unfortunately, this left no room in the main missile for any explosives.
 
 		Stats:
 		Required Power: 2
@@ -59,7 +59,7 @@
 		
 		Buy/Sell Price: 50~/25~
 	</descriptionOverride>
-	<tooltip>Fires 1 missile; Only damages adjacent rooms; pierces all shields.</tooltip>
+	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
 	<missiles>1</missiles>
 	<speed>50</speed>
@@ -98,7 +98,7 @@
 	<title>Cluster Missile Mk2</title>
 	<short>Cluster 2</short>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
-	<descriptionOverride>In an attempt to create more widespread destruction, this missile uses a belt to load many smaller warheads into the missile, which are then spun out to hit adjacent rooms just before impact, unfortunatly this left no room in the main missile for any explosives.
+	<descriptionOverride>In an attempt to create more widespread destruction, this missile uses a belt to load many smaller warheads into the missile, which are then spun out to hit adjacent rooms just before impact. Unfortunately, this left no room in the main missile for any explosives.
 
 		Stats:
 		Required Power: 3
@@ -117,7 +117,7 @@
 		
 		Buy/Sell Price: 70~/35~
 	</descriptionOverride>
-	<tooltip>Fires 1 missile; Only damages adjacent rooms; pierces all shields.</tooltip>
+	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
 	<missiles>1</missiles>
 	<speed>50</speed>
@@ -176,7 +176,7 @@
 		
 		Buy/Sell Price: 90~/45~
 	</descriptionOverride>
-	<tooltip>Fires 1 missile; Only damages adjacent rooms; pierces all shields.</tooltip>
+	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
 	<missiles>1</missiles>
 	<speed>50</speed>
@@ -321,7 +321,7 @@
 	<title>'Jailer' Teleportation Focus Beam</title>
 	<short>'Jailer'</short>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
-	<descriptionOverride>An even more powerful abduction beam, this weapon is able to sweep across a ship and deals 1 damage to all systems, while still abducting any crew it hits, and sometimes even part of the floor.
+	<descriptionOverride>An even more powerful abduction beam, this weapon is able to sweep across a ship and deals 1 damage to systems, while still abducting any crew it hits, and sometimes even part of the floor.
 
 		Stats:
 		Required Power: 4
@@ -370,7 +370,7 @@
 	<drone_targetable>0</drone_targetable>
 	<title>OverHeater Chain Cannon</title>
 	<short>OverHeater</short>
-	<desc>This weapon actually loads superheated pellets into the barrels, turning the pellets into plasma, unfortunatly the cooling system is rather lacking and can't deal with extended periods of firing.</desc>
+	<desc>This weapon actually loads superheated pellets into the barrels, turning the pellets into plasma. Unfortunately, the cooling system is rather lacking and can't deal with extended periods of firing.</desc>
 	<tooltip>Cooldown drops the more it fires, until it overheats and turns off.</tooltip>
 	<radius>35</radius>
 	<damage>0</damage>
@@ -584,8 +584,8 @@
     <!--tip>rad_tip_focus_burst</tip-->
     <title>Light Pinpoint</title>
     <short>Light Pinpoint</short>
-    <desc>This beam makes more efficient use of the power by firing a short low power beam that pops shields.</desc>
-    <tooltip>Fires a of beam quickly.</tooltip>
+    <desc>This beam makes more efficient use of power by firing a short low power beam that pops shields.</desc>
+    <tooltip>Fires pulses of a beam quickly.</tooltip>
     <radius>10</radius> 
     <damage>0</damage>
 	<sysDamage>1</sysDamage>
@@ -615,8 +615,8 @@
     <tip>rad_tip_focus_burst</tip>
     <title>Burst Pinpoint Mark I</title>
     <short>Burst Pin I</short>
-    <desc>This beam makes more efficient use of the power by firing multiple short low power beams that pop shields.</desc>
-    <tooltip>Fires a pair of beams across a random area doing up to 2 damage.</tooltip>
+    <desc>This beam makes more efficient use of power by firing multiple short low power beams that pop shields.</desc>
+    <tooltip>Fires a pair of beams across a small area doing up to 2 damage.</tooltip>
     <radius>10</radius> 
     <damage>0</damage>
 	<sysDamage>1</sysDamage>
@@ -646,8 +646,8 @@
     <tip>rad_tip_focus_burst</tip>
     <title>Burst Pinpoint Mark II</title> 
     <short>Burst Pin II</short>
-    <desc>This beam makes more efficient use of the power by firing multiple short low power beams that pop shields.</desc>
-    <tooltip>Fires a pair of beams across a random area doing up to 2 damage.</tooltip>
+    <desc>This beam makes more efficient use of power by firing multiple short low power beams that pop shields.</desc>
+    <tooltip>Fires a trio of beams across a small area doing up to 3 damage.</tooltip>
     <radius>10</radius> 
     <damage>0</damage>
 	<sysDamage>1</sysDamage>
@@ -677,7 +677,7 @@
     <tip>rad_tip_focus_burst</tip>
     <title>Burst Pinpoint Mark III</title> 
     <short>Burst Pin III</short>
-    <desc>This beam makes more efficient use of the power by firing multiple short low power beams that pop shields.</desc>
+    <desc>This beam makes more efficient use of power by firing multiple short low power beams that pop shields.</desc>
     <tooltip>Fires multiple beams across a small area doing up to 5 damage.</tooltip>
     <radius>10</radius> 
     <damage>0</damage>
@@ -753,7 +753,7 @@
     <tip>rad_tip_laser_smart</tip>
     <title>Smart Laser</title> 
     <short>Smart Laser</short>
-    <desc>This weapon has a built in AI that takes targetting control out of your hands, the weapon will prioritize taking down shields, and then weapons and then piloting/engines.</desc>
+    <desc>This weapon has a built in AI that takes targetting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines.</desc>
     <tooltip>Fires multiple lasers and automatically targets different systems.</tooltip> 
     <damage>1</damage>
     <shots>3</shots>
@@ -790,7 +790,7 @@
 <shipBlueprint name="PLAYER_SHIP_RADLAB_1" layout="rdp_lab_a" img="rdp_lab_a">
 	<class>R&amp;D Laboratory</class>
 	<name>Station 37-A</name>
-	<desc>A heavily modified civilian station. The Scientists installed a pair of engines, however they're barely enough to make the station jump capable, it's unlikely you'll be able to dodge much with it.</desc>
+	<desc>A heavily modified civilian station. The Scientists installed a pair of engines to it. However, they're barely enough to make the station jump capable. It's unlikely you'll be able to dodge much with it.</desc>
 	<systemList>
 		<battery power="1" room="27" start="false" img="room_battery_16" />
 		<cloaking power="1" room="11" start="false" img="radlab_cloaking" />
@@ -871,7 +871,7 @@
 
 <augBlueprint name="RAD_JUMP_TRACKER">
 	<title>Jump Tracer</title>
-	<desc>Through the use of advanced sensors and science this device allows your ship to trace the jumps of certain ships.</desc>
+	<desc>Through the use of advanced sensors and science, this device allows your ship to trace the jumps of certain ships.</desc>
 	<cost>100</cost>
 	<rarity>0</rarity>
 	<stackable>false</stackable>
@@ -879,9 +879,9 @@
 
 <augBlueprint name="FLESH_HULL">
 	<title>Flesh Hull Plating</title>
-	<desc>Through use of advanced bio-engineering, your hull is able to repair itself over time, however it's quite unstable. 
-	Whenever you fire a weapon your hull takes 1 damage, or damage equal to the hull damage of the weapon, whichever is higher. 
-	The flesh also gives you a 50% chance to take double damage when getting hit</desc>
+	<desc>Through use of advanced bio-engineering, your hull is able to repair itself over time. However, it's quite unstable.
+	Whenever you fire a weapon, your hull takes 1 damage, or damage equal to the hull damage of the weapon, whichever is higher.
+	The flesh also gives you a 50% chance to take double damage when getting hit.</desc>
 	<cost>0</cost>
 	<rarity>0</rarity>
 	<stackable>false</stackable>
@@ -969,7 +969,7 @@
 	<class>Advanced Station</class>
 	<name>Station 27A</name>
 	<unlock id="ship_PLAYER_SHIP_RAD_STATION_unlock"/>
-	<desc>This is one of the R&amp;D Lab's most advanced prototype stations, it's equiped with engines, however they aren't really useful for anything more than getting from A to B, It has to rely on other methods to avoid getting hit.</desc>
+	<desc>This is one of the R&amp;D Lab's most advanced prototype stations. It's equipped with engines. However, they aren't really useful for anything more than getting from A to B. It has to rely on other methods to avoid getting hit.</desc>
 	<systemList>
 		<battery power="1" room="5" start="false" img="room_battery_14" />
 		<cloaking power="1" room="3" start="false" img="room_cloaking" />
@@ -1122,7 +1122,7 @@
 	<name>Not for human consumption</name>
 	<unlock id="ship_PLAYER_SHIP_RAD_FLESH_unlock"/>
 	<desc>Someone really should have stopped this from coming into existence.&#xD;
-The meaty exterior isn't very strong, but repairs itself quickly, you'll have to pay attention in order to not overstress the meat and destroy the hull.</desc>
+The meaty exterior isn't very strong, but repairs itself quickly. You'll have to pay attention in order to not overstress the flesh and destroy the hull.</desc>
 	<systemList>
 		<artillery power="1" max="4" room="1" start="true" weapon="ARTILLERY_FLESH" img="Sprite-0005" />
 		<battery power="1" room="8" start="false" img="room_battery_8" />
@@ -1233,8 +1233,8 @@ The meaty exterior isn't very strong, but repairs itself quickly, you'll have to
 	<class>Experimental Ghost Cruiser</class>
 	<name>26's Cruiser</name>
 	<unlock id="ship_PLAYER_SHIP_RAD_GHOST_unlock"/>
-	<desc>This ship is able to set enemy ships alight with use of its experimental ghost crew, and a piercing torch beam.&#xD;
-Luckily the teleporter is equiped with a special failsafe feature that recovers crew if they're on an enemy ship as it explodes.</desc>
+	<desc>This ship is able to set enemy ships alight with use of both its experimental ghost crew, and a piercing torch beam.&#xD;
+Luckily, this ship's teleporter is equipped with a special failsafe feature that recovers crew if they're on an enemy ship as it explodes.</desc>
 	<systemList>
 		<battery power="1" room="7" start="false" img="room_battery_14" />
 		<cloaking power="1" room="4" start="false" img="room_cloaking_11" />

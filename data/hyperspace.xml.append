@@ -145,7 +145,37 @@
     	<locked />
 	</aug>
 	<aug name="TELE_EVAC">
-    	<locked />
+		<locked />
+		<statBoosts>
+			<statBoost name="healAmount">
+				<boostType>FLAT</boostType>
+				<shipTarget>ORIGINAL_SHIP</shipTarget>
+				<crewTarget>ALLIES</crewTarget>
+				<droneTarget>CREW</droneTarget>
+				<amount>3.2</amount>
+				<priority>0</priority>
+				<systemPowerDependency>
+					<clonebay />
+				</systemPowerDependency>
+				<systemPowerScaling>
+					<noSys>0</noSys>
+					<noPwr>0</noPwr>
+					<onePwr>1</onePwr>
+					<twoPwr>1.5</twoPwr>
+					<threePwr>3</threePwr>
+					<fourPwr>6</fourPwr>
+				</systemPowerScaling>
+				<systemRoomTarget>All</systemRoomTarget>
+				<systemList>
+				  <clonebay />
+				</systemList>
+			</statBoost>
+		</statBoosts>
+		<icon>icon_nanomedbay</icon>
+	</aug>
+	<aug name="RAD_CREDIT">
+		<locked />
+		<function name="SCRAP_COLLECTOR" value="-2" useForReqs="false" />
 	</aug>
 </augments>
 
@@ -185,6 +215,8 @@
 	<metaVariable name="trc_probe" op="set" val="0"/>-->
 	
 	<variable name="rad_flesh_rescue" op="set" val="1"/>
+	
+	<variable name="rad_flesh_quest" op="set" val="1"/>
 	
 	<req name="LABRATORY_SPAWN_CHECK" type="all">
 		<req lvl="2" max_lvl="2">

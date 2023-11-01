@@ -644,15 +644,175 @@ end)
             regenTable.regenTime = 5
         end
     end
-end)]]--
-
+end)
+local destroyededCode = false
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
     local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2)
-    if shipManager:HasAugmentation("TELE_EVAC") > 0 and otherShip.bDestroyed == true then
-        for crewmem in vter(otherShip.vCrewList) do
-            if crewmem.intruder == true then
-                crewmem.extend:InitiateTeleport(0,0,0)
+    if shipManager:HasAugmentation("TELE_EVAC") > 0 then
+        if otherShip then
+            if otherShip.bDestroyed == true and destroyededCode == false then
+                destroyededCode = true
+                log("ship dead")
+                for crewmem in vter(otherShip.vCrewList) do
+                    log("crew")
+                    if crewmem.intruder == true then
+                        log("intruder")
+                        crewmem:SetCurrentShip(0)
+                        crewmem:Restart()
+                        --crewmem:SetCurrentSystem(shipManager.teleportSystem)
+                        --crewmem:Clone()
+                        --crewmem.currentShipId = 0
+                        userdata_table(crewmem, "mods.tpbeam.time").tpTime = 2
+                        --crewmem.extend:InitiateTeleport(0,shipManager.teleportSystem.roomId,0)
+                    end
+                end
             end
+        end
+
+        if shipManager.teleportSystem.bOnFire == true then 
+            shipManager.teleportSystem.fDamageOverTime = 0
+        end
+    end
+end)]]--
+
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(ship)
+    destroyededCode = false
+end)
+
+script.on_internal_event(Defines.InternalEvents.DRONE_FIRE,
+function(Projectile, Drone)
+    if Drone.blueprint.name == "DEFENSE_FOCUS" then
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+        
+        --Spawn beam from drone to target
+        spaceManager:CreateBeam(
+            Hyperspace.Blueprints:GetWeaponBlueprint("RAD_BEAM_NODAMAGE_1"), 
+            Drone.currentLocation, 
+            Projectile.currentSpace,
+            1 - Projectile.ownerId,
+            Projectile.target, 
+            Hyperspace.Pointf(Projectile.target.x, Projectile.target.y + 1),
+            Projectile.currentSpace, 
+            1, 
+            -1)
+        --Destroy target (Beam is not programmed to do so in base game)
+        for target in vter(spaceManager.projectiles) do
+            if target:GetSelfId() == Drone.currentTargetId then
+                target.death_animation:Start(true)
+                break
+            end
+        end
+        
+        return Defines.Chain.PREEMPT
+    end
+    return Defines.Chain.CONTINUE
+end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon) 
+    if weapon.blueprint.name == "BEAM_RAD_ZAPPER" then
+        
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+        local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2)
+        local Drone = nil
+        local drones = otherShip.spaceDrones
+        log("fire")
+        if drones:size() > 0 then
+            log(drones:size())
+            local i = math.random(0, drones:size()-1)
+            log(i)
+            Drone = drones[i]
+            log(Drone:GetSelfId())
+            --drone.death_animation:Start(true)
+            local t = Drone.currentLocation
+            log("CreateBeam")
+            spaceManager:CreateBeam(
+                Hyperspace.Blueprints:GetWeaponBlueprint("RAD_BEAM_NODAMAGE_1"), 
+                projectile.position, 
+                projectile.currentSpace,
+                projectile.ownerId,
+                t, 
+                Hyperspace.Pointf(t.x, t.y + 1),
+                Drone.currentSpace, 
+                1, 
+                -1)
+            
+            for target in vter(spaceManager.projectiles) do
+                log("in target for loop")
+                log(target:GetSelfId())
+
+                if target:GetSelfId() == Drone:GetSelfId() then
+                    target.death_animation:Start(true)
+                    break
+                end
+            end
+        end
+        projectile:Kill()
+        
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DRONE_FIRE, function(projectile, Drone)
+    log("Drone Fire ID Start")
+    log(Drone.blueprint.name)
+    --log(Drone:GetSelfId())
+    log("Drone Fire ID End")
+    return Defines.Chain.CONTINUE
+end)
+
+mods.rad.droneWeapons = {}
+local droneWeapons = mods.rad.droneWeapons
+droneWeapons["RAD_SWARM_GUN_DEF"] = {
+    drone = "RAD_SWARMER_DEF",
+    shots = -1,
+    max = 20
+}
+
+local function spawn_temp_drone(name, ownerShip, targetShip, targetLocation, shots, position)
+    local drone = ownerShip:CreateSpaceDrone(Hyperspace.Global.GetInstance():GetBlueprints():GetDroneBlueprint(name))
+    drone.powerRequired = 0
+    drone:SetMovementTarget(targetShip._targetable)
+    drone:SetWeaponTarget(targetShip._targetable)
+    drone.lifespan = shots or 2
+    drone.powered = true
+    drone:SetDeployed(true)
+    drone.bDead = false
+    if position then drone:SetCurrentLocation(position) end
+    if targetLocation then drone.targetLocation = targetLocation end
+    return drone
+end
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_PRE, function(projectile)
+    local droneWeaponData = droneWeapons[projectile.extend.name]
+    if droneWeaponData and projectile.ownerId ~= projectile.currentSpace then
+        local ship = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+        local otherShip = Hyperspace.Global.GetInstance():GetShipManager((projectile.ownerId + 1)%2)
+        if ship and otherShip then
+            local drone = spawn_temp_drone(
+                droneWeaponData.drone,
+                ship,
+                ship,
+                nil,
+                droneWeaponData.shots,
+                projectile.position)
+            userdata_table(drone, "mods.rad.droneStuff").clearOnJump = true
+        end
+        projectile:Kill()
+    end
+end)
+
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
+    local weaponName = nil
+    local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+    pcall(function() weaponName = Hyperspace.Get_Projectile_Extend(projectile).name end)
+    log("damage area hit")
+    if weaponName == "RAD_SINGULARITY_MINE" then
+        log("is mine")
+        for target in vter(spaceManager.projectiles) do
+            log("pull")
+            target.damage.bFriendlyFire = true
+            target.target = projectile.target
+            target:ComputeHeading()
         end
     end
 end)

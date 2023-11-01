@@ -55,7 +55,7 @@
 					<text>"Excellent, We need your help with a certain issue regarding some rogue technology, however we can't give you the details unless you're absolutly sure about helping."
 					"Either way, feel free to browse our commercial technology, I'm sure someone like you could make use of it"</text>
 					<choice hidden="true">
-						<text>You'll help.</text>
+						<text>You'll help. [There are Multiple Possible Quests]</text>
 						<event load="RAD_LAB_QUEST_LIST"/>
 					</choice>
 					<choice hidden="true">
@@ -905,9 +905,10 @@
 		<event>
 			<text>The lounge was obvoisly in use before you came and interupted them, there's a half eaten lunch sitting on the table, and someone made a mess of the space microwave, but it doesn't look like there's anything useful for you here.
 			There's also a bathroom.</text>
-			<choice hidden="true">
+			<choice hidden="true" req="rad_flesh_quest">
 				<text>Check the bathroom.</text>
 				<event>
+					<variable name="rad_flesh_quest" op="set" val="0"/>
 					<text>You open the bathroom door, and find a completely ordinary bathroom, however it looks like someone dropped their space phone on the floor.
 					You're in luck too, who ever owns this phone had left it unlocked, and even better it contains the coordinates of a large storage facility, this must be where they took the cruiser.</text>
 					<quest event="RAD_FLESH_5"/>
@@ -976,9 +977,10 @@
 		<event>
 			<text>The lounge was obvoisly in use before you came and interupted them, there's a half eaten lunch sitting on the table, and someone made a mess of the space microwave, but it doesn't look like there's anything useful for you here.
 			There's also a bathroom.</text>
-			<choice hidden="true">
+			<choice hidden="true" req="rad_flesh_quest">
 				<text>Check the bathroom.</text>
 				<event>
+					<variable name="rad_flesh_quest" op="set" val="0"/>
 					<text>You open the bathroom door, and find a completely ordinary bathroom, however it looks like someone dropped their space phone on the floor.
 					You're in luck too, who ever owns this phone had left it unlocked, and even better it contains the coordinates of a large storage facility, this must be where they took the cruiser.</text>
 					<quest event="RAD_FLESH_5"/>
@@ -1024,7 +1026,8 @@
 	</choice>
 </event>
 
-<event name="RAD_FLESH_5">
+<event name="RAD_FLESH_5" unique="true">
+	
 	<text>You arrive at the storage facility and begin searching for the cruiser.
 	After not too long you find it, however it's not sitting in storage, it's being used by the alien rights group.</text>
 	<ship load="MU_RAD_FLESH" hostile="false"/>

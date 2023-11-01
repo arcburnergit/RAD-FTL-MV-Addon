@@ -975,7 +975,7 @@
 		<cloaking power="1" room="3" start="false" img="room_cloaking" />
 		<clonebay power="1" room="4" start="false">
 			<slot>
-				<number>1</number>
+				<number>3</number>
 			</slot>
 		</clonebay>
 		<doors power="1" room="18" start="true" img="room_doors_4">
@@ -1035,8 +1035,8 @@
 	</droneList>
 	<health amount="45" />
 	<maxPower amount="8" />
-	<crewCount amount="1" class="human" />
-	<crewCount amount="1" class="human_engineer" />
+	<crewCount amount="1" class="unique_coomer" />
+	<crewCount amount="1" class="unique_bubby" />
 	<crewCount amount="1" class="human_medic" />
 </shipBlueprint>
 
@@ -1101,8 +1101,9 @@
 	</systemList>
 	<weaponSlots>3</weaponSlots>
 	<droneSlots>4</droneSlots>
-	<weaponList missiles="0" count="1">
+	<weaponList missiles="0" count="2">
 		<weapon name="RAD_BEAM_BURST_2" />
+		<weapon name="LASER_LIGHT" />
 	</weaponList>
 	<droneList drones="16" count="3">
 		<drone name="RAD_REPULSOR" />
@@ -1185,7 +1186,7 @@ The meaty exterior isn't very strong, but repairs itself quickly, you'll have to
 	<droneList drones="5" count="2" />
 	<health amount="45" />
 	<maxPower amount="8" />
-	<crewCount amount="1" class="human" />
+	<crewCount amount="1" class="unique_coomer" />
 	<crewCount amount="1" class="human_medic" />
 	<crewCount amount="1" class="human_medic" />
 	<aug name="FLESH_HULL" />
@@ -1237,9 +1238,9 @@ Luckily the teleporter is equiped with a special failsafe feature that recovers 
 	<systemList>
 		<battery power="1" room="7" start="false" img="room_battery_14" />
 		<cloaking power="1" room="4" start="false" img="room_cloaking_11" />
-		<clonebay power="1" room="10" start="false">
+		<clonebay power="1" room="10" start="true">
 			<slot>
-				<number>1</number>
+				<number>2</number>
 			</slot>
 		</clonebay>
 		<doors power="1" room="17" start="false" img="room_doors">
@@ -1248,7 +1249,7 @@ Luckily the teleporter is equiped with a special failsafe feature that recovers 
 				<number>1</number>
 			</slot>
 		</doors>
-		<drones power="1" room="3" start="true" img="room_drones_14" />
+		<drones power="1" room="3" max="8" start="true" img="room_drones_14" />
 		<engines power="1" room="11" start="true" img="room_engines_radlab_a">
 			<slot>
 				<direction>down</direction>
@@ -1256,11 +1257,6 @@ Luckily the teleporter is equiped with a special failsafe feature that recovers 
 			</slot>
 		</engines>
 		<hacking power="1" room="5" start="false" img="room_hacking_7" />
-		<medbay power="1" room="10" start="true" img="room_medbay_7">
-			<slot>
-				<number>2</number>
-			</slot>
-		</medbay>
 		<mind power="1" room="8" start="false" img="room_mind_9" />
 		<oxygen power="1" room="6" start="false" img="room_oxygen" />
 		<pilot power="1" room="0" start="true" img="room_pilot">
@@ -1304,13 +1300,187 @@ Luckily the teleporter is equiped with a special failsafe feature that recovers 
 	<crewCount amount="1" class="phantom_experiment_alpha" />
 	<crewCount amount="1" class="phantom_experiment_alpha" />
 	<aug name="TELE_EVAC" />
-	<aug name="UPG_TECH_EXTINGUISHERS" />
+	<aug name="EX_FIRE_EXTINGUISHERS" />
 </shipBlueprint>
 
 <augBlueprint name="TELE_EVAC">
-	<title>Emergency Evacuator</title>
-	<desc>This device attaches to your teleportation system and provides a burst of power to evacuate your crew in case the ship they're on is about to blow up.
-	It works by determining if the weapon you're about to fire can destroy the enemy ship, in which case it will recall your crew, however this won't work for things like fires, or other sources of damage.</desc>
+	<title>Combined Med-Clone Bay</title>
+	<desc>Combines the effects of the medbay with those of the clonebay, allowing your clonebay to both heal and clone, unfortunatly the it heals at a lower rate than a medbay would.</desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>false</stackable>
+</augBlueprint>
+
+<droneBlueprint name="DEFENSE_FOCUS">
+    <type>DEFENSE</type>
+    <level>1</level>
+    <target>LASERS</target>
+    <tip>tip_defense</tip>
+    <title>Pinpoint Defender Drone</title>
+    <short>Defense Beam</short>
+    <desc>Defense drone capable of targeting lasers or solid projectiles. Shoots a pinpoint beam rather than a laser.
+    Reload: 250 MS</desc>
+    <power>4</power>
+    <cooldown>250</cooldown>
+    <dodge>0</dodge>
+    <speed>18</speed>
+    <cost>120</cost>
+    <bp>2</bp>
+    <droneImage>drone_defense_focus</droneImage>
+    <weaponBlueprint>DRONE_LASER_DEFENSE_INVIS</weaponBlueprint>
+    <iconImage>defense</iconImage>
+    <rarity>5</rarity>
+</droneBlueprint>
+
+<weaponBlueprint name="DRONE_LASER_DEFENSE_INVIS">
+    <type>LASER</type>
+    <title>Drone Laser</title>
+    <damage>1</damage>
+    <shots>1</shots>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <speed>500</speed>
+    <rarity>0</rarity>
+    <image>laser_light</image>
+    <launchSounds>
+        <sound>lightLaser1</sound>
+        <sound>lightLaser2</sound>
+        <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+        <sound>hitHull2</sound>
+        <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+        <sound>hitShield1</sound>
+        <sound>hitShield2</sound>
+        <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+        <sound>miss</sound>
+    </missSounds>
+    <weaponArt>laser_burst_1</weaponArt>
+</weaponBlueprint>
+
+<weaponBlueprint name="BEAM_RAD_ZAPPER">
+	<type>LASER</type>
+	<title>Drone Zapper Mk3</title>
+	<short>Zapper III</short>
+	<desc>This weapon won't do much to an enemy ship, but it will automatically target and fire apon both enemy combat, and defence drones.</desc>
+	<tooltip>Fires multiple lasers and automatically targets different systems.</tooltip> 
+    <damage>0</damage>
+    <shots>1</shots>
+	<sp>0</sp>
+	<fireChance>1</fireChance>
+	<breachChance>0</breachChance>
+	<cooldown>14</cooldown>
+	<power>2</power>
+	<cost>80</cost>
+	<bp>4</bp>
+	<rarity>3</rarity>
+	<image>laser_burst</image>
+	<launchSounds>
+		<sound>lightLaser1</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>hitHull2</sound>
+		<sound>hitHull3</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>beam_rad_zap</weaponArt>
+	<iconImage>laser</iconImage>
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_BEAM_NODAMAGE_1">
+	<type>BEAM</type>
+	<tip>tip_focus</tip>
+	<title>Burst Beam Projectile</title>
+	<short>Burst Beam Projectile</short>
+	<desc>YOU SOULD NEVER SEE THIS</desc>
+	<tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
+	<damage>0</damage>
+	<sysDamage>0</sysDamage>
+	<sp>0</sp>
+    <fireChance>0</fireChance> 
+    <breachChance>0</breachChance>
+	<cooldown>14</cooldown>
+	<speed>1</speed>
+	<length>1</length>
+	<power>2</power>
+	<cost>45</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<color>
+		<r>20</r>
+		<g>80</g>
+		<b>150</b>
+	</color>
+	<image>beam_contact</image>
+	<launchSounds>
+		<sound>ra_focusbeam1</sound>
+		<sound>ra_focusbeam2</sound>
+		<sound>ra_focusbeam3</sound>
+	</launchSounds>
+	<weaponArt>ra_beam_auto</weaponArt> 
+</weaponBlueprint>
+
+<weaponBlueprint name="RAD_SINGULARITY_MINE">
+	<type>BURST</type>
+	<tip>tip_ancient</tip>
+	<flavorType>Minelauncher</flavorType>
+	<title>Singularity Launcher</title>
+	<short>Singularity</short>
+	<desc>Firing one large mine capable of tearing a hole is spacetime, it doesn't do any damage on its own, but pulls all free floating projectiles towards it.
+	
+	At empty beacons provides 1 fleet delay for 8 missiles.</desc>
+	<tooltip>Fires 1 missile; does 0 damage; pierces all shields.</tooltip>
+	<damage>0</damage>
+	<sysDamage>0</sysDamage>
+	<radius>55</radius>
+	<missiles>1</missiles>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>0</fireChance>
+	<breachChance>9</breachChance>
+	<cooldown>16</cooldown>
+	<power>2</power>
+	<speed>35</speed>
+	<cost>95</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<projectiles>
+		<projectile count="1" fake="false">mine_rad_singularity</projectile>
+	</projectiles>
+	<launchSounds>
+		<sound>ancient_missile</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>rad_singularity_mine</weaponArt>
+	<iconImage>missile</iconImage>
+</weaponBlueprint>
+
+<augBlueprint name="RAD_CREDIT">
+	<title>Father's Credit Card</title>
+	<desc>With access to an endless amount of money, why would you need anywhere to store scrap?
+	
+	Unfortunatly there's a monthly spending limit of 200 scrap</desc>
 	<cost>0</cost>
 	<rarity>0</rarity>
 	<stackable>false</stackable>

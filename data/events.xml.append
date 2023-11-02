@@ -87,6 +87,8 @@
 	<event load="RAD_LAB_GHOST_1"/>
 	<event load="RAD_LAB_ROGUE_1"/>
 	<event load="RAD_LAB_FLESH_1"/>
+  <event load="RAD_MONEY_1" />
+  <event load="RAD_MONEY_1" />
 </eventList>
 
 <!-- QUEST PIRATE TRACKING -->
@@ -1062,4 +1064,61 @@
 	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_FLESH</unlockCustomShip>
 </event>
 
+
+<event name="RAD_MONEY_1">
+  <text>"Alright, this isn't one of the most exciting tasks, but it's got to be done. One of our benefactors has hired us to track down a particular type of planet, one that's just at the edge of a pulsar. However the ship searching for a planet like this has gone missing, we need you to go search for it."</text>
+  <choice>
+    <text>Doesn't sound too hard.</text>
+    <event>
+      <text>"It's not, we'll upload a list of locations to search to your ship, good luck."</text>
+      <quest event="RAD_MONEY_2" />
+      <choice>
+        <text>Continue...</text>
+        <event>
+          <text></text>
+          <quest event="RAD_MONEY_2" />
+          <choice>
+            <text>Continue...</text>
+            <event>
+              <text></text>
+              <quest event="RAD_MONEY_2" />
+              <choice>
+                <text>Continue...</text>
+                <event>
+                  <text></text>
+                  <quest event="RAD_MONEY_2" />
+                  <store>STORE_RADLAB</store>
+                </event>
+              </choice>
+            </event>
+          </choice>
+        </event>
+      </choice>
+    </event>
+  </choice>
+</event>
+
+  <event name="RAD_MONEY_2">
+    <beaconType id="map_icon_rad_pulsar" global="true">
+      <color r="0" g="255" b="255"/>
+    </beaconType>
+    <environment type="pulsar" />
+    <text>Unsuprisingly it's a pulsar.</text>
+    <variable name="rad_money_searched" op="add" val="1"/>
+    <choice hidden="true" blue="false" req="rad_money_searched" lvl="0" max_lvl="2">
+      
+      <text>Continue</text>
+      <event load="NEUTRAL_DROPPOINT"/>
+    </choice>
+    <choice hidden="true" blue="false" req="rad_money_searched" lvl="3">
+      <text>Continue</text> 
+      <event>
+        <loadEvent>RAD_MONEY_3</loadEvent>
+      </event>
+    </choice>
+  </event>
+
+  <event name="RAD_MONEY_3">
+    <text>TESTTEST</text>
+  </event>
 </FTL>

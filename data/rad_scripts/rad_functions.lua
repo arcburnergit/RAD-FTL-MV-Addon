@@ -816,3 +816,36 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
         end
     end
 end)
+
+
+local disableScrap = true
+script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augName, augValue)
+    if augName == "SCRAP_COLLECTOR" and shipManager:HasAugmentation("RAD_CREDIT") and disableScrap then
+        augValue=-1
+        
+    end
+    if not disableScrap then
+        disableScrap = true
+    end
+    return Defines.Chain.CONTINUE, augValue
+end, -100)
+
+
+script.on_game_event("ATLAS_MENU", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    if shipManager:HasAugmentation("RAD_CREDIT") > 0 then
+        disableScrap = false
+        shipManager:ModifyScrapCount(150,true)
+        log("add 200 scrap")
+    end
+end)
+
+script.on_game_event("START_BEACON_PREP", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    richScrap = 200
+    if shipManager:HasAugmentation("RAD_CREDIT") > 0 then
+        log("add 200 scrap")
+        disableScrap = false
+        shipManager:ModifyScrapCount(200,true)
+    end
+end)

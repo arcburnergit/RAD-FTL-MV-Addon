@@ -50,7 +50,7 @@
 		<mod-append:ship>PLAYER_SHIP_RAD_STATION</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_RAD_FLESH</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_RAD_EXPERIMENT</mod-append:ship>
-		<mod-append:empty/>
+    <mod-append:ship>PLAYER_SHIP_RAD_RICH</mod-append:ship/>
 		<!-- -->
 		<mod-append:empty/>
 		<mod-append:empty/>
@@ -82,6 +82,11 @@
 			<type>4</type>
 		</unlock>
 	</mod-append:ship>
+  <mod-append:ship name="PLAYER_SHIP_RAD_RICH" b="false" c="false" >
+    <unlock variant="a" silent="false">
+      <type>4</type>
+    </unlock>
+  </mod-append:ship>
 	
 	<mod-append:customShip name="PLAYER_SHIP_RAD_STATION">
 		<customReactor maxLevel="30" />
@@ -103,6 +108,13 @@
 	<mod-append:customShip name="PLAYER_SHIP_RAD_EXPERIMENT">
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 	</mod-append:customShip>
+  
+  <mod-append:customShip name="PLAYER_SHIP_RAD_RICH">
+    <customReactor maxLevel="30" />
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <crewLimit>11</crewLimit>
+    <systemLimit>10</systemLimit>
+  </mod-append:customShip>
 	
 	<mod-append:customShip name="ENEMY_SHIP_RAD_FLESH">
 		<shipIcons>
@@ -175,7 +187,6 @@
 	</aug>
 	<aug name="RAD_CREDIT">
 		<locked />
-		<function name="SCRAP_COLLECTOR" value="-2" useForReqs="false" />
 	</aug>
 </augments>
 
@@ -217,6 +228,8 @@
 	<variable name="rad_flesh_rescue" op="set" val="1"/>
 	
 	<variable name="rad_flesh_quest" op="set" val="1"/>
+  
+  <variable name="rad_money_searched" op="set" val="0"/>
 	
 	<req name="LABRATORY_SPAWN_CHECK" type="all">
 		<req lvl="2" max_lvl="2">

@@ -1477,7 +1477,7 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 </weaponBlueprint>
 
 <augBlueprint name="RAD_CREDIT">
-	<title>Father's Credit Card</title>
+	<title>Master Credit Card</title>
 	<desc>With access to an endless amount of money, why would you need anywhere to store scrap?
 	
 	Unfortunatly there's a monthly spending limit of 200 scrap</desc>
@@ -1485,5 +1485,79 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 	<rarity>0</rarity>
 	<stackable>false</stackable>
 </augBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_RICH" layout="mup_rad_rich_a" img="mup_rad_rich_a">
+    <class>Yacht Class Cruiser</class>
+    <name>Solaris</name>
+    <desc>A rather expensive ship, with one expensive captain. As the son of a rich tycoon, this captain has access to unlimited funds, and thusly decided not to install anyway to collect scrap during his travels, However his card has a monthly withdrawal limit...</desc>
+    <systemList>
+      <battery power="1" max="3" room="14" start="false" img="room_battery_13" />
+      <cloaking power="1" room="12" start="false" img="room_cloaking" />
+      <clonebay power="1" room="1" start="false">
+        <slot>
+          <number>3</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="19" start="true" img="room_doors">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="1" max="8" room="4" start="false" img="room_drones" />
+      <engines power="1" room="6" start="true" img="room_engines">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="11" start="false" img="room_hacking_6" />
+      <medbay power="1" room="1" start="true" img="room_medbay_3">
+        <slot>
+          <number>3</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="3" start="false" img="room_mind_6" />
+      <oxygen power="1" room="13" start="true" img="room_oxygen_9" />
+      <pilot power="1" room="0" start="true" img="room_pilot_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="18" start="true" img="room_sensors">
+        <slot>
+          <direction>down</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" max="8" room="5" start="true" img="room_shields">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="15" start="false" />
+      <weapons power="2" max="8" room="2" start="true" img="room_weapons_4">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="0" count="4">
+      <weapon name="LASER_BURST_2" />
+      <weapon name="LASER_BURST_2" />
+    </weaponList>
+    <droneList drones="0" count="2" />
+    <health amount="30" />
+    <maxPower amount="6" />
+    <crewCount amount="1" class="slug_clansman" />
+    <crewCount amount="1" class="slug" />
+    <crewCount amount="1" class="slug" />
+    <aug name="RAD_CREDIT" />
+  </shipBlueprint>
 
 </FTL>

@@ -4,4 +4,6 @@
 <text name="ship_PLAYER_SHIP_RAD_STATION_2_unlock">Hunt down a rogue employee.</text>
 <text name="ship_PLAYER_SHIP_RAD_FLESH_unlock">Recover a prototype cruiser.</text>
 <text name="ship_PLAYER_SHIP_RAD_GHOST_unlock">Retrieve and save a tortured phantom.</text>
+<text name="ship_PLAYER_SHIP_RAD_RICH_unlock">Side with the son of a rich tycoon.</text>
+<text name="ship_PLAYER_SHIP_RAD_POOR_unlock">Side Against the son of a rich tycoon.</text>
 </FTL>

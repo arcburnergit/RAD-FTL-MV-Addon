@@ -388,4 +388,65 @@
 	<aug name="EX_FIRE_EXTINGUISHERS" />
 </shipBlueprint>
 
+  <shipBlueprint name="MU_RAD_RICHSON" layout="mu_rad_richson" img="mu_rad_richson">
+    <class>Yacht Class Cruiser</class>
+    <systemList>
+      <drones power="2" max="4" room="16" start="true" />
+      <engines power="2" max="2" room="12" start="true" />
+      <hacking power="3" max="3" room="9" start="true" />
+      <medbay power="2" max="2" room="10" start="true" />
+      <oxygen power="2" max="2" room="19" start="true" />
+      <pilot power="2" max="2" room="0" start="true" />
+      <shields power="4" max="10" room="17" start="true" />
+      <weapons power="4" max="8" room="21" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="7" count="4">
+      <weapon name="ION_PIERCE_2" />
+      <weapon name="BEAM_PIERCE" />
+      <weapon name="LASER_BURST_2" />
+      <weapon name="LASER_BURST_2" />
+    </weaponList>
+    <droneList drones="10" count="2">
+      <drone name="COMBAT_1_LASER" />
+      <drone name="COMBAT_1_BEAM" />
+    </droneList>
+    <health amount="22" />
+    <maxPower amount="30" />
+    <crewCount amount="4" max="5" class="slug_saboteur" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="UPG_HACK_STUN" />
+    <aug name="SLUG_GEL" />
+  </shipBlueprint>
+
+  <shipBlueprint name="MU_RAD_COLONY" layout="mu_rad_colony" img="mu_rad_colony">
+    <class>Planetary Colony</class>
+    <systemList>
+      <clonebay power="2" max="2" room="11" start="true" />
+      <doors power="3" max="3" room="17" start="true" />
+      <drones power="10" max="10" room="6" start="true" />
+      <mind power="1" max="1" room="4" start="true" />
+      <oxygen power="1" max="1" room="14" start="true" />
+      <shields power="1" max="1" room="0" start="true" />
+      <teleporter power="2" max="2" room="12" start="true" />
+    </systemList>
+    <weaponSlots>0</weaponSlots>
+    <droneSlots>6</droneSlots>
+    <weaponList missiles="0" count="0" />
+    <droneList drones="12" count="6">
+      <drone name="REPAIR" />
+      <drone name="DRONE_SHIELD" />
+      <drone name="COMBAT_2_LASER" />
+      <drone name="HELLRAISER_FIRE_PLAYER" />
+      <drone name="ION_1_AMP3" />
+      <drone name="LOOT_ESTATE_1_COMBAT" />
+    </droneList>
+    <health amount="25" />
+    <maxPower amount="30" />
+    <crewCount amount="7" max="10" class="human" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="BACKUP_DNA" />
+    <aug name="O2_MASKS" />
+  </shipBlueprint>
 </FTL>

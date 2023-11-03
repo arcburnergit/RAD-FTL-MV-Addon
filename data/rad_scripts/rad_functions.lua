@@ -820,9 +820,8 @@ end)
 
 local disableScrap = true
 script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augName, augValue)
-    if augName == "SCRAP_COLLECTOR" and shipManager:HasAugmentation("RAD_CREDIT") and disableScrap then
+    if augName == "SCRAP_COLLECTOR" and (shipManager:HasAugmentation("RAD_CREDIT")>0) and disableScrap then
         augValue=-1
-        
     end
     if not disableScrap then
         disableScrap = true

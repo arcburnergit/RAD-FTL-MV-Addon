@@ -763,8 +763,8 @@
 			</choice>
 		</event>
 	</choice>
-	<choice>
-		<text>Bribe someone for the info.</text>
+	<choice blue="true">
+		<text>Request the Information under [INSERT ZOLTON GIBBERISH HERE] (Zoltan Crew)</text>
 		<event>
 			<text>After a quick scope out of the station, you identify a security guard. After a quick exchange of scrap, you recieve the information you need and return to your ship.</text>
 			<item_modify>
@@ -869,12 +869,6 @@
 	<text>You arrive at the location. It's a large corporate tower in the middle of a sprawling city.
 	As you go to dock with the tower, a security ship hails you, telling you to leave.</text>
 	<choice>
-		<text>Leave</text>
-		<event>
-			<text>You take off from the area. You wouldn't do anything illegal, after all.</text>
-		</event>
-	</choice>
-	<choice>
 		<text>Engage the security ship.</text>
 		<event>
 			<text>The security ship powers up its weapons in response. Looks like you're in for a fight.</text>
@@ -885,6 +879,12 @@
 			</choice>
 		</event>
 	</choice>
+  <choice>
+    <text>Leave</text>
+    <event>
+      <text>You take off from the area. You wouldn't do anything illegal, after all.</text>
+    </event>
+  </choice>
 </event>
 
 <event name="RAD_FLESH_3">
@@ -1075,17 +1075,17 @@
       <choice>
         <text>Continue...</text>
         <event>
-          <text></text>
+          <text>...</text>
           <quest event="RAD_MONEY_2" />
           <choice>
             <text>Continue...</text>
             <event>
-              <text></text>
+              <text>... ...</text>
               <quest event="RAD_MONEY_2" />
               <choice>
                 <text>Continue...</text>
                 <event>
-                  <text></text>
+                  <text>... ... ... upload complete</text>
                   <quest event="RAD_MONEY_2" />
                   <store>STORE_RADLAB</store>
                 </event>
@@ -1106,9 +1106,15 @@
     <text>Unsuprisingly it's a pulsar.</text>
     <variable name="rad_money_searched" op="add" val="1"/>
     <choice hidden="true" blue="false" req="rad_money_searched" lvl="0" max_lvl="2">
-      
       <text>Continue</text>
-      <event load="NEUTRAL_DROPPOINT"/>
+      <event>
+        <text>Well the ship isn't here, but there is something else...</text>
+        
+        <choice>
+          <text>Continue...</text>
+          <event load="NEUTRAL_DROPPOINT"/>
+        </choice>
+      </event>
     </choice>
     <choice hidden="true" blue="false" req="rad_money_searched" lvl="3">
       <text>Continue</text> 
@@ -1119,6 +1125,188 @@
   </event>
 
   <event name="RAD_MONEY_3">
-    <text>TESTTEST</text>
+    <changeBackground>BG_DARK</changeBackground>
+    <text>You arrive at the beacon to find a planet with a small colony, it looks like they've been attacked recently as there is visable damage to the colony, and a large amount of scrap in orbit.
+    You collect the scrap before peacefully landing at the colony.</text>
+    <item_modify>
+      <item type="scrap" min="15" max="25" />
+    </item_modify>
+    <choice hidden="true">
+      <text>Continue...</text>
+      <event>
+        <changeBackground>BACK_EVENT_NEST</changeBackground>
+        <text>You're greeted by a member of the colony, "I hope you're not here to finish up what the last ship tried to do, we aren't defenceless you know."</text>
+        <choice hidden="true">
+          <text>Explain why you're here.</text>
+          <event>
+            <text>"We're not sure what ship you're talking about, but if they came here you can probably see where they went with the tracking beacon we have setup in orbit."</text>
+            <choice>
+              <text>Head up to the tracking beacon.</text>
+              <event>
+                <changeBackground>BG_DARK</changeBackground>
+                <text>You travel up to the beacon, and after securely connecting to it you're able download the scanned destination corresponding to the ship specs you're tracking.</text>
+                <choice>
+                  <text>Continue...</text>
+                  <event>
+                    <loadEvent>RAD_MONEY_4</loadEvent>
+                  </event>
+                </choice>
+              </event>
+            </choice>
+          </event>
+        </choice>
+      </event>
+    </choice>
+  </event>
+
+  <ship name="MU_RAD_RICHSON" auto_blueprint="MU_RAD_RICHSON">
+    <destroyed load="DESTROYED_RAD_RICHSON"/>
+    <deadCrew load="DEAD_CREW_RAD_RICHSON"/>
+  </ship>
+
+  <event name="DESTROYED_RAD_RICHSON">
+    <text>You've destroyed the expensive ship. You loot the remains before reporting back with the colony.</text>
+    <autoReward level="MED">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_POOR_2"/>
+    </choice>
+  </event>
+
+  <event name="DEAD_CREW_RAD_RICHSON">
+    <text>You've killed the crew of that expensive ship. You loot the remains before reporting back with the colony.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_POOR_2"/>
+    </choice>
+  </event>
+  
+  <event name="RAD_MONEY_4">
+    <beaconType id="map_icon_rad_money" global="true">
+      <color r="130" g="100" b="100" />
+    </beaconType>
+    <text>You arrive at the location to find a damaged, yet expensive looking ship. They hail you.
+    "Are you with the scientists? I've been trying to reach them, and my father for ages, that stupid colony wouldn't submit peacefully and damaged my ship!"</text>
+    <choice>
+      <text>Explain the situation to him.</text>
+      <event>
+        <text>"Well it seems obvious to me, you need to take me back there with you so we can finish this thing."</text>
+        <choice>
+          <text>"Alright, we'll collect you and head back to the colony." (SIDE WITH THE COMPANY)</text>
+          <event>
+            <loadEvent>RAD_RICH_1</loadEvent>
+          </event>
+        </choice>
+        <choice>
+          <text>You're not sure about attacking a colony like this, make something up and report back to the colony. (SIDE WITH THE COLONY)</text>
+          <event>
+            <loadEvent>RAD_POOR_1</loadEvent>
+          </event>
+        </choice>
+      </event>
+    </choice>
+  </event>
+
+  <ship name="MU_RAD_COLONY" auto_blueprint="MU_RAD_COLONY">
+    <destroyed load="DESTROYED_RAD_COLONY"/>
+    <deadCrew load="DEAD_CREW_RAD_COLONY"/>
+  </ship>
+
+  <event name="DESTROYED_RAD_COLONY">
+    <text>You've destroyed the expensive ship. You loot the remains before reporting back with the colony.</text>
+    <autoReward level="MED">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_RICH_2"/>
+    </choice>
+  </event>
+
+  <event name="DEAD_CREW_RAD_COLONY">
+    <text>You've killed the crew of that expensive ship. You loot the remains before reporting back with the colony.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_RICH_2"/>
+    </choice>
+  </event>
+
+  <event name="RAD_POOR_1">
+    <changeBackground>BACK_EVENT_NEST</changeBackground>
+    <text>
+      You make an excuse and fly back.
+
+      You explain the situation to the leader of the colony.
+      "Hmmm, well we're not about to give up and move away, you're going to have to get rid of him somehow, either convince him to go away, or kill him, up to you, either way we'll give you payment in advance."
+    </text>
+    <choice>
+      <text>Head back to confront the damaged ship.</text>
+      <event>
+        <item_modify>
+          <item type="scrap" min="35" max="45" />
+        </item_modify>
+        
+        <changeBackground>BACKGROUND</changeBackground>
+        <img back="BACKGROUND" planet="PLANET_UNPOPULATED" />
+        <ship load="MU_RAD_RICHSON" hostile="false" />
+        <text>You fly back up to the damaged ship, but once you get there you notice the a second very much undamaged, but equally expensive looking ship.
+        "You arrived just in time, my replacement ship got here in time, now we can finish that stupid colony off together."</text>
+        <choice>
+          <text>"I can't let you do that." Power up your weapons</text>
+          <event>
+            <text>The ship powers up its weapons in response. Looks like you're in for a fight.</text>
+            <ship hostile="true"/>
+            <choice>
+              <text>Continue...</text>
+              <event load="COMBAT_CHECK"/>
+            </choice>
+          </event>
+        </choice>
+        <choice>
+          <text>"How about a few credits to pay for repairs, and to smooth things over?"</text>
+          <event>
+            <text>"I suppose that will have to do, father won't like it but this is like a month's allowance, cyas"</text>
+						<item_modify>
+							<item type="scrap" min="-200" max="-200" />
+						</item_modify>
+            <event load="RAD_POOR_2" />
+          </event>
+        </choice>
+      </event>
+    </choice>
+  </event>
+
+  <event name="RAD_RICH_1">
+    <crewMember amount="1" class="slug_clansman">Reginald</crewMember>
+    <ship load="MU_RAD_COLONY" hostile="true" />
+    <changeBackground>BACK_EVENT_NEST</changeBackground>
+    <text>You pick up the captain of the ship, his name is reginald and he's the son of a rich tycoon.
+    
+    You make your way back to the colony and power up your weapons, as soon as you do you receive a short communication from the colony.
+    "I should have known you were one of them, come to finish us for good, well we can promiss you it won't be an easy fight!"
+		The colony's weapons power on.</text>
+    <choice>
+      <text>Continue...</text>
+      <event load="COMBAT_CHECK"/>
+    </choice>
+  </event>
+
+  <event name="RAD_POOR_2">
+    <changeBackground>BACK_EVENT_NEST</changeBackground>
+    <text>You fly back down to the colony</text>
+  </event>
+  <event name="RAD_RICH_2">
+    <text>"Alright, we did it, and it only took me one ship this time, father will be pleased!" exclaims Reginald.
+    "I'm not sure how to reward you, but you can have my old cruiser, I go through them weekly, I'll just get a new one, it should be worth a good deal of scrap."</text>
+    <choice>
+      <text>Thank Reginald and leave him here until his new cruiser arrives.</text>
+      <event>
+        <item_modify>
+          <item type="scrap" min="100" max="100" />
+        </item_modify>
+        <text>You download the blueprints to his old cruiser before scraping it.</text>
+        <unlockCustomShip silent="false">PLAYER_SHIP_RAD_RICH</unlockCustomShip>
+      </event>
+    </choice>
   </event>
 </FTL>

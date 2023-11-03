@@ -113,9 +113,19 @@
     <customReactor maxLevel="30" />
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>11</crewLimit>
+    <crew>
+      <slug_clansman room="0" name="Reginald" />
+    </crew>
     <systemLimit>10</systemLimit>
   </mod-append:customShip>
-	
+
+  <mod-append:customShip name="MU_RAD_RICHSON">
+    <noJump/>
+    <crew>
+      <slug_clansman room="0" name="Reginald" />
+    </crew>
+  </mod-append:customShip>
+  
 	<mod-append:customShip name="ENEMY_SHIP_RAD_FLESH">
 		<shipIcons>
 			<shipIcon>icon_resist</shipicon>

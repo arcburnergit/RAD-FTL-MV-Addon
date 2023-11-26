@@ -848,3 +848,28 @@ script.on_game_event("START_BEACON_PREP", false, function()
         shipManager:ModifyScrapCount(200,true)
     end
 end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, evasion, friendlyfire) 
+    local roomId = get_room_at_location(shipManager, location, true)
+    --log("damagearea -------------------------------------------------------------------")
+    for i, crewmem in ipairs(get_ship_crew_room(shipManager, roomId)) do
+        log(crewmem:GetSpecies())
+        if crewmem:GetSpecies() == "drone_repulsor" and crewmem:Functional() then
+            --log("projectile miss make")
+            return Defines.Chain.CONTINUE, Defines.Evasion.MISS
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager) 
+    if shipManager:HasAugmentation("RAD_SYSTEM_DUMB") > 0 then 
+        for system in vter(shipManager.vSystemList) do
+            --log(system.name)
+            --log(system.iActiveManned)
+            local manningBonus = system.iActiveManned
+            if manningBonus > 0 then
+                system.iActiveManned = 4-manningBonus
+            end
+        end
+    end
+end)

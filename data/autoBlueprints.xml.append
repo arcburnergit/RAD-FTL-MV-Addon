@@ -425,10 +425,10 @@
     <systemList>
       <clonebay power="2" max="2" room="11" start="true" />
       <doors power="3" max="3" room="17" start="true" />
-      <drones power="10" max="10" room="6" start="true" />
+      <drones power="10" max="16" room="6" start="true" />
       <mind power="1" max="1" room="4" start="true" />
       <oxygen power="1" max="1" room="14" start="true" />
-      <shields power="1" max="1" room="0" start="true" />
+      <hacking power="1" max="2" room="0" start="true" />
       <teleporter power="2" max="2" room="12" start="true" />
     </systemList>
     <weaponSlots>0</weaponSlots>
@@ -436,13 +436,13 @@
     <weaponList missiles="0" count="0" />
     <droneList drones="12" count="6">
       <drone name="REPAIR" />
-      <drone name="DRONE_SHIELD" />
+      <drone name="SHIP_REPAIR" />
       <drone name="COMBAT_2_LASER" />
       <drone name="HELLRAISER_FIRE_PLAYER" />
       <drone name="ION_1_AMP3" />
       <drone name="LOOT_ESTATE_1_COMBAT" />
     </droneList>
-    <health amount="25" />
+    <health amount="35" />
     <maxPower amount="30" />
     <crewCount amount="7" max="10" class="human" />
     <boardingAI>sabotage</boardingAI>

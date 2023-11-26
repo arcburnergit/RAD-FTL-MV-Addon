@@ -1214,7 +1214,7 @@
   </ship>
 
   <event name="DESTROYED_RAD_COLONY">
-    <text>You've destroyed the expensive ship. You loot the remains before reporting back with the colony.</text>
+    <text>You've destroyed the colony. You loot the remains before reporting back with the colony.</text>
     <autoReward level="MED">standard</autoReward>
     <choice>
       <text>Continue...</text>
@@ -1223,7 +1223,7 @@
   </event>
 
   <event name="DEAD_CREW_RAD_COLONY">
-    <text>You've killed the crew of that expensive ship. You loot the remains before reporting back with the colony.</text>
+    <text>You've killed the crew of the colony. You loot the remains before reporting back with the colony.</text>
     <autoReward level="HIGH">standard</autoReward>
     <choice>
       <text>Continue...</text>

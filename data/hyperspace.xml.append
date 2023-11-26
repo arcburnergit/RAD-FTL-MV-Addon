@@ -64,13 +64,19 @@
 
 	<!--PLAYER SHIPS -->
 
-	<mod-append:ship name="PLAYER_SHIP_RAD_STATION" b="true" c="false" >
+	<mod-append:ship name="PLAYER_SHIP_RAD_STATION" b="true" c="true" >
 		<unlock variant="a" silent="false">
 			<type>4</type>
 		</unlock>
 		<unlock variant="b" silent="false">
-            <type>4</type>
-        </unlock>
+        <type>4</type>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_STATION</shipReq>
+      <shipReq>PLAYER_SHIP_RAD_STATION_2</shipReq>
+      <value>5</value>
+    </unlock>
 	</mod-append:ship>
 	<mod-append:ship name="PLAYER_SHIP_RAD_FLESH" b="false" c="false" >
 		<unlock variant="a" silent="false">
@@ -82,8 +88,11 @@
 			<type>4</type>
 		</unlock>
 	</mod-append:ship>
-  <mod-append:ship name="PLAYER_SHIP_RAD_RICH" b="false" c="false" >
+  <mod-append:ship name="PLAYER_SHIP_RAD_RICH" b="true" c="false" >
     <unlock variant="a" silent="false">
+      <type>4</type>
+    </unlock>
+    <unlock variant="b" silent="false">
       <type>4</type>
     </unlock>
   </mod-append:ship>
@@ -100,6 +109,11 @@
 		<crewLimit>11</crewLimit>
 		<systemLimit>7</systemLimit>
 	</mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_STATION_3">
+    <customReactor maxLevel="30" />
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <crewLimit>3</crewLimit>
+  </mod-append:customShip>
 	
 	<mod-append:customShip name="PLAYER_SHIP_RAD_FLESH">
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
@@ -116,6 +130,12 @@
     <crew>
       <slug_clansman room="0" name="Reginald" />
     </crew>
+    <systemLimit>10</systemLimit>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_RICH_2">
+    <customReactor maxLevel="30" />
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <crewLimit>11</crewLimit>
     <systemLimit>10</systemLimit>
   </mod-append:customShip>
 
@@ -163,6 +183,9 @@
 		<function name="SHRAPNEL_COATING" value="1" useForReqs="true" warning="false"/>
 	</aug>
 	<aug name="RAD_JUMP_TRACKER"/>
+  <aug name="RAD_SYSTEM_DUMB">
+    <locked />
+  </aug>
 	<aug name="FLESH_HULL">
     	<locked />
 	</aug>

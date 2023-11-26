@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--Copyright (c) 2012 by Subset Games. All rights reserved.-->
-<img x="-30" y="-37" w="420" h="500" />
+<img x="-30" y="-67" w="420" h="500" />
 <offsets>
 	<floor x="210" y="250" />
 	<cloak x="210" y="250" />

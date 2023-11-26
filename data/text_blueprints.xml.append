@@ -2,6 +2,7 @@
 <FTL>
 <text name="ship_PLAYER_SHIP_RAD_STATION_unlock">Retrieve this station from some pirates.</text>
 <text name="ship_PLAYER_SHIP_RAD_STATION_2_unlock">Hunt down a rogue employee.</text>
+<text name="ship_PLAYER_SHIP_RAD_STATION_3_unlock">Get to sector 5 with both the A and B varients of this ship.</text>
 <text name="ship_PLAYER_SHIP_RAD_FLESH_unlock">Recover a prototype cruiser.</text>
 <text name="ship_PLAYER_SHIP_RAD_GHOST_unlock">Retrieve and save a tortured phantom.</text>
 <text name="ship_PLAYER_SHIP_RAD_RICH_unlock">Side with the son of a rich tycoon.</text>

@@ -1486,6 +1486,16 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 	<stackable>false</stackable>
 </augBlueprint>
 
+  <augBlueprint name="RAD_SYSTEM_DUMB">
+    <title>Low Skill Systems</title>
+    <desc>Makes the manning bonus inversely proportional to the crew member's skill level, this means a level 0 pilot will provide level 2 manning, and a level 2 pilot will provide level 0 manning.
+      
+This is becuase the systems are designed for low skill crew members, and so high skill crew members end up overthinking it and become less efficient.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
   <shipBlueprint name="PLAYER_SHIP_RAD_RICH" layout="mup_rad_rich_a" img="mup_rad_rich_a">
     <class>Yacht Class Cruiser</class>
     <name>Solaris</name>
@@ -1558,6 +1568,151 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
     <crewCount amount="1" class="slug" />
     <crewCount amount="1" class="slug" />
     <aug name="RAD_CREDIT" />
+  </shipBlueprint>
+
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_STATION_3" layout="radp_lab_stationc" img="radp_lab_stationc">
+    <class>Advanced Station</class>
+    <name>Station 99C</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
+    <desc>This station uses abduction beams to kill the crew of any ship in it's way, it also has upgraded engines, enabling much more mobility than past stations.</desc>
+    <systemList>
+      <battery power="1" room="12" max="2" start="false" img="room_battery_16" />
+      <cloaking power="1" room="6" start="false" img="room_cloaking_2" />
+      <clonebay power="1" room="13" start="false">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="16" start="false" img="room_doors_4">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </doors>
+      <drones power="1" room="9" max="8" start="false" img="room_drones_10" />
+      <engines power="1" room="7" max="4" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="5" start="false" img="room_hacking_9" />
+      <medbay power="1" room="13" start="false" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="8" start="true" img="room_mind_4" />
+      <oxygen power="1" room="11" start="false" img="room_oxygen_13" />
+      <pilot power="1" room="0" start="true" img="room_pilot_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </pilot>
+      <sensors power="2" room="15" start="true" img="room_sensors_6">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="14" max="8" start="true" img="room_shields_6">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="1" start="false" />
+      <weapons power="2" room="2" start="true" max="8" img="room_weapons">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="5" count="4">
+      <weapon name="RAD_ABDUCTOR" />
+      <weapon name="RAD_ABDUCTOR" />
+      <weapon name="RAD_LASER_SMART" />
+    </weaponList>
+    <droneList drones="5" count="2" />
+    <health amount="45" />
+    <maxPower amount="10" />
+    <aug name="NANOBOT_DEFENSE_SYSTEM" />
+  </shipBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_RICH_2" layout="mup_rad_rich_b" img="mup_rad_rich_b">
+    <class>Yacht Class Cruiser</class>
+    <name>Trainer One</name>
+    <desc>At one point this ship would have been considered quite elegant, but over the years it has been modified and repaired into a more useful state. The ship is designed as a training platform, and as such doesn't require very high skilled crew members to function.</desc>
+    <systemList>
+      <battery power="1" room="12" start="false" img="room_battery_13" />
+      <cloaking power="1" room="10" start="false" img="room_cloaking" />
+      <clonebay power="1" room="1" start="false">
+        <slot>
+          <number>3</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="15" start="true" img="room_doors">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="1" room="4" start="false" img="room_drones" />
+      <engines power="1" room="6" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="9" start="false" img="room_hacking_6" />
+      <medbay power="1" room="1" start="true" img="room_medbay_3">
+        <slot>
+          <number>3</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="3" start="false" img="room_mind" />
+      <oxygen power="1" room="11" start="true" img="room_oxygen_9" />
+      <pilot power="1" room="0" start="true" img="room_pilot_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="14" start="true" img="room_sensors">
+        <slot>
+          <direction>down</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="5" max="8" start="true" img="room_shields">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="13" start="false" />
+      <weapons power="2" room="2" max="8" start="true" img="room_weapons_10">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="3" count="4">
+      <weapon name="RAD_LASER_SMART" />
+    </weaponList>
+    <droneList drones="3" count="2" />
+    <health amount="30" />
+    <maxPower amount="6" />
+    <crewCount amount="3" class="human" />
+    <aug name="RAD_SYSTEM_DUMB" />
   </shipBlueprint>
 
 </FTL>

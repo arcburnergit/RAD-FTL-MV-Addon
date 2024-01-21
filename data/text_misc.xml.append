@@ -10,8 +10,9 @@
 <text name="map_icon_rad_dynasty_sta">DYNASTY STATION</text>
 <text name="map_icon_rad_science_meet">RENDEZVOUS</text>
 <text name="map_icon_rad_pulsar">PULSAR</text>  
-<text name="map_icon_rad_link">LINK [QUEST]</text>  
-  
+<text name="map_icon_rad_link">LINK [QUEST]</text>
+<text name="map_icon_rad_under">STOLEN SHIP</text>
+
 <text name="rad_tip_focus_burst">Tip: Burst pinpoint beams trade the high damage of most pinpoints for a burst of multiple consecutive low power beams, allowing for a shorter charge time when compared with normal pinpoint beams.</text>
 
 </FTL>

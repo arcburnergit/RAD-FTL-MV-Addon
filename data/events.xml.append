@@ -113,8 +113,8 @@
 	<event load="RAD_LAB_FLESH_1"/>
   <event load="RAD_MONEY_1" />
   <event load="RAD_MONEY_1" />
-  <event load="RAD_UNDER_1" />
   <event load="RAD_SUPERGUN_1"/>
+  <event load="RAD_UNDER_1" />
 </eventList>
 
 <!-- QUEST PIRATE TRACKING -->
@@ -1546,7 +1546,71 @@ However next to the ship is another one of the zoltan manned engi ships, it look
   </event>
 
   <event name="RAD_UNDER_1">
-    
+    <text>"This one is quick and simple, we were hired by wealthy mercenary group to design and build a special kind of super shield for them, one that is able to be deployed underneathe the regular shield, rather than on top of it"
+"We successfully created the technology and equiped it on a test ship for the mercenary group, with the intention of allowing them to test the shield before paying us to install it on their own ships."</text>
+    <choice>
+      <text>They stole the test ship didn't they.</text>
+      <event>
+        <text>"Unfortunately you are correct, however we prefer to safeguard our work, and had installed a tracker on the ship, all you need to do is fly to the beacon and destroy the ship."</text>
+        <choice>
+          <text>Sounds easy.</text>
+          <event>
+            <text>"It is, I'll upload the location of the ship to you now."</text>
+            <quest event="RAD_UNDER_2"/>
+            <store>STORE_RADLAB</store>
+          </event>
+        </choice>
+      </event>
+    </choice>
+  </event>
+
+  <ship name="MU_RAD_UNDERAIDER" auto_blueprint="MU_RAD_UNDERAIDER">
+    <destroyed load="DESTROYED_RAD_UNDERAIDER"/>
+    <deadCrew load="DEAD_CREW_RAD_UNDERAIDER"/>
+  </ship>
+
+  <event name="DESTROYED_RAD_UNDERAIDER">
+    <text>You've destroyed the test ship. You send out a message to the scientists letting them know you've destroyed the ship.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_UNDER_3" />
+    </choice>
+  </event>
+
+  <event name="DEAD_CREW_RAD_UNDERAIDER">
+    <text>You've killed the crew of the test ship. You send out a message to the scientists letting them know you've recovered the ship.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_UNDER_3" />
+    </choice>
+  </event>
+
+  <event name="RAD_UNDER_2">
+    <text>You arrive at the beacon, it looks like the scientist's tracker is reliable, infront of you is the test cruiser and you can an argument happening on an open frequency.
+"What do you mean the ship will blow up!"
+"I mean if we take out the super shield the ship will blow up."
+"You mean to tell me the scientist designed the ship to stop us takin- wait that was probably a good decision on their part considering we stole the ship..."
+
+It seems the mercs just noticed you, they shut off their communications and are turning their weapons on, looks like you're in for a fight.
+    </text>
+    <ship load="MU_RAD_UNDERAIDER" hostile="true" />
+    <choice>
+      <text>Power up your own weapons.</text>
+      <event>
+        <text>Prepare to fight.</text>
+      </event>
+    </choice>
+  </event>
+
+  <event name="RAD_UNDER_3">
+    <text>Instead of the scientists themselves, a small drone shows up and imedietly moves towards the wreck of the test ship.
+The ship explodes.
+A few moments later the drone emerges from the debris and delivers you a augment, it appears it has extracted the super shield from the ship.
+You recieve a transmission. "We've taken the liberty of paying you with the super shield from the test ship, we've also sent along the design we made for the mercenaries to the federation, we have no use of it now."</text>
+    <augment name="ENERGY_SHIELD"/>
+    <unlockCustomShip silent="false">PLAYER_SHIP_RAD_EXPERIMENT_2</unlockCustomShip>
   </event>
   
 </FTL>

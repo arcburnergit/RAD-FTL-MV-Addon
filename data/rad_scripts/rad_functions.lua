@@ -1096,8 +1096,10 @@ script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipM
                 local expectedDamage = damageReal - (math.max(0,shieldPower.first-damage.iShieldPiercing))
                 sRecover = damageReal - expectedDamage
             elseif pType == "LASER" or pType == "BURST" then
-                shieldPower.first = math.max(0, shieldPower.first - 1)
-                sRecover = superD
+                if damage.iShieldPiercing < shieldPower.first then
+                    shieldPower.first = math.max(0, shieldPower.first - 1)
+                    sRecover = superD
+                end
             end
             if sRecover > 0 then 
                 while sRecover > 0 do 

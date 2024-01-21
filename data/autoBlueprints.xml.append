@@ -498,4 +498,30 @@
     <boardingAI>sabotage</boardingAI>
     <aug name="RAD_ZS_CHARGE" />
   </shipBlueprint>
+
+  <shipBlueprint name="MU_RAD_UNDERAIDER" layout="mu_rad_underaider" img="mu_rad_underaider">
+    <class>Test Cruiser</class>
+    <systemList>
+      <cloaking power="1" max="2" room="3" start="false" />
+      <clonebay power="1" max="3" room="4" start="false" />
+      <doors power="2" max="3" room="10" start="true" />
+      <engines power="1" max="2" room="2" start="true" />
+      <medbay power="1" max="3" room="4" start="false" />
+      <oxygen power="1" max="3" room="9" start="true" />
+      <pilot power="1" max="3" room="0" start="true" />
+      <shields power="3" max="10" room="5" start="true" />
+      <teleporter power="1" max="2" room="1" start="false" />
+      <weapons power="3" max="9" room="7" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>0</droneSlots>
+    <weaponList missiles="12" count="4" load="LIST_WEAPONS_REBEL_SELITE" />
+    <droneList drones="0" count="0" />
+    <health amount="16" />
+    <maxPower amount="18" />
+    <crewCount amount="5" max="10" class="human_soldier" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="RAD_ZS_UNDER" />
+    <aug name="SHIELD_RECHARGE" />
+  </shipBlueprint>
 </FTL>

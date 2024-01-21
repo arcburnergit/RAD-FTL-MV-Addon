@@ -333,6 +333,16 @@ popWeapons["RAD_PROJECTILE_BEAM_FOCUS_1"] = {
     countSuper =1,
     delete = true
 }
+popWeapons["RAD_PROJECTILE_BEAM_FOCUS_0"] = {
+    count =1,
+    countSuper =1,
+    delete = true
+}
+popWeapons["RAD_SDRAIN"] = {
+    count = 16,
+    countSuper = 16,
+    delete = true
+}
 
 script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
     local shieldPower = shipManager.shieldSystem.shields.power
@@ -390,13 +400,14 @@ script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
 
     end
 end)]]
+local pinpoint0 = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_PROJECTILE_BEAM_FOCUS_0")
 local pinpoint1 = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_PROJECTILE_BEAM_FOCUS_1")
 --local pinpoint2 = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_PROJECTILE_BEAM_FOCUS_2")
 local burstsToBeams = {}
 burstsToBeams.RAD_BEAM_BURST_1 = pinpoint1
 burstsToBeams.RAD_BEAM_BURST_2 = pinpoint1
 burstsToBeams.RAD_BEAM_BURST_3 = pinpoint1
-burstsToBeams.RAD_LIGHT_BEAM = pinpoint1
+burstsToBeams.RAD_LIGHT_BEAM = pinpoint0
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
     local beamReplacement = burstsToBeams[weapon.blueprint.name]
     if beamReplacement then
@@ -615,7 +626,66 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         shipManager:DamageHull(-1, true)
         projectile:Kill()
     end
+    if weapon.blueprint.name == "ARTILLERY_RAD_ZS" then
+        local shieldPower = shipManager:GetShieldPower()
+        log("ShieldSuper Power")
+        log(tostring(shieldPower.super.first))
+        log(tostring(shieldPower.super.second))
+        --shieldPower.super.first = math.min(5, shieldPower.super.first +1)
+        --projectile:Kill()
+    end
+    if weapon.blueprint.name == "ARTILLERY_RAD_SWTCH" then
+        local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2)
+        for crewmem in vter(shipManager.vCrewList) do
+            if crewmem.intruder == false and not crewmem:IsDrone() then
+                userdata_table(crewmem, "mods.tpbeam.time").tpTime = 10
+                --local systemList = otherShip.vSystemList
+                --local randomRoom = systemList[math.random(0, systemList:Size()-1)].roomId
+                local roomCount = Hyperspace.ShipGraph.GetShipInfo(otherShip.iShipId):RoomCount()
+                local randomRoom = math.random(0, roomCount-1)
+                crewmem.extend:InitiateTeleport(otherShip.iShipId,randomRoom,0)
+            end
+        end
+        for crewmem in vter(otherShip.vCrewList) do
+            if crewmem.intruder == false and not crewmem:IsDrone() then
+                userdata_table(crewmem, "mods.tpbeam.time").tpTime = 10
+                --local systemList = shipManager.vSystemList
+                --local randomRoom = systemList[math.random(0, systemList:Size()-1)].roomId
+                local roomCount = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId):RoomCount()
+                local randomRoom = math.random(0, roomCount-1)
+                crewmem.extend:InitiateTeleport(shipManager.iShipId,randomRoom,0)
+            end
+        end
+    end
 end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RAD_ZS_CHARGE")>0 then
+
+        local shieldPower = shipManager.shieldSystem.shields.power
+        --log("ShieldSuper Power")
+        --log(tostring(shieldPower.super.first))
+        --log(tostring(shieldPower.super.second))
+        --log(tostring(shieldPower.first))
+        --log(tostring(shieldPower.second))
+        if shieldPower.first > 0 then
+            log("Shield above 1")
+            --shipManager.shieldSystem:CollisionReal(shipManager.shieldSystem.center.x, shipManager.shieldSystem.center.y, Hyperspace.Damage(), true)
+            shieldPower.first = math.max(0, shieldPower.first - 1)
+            log(tostring(shieldPower.first))
+            shipManager.shieldSystem:AddSuperShield(shipManager.shieldSystem.superUpLoc)
+            --shieldPower.super.first = math.min(shieldPower.super.second, shieldPower.super.first +1)
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augName, augValue)
+    if augName == "SHIELD_RECHARGE" and shipManager:HasAugmentation("RAD_ZS_CHARGE")>0 then
+        local shieldPower = shipManager:GetShieldPower()
+        augValue = augValue + 0.125 + (shieldPower.second*0.125)
+    end
+    return Defines.Chain.CONTINUE, augValue
+end, -100)
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
     log("Damage Area Hit")
@@ -871,5 +941,210 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
                 system.iActiveManned = 4-manningBonus
             end
         end
+    end
+end)
+--[[
+mods.modAbbreviation.overShieldWeapons = {}
+local overShieldWeapons = mods.modAbbreviation.overShieldWeapons
+overShieldWeapons["WEAPON_NAME"] = {
+    shots = 5,
+    chargeAmt = 1
+}
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    local overShieldData = nil
+    pcall(function() overShieldData = overShieldWeapons[weapon.blueprint.name] end)
+    if overShieldData then
+        local shots = overShieldData.shots
+        local chargeAmt = overShieldData.chargeAmt
+        local oSTable = userdata_table(weapon, "mods.overShieldWeapons.shots")
+        if oSTable.oSShots then
+            oSTable.oSShots = oSTable.oSShots + 1
+            local ship = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+            if oSTable.oSShots >= shots then
+                oSTable.oSShots = nil
+                ship.shieldSystem:AddSuperShield(ship.shieldSystem.SuperUpLoc)
+            end
+        else
+            userdata_table(weapon, "mods.overShieldWeapons.shots").oSShots = 0
+        end
+    end
+end)
+
+mods.rad.rsWeapons = {}
+local rsWeapons = mods.rad.rsWeapons
+rsWeapons["RAD_VOLLEY_2"] = {
+    true
+}
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    local rsData = nil
+    pcall(function() rsData = rsWeapons[weapon.blueprint.name] end)
+    if rsData and projectile.ownerId == 0 then
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+        userdata_table(weapon, "mods.rsWeapons.on").rsOn = true
+    end
+end)
+
+script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    local rsTable = userdata_table(shipManager, "mods.rsWeapons.on")
+    if rsTable.rsOn then
+        
+    end
+end)]]
+
+--[[
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager) 
+    if shipManager:HasAugmentation("RAD_SMALL") > 0 then 
+        log("START LOOP")
+        local rTable = userdata_table(shipManager, "mods.repairerAugment.time")
+        if rTable.time then
+            rTable.time = math.max(rTable.time - Hyperspace.FPS.SpeedFactor/16, 0)
+            --log(rTable.time)
+            if rTable.time == 0 then
+                local n = shipManager.vSystemList:size()
+                log(n)
+                local r = math.random(n) -1
+                log(r)
+                local i = 0
+                log(i)
+                local tobeRepaired = true
+                log("system loop start")
+                for system in vter(shipManager.vSystemList) do
+                    log(system.name)
+                    log(i)
+                    if system:NeedsRepairing() then
+                        log("toBeRepaired")
+                        tobeRepaired = false
+                    end
+                    if i == r and system:NeedsRepairing() then
+                        log("repair this one")
+                        system:Repair()
+                        rTable.time = 2
+                    end
+                    i = i + 1
+                end
+                if tobeRepaired then
+                    rTable.time = nil
+                end
+            end
+        else
+            userdata_table(shipManager, "mods.repairerAugment.time").time = 2
+        end
+    end
+end)]]
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RAD_SMALL") > 0 then
+        for system in vter(shipManager.vSystemList) do
+            log(system.name)
+            log(system.iSystemType)
+            log(".")
+            if system.iSystemType == 0 or system.iSystemType == 3 then
+                log("Wipe Ion")
+                --system:Ioned(0)
+                system:LockSystem(0)
+            end
+            if system:NeedsRepairing() then
+                system:PartialRepair(10,true)
+            end
+        end
+    end
+end)
+
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RAD_SCRAM") > 0 then
+        local teleTable = userdata_table(shipManager, "mods.scrambler.time")
+        if teleTable.tpTime then 
+            teleTable.tpTime = math.max(teleTable.tpTime - Hyperspace.FPS.SpeedFactor/16, 0)
+            if teleTable.tpTime == 0 then
+                 for crewmem in vter(shipManager.vCrewList) do
+                    if crewmem.iRoomId > 0 and crewmem.iRoomId < 12 then
+                        crewmem.extend:InitiateTeleport(shipManager.iShipId,(crewmem.iRoomId%11)+1,0)
+                    end
+                end
+                teleTable.tpTime = 15
+            end
+        else
+            userdata_table(shipManager, "mods.scrambler.time").tpTime = 15
+        end
+    end
+end)
+
+local lastSuperUp0 = 0
+local lastSuperUp1 = 0
+script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
+    if shipManager:HasAugmentation("RAD_ZS_UNDER") > 0 then
+        local lastSuperUp = 0
+        if shipManager.iShipId == 0 then 
+            lastSuperUp = lastSuperUp0
+        else
+            lastSuperUp = lastSuperUp1
+        end
+        local shieldPower = shipManager.shieldSystem.shields.power
+        
+        local sShieldHP = shieldPower.super.first
+        local damageReal = lastSuperUp - sShieldHP
+
+        local pType = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name).typeName
+        local sDamage = response.damage
+        local superD = response.superDamage
+        local sRecover = 0
+        if shieldPower.first > 0 and shieldPower.super.first > 0 then
+            if pType == "BEAM" and damageReal > 0 then 
+                local expectedDamage = damageReal - (math.max(0,shieldPower.first-damage.iShieldPiercing))
+                sRecover = damageReal - expectedDamage
+            elseif pType == "LASER" or pType == "BURST" then
+                shieldPower.first = math.max(0, shieldPower.first - 1)
+                sRecover = superD
+            end
+            if sRecover > 0 then 
+                while sRecover > 0 do 
+                    shipManager.shieldSystem:AddSuperShield(shipManager.shieldSystem.superUpLoc)
+                    sRecover = sRecover - 1
+                end
+            end
+            if damage.iIonDamage > 0 then 
+                local ionDamage = Hyperspace.Damage()
+                ionDamage.iIonDamage = damage.iIonDamage
+                local roomPos = shipManager.shieldSystem.roomId
+                shipManager:DamageArea(shipManager:GetRoomCenter(roomPos), ionDamage, true)
+            end
+        end
+        if shipManager.iShipId == 0 then 
+            lastSuperUp0 = shieldPower.super.first
+        else
+            lastSuperUp1 = shieldPower.super.first
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
+    local shieldPower = shipManager.shieldSystem.shields.power
+    if shipManager.iShipId == 0 then 
+        lastSuperUp0 = shieldPower.super.first
+    else
+        lastSuperUp1 = shieldPower.super.first
+    end
+end)
+
+
+mods.rad.zsWeapons = {}
+local zsWeapons = mods.rad.zsWeapons
+zsWeapons["RAD_ZSGUN_1"] = 1
+zsWeapons["RAD_ZSGUN_2"] = 2
+zsWeapons["RAD_ZSGUN_3"] = 3
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon) 
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+    local zsData = nil
+    if pcall(function() zsData = zsWeapons[Hyperspace.Get_Projectile_Extend(projectile).name] end) and zsData then
+        sRecover = zsData
+        while sRecover > 0 do 
+            shipManager.shieldSystem:AddSuperShield(shipManager.shieldSystem.superUpLoc)
+            sRecover = sRecover - 1
+        end
+        projectile:Kill()
     end
 end)

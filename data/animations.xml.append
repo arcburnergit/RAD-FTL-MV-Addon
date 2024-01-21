@@ -377,5 +377,46 @@
 	<desc length="3" x="0" y="0" />
 	<time>3</time>
 </anim>
+  
+<animSheet name="rad_singularity_bomb" w="609" h="68" fw="29" fh="68">weapon/rad_singularity_bomb.png</animSheet>
+<weaponAnim name="rad_singularity_bomb">
+	<sheet>rad_singularity_bomb</sheet>
+	<desc length="21" x="0" y="0" />
+	<chargedFrame>9</chargedFrame>
+	<fireFrame>19</fireFrame>
+	<firePoint x="15" y="42" />
+	<mountPoint x="2" y="54" />
+	<chargeImage>weapon/rad_singularity_bomb_glow.png</chargeImage>
+	<time>0.35</time>
+</weaponAnim>
 
+  <animSheet name="rad_singularity" w="150" h="17" fw="15" fh="17">weapon/rad_singularity_proj.png</animSheet>
+  <anim name="rad_singularity">
+    <sheet>rad_singularity</sheet>
+    <desc length="10" x="0" y="0" />
+    <time>0.25</time>
+  </anim>
+
+  <animSheet name="rad_sdrain" w="558" h="57" fw="31" fh="57">weapon_focus/rad_sdrain.png</animSheet>
+  <weaponAnim name="rad_sdrain">
+    <sheet>rad_sdrain</sheet>
+    <desc length="18" x="0" y="0" />
+    <chargedFrame>1</chargedFrame>
+    <fireFrame>2</fireFrame>
+    <firePoint x="19" y="5" />
+    <mountPoint x="5" y="38" />
+    <time>0.5</time>
+    <chargeImage>weapon_focus/rad_sdrain_glow.png</chargeImage>
+  </weaponAnim>
+
+  <animSheet name="rad_zsgun_3" w="527" h="48" fw="31" fh="48">weapon/rad_zsgun_3.png</animSheet>
+  <weaponAnim name="rad_zsgun_3">
+    <sheet>rad_zsgun_3</sheet>
+    <desc length="17" x="0" y="0" />
+    <chargedFrame>15</chargedFrame>
+    <fireFrame>16</fireFrame>
+    <firePoint x="18" y="17" />
+    <mountPoint x="4" y="21" />
+  </weaponAnim>
+  
 </FTL>

@@ -545,6 +545,39 @@
 	<iconImage>laser_chain</iconImage>
 </weaponBlueprint>
 
+<weaponBlueprint name="RAD_PROJECTILE_BEAM_FOCUS_0">
+	<type>BEAM</type>
+	<tip>tip_focus</tip>
+	<title>Burst Beam Projectile</title>
+	<short>Burst Beam Projectile</short>
+	<desc>YOU SOULD NEVER SEE THIS</desc>
+	<tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
+	<damage>1</damage>
+	<sysDamage>-1</sysDamage>
+	<sp>0</sp>
+    <fireChance>1</fireChance> 
+    <breachChance>1</breachChance>
+	<cooldown>14</cooldown>
+	<speed>1</speed>
+	<length>1</length>
+	<power>2</power>
+	<cost>45</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<color>
+		<r>180</r>
+		<g>180</g>
+		<b>180</b>
+	</color>
+	<image>beam_contact</image>
+	<launchSounds>
+		<sound>ra_focusbeam1</sound>
+		<sound>ra_focusbeam2</sound>
+		<sound>ra_focusbeam3</sound>
+	</launchSounds>
+	<weaponArt>beam_burst_1</weaponArt> 
+</weaponBlueprint>
+  
 <weaponBlueprint name="RAD_PROJECTILE_BEAM_FOCUS_1">
 	<type>BEAM</type>
 	<tip>tip_focus</tip>
@@ -575,7 +608,7 @@
 		<sound>ra_focusbeam2</sound>
 		<sound>ra_focusbeam3</sound>
 	</launchSounds>
-	<weaponArt>ra_beam_auto</weaponArt> 
+	<weaponArt>beam_burst_1</weaponArt> 
 </weaponBlueprint>
 
 <weaponBlueprint name="RAD_LIGHT_BEAM">
@@ -1211,6 +1244,46 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
 	<rarity>0</rarity>
 </weaponBlueprint>
 
+  <weaponBlueprint name="ARTILLERY_RAD_ZS">
+    <type>LASER</type>
+    <title>Zoltan Shield Generator</title>
+    <short>Zoltan Shield Generator</short>
+    <desc>
+[BASE COOLDOWN: 12] Generates a Super Shield Layer every time the artillery fires.
+    </desc>
+    <tooltip>Creates a Super Shield.</tooltip>
+    <damage>0</damage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>12</cooldown>
+    <power>1</power>
+    <cost>80</cost>
+    <bp>4</bp>
+    <rarity>0</rarity>
+  </weaponBlueprint>
+  
+  <weaponBlueprint name="ARTILLERY_RAD_SWTCH">
+    <type>LASER</type>
+    <title>Switch Drive</title>
+    <short>Switch Drive</short>
+    <desc>
+[BASE COOLDOWN: 25] Teleports all of your crew on your ship onto the enemies ship, and the enemies crew onto your ship for 10 seconds.
+    </desc>
+    <tooltip>Creates a Super Shield.</tooltip>
+    <damage>0</damage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>25</cooldown>
+    <power>1</power>
+    <cost>80</cost>
+    <bp>4</bp>
+    <rarity>0</rarity>
+  </weaponBlueprint>
+
 <weaponBlueprint name="ARTILLERY_FLESH_ENEMY">
 	<type>LASER</type>
 	<title>Fleshy Heart</title>
@@ -1220,7 +1293,7 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
 	<damage>0</damage>
 	<shots>1</shots>
 	<sp>0</sp>
-	<fireChance>1</fireChance>
+	<fireChance>0</fireChance>
 	<breachChance>0</breachChance>
 	<cooldown>1</cooldown>
 	<power>1</power>
@@ -1432,21 +1505,19 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 </weaponBlueprint>
 
 <weaponBlueprint name="RAD_SINGULARITY_MINE">
-	<type>BURST</type>
-	<tip>tip_ancient</tip>
-	<flavorType>Minelauncher</flavorType>
+	<type>BOMB</type>
+	<tip>tip_bomb</tip>
 	<title>Singularity Launcher</title>
 	<short>Singularity</short>
-	<desc>Firing one large mine capable of tearing a hole is spacetime, it doesn't do any damage on its own, but pulls all free floating projectiles towards it.
-	
-	At empty beacons provides 1 fleet delay for 8 missiles.</desc>
+	<desc>Firing one large Bomb capable of tearing a hole is spacetime, it doesn't do any damage on its own, but pulls all free floating projectiles towards it.</desc>
 	<tooltip>Fires 1 missile; does 0 damage; pierces all shields.</tooltip>
 	<damage>0</damage>
 	<sysDamage>0</sysDamage>
-	<radius>55</radius>
+  <persDamage>2</persDamage>
+  <accuracyMod>30</accuracyMod>
 	<missiles>1</missiles>
 	<shots>1</shots>
-	<sp>10</sp>
+	<sp>0</sp>
 	<fireChance>0</fireChance>
 	<breachChance>9</breachChance>
 	<cooldown>16</cooldown>
@@ -1455,25 +1526,16 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 	<cost>95</cost>
 	<bp>2</bp>
 	<rarity>0</rarity>
-	<projectiles>
-		<projectile count="1" fake="false">mine_rad_singularity</projectile>
-	</projectiles>
-	<launchSounds>
-		<sound>ancient_missile</sound>
-	</launchSounds>
-	<hitShipSounds>
-		<sound>smallExplosion</sound>
-	</hitShipSounds>
-	<hitShieldSounds>
-		<sound>hitShield1</sound>
-		<sound>hitShield2</sound>
-		<sound>hitShield3</sound>
-	</hitShieldSounds>
-	<missSounds>
-		<sound>miss</sound>
-	</missSounds>
-	<weaponArt>rad_singularity_mine</weaponArt>
-	<iconImage>missile</iconImage>
+  <image>rad_singularity</image>
+  <explosion>explosion_random</explosion>
+  <launchSounds>
+    <sound>bombTeleport</sound>
+  </launchSounds>
+  <hitShipSounds>
+    <sound>smallExplosion</sound>
+  </hitShipSounds>
+	<weaponArt>ancient_bomblauncher</weaponArt>
+	<iconImage>bomb</iconImage>
 </weaponBlueprint>
 
 <augBlueprint name="RAD_CREDIT">
@@ -1714,5 +1776,578 @@ This is becuase the systems are designed for low skill crew members, and so high
     <crewCount amount="3" class="human" />
     <aug name="RAD_SYSTEM_DUMB" />
   </shipBlueprint>
+  
+  <shipBlueprint name="PLAYER_SHIP_RAD_RICH_3" layout="mup_rad_rich_c" img="mup_rad_rich_c">
+    <class>Yacht Class Cruiser</class>
+    <name>Expensive</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
+    <desc>At one point I considered writing a description for this ship but then I forgot.</desc>
+    <systemList>
+      <battery power="1" room="12" max="3" start="false" img="room_battery_13" />
+      <cloaking power="1" room="10" start="false" img="room_cloaking" />
+      <clonebay power="1" room="1" start="false">
+        <slot>
+          <number>3</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="15" start="true" img="room_doors">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="1" room="4" max="8" start="false" img="room_drones" />
+      <engines power="1" room="6" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="9" start="false" img="room_hacking_6" />
+      <medbay power="1" room="1" start="true" img="room_medbay_3">
+        <slot>
+          <number>3</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="3" start="false" img="room_mind" />
+      <oxygen power="1" room="11" start="true" img="room_oxygen_9" />
+      <pilot power="1" room="0" start="true" img="room_pilot_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="14" start="true" img="room_sensors">
+        <slot>
+          <direction>down</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="5" max="8" start="true" img="room_shields">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="13" start="false" />
+      <weapons power="2" room="2" max="8" start="true" img="room_weapons_10">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="3" count="4">
+      <weapon name="RAD_LIGHT_BEAM" />
+      <weapon name="RAD_BEAM_BURST_1" />
+    </weaponList>
+    <droneList drones="3" count="2" />
+    <health amount="30" />
+    <maxPower amount="6" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="1" class="human" />
+    <aug name="RAD_SYSTEM_DUMB" />
+    <aug name="RAD_CREDIT" />
+  </shipBlueprint>
+
+  <augBlueprint name="RAD_SMALL">
+    <title>Elite Shuttle Technology</title>
+    <desc>Automatically Repairs all systems (Unless breached or on fire).
+Provides ion resistance to Weapons and Shields.
+Gives 50% system resistance.
+Gives 50% hull resistance.
+Weapons charge 50% faster.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_HUGE" layout="radp_huge" img="radp_huge">
+    <class>Combat Shuttle</class>
+    <name>H.U.G.E</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_HUGE_unlock"/>
+    <desc>This ship is completely devoid of any description whatsoever!</desc>
+    <systemList>
+      <battery power="1" room="1" start="false" img="room_battery_5" />
+      <cloaking power="1" room="0" start="false" img="room_cloaking_10" />
+      <clonebay power="1" room="0" start="false">
+        <slot>
+          <number>0</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="0" start="true" img="room_doors">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="1" room="0" max="8" start="false" img="room_drones" />
+      <engines power="1" room="0" start="true" img="room_pilot_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="1" start="false" img="room_hacking_7" />
+      <medbay power="2" room="0" start="true" img="room_medbay_4">
+        <slot>
+          <number>0</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="1" start="false" img="room_mind_12" />
+      <oxygen power="1" room="1" start="true" img="room_oxygen_13" />
+      <pilot power="1" room="0" start="true" img="room_pilot_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="0" start="false" img="room_sensors_7">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="0" max="8" start="true" img="room_shields_10">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="0" start="false" />
+      <weapons power="3" room="0" max="8" start="true" img="room_pilot_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>2</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="0" count="2">
+      <weapon name="BEAM_LONG" />
+      <weapon name="ION_1" />
+    </weaponList>
+    <droneList drones="0" count="2" />
+    <health amount="15" />
+    <maxPower amount="10" />
+    <crewCount amount="1" class="human" />
+    <aug name="RAD_SMALL" />
+  </shipBlueprint>
+
+
+  <weaponBlueprint name="RAD_SDRAIN">
+    <type>BEAM</type>
+    <title>Shield Drain Beam</title>
+    <short>S-Drain Beam</short>
+    <desc>YOU SHOULD NEVER SEE THIS</desc>
+    <descriptionOverride>This weapon completely drains the shield of the target, allowing your weapons to wreck havok on their systems.
+It will also completely destroy a super shield, however it will require a second shot to drain the shield after.
+      
+Stats:
+Required Power: 2
+Charge Time: 15 seconds
+
+Shots Per Charge: 1
+
+Base Hull Damage: 0
+Total System Damage: 0
+
+Buy/Sell Price: 80~/40~
+    </descriptionOverride>
+    <tooltip>Abducts enemy crew into your weapons room.</tooltip>
+    <damage>0</damage>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>15</cooldown>
+    <speed>1</speed>
+    <power>2</power>
+    <cost>80</cost>
+    <bp>2</bp>
+    <rarity>4</rarity>
+    <color>
+      <r>20</r>
+      <g>80</g>
+      <b>200</b>
+    </color>
+    <image>beam_contact</image>
+    <length>1</length>
+    <launchSounds>
+      <sound>focus_strong</sound>
+    </launchSounds>
+    <weaponArt>rad_sdrain</weaponArt>
+    <iconImage>beam</iconImage>
+  </weaponBlueprint>
+
+
+  <augBlueprint name="RAD_ZS_CHARGE">
+    <title>Zoltan Shield Charger</title>
+    <desc>
+The shield generator now generates Super Shield layers instead of normal shield layers.
+    </desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_FLESH_2" layout="radp_flesh_cruiserb" img="radp_flesh_cruiserb">
+    <class>Zolgi Cruiser</class>
+    <name>InsertName</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_FLESH_2_unlock"/>
+    <desc>A combination of Zoltan and Engi technology, this ship combines the Engi power generation technology with that of the Zoltan shield technology, allowing the ship to generate a super shield layer every few seconds.</desc>
+    <systemList>
+      <!--artillery power="1" room="0"  start="true" max="4" weapon="ARTILLERY_RAD_ZS" img="Sprite-0005" />-->
+      <shields power="2" room="0" start="true" max="8" img="room_shields_4">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+
+      <battery power="1" room="7" start="false" img="room_battery_15" />
+      <clonebay power="1" room="10" start="false">
+        <slot>
+          <number>3</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="5" start="true" img="room_doors">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="3" room="14" max="8" start="false" img="room_drones_8" />
+      <engines power="2" room="4" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="3" start="false" img="room_hacking_7" />
+      <medbay power="1" room="10" start="true" img="room_medbay_3">
+        <slot>
+          <number>3</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="1" start="false" img="room_mind_4" />
+      <oxygen power="1" room="2" start="true" img="room_oxygen_4" />
+      <pilot power="1" room="8" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="9" start="true" img="room_sensors_4">
+        <slot>
+          <direction>left</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <teleporter power="1" room="13" start="false" />
+      <weapons power="3" max="8" room="11" start="true" img="room_weapons_10">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>3</weaponSlots>
+    <droneSlots>3</droneSlots>
+    <weaponList missiles="5" count="3">
+      <weapon name="RAD_SDRAIN" />
+      <weapon name="FOCUS_1" />
+    </weaponList>
+    <droneList drones="5" count="3" />
+    <health amount="30" />
+    <maxPower amount="8" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="1" class="engi" />
+    <crewCount amount="1" class="energy" />
+    <aug name="RAD_ZS_CHARGE" />
+  </shipBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_FLESH_3" layout="radp_flesh_cruiserc" img="radp_flesh_cruiserc">
+    <class>Switch-Back Cruiser</class>
+    <name>Ship Swap</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
+    <desc>An advanced Teleportation system enables you to teleport your entire crew aboard the enemy ship, however an unfortunate side effect is that it also teleports the entire enemy crew onto your ship.</desc>
+    <systemList>
+      <artillery power="1" room="6" start="true" weapon="ARTILLERY_RAD_SWTCH" img="room_artillery" />
+      <cloaking power="1" room="1" start="false" img="room_cloaking_2" />
+      <clonebay power="1" room="7" start="false">
+        <slot>
+          <number>3</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="9" start="false" img="room_doors_2">
+        <slot>
+          <direction>down</direction>
+          <number>0</number>
+        </slot>
+      </doors>
+      <drones power="2" room="4" start="true" img="room_drones_7" />
+      <engines power="1" room="11" start="true" img="room_engines_8">
+        <slot>
+          <direction>left</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="5" start="false" img="room_hacking_3" />
+      <medbay power="1" room="7" start="true" img="room_medbay_3">
+        <slot>
+          <number>3</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="15" start="false" img="room_mind_9" />
+      <oxygen power="1" room="12" start="true" img="room_oxygen_9" />
+      <pilot power="1" room="8" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="2" room="13" start="true" img="room_sensors_2">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="10" start="true" img="room_shields_4">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <weapons power="2" room="3" start="true" img="room_weapons_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>2</weaponSlots>
+    <droneSlots>4</droneSlots>
+    <weaponList missiles="0" count="2">
+      <weapon name="LASER_BURST_2" />
+      <weapon name="BEAM_1" />
+    </weaponList>
+    <droneList drones="10" count="4">
+      <drone name="BATTLETOG_DEFEND" />
+    </droneList>
+    <health amount="30" />
+    <maxPower amount="10" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="1" class="engi" />
+    <crewCount amount="1" class="mantis" />
+    <aug name="SYSTEM_CASING_NEW" />
+  </shipBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_EXPERIMENT_2" layout="radp_ghost_playerb" img="radp_ghost_playerb">
+    <class>Shield Cruiser</class>
+    <name>Under Armour</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_GHOST_2_unlock"/>
+    <desc>This ship is able to deploy a revolutionary Zoltan under-shield.&#xD;
+
+The 4 artillery weapons traditionally deployed on a vessel like this have been swapped out for special devices that allow the shield to be deployed outside of the zoltan shield.
+    </desc>
+    <systemList>
+      <battery power="1" room="11" start="false" img="room_battery_4" />
+      <cloaking power="1" room="7" start="false" img="room_cloaking_2" />
+      <clonebay power="1" room="4" start="false">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="17" start="false" img="room_doors_2">
+        <slot>
+          <direction>down</direction>
+          <number>0</number>
+        </slot>
+      </doors>
+      <drones power="1" room="6" max="8" start="false" img="room_drones_8" />
+      <engines power="2" room="14" start="true" img="room_engines_8">
+        <slot>
+          <direction>left</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="12" start="false" img="room_hacking_7" />
+      <medbay power="1" room="4" start="true" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="9" start="false" img="room_mind" />
+      <oxygen power="1" room="10" start="true" img="room_oxygen_3" />
+      <pilot power="1" room="0" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="1" start="true" img="room_sensors_2">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="3" max="8" start="true" img="room_shields_7">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="13" start="false" />
+      <weapons power="2" room="2" max="8" start="true" img="room_weapons_13">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="12" count="4">
+      <weapon name="BOMB_1" />
+      <weapon name="SHOTGUN_1" />
+    </weaponList>
+    <droneList drones="3" count="2" />
+    <health amount="30" />
+    <maxPower amount="6" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="1" class="zoltan" />
+    <crewCount amount="1" class="zoltan" />
+    <aug name="RAD_ZS_UNDER" />
+  </shipBlueprint>
+  
+  
+  <shipBlueprint name="PLAYER_SHIP_RAD_EXPERIMENT_3" layout="radp_ghost_playerc" img="radp_ghost_playerc">
+    <class>Scrambled Cruiser</class>
+    <name>Insanity</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
+    <desc>Something went very very wrong in this ship.</desc>
+    <systemList>
+      <battery power="1" room="6" start="false" img="room_battery_6" />
+      <cloaking power="1" room="7" start="false" img="room_cloaking_2" />
+      <clonebay power="1" room="12" start="false">
+        <slot>
+          <number>-2</number>
+        </slot>
+      </clonebay>
+      <drones power="1" room="4" max="8" start="false" img="room_drones_8" />
+      <engines power="2" room="5" start="true" img="room_engines_8">
+        <slot>
+          <direction>left</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="9" start="false" img="room_hacking_7" />
+      <medbay power="1" room="12" start="true" img="room_medbay_6">
+        <slot>
+          <number>-2</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="2" start="false" img="room_mind" />
+      <oxygen power="1" room="10" start="true" img="room_oxygen_3" />
+      <pilot power="1" room="0" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="1" start="true" img="room_sensors_4">
+        <slot>
+          <direction>left</direction>
+          <number>2</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="3" max="8" start="true" img="room_shields">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="11" start="false" />
+      <weapons power="4" room="8" max="8" start="true" img="room_weapons">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="5" count="4">
+      <weapon name="RUSTY_LASER_BURST_3" />
+      <weapon name="RUSTY_LASER_BURST_3" />
+    </weaponList>
+    <droneList drones="5" count="2" />
+    <health amount="30" />
+    <maxPower amount="10" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="3" class="engi" />
+    <aug name="RAD_SCRAM" />
+    <aug name="EX_FIRE_EXTINGUISHERS" />
+  </shipBlueprint>
+
+  <augBlueprint name="RAD_ZS_UNDER">
+    <title>Zoltan Under-Shield</title>
+    <desc>Like a Zoltan overshield, but it goes under the normal shield bubble.
+    </desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+  
+  <augBlueprint name="RAD_SCRAM">
+    <title>Scramble Drive</title>
+    <desc>Every 15 seconds everyone on your ship is mysteriously shifted to a new room, luckily it appears the piloting room escaped the effect.
+    </desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+
+  <weaponBlueprint name="RAD_ZSGUN_3">
+    <type>LASER</type>
+    <title>Super Shield Mk3</title>
+    <short>Shield III</short>
+    <desc>This weapon won't do much to an enemy ship, but it will recharge 3 energy shield layers every time it charges and fires. </desc>
+    <tooltip>Generates 3 Zoltan Shield Layers.</tooltip>
+    <damage>0</damage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>20</cooldown>
+    <power>3</power>
+    <cost>80</cost>
+    <bp>4</bp>
+    <rarity>0</rarity>
+    <image>laser_burst</image>
+    <launchSounds>
+      <sound>lightLaser1</sound> <!--FIXME: replace with shield generation sound or smthin-->
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_zsgun_3</weaponArt>
+    <iconImage>laser</iconImage>
+    <rarity>0</rarity>
+  </weaponBlueprint>
 
 </FTL>

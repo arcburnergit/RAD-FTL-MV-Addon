@@ -55,9 +55,33 @@
 					<text>"Excellent. We need your help with a certain issue regarding some rogue technology. However, we can't give you the details unless you're absolutly sure about helping."
 					"Either way, feel free to browse our commercial technology, I'm sure someone like you could make use of it."</text>
 					<choice hidden="true">
-						<text>You'll help. [There are Multiple Possible Quests]</text>
+						<text>You'll help. [Random Quest]</text>
 						<event load="RAD_LAB_QUEST_LIST"/>
 					</choice>
+          <choice hidden="true" req="rad_q1" max_group="4">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_LAB_QUEST_1" />
+          </choice>
+          <choice hidden="true" req="rad_q2" max_group="4">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_LAB_GHOST_1"/>
+          </choice>
+          <choice hidden="true" req="rad_q3" max_group="4">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_LAB_ROGUE_1"/>
+          </choice>
+          <choice hidden="true" req="rad_q4" max_group="4">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_LAB_FLESH_1"/>
+          </choice>
+          <choice hidden="true" req="rad_q5" max_group="4">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_MONEY_1" />
+          </choice>
+          <choice hidden="true" req="rad_q6" max_group="4">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_MONEY_1" />
+          </choice>
 					<choice hidden="true">
 						<text>Sounds risky. Just shop.</text>
 						<event>
@@ -89,6 +113,8 @@
 	<event load="RAD_LAB_FLESH_1"/>
   <event load="RAD_MONEY_1" />
   <event load="RAD_MONEY_1" />
+  <event load="RAD_UNDER_1" />
+  <event load="RAD_SUPERGUN_1"/>
 </eventList>
 
 <!-- QUEST PIRATE TRACKING -->
@@ -395,6 +421,7 @@
 			<text>The scientists also transport over a high amount of scrap, and one of their most advanced weapons!</text>
 			<autoReward level="HIGH">standard</autoReward>
 			<weapon name="RAD_JAILERBEAM_PLAYER"/>
+      <metaVariable name="rad_q1" op="set" val="0"/>
 			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION</unlockCustomShip>
 			<!--Unlock Cruiser at some point here-->
 		</event>
@@ -620,6 +647,7 @@
 	<choice hidden="true">
 		<text>Hail them.</text>
 		<event>
+      <metaVariable name="rad_q2" op="set" val="0"/>
 			<text>A some what well armed scientist picks up, "Excellent job, Renegade. Transfer the entity over to me and we'll deliver your payment."
 			
 			The entity in question comes into the room. "Don't give me over to them! They did this to me! They turned me into this hot, flaming mess! It's torture!" the entity proclaims.</text>
@@ -678,6 +706,7 @@
 	You manage to recover one of the drones from the wreckage.</text>
 	<autoReward level="MED">standard</autoReward>
 	<drone name="RAD_REPULSOR"/>
+  <metaVariable name="rad_q3" op="set" val="0"/>
 	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION_2</unlockCustomShip>
 </event>
 
@@ -694,6 +723,7 @@
 			<text>A short while later a science ship comes to collect the vessel you recovered.
 			The ship drops off a weapon for you as payment.</text>
 			<weapon name="RAD_BEAM_BURST_2"/> <!-- Make this a beam burst 3 at some point-->
+      <metaVariable name="rad_q3" op="set" val="0"/>
 			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION_2</unlockCustomShip>
 		</event>
 	</choice>
@@ -1061,6 +1091,7 @@
 	<item_modify>
 		<item type="scrap" min="53" max="67" />
 	</item_modify>
+  <metaVariable name="rad_q4" op="set" val="0"/>
 	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_FLESH</unlockCustomShip>
 </event>
 
@@ -1293,8 +1324,17 @@
 
   <event name="RAD_POOR_2">
     <changeBackground>BACK_EVENT_NEST</changeBackground>
-    <text>You fly back down to the colony</text>
+    <text>You fly back down to the colony to report news of your success.
+    
+    "Excellent job Renegade, we won't question why you came, we're just glad you were able to help.
+    We've transfered some scrap up to you, additionally we've sent off our old training cruiser to the federation, it seems like it'll do them more good than it has done us."</text>
+    <metaVariable name="rad_q6" op="set" val="0"/>
+    <item_modify>
+      <item type="scrap" min="100" max="100" />
+    </item_modify>
+    <unlockCustomShip silent="false">PLAYER_SHIP_RAD_RICH_2</unlockCustomShip>
   </event>
+  
   <event name="RAD_RICH_2">
     <text>"Alright, we did it, and it only took me one ship this time, father will be pleased!" exclaims Reginald.
     "I'm not sure how to reward you, but you can have my old cruiser, I go through them weekly, I'll just get a new one, it should be worth a good deal of scrap."</text>
@@ -1305,8 +1345,208 @@
           <item type="scrap" min="100" max="100" />
         </item_modify>
         <text>You download the blueprints to his old cruiser before scraping it.</text>
+        <metaVariable name="rad_q5" op="set" val="0"/>
+        <unlockCustomShip silent="false">PLAYER_SHIP_RAD_RICH</unlockCustomShip>
+      </event>
+    </choice>
+    <choice>
+      <text>Offer to take Reginald with you.</text>
+      <event>
+        <item_modify>
+          <item type="scrap" min="100" max="100" />
+        </item_modify>
+        <text>Reginald agrees, You download the blueprints to his old cruiser before scraping it.</text>
+        <metaVariable name="rad_q5" op="set" val="0"/>
         <unlockCustomShip silent="false">PLAYER_SHIP_RAD_RICH</unlockCustomShip>
       </event>
     </choice>
   </event>
+<!-- I really should have organised my code a long time ago.-->
+  
+  
+  <event name="RAD_SUPERGUN_1">
+    <text>"Ok, this task shouldn't be too complicated, One of our recent projects has been a collaboration with the engi, we were working on creating a ship capable of generating enough power to power up a zoltan shield without jumping.
+However the ship in question has gone missing, we suspect it's the work of the seperatists, however we aren't certain. We'll put you in contact with the engi incharge of the project, they should be able to help you figure out where they went."</text>
+    <choice>
+      <text>I'll get on my way then.</text>
+      <event>
+        <text>"Good luck."</text>
+        <quest event="RAD_SUPERGUN_2"/>
+        <store>STORE_RADLAB</store>
+      </event>
+    </choice>
+  </event>
+
+  <ship name="MU_RAD_ENGIZOL" auto_blueprint="MU_RAD_ENGIZOL">
+    <destroyed load="DESTROYED_RAD_ENGIZOL"/>
+    <deadCrew load="DEAD_CREW_RAD_ENGIZOL"/>
+  </ship>
+
+  <event name="DESTROYED_RAD_ENGIZOL">
+    <text>You've destroyed the Engi ship. You loot the remains.</text>
+    <autoReward level="MED">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_SUPERGUN_6"/>
+    </choice>
+  </event>
+
+  <event name="DEAD_CREW_RAD_ENGIZOL">
+    <text>You've killed the crew of that Engi ship. It was suprising to see Zoltans crewing the ship, but you loot the remains either way.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_SUPERGUN_6"/>
+    </choice>
+  </event>
+
+  <event name="RAD_SUPERGUN_2">
+    <beaconType id="map_icon_rad_link" global="true">
+      <color r="137" g="142" b="148" a="1.0" />
+      <unvisitedTooltip>This is the location of a Harmony Link, and your current quest objective.</unvisitedTooltip>
+      <visitedTooltip>This is the location of a Harmony Link.</visitedTooltip>
+    </beaconType>
+    <img back="BACK_EVENT_HARMONYLINK" planet="NONE" />
+    <text>It appears you've arrived at a Harmony Link. These massive planet-sized structures are made up of trillions of nanobots, and transmit a strong signal to all of the Engi in the sector.</text>
+    <choice>
+      <text>Continue...</text>
+      <event>
+        <text>A moment after you arrive you're hailed by an engi.
+"Greetings."
+"We were told of your arrival, It is well timed, we have just discovered where the seperatists escaped with the ship."
+        </text>
+        <choice>
+          <text>You're sure it's the seperatists?</text>
+          <event>
+            <text>"Who else could have stolen the ship, except for one of our own."</text>
+            <choice>
+              <text>Well, where did they take the ship?</text>
+              <event>
+                <text>"A nearby beacon."
+"We'll upload the coordinates to your ship."
+                </text>
+                <quest event="RAD_SUPERGUN_3" />
+                <choice>
+                  <text>We'll be on our way...</text>
+                  <event>
+                    <text>Just as you're leaving a ship jumps into the beacon, and imidietly opens fire on any engi ships in the area.
+
+It appears to be an engi ship, but it has been painted weird colours.
+                    </text>
+                    <ship load="MU_RAD_ENGIZOL" hostile="true" />
+                    <choice hidden="true" max_group="1" blue="false">
+                      <text>Continue...</text>
+                      <event>
+                        <text>You prepare to fight the odd ship.</text>
+                      </event>
+                    </choice>
+                  </event>
+                </choice>
+              </event>
+            </choice>
+          </event>
+        </choice>
+      </event>
+    </choice>
+  </event>
+
+  <event name="RAD_SUPERGUN_6">
+    <text>The Engi hail you again.
+"Excellent fighting captain."
+"During your fight we discovered that the ship was crewed by zoltans, and not the seperatists."
+"The seperatists must have struck a deal with the zoltans."
+"We also managed to trace where the ship jumped from, we've uploaded the location to your ship."
+"Good Luck."
+    </text>
+    <quest event="RAD_SUPERGUN_7" />
+  </event>
+
+  <ship name="MU_RAD_SEPSTAT" auto_blueprint="MU_SEPARATIST_MOTHERSHIP">
+    <destroyed load="DESTROYED_RAD_SEPSTAT"/>
+    <deadCrew load="DEAD_CREW_RAD_SEPSTAT"/>
+  </ship>
+
+  <event name="DESTROYED_RAD_SEPSTAT">
+    <text>You've destroyed the seperatist ship. It seems like they had nothing to do with the missing ship, but you loot the remains either way.</text>
+    <autoReward level="MED">standard</autoReward>
+  </event>
+
+  <event name="DEAD_CREW_RAD_SEPSTAT">
+    <text>You've killed the crew of the seperatist ship. It seems like they had nothing to do with the missing ship, but you loot the remains either way.</text>
+    <autoReward level="HIGH">standard</autoReward>
+  </event>
+
+  <event name="RAD_SUPERGUN_3">
+    <text>You arrive at the beacon and discover something odd, it appears to be a seperatist education ship.
+You could attack the ship, they might have something to do with the missing ship, but it does seem like the engi just sent you here to destroy the seperatists.
+    </text>
+    <ship load="MU_RAD_SEPSTAT" hostile="false" />
+    <choice>
+      <text>Attack the ship, they might know something.</text>
+      <event>
+        <text>You power on your weapons and attack the ship.</text>
+        <ship hostile="true" />
+      </event>
+    </choice>
+    <choice>
+      <text>Leave.</text>
+      <event>
+        <text>You won't do the harmony's bidding for no reason, you leave.</text>
+      </event>
+    </choice>
+  </event>
+
+  <ship name="MU_RAD_ENGIZOLTON" auto_blueprint="MU_RAD_ENGIZOLTON">
+    <destroyed load="DESTROYED_RAD_ENGIFINAL"/>
+    <deadCrew load="DEAD_CREW_RAD_ENGIFINAL"/>
+  </ship>
+
+  <event name="DESTROYED_RAD_ENGIFINAL">
+    <text>You've destroyed the zoltan-engi ship. You send out a message to the scientists letting them know you've recovered the ship.</text>
+    <autoReward level="MED">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_SUPERGUN_8" />
+    </choice>
+  </event>
+
+  <event name="DEAD_CREW_RAD_ENGIFINAL">
+    <text>You've killed the crew of the zoltan-engi ship. You send out a message to the scientists letting them know you've recovered the ship.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_SUPERGUN_8" />
+    </choice>
+  </event>
+
+  <event name="RAD_SUPERGUN_7">
+    <text>You arrive at the beacon, and imidietly notice an odd looking engi ship. You scan it and discover it's the stolen ship, the ship appears to be offline, you can see drones working on it.
+However next to the ship is another one of the zoltan manned engi ships, it looks like you're going to have to take it out in order to recover the ship.
+    </text>
+    <ship load="MU_RAD_ENGIZOLTON" hostile="true" />
+    <choice>
+      <text>Power up your weapons to attack.</text>
+      <event>
+        <text>The hostile ship moves into attack.</text>
+      </event>
+    </choice>
+  </event>
+
+  <event name="RAD_SUPERGUN_8">
+    <text>After a short wait, a ship arrives, it's the scientists.
+"Excellent work captain, we managed to recover the design of the ship you destroyed, and some of the technology on it, we'll deliver it all to you and the federation as payment for your work here."
+    </text>
+    <item_modify>
+      <item type="scrap" min="30" max="50" />
+    </item_modify>
+    <weapon name="RAD_ZSGUN_3"/>
+    <augment name="ENERGY_SHIELD"/>
+    <!--metaVariable name="rad_q7" op="set" val="0"/-->
+    <unlockCustomShip silent="false">PLAYER_SHIP_RAD_FLESH_2</unlockCustomShip>
+  </event>
+
+  <event name="RAD_UNDER_1">
+    
+  </event>
+  
 </FTL>

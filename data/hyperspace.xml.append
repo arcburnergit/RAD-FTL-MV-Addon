@@ -50,14 +50,14 @@
 		<mod-append:ship>PLAYER_SHIP_RAD_STATION</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_RAD_FLESH</mod-append:ship>
 		<mod-append:ship>PLAYER_SHIP_RAD_EXPERIMENT</mod-append:ship>
-    <mod-append:ship>PLAYER_SHIP_RAD_RICH</mod-append:ship/>
+    <mod-append:ship>PLAYER_SHIP_RAD_RICH</mod-append:ship>
 		<!-- -->
 		<mod-append:empty/>
 		<mod-append:empty/>
-
 		<mod-append:empty/>
 		<mod-append:empty/>
-		<mod-append:empty/>
+    
+    <mod-append:ship>PLAYER_SHIP_RAD_HUGE</mod-append:ship>
 		<mod-append:empty/>
 
 	</mod:findLike>
@@ -74,25 +74,70 @@
     <unlock variant="c" silent="false">
       <type>1</type>
       <shipReq>PLAYER_SHIP_RAD_STATION</shipReq>
+      <value>5</value>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
       <shipReq>PLAYER_SHIP_RAD_STATION_2</shipReq>
       <value>5</value>
     </unlock>
 	</mod-append:ship>
-	<mod-append:ship name="PLAYER_SHIP_RAD_FLESH" b="false" c="false" >
+	<mod-append:ship name="PLAYER_SHIP_RAD_FLESH" b="true" c="true" >
 		<unlock variant="a" silent="false">
 			<type>4</type>
 		</unlock>
+    <unlock variant="b" silent="false">
+      <type>4</type>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_FLESH</shipReq>
+      <value>5</value>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_FLESH_2</shipReq>
+      <value>5</value>
+    </unlock>
 	</mod-append:ship>
-	<mod-append:ship name="PLAYER_SHIP_RAD_EXPERIMENT" b="false" c="false" >
+	<mod-append:ship name="PLAYER_SHIP_RAD_EXPERIMENT" b="true" c="true" >
 		<unlock variant="a" silent="false">
 			<type>4</type>
 		</unlock>
+    <unlock variant="b" silent="false">
+      <type>4</type>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_EXPERIMENT</shipReq>
+      <value>5</value>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_EXPERIMENT_2</shipReq>
+      <value>5</value>
+    </unlock>
 	</mod-append:ship>
-  <mod-append:ship name="PLAYER_SHIP_RAD_RICH" b="true" c="false" >
+  <mod-append:ship name="PLAYER_SHIP_RAD_RICH" b="true" c="true" >
     <unlock variant="a" silent="false">
       <type>4</type>
     </unlock>
     <unlock variant="b" silent="false">
+      <type>4</type>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_STATION</shipReq>
+      <value>5</value>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_STATION_2</shipReq>
+      <value>5</value>
+    </unlock>
+  </mod-append:ship>
+  <mod-append:ship name="PLAYER_SHIP_RAD_HUGE" b="false" c="false">
+    <unlock variant="a" silent="false">
       <type>4</type>
     </unlock>
   </mod-append:ship>
@@ -118,11 +163,24 @@
 	<mod-append:customShip name="PLAYER_SHIP_RAD_FLESH">
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 	</mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_FLESH_2">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_FLESH_3">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
 	
 	<mod-append:customShip name="PLAYER_SHIP_RAD_EXPERIMENT">
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 	</mod-append:customShip>
-  
+  <mod-append:customShip name="PLAYER_SHIP_RAD_EXPERIMENT_2">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_EXPERIMENT_3">
+    <crewLimit>12</crewLimit>
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+
   <mod-append:customShip name="PLAYER_SHIP_RAD_RICH">
     <customReactor maxLevel="30" />
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
@@ -138,6 +196,21 @@
     <crewLimit>11</crewLimit>
     <systemLimit>10</systemLimit>
   </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_RICH_3">
+    <customReactor maxLevel="30" />
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <crewLimit>11</crewLimit>
+    <crew>
+      <slug_clansman room="0" name="Reginald" />
+    </crew>
+    <systemLimit>10</systemLimit>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_HUGE">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <crewLimit>2</crewLimit>
+    <systemLimit>10</systemLimit>
+  </mod-append:customShip>
+
 
   <mod-append:customShip name="MU_RAD_RICHSON">
     <noJump/>
@@ -189,6 +262,32 @@
 	<aug name="FLESH_HULL">
     	<locked />
 	</aug>
+  <aug name="RAD_SMALL">
+    <locked />
+    <function name="ROCK_ARMOR" value="0.5" useForReqs="false"/>
+    <function name="SYSTEM_CASING" value="0.5" useForReqs="true"/>
+    <function name="AUTO_COOLDOWN" value="0.5" useForReqs="false" warning="false" />
+  </aug>
+  <aug name="RAD_ZS_CHARGE">
+    <function name="SHIELD_RECHARGE" value="-1" useForReqs="false" />
+    <superShield>
+      <add>1</add>
+      <color r="0" g="200" b="6" a="0.6" />
+      <shieldImage>ship/enemy_shields_white.png</shieldImage>
+    </superShield>
+    <locked />
+  </aug>
+  <aug name="RAD_ZS_UNDER">
+    <superShield>
+      <add>7</add>
+      <color r="240" g="125" b="55" a="0.8" />
+      <shieldImage>ship/enemy_shields_white.png</shieldImage>
+    </superShield>
+    <!--locked /-->
+  </aug>
+  <aug name="RAD_SCRAM">
+    <locked />
+  </aug>
 	<aug name="TELE_EVAC">
 		<locked />
 		<statBoosts>
@@ -257,7 +356,14 @@
 	<metaVariable name="trc_rock" op="set" val="0"/>
 	<metaVariable name="trc_lanius" op="set" val="0"/>
 	<metaVariable name="trc_probe" op="set" val="0"/>-->
-	
+
+  <metaVariable name="rad_q1" op="set" val="1"/>
+  <metaVariable name="rad_q2" op="set" val="1"/>
+  <metaVariable name="rad_q3" op="set" val="1"/>
+  <metaVariable name="rad_q4" op="set" val="1"/>
+  <metaVariable name="rad_q5" op="set" val="1"/>
+  <metaVariable name="rad_q6" op="set" val="1"/>
+  
 	<variable name="rad_flesh_rescue" op="set" val="1"/>
 	
 	<variable name="rad_flesh_quest" op="set" val="1"/>
@@ -277,7 +383,7 @@
 </events>
 
 <store>
-	<customStore id="STORE_RADLAB ">
+	<customStore id="STORE_RADLAB">
 		<resource>
 		  <type>drones</type>
 		  <count min="4" max="7"/>

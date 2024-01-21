@@ -449,4 +449,53 @@
     <aug name="BACKUP_DNA" />
     <aug name="O2_MASKS" />
   </shipBlueprint>
+
+
+  <shipBlueprint name="MU_RAD_ENGIZOL" layout="mu_rad_engizol1" img="mu_rad_engizol1">
+    <class>Engi Enforcer?</class>
+    <systemList>
+      <cloaking power="1" max="1" room="11" start="false" />
+      <doors power="1" max="3" room="3" start="false" />
+      <drones power="2" max="6" room="5" start="true" />
+      <engines power="1" max="2" room="7" start="true" />
+      <medbay power="1" max="2" room="6" start="false" />
+      <oxygen power="1" max="2" room="1" start="true" />
+      <pilot power="1" max="2" room="0" start="true" />
+      <shields power="2" max="8" room="9" start="true" />
+      <weapons power="2" max="8" room="10" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="10" count="4" load="LIST_LOOT_ZOLTAN" />
+    <droneList drones="10" count="2" load="LIST_DRONES_MONK" />
+    <health amount="12" />
+    <maxPower amount="10" />
+    <crewCount amount="3" max="7" class="energy" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="ENERGY_SHIELD" />
+  </shipBlueprint>
+
+  <shipBlueprint name="MU_RAD_ENGIZOLTON" layout="mu_rad_engizol2" img="mu_rad_engizol2">
+    <class>Engi Ship???</class>
+    <systemList>
+      <cloaking power="1" max="2" room="2" start="false" />
+      <drones power="2" max="6" room="8" start="true" />
+      <engines power="1" max="2" room="7" start="true" />
+      <hacking power="1" max="1" room="10" start="false" />
+      <medbay power="1" max="1" room="6" start="true" />
+      <oxygen power="1" max="1" room="11" start="true" />
+      <pilot power="1" max="2" room="0" start="true" />
+      <shields power="2" max="6" room="3" start="true" />
+      <weapons power="3" max="8" room="1" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="10" count="4" load="LIST_WEAPONS_ZOLTAN" />
+    <droneList drones="8" count="2" load="LIST_DRONES_MONK" />
+    <health amount="20" />
+    <maxPower amount="20" />
+    <crewCount amount="4" max="8" class="zoltan" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="RAD_ZS_CHARGE" />
+  </shipBlueprint>
 </FTL>

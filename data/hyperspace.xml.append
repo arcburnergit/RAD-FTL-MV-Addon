@@ -377,6 +377,8 @@
   <metaVariable name="rad_q4" op="set" val="1"/>
   <metaVariable name="rad_q5" op="set" val="1"/>
   <metaVariable name="rad_q6" op="set" val="1"/>
+  <metaVariable name="rad_q7" op="set" val="1"/>
+  <metaVariable name="rad_q8" op="set" val="1"/>
   
 	<variable name="rad_flesh_rescue" op="set" val="1"/>
 	

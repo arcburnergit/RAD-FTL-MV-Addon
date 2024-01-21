@@ -1869,7 +1869,7 @@ Weapons charge 50% faster.</desc>
     <class>Combat Shuttle</class>
     <name>H.U.G.E</name>
     <unlock id="ship_PLAYER_SHIP_RAD_HUGE_unlock"/>
-    <desc>This ship is completely devoid of any description whatsoever!</desc>
+    <desc>This ship may just break the game, so be prepared for the run to just break.</desc>
     <systemList>
       <battery power="1" room="1" start="false" img="room_battery_5" />
       <cloaking power="1" room="0" start="false" img="room_cloaking_10" />

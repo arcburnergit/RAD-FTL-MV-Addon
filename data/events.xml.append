@@ -82,6 +82,14 @@
             <text>You'll help. [Uncompleted Quest]</text>
             <event load="RAD_MONEY_1" />
           </choice>
+          <choice hidden="true" req="rad_q7" max_group="4">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_SUPERGUN_1" />
+          </choice>
+          <choice hidden="true" req="rad_q8" max_group="4">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_UNDER_1" />
+          </choice>
 					<choice hidden="true">
 						<text>Sounds risky. Just shop.</text>
 						<event>
@@ -1541,7 +1549,7 @@ However next to the ship is another one of the zoltan manned engi ships, it look
     </item_modify>
     <weapon name="RAD_ZSGUN_3"/>
     <augment name="ENERGY_SHIELD"/>
-    <!--metaVariable name="rad_q7" op="set" val="0"/-->
+    <metaVariable name="rad_q7" op="set" val="0"/>
     <unlockCustomShip silent="false">PLAYER_SHIP_RAD_FLESH_2</unlockCustomShip>
   </event>
 
@@ -1609,7 +1617,8 @@ It seems the mercs just noticed you, they shut off their communications and are 
 The ship explodes.
 A few moments later the drone emerges from the debris and delivers you a augment, it appears it has extracted the super shield from the ship.
 You recieve a transmission. "We've taken the liberty of paying you with the super shield from the test ship, we've also sent along the design we made for the mercenaries to the federation, we have no use of it now."</text>
-    <augment name="ENERGY_SHIELD"/>
+    <augment name="RAD_ZS_UNDER"/>
+    <metaVariable name="rad_q8" op="set" val="0"/>
     <unlockCustomShip silent="false">PLAYER_SHIP_RAD_EXPERIMENT_2</unlockCustomShip>
   </event>
   

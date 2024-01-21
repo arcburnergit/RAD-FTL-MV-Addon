@@ -138,7 +138,21 @@
   </mod-append:ship>
   <mod-append:ship name="PLAYER_SHIP_RAD_HUGE" b="false" c="false">
     <unlock variant="a" silent="false">
-      <type>4</type>
+      <type>3</type>
+      <otherUnlocks>
+        <ship>PLAYER_SHIP_RAD_STATION</ship>
+        <ship>PLAYER_SHIP_RAD_FLESH</ship>
+        <ship>PLAYER_SHIP_RAD_EXPERIMENT</ship>
+        <ship>PLAYER_SHIP_RAD_RICH</ship>
+        <ship>PLAYER_SHIP_RAD_STATION_2</ship>
+        <ship>PLAYER_SHIP_RAD_FLESH_2</ship>
+        <ship>PLAYER_SHIP_RAD_EXPERIMENT_2</ship>
+        <ship>PLAYER_SHIP_RAD_RICH_2</ship>
+        <ship>PLAYER_SHIP_RAD_STATION_3</ship>
+        <ship>PLAYER_SHIP_RAD_FLESH_3</ship>
+        <ship>PLAYER_SHIP_RAD_EXPERIMENT_3</ship>
+        <ship>PLAYER_SHIP_RAD_RICH_3</ship>
+      </otherUnlocks>
     </unlock>
   </mod-append:ship>
 	

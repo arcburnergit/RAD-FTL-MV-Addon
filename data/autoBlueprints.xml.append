@@ -16,7 +16,11 @@
   <mod-append:name>RAD_LASER_SMART</mod-append:name>
   <mod-append:name>RAD_SDRAIN</mod-append:name>
   <mod-append:name>RAD_ZSGUN_3</mod-append:name>
+  <mod-append:name>RAD_ZSGUN_2</mod-append:name>
   <mod-append:name>RAD_ZSGUN_1</mod-append:name>
+  <mod-append:name>RAD_LIGHTNING_3</mod-append:name>
+  <mod-append:name>RAD_LIGHTNING_2</mod-append:name>
+  <mod-append:name>RAD_LIGHTNING_1</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_WEAPONS_ALL_CRAPBUCKET">
 	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
@@ -34,7 +38,11 @@
   <mod-append:name>RAD_LASER_SMART</mod-append:name>
   <mod-append:name>RAD_SDRAIN</mod-append:name>
   <mod-append:name>RAD_ZSGUN_3</mod-append:name>
+  <mod-append:name>RAD_ZSGUN_2</mod-append:name>
   <mod-append:name>RAD_ZSGUN_1</mod-append:name>
+  <mod-append:name>RAD_LIGHTNING_3</mod-append:name>
+  <mod-append:name>RAD_LIGHTNING_2</mod-append:name>
+  <mod-append:name>RAD_LIGHTNING_1</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="LIST_DRONES_ALL">
@@ -82,6 +90,10 @@
 	<mod-append:name>RAD_CLUSTER_MISSILE_2</mod-append:name>
 </mod:findName>
 
+<mod:findName type="blueprintList" name="LIST_CREW_GHOST">
+  <mod-append:name>phantom_experiment_alpha</mod-append:name>
+</mod:findName>
+
 
 <blueprintList name="LABRATORY_WEAPONS">
 	<name>RAD_ABDUCTOR</name>
@@ -93,8 +105,10 @@
 	<name>RAD_LIGHT_BEAM</name>
   <name>RAD_ZSGUN_1</name>
   <name>RAD_SDRAIN</name>
-  <name>RAD_ZSGUN_1</name>
-  <name>RAD_ZSGUN_1</name>
+  <name>RAD_ZSGUN_2</name>
+  <name>RAD_LIGHTNING_3</name>
+  <name>RAD_LIGHTNING_2</name>
+  <name>RAD_LIGHTNING_1</name>
 </blueprintList>
 
 <!--STATION-->
@@ -486,7 +500,7 @@
     <droneList drones="10" count="2" load="LIST_DRONES_MONK" />
     <health amount="12" />
     <maxPower amount="10" />
-    <crewCount amount="3" max="7" class="energy" />
+    <crewCount amount="3" max="7" class="zoltan" />
     <boardingAI>sabotage</boardingAI>
     <aug name="ENERGY_SHIELD" />
   </shipBlueprint>

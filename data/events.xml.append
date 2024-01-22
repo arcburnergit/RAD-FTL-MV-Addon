@@ -33,8 +33,6 @@
 	</beaconType>
 	<preventFleet />
 	<quest>
-		<nebulaBeacon>false</nebulaBeacon>
-		<createNebula>false</createNebula>
 		<nextSector>true</nextSector>
 		<aggressive>2</aggressive>
 	</quest>
@@ -58,37 +56,41 @@
 						<text>You'll help. [Random Quest]</text>
 						<event load="RAD_LAB_QUEST_LIST"/>
 					</choice>
-          <choice hidden="true" req="rad_q1" max_group="4">
+          <choice hidden="true" req="rad_q8" max_group="1">
+            <text>All quests complete.</text>
+            <event load="OPTION_INVALID" />
+          </choice>
+          <choice hidden="true" req="rad_q7" max_group="1">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_UNDER_1"/>
+          </choice>
+          <choice hidden="true" req="rad_q6" max_group="1">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_SUPERGUN_1"/>
+          </choice>
+          <choice hidden="true" req="rad_q5" max_group="1">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_MONEY_1"/>
+          </choice>
+          <choice hidden="true" req="rad_q4" max_group="1">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_MONEY_1" />
+          </choice>
+          <choice hidden="true" req="rad_q3" max_group="1">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_LAB_FLESH_1" />
+          </choice>
+          <choice hidden="true" req="rad_q2" max_group="1">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_LAB_ROGUE_1" />
+          </choice>
+          <choice hidden="true" req="rad_q1" max_group="1">
+            <text>You'll help. [Uncompleted Quest]</text>
+            <event load="RAD_LAB_GHOST_1" />
+          </choice>
+          <choice hidden="true" req="pilot" lvl="1" max_group="1">
             <text>You'll help. [Uncompleted Quest]</text>
             <event load="RAD_LAB_QUEST_1" />
-          </choice>
-          <choice hidden="true" req="rad_q2" max_group="4">
-            <text>You'll help. [Uncompleted Quest]</text>
-            <event load="RAD_LAB_GHOST_1"/>
-          </choice>
-          <choice hidden="true" req="rad_q3" max_group="4">
-            <text>You'll help. [Uncompleted Quest]</text>
-            <event load="RAD_LAB_ROGUE_1"/>
-          </choice>
-          <choice hidden="true" req="rad_q4" max_group="4">
-            <text>You'll help. [Uncompleted Quest]</text>
-            <event load="RAD_LAB_FLESH_1"/>
-          </choice>
-          <choice hidden="true" req="rad_q5" max_group="4">
-            <text>You'll help. [Uncompleted Quest]</text>
-            <event load="RAD_MONEY_1" />
-          </choice>
-          <choice hidden="true" req="rad_q6" max_group="4">
-            <text>You'll help. [Uncompleted Quest]</text>
-            <event load="RAD_MONEY_1" />
-          </choice>
-          <choice hidden="true" req="rad_q7" max_group="4">
-            <text>You'll help. [Uncompleted Quest]</text>
-            <event load="RAD_SUPERGUN_1" />
-          </choice>
-          <choice hidden="true" req="rad_q8" max_group="4">
-            <text>You'll help. [Uncompleted Quest]</text>
-            <event load="RAD_UNDER_1" />
           </choice>
 					<choice hidden="true">
 						<text>Sounds risky. Just shop.</text>
@@ -429,7 +431,7 @@
 			<text>The scientists also transport over a high amount of scrap, and one of their most advanced weapons!</text>
 			<autoReward level="HIGH">standard</autoReward>
 			<weapon name="RAD_JAILERBEAM_PLAYER"/>
-      <metaVariable name="rad_q1" op="set" val="0"/>
+      <metaVariable name="rad_q1" op="set" val="1"/>
 			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION</unlockCustomShip>
 			<!--Unlock Cruiser at some point here-->
 		</event>
@@ -655,7 +657,7 @@
 	<choice hidden="true">
 		<text>Hail them.</text>
 		<event>
-      <metaVariable name="rad_q2" op="set" val="0"/>
+      <metaVariable name="rad_q2" op="set" val="1"/>
 			<text>A some what well armed scientist picks up, "Excellent job, Renegade. Transfer the entity over to me and we'll deliver your payment."
 			
 			The entity in question comes into the room. "Don't give me over to them! They did this to me! They turned me into this hot, flaming mess! It's torture!" the entity proclaims.</text>
@@ -714,7 +716,7 @@
 	You manage to recover one of the drones from the wreckage.</text>
 	<autoReward level="MED">standard</autoReward>
 	<drone name="RAD_REPULSOR"/>
-  <metaVariable name="rad_q3" op="set" val="0"/>
+  <metaVariable name="rad_q3" op="set" val="1"/>
 	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION_2</unlockCustomShip>
 </event>
 
@@ -731,7 +733,7 @@
 			<text>A short while later a science ship comes to collect the vessel you recovered.
 			The ship drops off a weapon for you as payment.</text>
 			<weapon name="RAD_BEAM_BURST_3"/> <!-- Make this a beam burst 3 at some point-->
-      <metaVariable name="rad_q3" op="set" val="0"/>
+      <metaVariable name="rad_q3" op="set" val="1"/>
 			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION_2</unlockCustomShip>
 		</event>
 	</choice>
@@ -1099,7 +1101,7 @@
 	<item_modify>
 		<item type="scrap" min="53" max="67" />
 	</item_modify>
-  <metaVariable name="rad_q4" op="set" val="0"/>
+  <metaVariable name="rad_q4" op="set" val="1"/>
 	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_FLESH</unlockCustomShip>
 </event>
 
@@ -1336,7 +1338,7 @@
     
     "Excellent job Renegade, we won't question why you came, we're just glad you were able to help.
     We've transfered some scrap up to you, additionally we've sent off our old training cruiser to the federation, it seems like it'll do them more good than it has done us."</text>
-    <metaVariable name="rad_q6" op="set" val="0"/>
+    <metaVariable name="rad_q6" op="set" val="1"/>
     <item_modify>
       <item type="scrap" min="100" max="100" />
     </item_modify>
@@ -1353,7 +1355,7 @@
           <item type="scrap" min="100" max="100" />
         </item_modify>
         <text>You download the blueprints to his old cruiser before scraping it.</text>
-        <metaVariable name="rad_q5" op="set" val="0"/>
+        <metaVariable name="rad_q5" op="set" val="1"/>
         <unlockCustomShip silent="false">PLAYER_SHIP_RAD_RICH</unlockCustomShip>
       </event>
     </choice>
@@ -1364,7 +1366,7 @@
           <item type="scrap" min="100" max="100" />
         </item_modify>
         <text>Reginald agrees, You download the blueprints to his old cruiser before scraping it.</text>
-        <metaVariable name="rad_q5" op="set" val="0"/>
+        <metaVariable name="rad_q5" op="set" val="1"/>
         <unlockCustomShip silent="false">PLAYER_SHIP_RAD_RICH</unlockCustomShip>
       </event>
     </choice>
@@ -1444,9 +1446,7 @@ It appears to be an engi ship, but it has been painted weird colours.
                     <ship load="MU_RAD_ENGIZOL" hostile="true" />
                     <choice hidden="true" max_group="1" blue="false">
                       <text>Continue...</text>
-                      <event>
-                        <text>You prepare to fight the odd ship.</text>
-                      </event>
+                      <event load="COMBAT_CHECK" />
                     </choice>
                   </event>
                 </choice>
@@ -1494,6 +1494,10 @@ You could attack the ship, they might have something to do with the missing ship
       <event>
         <text>You power on your weapons and attack the ship.</text>
         <ship hostile="true" />
+        <choice>
+          <text>Continue...</text>
+          <event load="COMBAT_CHECK" />
+        </choice>
       </event>
     </choice>
     <choice>
@@ -1534,9 +1538,7 @@ However next to the ship is another one of the zoltan manned engi ships, it look
     <ship load="MU_RAD_ENGIZOLTON" hostile="true" />
     <choice>
       <text>Power up your weapons to attack.</text>
-      <event>
-        <text>The hostile ship moves into attack.</text>
-      </event>
+      <event load="COMBAT_CHECK" />
     </choice>
   </event>
 
@@ -1549,7 +1551,7 @@ However next to the ship is another one of the zoltan manned engi ships, it look
     </item_modify>
     <weapon name="RAD_ZSGUN_3"/>
     <augment name="ENERGY_SHIELD"/>
-    <metaVariable name="rad_q7" op="set" val="0"/>
+    <metaVariable name="rad_q7" op="set" val="1"/>
     <unlockCustomShip silent="false">PLAYER_SHIP_RAD_FLESH_2</unlockCustomShip>
   </event>
 
@@ -1606,9 +1608,7 @@ It seems the mercs just noticed you, they shut off their communications and are 
     <ship load="MU_RAD_UNDERAIDER" hostile="true" />
     <choice>
       <text>Power up your own weapons.</text>
-      <event>
-        <text>Prepare to fight.</text>
-      </event>
+      <event load="COMBAT_CHECK" />
     </choice>
   </event>
 
@@ -1618,7 +1618,7 @@ The ship explodes.
 A few moments later the drone emerges from the debris and delivers you a augment, it appears it has extracted the super shield from the ship.
 You recieve a transmission. "We've taken the liberty of paying you with the super shield from the test ship, we've also sent along the design we made for the mercenaries to the federation, we have no use of it now."</text>
     <augment name="RAD_ZS_UNDER"/>
-    <metaVariable name="rad_q8" op="set" val="0"/>
+    <metaVariable name="rad_q8" op="set" val="1"/>
     <unlockCustomShip silent="false">PLAYER_SHIP_RAD_EXPERIMENT_2</unlockCustomShip>
   </event>
   

@@ -1152,7 +1152,7 @@
 
 <shipBlueprint name="PLAYER_SHIP_RAD_FLESH" layout="radp_flesh_cruisera" img="radp_flesh_cruisera">
 	<class>Flesh Cruiser</class>
-	<name>Not for human consumption</name>
+	<name>Do NOT eat</name>
 	<unlock id="ship_PLAYER_SHIP_RAD_FLESH_unlock"/>
 	<desc>Someone really should have stopped this from coming into existence.&#xD;
 The meaty exterior isn't very strong, but repairs itself quickly. You'll have to pay attention in order to not overstress the flesh and destroy the hull.</desc>
@@ -1562,6 +1562,7 @@ This is becuase the systems are designed for low skill crew members, and so high
     <class>Yacht Class Cruiser</class>
     <name>Solaris</name>
     <desc>A rather expensive ship, with one expensive captain. As the son of a rich tycoon, this captain has access to unlimited funds, and thusly decided not to install anyway to collect scrap during his travels, However his card has a monthly withdrawal limit...</desc>
+    <unlock id="ship_PLAYER_SHIP_RAD_RICH_unlock"/>
     <systemList>
       <battery power="1" max="3" room="14" start="false" img="room_battery_13" />
       <cloaking power="1" room="12" start="false" img="room_cloaking" />
@@ -1710,6 +1711,7 @@ This is becuase the systems are designed for low skill crew members, and so high
     <class>Yacht Class Cruiser</class>
     <name>Trainer One</name>
     <desc>At one point this ship would have been considered quite elegant, but over the years it has been modified and repaired into a more useful state. The ship is designed as a training platform, and as such doesn't require very high skilled crew members to function.</desc>
+    <unlock id="ship_PLAYER_SHIP_RAD_POOR_unlock"/>
     <systemList>
       <battery power="1" room="12" start="false" img="room_battery_13" />
       <cloaking power="1" room="10" start="false" img="room_cloaking" />
@@ -2349,18 +2351,18 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <rarity>0</rarity>
   </weaponBlueprint>
 
-  <weaponBlueprint name="RAD_ZSGUN_1">
+  <weaponBlueprint name="RAD_ZSGUN_2">
     <type>LASER</type>
     <title>Super Shield Mk2</title>
     <short>Shield II</short>
-    <desc>This weapon won't do much to an enemy ship, but it will recharge an energy shield layers every time it charges and fires. </desc>
-    <tooltip>Generates a Zoltan Shield Layer.</tooltip>
+    <desc>This weapon won't do much to an enemy ship, but it will recharge 2 energy shield layers every time it charges and fires. </desc>
+    <tooltip>Generates 2 Zoltan Shield Layers.</tooltip>
     <damage>0</damage>
     <shots>1</shots>
     <sp>0</sp>
     <fireChance>0</fireChance>
     <breachChance>0</breachChance>
-    <cooldown>30</cooldown>
+    <cooldown>20</cooldown>
     <power>2</power>
     <cost>50</cost>
     <bp>4</bp>
@@ -2384,6 +2386,197 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <weaponArt>rad_zsgun_2</weaponArt>
     <iconImage>laser</iconImage>
     <rarity>5</rarity>
+  </weaponBlueprint>
+  
+  <weaponBlueprint name="RAD_ZSGUN_1">
+    <type>LASER</type>
+    <title>Super Shield Mk1</title>
+    <short>Shield I</short>
+    <desc>This weapon won't do much to an enemy ship, but it will recharge an energy shield layer every time it charges and fires. </desc>
+    <tooltip>Generates a Zoltan Shield Layer.</tooltip>
+    <damage>0</damage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>20</cooldown>
+    <power>1</power>
+    <cost>30</cost>
+    <bp>4</bp>
+    <image>laser_burst</image>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <!--FIXME: replace with shield generation sound or smthin-->
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_zsgun_1</weaponArt>
+    <iconImage>laser</iconImage>
+    <rarity>5</rarity>
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_LIGHTNING_BEAM">
+    <type>BEAM</type>
+    <tip>tip_focus</tip>
+    <title>Lightning Beam Projectile</title>
+    <short>Lightning Beam Projectile</short>
+    <desc>YOU SOULD NEVER SEE THIS</desc>
+    <tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
+    <damage>0</damage>
+    <sysDamage>0</sysDamage>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>1</cooldown>
+    <speed>1</speed>
+    <length>1</length>
+    <power>1</power>
+    <cost>45</cost>
+    <bp>2</bp>
+    <rarity>0</rarity>
+    <color>
+      <r>220</r>
+      <g>220</g>
+      <b>220</b>
+    </color>
+    <image>beam_contact</image>
+    <launchSounds>
+      <sound>ra_focusbeam1</sound> <!--FIXME MAKE LIGHTNING SOUND-->
+      <sound>ra_focusbeam2</sound>
+      <sound>ra_focusbeam3</sound>
+    </launchSounds>
+    <weaponArt>beam_burst_1</weaponArt>	
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_LIGHTNING_1">
+    <type>LASER</type>
+    <title>Tesla Cannon Mk1</title>
+    <short>Tesla I</short>
+    <tip>tip_lightning</tip>
+    <desc>Lightning weapons chain to an adjacent rooms 2 times.</desc>
+    <tooltip>Deals 3 system damage across 3 rooms.</tooltip>
+    <damage>0</damage>
+    <sysDamage>1</sysDamage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>18</cooldown>
+    <power>1</power>
+    <cost>50</cost>
+    <bp>2</bp>
+    <rarity>5</rarity>
+    <image>laser_hull</image>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <sound>lightLaser2</sound>
+      <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_lightning_1</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
+  
+  <weaponBlueprint name="RAD_LIGHTNING_2">
+    <type>LASER</type>
+    <title>Tesla Cannon Mk2</title>
+    <short>Tesla II</short>
+    <tip>tip_lightning</tip>
+    <desc>Lightning weapons chain to an adjacent rooms 2 times.</desc>
+    <tooltip>deals 3 total damage across 3 rooms.</tooltip>
+    <damage>1</damage>
+    <sysDamage>0</sysDamage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>18</cooldown>
+    <power>2</power>
+    <cost>60</cost>
+    <bp>2</bp>
+    <rarity>5</rarity>
+    <image>laser_hull</image>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <sound>lightLaser2</sound>
+      <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_lightning_2</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_LIGHTNING_3">
+    <type>LASER</type>
+    <title>Tesla Cannon Mk3</title>
+    <short>Tesla III</short>
+    <tip>tip_lightning</tip>
+    <desc>Lightning weapons chain to an adjacent rooms 2 times.</desc>
+    <tooltip>Deals 6 total damage across 3 rooms.</tooltip>
+    <damage>2</damage>
+    <sysDamage>0</sysDamage>
+    <ion>1</ion>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>20</cooldown>
+    <power>4</power>
+    <cost>70</cost>
+    <bp>2</bp>
+    <rarity>5</rarity>
+    <image>laser_hull</image>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <sound>lightLaser2</sound>
+      <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_lightning_3</weaponArt>
+    <iconImage>laser</iconImage>
   </weaponBlueprint>
 
 </FTL>

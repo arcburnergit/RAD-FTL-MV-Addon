@@ -12,6 +12,8 @@
 <text name="map_icon_rad_pulsar">PULSAR</text>  
 <text name="map_icon_rad_link">LINK [QUEST]</text>
 <text name="map_icon_rad_under">STOLEN SHIP</text>
+  
+<text name="tip_lightning">Lightning Weapons jump to an adjacent room, and deal the same damage again. They repeat this again after the first jump.</text>
 
 <text name="rad_tip_focus_burst">Tip: Burst pinpoint beams trade the high damage of most pinpoints for a burst of multiple consecutive low power beams, allowing for a shorter charge time when compared with normal pinpoint beams.</text>
 

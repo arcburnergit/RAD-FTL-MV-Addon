@@ -371,14 +371,14 @@
 	<metaVariable name="trc_lanius" op="set" val="0"/>
 	<metaVariable name="trc_probe" op="set" val="0"/>-->
 
-  <metaVariable name="rad_q1" op="set" val="1"/>
-  <metaVariable name="rad_q2" op="set" val="1"/>
-  <metaVariable name="rad_q3" op="set" val="1"/>
-  <metaVariable name="rad_q4" op="set" val="1"/>
-  <metaVariable name="rad_q5" op="set" val="1"/>
-  <metaVariable name="rad_q6" op="set" val="1"/>
-  <metaVariable name="rad_q7" op="set" val="1"/>
-  <metaVariable name="rad_q8" op="set" val="1"/>
+  <metaVariable name="rad_q1" op="set" val="0"/>
+  <metaVariable name="rad_q2" op="set" val="0"/>
+  <metaVariable name="rad_q3" op="set" val="0"/>
+  <metaVariable name="rad_q4" op="set" val="0"/>
+  <metaVariable name="rad_q5" op="set" val="0"/>
+  <metaVariable name="rad_q6" op="set" val="0"/>
+  <metaVariable name="rad_q7" op="set" val="0"/>
+  <metaVariable name="rad_q8" op="set" val="0"/>
   
 	<variable name="rad_flesh_rescue" op="set" val="1"/>
 	

@@ -410,21 +410,35 @@
 		  <count min="2" max="5"/>
           <price>-1</price>
 		</resource>
-        <itemPurchaseLimit>2</itemPurchaseLimit>
+      <itemPurchaseLimit>2</itemPurchaseLimit>
 		<category type="WEAPONS">
 			<item>
-                <blueprint>LABRATORY_WEAPONS</blueprint>
-                <price>-1</price>
-            </item>    
-            <item>
-                <blueprint>LABRATORY_WEAPONS</blueprint>
-                <price>-1</price>
-            </item>    
-            <item>
-                <blueprint>LABRATORY_WEAPONS</blueprint>
-                <price>-1</price>
-            </item>    
-        </category>
+					<blueprint>LABRATORY_WEAPONS</blueprint>
+					<price>-1</price>
+			</item>    
+			<item>
+					<blueprint>LABRATORY_WEAPONS</blueprint>
+					<price>-1</price>
+			</item>    
+			<item>
+					<blueprint>LABRATORY_WEAPONS</blueprint>
+					<price>-1</price>
+			</item>    
+		</category>
+    <category type="WEAPONS">
+      <item>
+        <blueprint>LABRATORY_WEAPONS</blueprint>
+        <price>-1</price>
+      </item>
+      <item>
+        <blueprint>LABRATORY_WEAPONS</blueprint>
+        <price>-1</price>
+      </item>
+      <item>
+        <blueprint>LABRATORY_WEAPONS</blueprint>
+        <price>-1</price>
+      </item>
+    </category>
     </customStore>
 </store>
 	

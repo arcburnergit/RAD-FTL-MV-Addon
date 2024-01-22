@@ -71,7 +71,7 @@
 	<power>2</power>
 	<cost>50</cost>
 	<bp>2</bp>
-	<rarity>3</rarity>
+	<rarity>5</rarity>
 	<image>missile_cluster</image>
 	<launchSounds>
 		<sound>smallMissile1</sound>
@@ -129,7 +129,7 @@
 	<power>3</power>
 	<cost>50</cost>
 	<bp>2</bp>
-	<rarity>4</rarity>
+	<rarity>5</rarity>
 	<image>missile_cluster</image>
 	<launchSounds>
 		<sound>smallMissile1</sound>
@@ -241,7 +241,7 @@
 	<power>1</power>
 	<cost>80</cost>
 	<bp>2</bp>
-	<rarity>4</rarity>
+	<rarity>5</rarity>
 	<color>
 		<r>20</r>
 		<g>80</g>
@@ -662,7 +662,7 @@
     <cost>45</cost>
     <bp>2</bp>
     <speed>0</speed> 
-    <rarity>4</rarity>	
+    <rarity>5</rarity>	
     <projectiles>
         <projectile count="1" fake="false">laser_burst</projectile> 
     </projectiles>
@@ -693,7 +693,7 @@
     <cost>60</cost>
     <bp>2</bp>
     <speed>0</speed> 
-    <rarity>4</rarity>	
+    <rarity>5</rarity>	
     <projectiles>
         <projectile count="1" fake="false">laser_burst</projectile>
     </projectiles>
@@ -724,7 +724,7 @@
     <cost>72</cost>
     <bp>2</bp>
     <speed>0</speed> 
-    <rarity>4</rarity>	
+    <rarity>5</rarity>	
     <projectiles>
         <projectile count="1" fake="false">laser_burst</projectile>
     </projectiles>
@@ -755,7 +755,7 @@
     <cost>72</cost>
     <bp>2</bp>
     <speed>0</speed> 
-    <rarity>4</rarity>	
+    <rarity>5</rarity>	
     <projectiles>
         <projectile count="4" fake="false">laser_burst</projectile>
     </projectiles>
@@ -797,7 +797,7 @@
 	<power>2</power>
 	<cost>80</cost>
 	<bp>4</bp>
-	<rarity>3</rarity>
+	<rarity>5</rarity>
 	<image>laser_burst</image>
 	<launchSounds>
 		<sound>lightLaser1</sound>
@@ -1450,7 +1450,7 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 	<power>2</power>
 	<cost>80</cost>
 	<bp>4</bp>
-	<rarity>3</rarity>
+	<rarity>0</rarity>
 	<image>laser_burst</image>
 	<launchSounds>
 		<sound>lightLaser1</sound>
@@ -1968,7 +1968,7 @@ Buy/Sell Price: 80~/40~
     <power>2</power>
     <cost>80</cost>
     <bp>2</bp>
-    <rarity>4</rarity>
+    <rarity>5</rarity>
     <color>
       <r>20</r>
       <g>80</g>
@@ -2328,7 +2328,6 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <power>3</power>
     <cost>80</cost>
     <bp>4</bp>
-    <rarity>0</rarity>
     <image>laser_burst</image>
     <launchSounds>
       <sound>lightLaser1</sound> <!--FIXME: replace with shield generation sound or smthin-->
@@ -2348,6 +2347,43 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <weaponArt>rad_zsgun_3</weaponArt>
     <iconImage>laser</iconImage>
     <rarity>0</rarity>
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_ZSGUN_1">
+    <type>LASER</type>
+    <title>Super Shield Mk2</title>
+    <short>Shield II</short>
+    <desc>This weapon won't do much to an enemy ship, but it will recharge an energy shield layers every time it charges and fires. </desc>
+    <tooltip>Generates a Zoltan Shield Layer.</tooltip>
+    <damage>0</damage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>30</cooldown>
+    <power>2</power>
+    <cost>50</cost>
+    <bp>4</bp>
+    <image>laser_burst</image>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+<!--FIXME: replace with shield generation sound or smthin-->
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_zsgun_2</weaponArt>
+    <iconImage>laser</iconImage>
+    <rarity>5</rarity>
   </weaponBlueprint>
 
 </FTL>

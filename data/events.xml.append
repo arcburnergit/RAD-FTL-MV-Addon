@@ -730,7 +730,7 @@
 		<event>
 			<text>A short while later a science ship comes to collect the vessel you recovered.
 			The ship drops off a weapon for you as payment.</text>
-			<weapon name="RAD_BEAM_BURST_2"/> <!-- Make this a beam burst 3 at some point-->
+			<weapon name="RAD_BEAM_BURST_3"/> <!-- Make this a beam burst 3 at some point-->
       <metaVariable name="rad_q3" op="set" val="0"/>
 			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION_2</unlockCustomShip>
 		</event>
@@ -801,10 +801,10 @@
 			</choice>
 		</event>
 	</choice>
-	<choice blue="true">
-		<text>Request the Information under [INSERT ZOLTON GIBBERISH HERE] (Zoltan Crew)</text>
+	<choice blue="true" req="zoltan">
+		<text>Request the Information under Exchange act 47-2 (Zoltan Crew)</text>
 		<event>
-			<text>After a quick scope out of the station, you identify a security guard. After a quick exchange of scrap, you recieve the information you need and return to your ship.</text>
+			<text>After a quick scope out of the station, you identify a zoltan agent. After a quick exchange of scrap, you recieve the information you need and return to your ship.</text>
 			<item_modify>
 				<item type="scrap" min="-40" max="-40" />
 			</item_modify>

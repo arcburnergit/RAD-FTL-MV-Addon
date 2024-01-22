@@ -418,5 +418,15 @@
     <firePoint x="18" y="17" />
     <mountPoint x="4" y="21" />
   </weaponAnim>
+
+  <animSheet name="rad_zsgun_2" w="456" h="28" fw="38" fh="28">weapon/rad_zsgun_2.png</animSheet>
+  <weaponAnim name="rad_zsgun_2">
+    <sheet>rad_zsgun_2</sheet>
+    <desc length="12" x="0" y="0" />
+    <chargedFrame>10</chargedFrame>
+    <fireFrame>11</fireFrame>
+    <firePoint x="21" y="9" />
+    <mountPoint x="4" y="13" />
+  </weaponAnim>
   
 </FTL>

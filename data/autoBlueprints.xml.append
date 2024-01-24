@@ -43,6 +43,8 @@
   <mod-append:name>RAD_LIGHTNING_3</mod-append:name>
   <mod-append:name>RAD_LIGHTNING_2</mod-append:name>
   <mod-append:name>RAD_LIGHTNING_1</mod-append:name>
+  <mod-append:name>RAD_LIGHTNING_ION</mod-append:name>
+  <mod-append:name>RAD_LIGHTNING_FIRE</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="LIST_DRONES_ALL">
@@ -109,6 +111,8 @@
   <name>RAD_LIGHTNING_3</name>
   <name>RAD_LIGHTNING_2</name>
   <name>RAD_LIGHTNING_1</name>
+  <name>RAD_LIGHTNING_ION</name>
+  <name>RAD_LIGHTNING_FIRE</name>
 </blueprintList>
 
 <!--STATION-->

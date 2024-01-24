@@ -468,5 +468,25 @@
     <firePoint x="21" y="17" />
     <mountPoint x="4" y="39" />
   </weaponAnim>
-  
+
+  <animSheet name="rad_lightning_ion" w="216" h="45" fw="24" fh="45">weapon_laser/rad_lightning_ion.png</animSheet>
+  <weaponAnim name="rad_lightning_ion">
+    <sheet>rad_lightning_ion</sheet>
+    <desc length="9" x="0" y="0" />
+    <chargedFrame>7</chargedFrame>
+    <fireFrame>8</fireFrame>
+    <firePoint x="16" y="16" />
+    <mountPoint x="3" y="33" />
+  </weaponAnim>
+
+  <animSheet name="rad_lightning_fire" w="260" h="46" fw="26" fh="46">weapon_laser/rad_lightning_fire.png</animSheet>
+  <weaponAnim name="rad_lightning_fire">
+    <sheet>rad_lightning_fire</sheet>
+    <desc length="10" x="0" y="0" />
+    <chargedFrame>6</chargedFrame>
+    <fireFrame>7</fireFrame>
+    <firePoint x="15" y="12" />
+    <mountPoint x="4" y="31" />
+  </weaponAnim>
+
 </FTL>

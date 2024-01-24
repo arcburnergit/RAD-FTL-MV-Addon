@@ -475,6 +475,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_PRE, function(project
 end)
 
 script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
+    
     --log("RENDERSTART")
     local slot1X = 106
     local slotY = 623
@@ -498,82 +499,84 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
     --log("before")
     --log(weaponlist[0].blueprint.name)
     --if not weaponlist[0] then return end
-    if 0 < weaponlist:size() then
-        --log("render")
-        pcall(function() weaponData = overheatWeapons[weaponlist[0].blueprint.name] end)
-        if weaponData then
-            --log("pass name check")
-            local oHTable = userdata_table(weaponlist[0], "mods.overheatweapons.shots")
-            if oHTable.oHShots then
-                if oHTable.oHShots <= 10 then
-                    local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
-                    --log(renderString)
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot1X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then
+        if 0 < weaponlist:size() then
+            --log("render")
+            pcall(function() weaponData = overheatWeapons[weaponlist[0].blueprint.name] end)
+            if weaponData then
+                --log("pass name check")
+                local oHTable = userdata_table(weaponlist[0], "mods.overheatweapons.shots")
+                if oHTable.oHShots then
+                    if oHTable.oHShots <= 10 then
+                        local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
+                        --log(renderString)
+                        Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                        --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot1X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                    end
+                elseif oHTable.oHCDown then
+                    --log("on cooldown")
+                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
-            elseif oHTable.oHCDown then
-                --log("on cooldown")
-                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
             end
         end
-    end
 
-    if 1 < weaponlist:size() then
-        --log("render")
-        pcall(function() weaponData = overheatWeapons[weaponlist[1].blueprint.name] end)
-        if weaponData then
-            --log("pass name check")
-            local oHTable = userdata_table(weaponlist[1], "mods.overheatweapons.shots")
-            if oHTable.oHShots then
-                if oHTable.oHShots <= 10 then
-                    local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
-                    --log(renderString)
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot2X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot2X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+        if 1 < weaponlist:size() then
+            --log("render")
+            pcall(function() weaponData = overheatWeapons[weaponlist[1].blueprint.name] end)
+            if weaponData then
+                --log("pass name check")
+                local oHTable = userdata_table(weaponlist[1], "mods.overheatweapons.shots")
+                if oHTable.oHShots then
+                    if oHTable.oHShots <= 10 then
+                        local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
+                        --log(renderString)
+                        Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot2X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                        --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot2X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                    end
+                elseif oHTable.oHCDown then
+                    --log("on cooldown")
+                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot2X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
-            elseif oHTable.oHCDown then
-                --log("on cooldown")
-                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot2X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
             end
         end
-    end
 
-    if 2 < weaponlist:size() then
-        --log("render")
-        pcall(function() weaponData = overheatWeapons[weaponlist[2].blueprint.name] end)
-        if weaponData then
-            --log("pass name check")
-            local oHTable = userdata_table(weaponlist[2], "mods.overheatweapons.shots")
-            if oHTable.oHShots then
-                if oHTable.oHShots <= 10 then
-                    local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
-                    --log(renderString)
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+        if 2 < weaponlist:size() then
+            --log("render")
+            pcall(function() weaponData = overheatWeapons[weaponlist[2].blueprint.name] end)
+            if weaponData then
+                --log("pass name check")
+                local oHTable = userdata_table(weaponlist[2], "mods.overheatweapons.shots")
+                if oHTable.oHShots then
+                    if oHTable.oHShots <= 10 then
+                        local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
+                        --log(renderString)
+                        Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                        --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                    end
+                elseif oHTable.oHCDown then
+                    --log("on cooldown")
+                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
-            elseif oHTable.oHCDown then
-                --log("on cooldown")
-                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
             end
         end
-    end
 
-    if 3 < weaponlist:size() then
-        --log("render")
-        pcall(function() weaponData = overheatWeapons[weaponlist[3].blueprint.name] end)
-        if weaponData then
-            --log("pass name check")
-            local oHTable = userdata_table(weaponlist[3], "mods.overheatweapons.shots")
-            if oHTable.oHShots then
-                if oHTable.oHShots <= 10 then
-                    local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
-                    --log(renderString)
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+        if 3 < weaponlist:size() then
+            --log("render")
+            pcall(function() weaponData = overheatWeapons[weaponlist[3].blueprint.name] end)
+            if weaponData then
+                --log("pass name check")
+                local oHTable = userdata_table(weaponlist[3], "mods.overheatweapons.shots")
+                if oHTable.oHShots then
+                    if oHTable.oHShots <= 10 then
+                        local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
+                        --log(renderString)
+                        Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                        --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+                    end
+                elseif oHTable.oHCDown then
+                    --log("on cooldown")
+                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
                 end
-            elseif oHTable.oHCDown then
-                --log("on cooldown")
-                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
             end
         end
     end
@@ -784,8 +787,11 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
         local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
         local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2)
-
-        local spaceDrones = otherShip.spaceDrones
+        local spaceDrones = nil
+        if otherShip:HasSystem(4) then
+            log("Has drone system")
+            spaceDrones = otherShip.droneSystem.drones
+        end
         local dronesList = {}
         local dronesCount = 0
         --[[
@@ -796,66 +802,133 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 log("ADDED DRONE")
             end
         end]]
+        if spaceDrones then
+            --log("SpaceDrones exists")
+            --log(spaceDrones:Size())
+            --log("SpaceDrones size > 0")
+            --local randNum = math.random(1, spaceDrones:Size())
+            local drone = spaceDrones[0]
+            local droneLoc = drone:GetWorldLocation()
+            log(droneLoc.x)
+            log(droneLoc.y)
+            log(drone.type)
+            if drone.type == 0 then
+                spaceManager:CreateBeam(
+                    Hyperspace.Blueprints:GetWeaponBlueprint("RAD_LIGHTNING_BEAM"), 
+                    projectile.position, 
+                    projectile.currentSpace,
+                    projectile.ownerId,
+                    Hyperspace.Pointf(droneLoc.x, droneLoc.y), 
+                    Hyperspace.Pointf(droneLoc.x, droneLoc.y + 10),
+                    ((projectile.currentSpace+1)%2), 
+                    10, 
+                    projectile.heading)
+                drone:BlowUp(false)
+            elseif drone.type == 1 then
+                spaceManager:CreateBeam(
+                    Hyperspace.Blueprints:GetWeaponBlueprint("RAD_LIGHTNING_BEAM"), 
+                    projectile.position, 
+                    projectile.currentSpace,
+                    projectile.ownerId,
+                    Hyperspace.Pointf(droneLoc.x, droneLoc.y), 
+                    Hyperspace.Pointf(droneLoc.x, droneLoc.y + 10),
+                    projectile.currentSpace, 
+                    10, 
+                    0)
+                drone:BlowUp(false)
+            else
 
-        log(spaceDrones:Size())
-        if spaceDrones:Size() > 0 then
-            local randNum = math.random(1, spaceDrones:Size())
-            local drone = spaceDrones[randNum]
-            local droneLoc = drone.currentLocation
-            spaceManager:CreateBeam(
-                Hyperspace.Blueprints:GetWeaponBlueprint("RAD_LIGHTNING_BEAM"), 
-                projectile.position, 
-                projectile.currentSpace,
-                projectile.ownerId,
-                droneLoc, 
-                Hyperspace.Pointf(droneLoc.x, droneLoc.y + 1),
-                drone.currentSpace, 
-                1, 
-                projectile.heading)
-            local droneT = drone._targetable
-            local damage = Hyperspace.Damage()
-            damage.iDamage = 1
-
-            droneT:DamageTarget(droneLoc, damage)
-        end
-        projectile:Kill()
-        --[[local Drone = nil
-        local drones = otherShip.spaceDrones
-        --log("fire")
-        if drones:size() > 0 then
-            --log(drones:size())
-            local i = math.random(0, drones:size()-1)
-            --log(i)
-            Drone = drones[i]
-            --log(Drone:GetSelfId())
-            --drone.death_animation:Start(true)
-            local t = Drone.currentLocation
-            --log("CreateBeam")
-            spaceManager:CreateBeam(
-                Hyperspace.Blueprints:GetWeaponBlueprint("RAD_BEAM_NODAMAGE_1"), 
-                projectile.position, 
-                projectile.currentSpace,
-                projectile.ownerId,
-                t, 
-                Hyperspace.Pointf(t.x, t.y + 1),
-                Drone.currentSpace, 
-                1, 
-                -1)
-            
-            for target in vter(spaceManager.projectiles) do
-                --log("in target for loop")
-                --log(target:GetSelfId())
-
-                if target:GetSelfId() == Drone:GetSelfId() then
-                    target.death_animation:Start(true)
-                    break
-                end
             end
         end
         projectile:Kill()
-        ]]
     end
 end)
+
+--[[log("RADZAPPER FIRE")
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+        local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2)
+        local spaceDronesSelfSpace = shipManager.spaceDrones
+        local spaceDronesEnemySpace = otherShip.spaceDrones
+        local dronesList = {}
+        local dronesCount = 0
+        local droneSize = nil
+        
+
+        if pcall(function() droneSize = spaceDronesSelfSpace:Size() end) and droneSize then
+            for d in vter(spaceDronesSelfSpace) do
+                log("DRONE LOOP")
+                if not d:GetOwnerId() == projectile.ownerId then
+                    table.insert(dronesList, d)
+                    dronesCount = dronesCount + 1
+                    log("ADDED DRONE")
+                end
+            end
+            if dronesList then
+                log("SpaceDrones exists")
+                --log(spaceDrones:Size())
+                if 1 > 0 then
+                    log("SpaceDrones size > 0")
+                    --local randNum = math.random(1, spaceDrones:Size())
+                    local drone = dronesList[1]
+                    local droneLoc = drone.currentLocation
+                    spaceManager:CreateBeam(
+                        Hyperspace.Blueprints:GetWeaponBlueprint("RAD_LIGHTNING_BEAM"), 
+                        projectile.position, 
+                        projectile.currentSpace,
+                        projectile.ownerId,
+                        droneLoc, 
+                        Hyperspace.Pointf(droneLoc.x, droneLoc.y + 1),
+                        drone.currentSpace, 
+                        1, 
+                        projectile.heading)
+                    local droneT = drone._targetable
+                    local damage = Hyperspace.Damage()
+                    damage.iDamage = 1
+
+                    droneT:DamageTarget(droneLoc, damage)
+                    --drone:BlowUp(false)
+                end
+            end
+        elseif pcall(function() droneSize = spaceDronesEnemySpace:Size() end) and droneSize then
+            for d in vter(spaceDronesEnemySpace) do
+                log("DRONE LOOP")
+                if not d:GetOwnerId() == projectile.ownerId then
+                    table.insert(dronesList, d)
+                    dronesCount = dronesCount + 1
+                    log("ADDED DRONE")
+                end
+            end
+            if dronesList then
+                log("SpaceDrones exists")
+                --log(spaceDrones:Size())
+                if 1 > 0 then
+                    log("SpaceDrones size > 0")
+                    --local randNum = math.random(1, spaceDrones:Size())
+                    local drone = dronesList[1]
+                    local droneLoc = drone.currentLocation
+                    spaceManager:CreateBeam(
+                        Hyperspace.Blueprints:GetWeaponBlueprint("RAD_LIGHTNING_BEAM"), 
+                        projectile.position, 
+                        projectile.currentSpace,
+                        projectile.ownerId,
+                        droneLoc, 
+                        Hyperspace.Pointf(droneLoc.x, droneLoc.y + 1),
+                        drone.currentSpace, 
+                        1, 
+                        projectile.heading)
+                    local droneT = drone._targetable
+                    local damage = Hyperspace.Damage()
+                    damage.iDamage = 1
+
+                    droneT:DamageTarget(droneLoc, damage)
+                    --drone:BlowUp(false)
+                end
+            end
+
+        end
+
+        projectile:Kill()]]
 
 script.on_internal_event(Defines.InternalEvents.DRONE_FIRE, function(projectile, Drone)
     --log("Drone Fire ID Start")
@@ -1190,28 +1263,29 @@ end)
 mods.rad.lightningWeapons = {}
 local lightningWeapons = mods.rad.lightningWeapons
 lightningWeapons["RAD_LIGHTNING_1"] = Hyperspace.Damage()
-lightningWeapons["RAD_LIGHTNING_1"].bLockdown = true
+--lightningWeapons["RAD_LIGHTNING_1"].bLockdown = true
 lightningWeapons["RAD_LIGHTNING_1"].iSystemDamage = 1
 lightningWeapons["RAD_LIGHTNING_1"].iShieldPiercing = 5
 lightningWeapons["RAD_LIGHTNING_2"] = Hyperspace.Damage()
-lightningWeapons["RAD_LIGHTNING_2"].bLockdown = true
+--lightningWeapons["RAD_LIGHTNING_2"].bLockdown = true
 lightningWeapons["RAD_LIGHTNING_2"].iDamage = 1
 lightningWeapons["RAD_LIGHTNING_2"].iShieldPiercing = 3
 lightningWeapons["RAD_LIGHTNING_3"] = Hyperspace.Damage()
-lightningWeapons["RAD_LIGHTNING_3"].bLockdown = true
+--lightningWeapons["RAD_LIGHTNING_3"].bLockdown = true
 lightningWeapons["RAD_LIGHTNING_3"].iIonDamage = 1
 lightningWeapons["RAD_LIGHTNING_3"].iDamage = 2
 lightningWeapons["RAD_LIGHTNING_3"].iShieldPiercing = 2
 lightningWeapons["RAD_LIGHTNING_ION"] = Hyperspace.Damage()
-lightningWeapons["RAD_LIGHTNING_ION"].bLockdown = true
+--lightningWeapons["RAD_LIGHTNING_ION"].bLockdown = true
 lightningWeapons["RAD_LIGHTNING_ION"].iIonDamage = 2
-lightningWeapons["RAD_LIGHTNING_ION"].iShieldPiercing = 2
+lightningWeapons["RAD_LIGHTNING_ION"].iShieldPiercing = 3
 lightningWeapons["RAD_LIGHTNING_FIRE"] = Hyperspace.Damage()
-lightningWeapons["RAD_LIGHTNING_FIRE"].bLockdown = true
-lightningWeapons["RAD_LIGHTNING_FIRE"].fireChance = 8
-lightningWeapons["RAD_LIGHTNING_FIRE"].iShieldPiercing = 2
+--lightningWeapons["RAD_LIGHTNING_FIRE"].bLockdown = true
+lightningWeapons["RAD_LIGHTNING_FIRE"].fireChance = 5
+lightningWeapons["RAD_LIGHTNING_FIRE"].iShieldPiercing = 6
 
 local lightningBeam = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_LIGHTNING_BEAM")
+--local lastLocation = nil
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
     local weaponName = nil
@@ -1221,46 +1295,88 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
         --log("lightning Hit")
         local lastLocation = location
         local loopCount = 0
-        while lastLocation and loopCount < aoeDamage.iShieldPiercing do
-            --log("loop")
-            loopCount = loopCount + 1
-            local roomPositions = {}
-            local tblSize = 0
-            Hyperspace.Get_Projectile_Extend(projectile).name = ""
-            for roomId, roomPos in pairs(get_adjacent_rooms(shipManager.iShipId, get_room_at_location(shipManager, lastLocation, false), false)) do
-                table.insert(roomPositions, roomPos)
-                --log("add room")
-                tblSize = tblSize + 1
-            end
-            -- log(tostring(roomPositions))
-            for k,i in pairs(roomPositions) do
-                --log(k)
-                --log(i)
-            end
-            if tblSize > 0 then
-                local randomNumber = math.random(1, tblSize)
-                --log(randomNumber)
-                local randomRoom = roomPositions[randomNumber]
+        --userdata_table(shipManager, "mods.rad.lightning").jumps = aoeDamage.iShieldPiercing
+        --userdata_table(shipManager, "mods.rad.lightning").damage = aoeDamage
+        local jumptable = userdata_table(shipManager, "mods.rad.lightning")
+        if jumptable.table == nil then
+            jumptable.table = {}
+        end
+        log("hit")
+        log(shipManager.iShipId)
+        table.insert(jumptable.table, {aoeDamage, aoeDamage.iShieldPiercing, location.x, location.y, 0.1, projectile.currentSpace})
+    end
+end)
 
-                local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
-                local alpha = math.atan((randomRoom.y-lastLocation.y), (randomRoom.x-lastLocation.x))
-                local newX1 = randomRoom.x - 5 * math.cos(alpha)
-                local newX2 = randomRoom.x + 5 * math.cos(alpha)
-                local newY1 = randomRoom.y - 5 * math.sin(alpha)
-                local newY2 = randomRoom.y + 5 * math.sin(alpha)
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    local jumptable = userdata_table(shipManager, "mods.rad.lightning")
 
-                local beam = spaceManager:CreateBeam(
-                    lightningBeam, lastLocation, projectile.currentSpace, projectile.ownerId,
-                    Hyperspace.Pointf(newX1, newY1), Hyperspace.Pointf(newX2, newY2),
-                    projectile.destinationSpace, 10, projectile.heading)
-                --log(beam.timer)
-                --beam.lifespan = 10.0
-                --log(beam.lifespan)
+    if jumptable.table then 
+        log("jumptable.table exists")
+        log(shipManager.iShipId)
+        local removeTable = {}
+        for k,v in pairs(jumptable.table) do
+            log("Inner Table Exists")
+            local timer = v[5]
+            timer = math.max(timer - Hyperspace.FPS.SpeedFactor/16, 0)
+            log(timer)
+            if timer == 0 then
+                log("timer hits 0")
+                local lastLocation = Hyperspace.Pointf(v[3],v[4])
+                local aoeDamage = v[1]
+                local countDown = v[2]
+                local spaceSpace = v[6]
 
-                shipManager:DamageArea(randomRoom, aoeDamage, true)
-                Hyperspace.Get_Projectile_Extend(projectile).name = weaponName
-                lastLocation = randomRoom
-            end
+                local roomPositions = {}
+                local tblSize = 0
+                log(lastLocation.x)
+                log(lastLocation.y)
+                log(get_room_at_location(shipManager,lastLocation,false))
+                --Hyperspace.Get_Projectile_Extend(projectile).name = ""
+                for roomId, roomPos in pairs(get_adjacent_rooms(shipManager.iShipId, get_room_at_location(shipManager, lastLocation, false), false)) do
+                    table.insert(roomPositions, roomPos)
+                    log("add room")
+                    tblSize = tblSize + 1
+                end
+                log(tblSize)
+
+                if tblSize > 0 then
+                    local randomNumber = math.random(1, tblSize)
+                    --log(randomNumber)
+                    local randomRoom = roomPositions[randomNumber]
+
+                    local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+                    local alpha = math.atan((randomRoom.y-lastLocation.y), (randomRoom.x-lastLocation.x))
+                    local newX1 = randomRoom.x - 5 * math.cos(alpha)
+                    local newX2 = randomRoom.x + 5 * math.cos(alpha)
+                    local newY1 = randomRoom.y - 5 * math.sin(alpha)
+                    local newY2 = randomRoom.y + 5 * math.sin(alpha)
+
+                    local beam = spaceManager:CreateBeam(
+                        lightningBeam, lastLocation, spaceSpace, ((shipManager.iShipId + 1)%2),
+                        Hyperspace.Pointf(newX1, newY1), Hyperspace.Pointf(newX2, newY2),
+                        spaceSpace, 10, 1.0)
+                    --log(beam.timer)
+                    --beam.lifespan = 10.0
+                    --log(beam.lifespan)]]
+
+                    shipManager:DamageArea(randomRoom, aoeDamage, true)
+                    --Hyperspace.Get_Projectile_Extend(projectile).name = weaponName
+                    --lastLocation = randomRoom
+                    countDown = countDown - 1
+                    if countDown == 0 then 
+                        log("TABLE fail no more jumps")
+                        table.remove(jumptable.table, k)
+                    else
+                        local newEntry = {aoeDamage, countDown, randomRoom.x, randomRoom.y,0.4, spaceSpace}
+                        jumptable.table[k] = newEntry
+                    end
+                else
+                    log("TABLE fail no rooms")
+                    table.remove(jumptable.table, k)
+                end
+            else 
+                jumptable.table[k][5] = timer 
+            end 
         end
     end
 end)

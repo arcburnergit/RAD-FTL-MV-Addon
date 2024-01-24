@@ -2068,7 +2068,7 @@ The shield generator now generates Super Shield layers instead of normal shield 
     <maxPower amount="8" />
     <crewCount amount="1" class="human" />
     <crewCount amount="1" class="engi" />
-    <crewCount amount="1" class="energy" />
+    <crewCount amount="1" class="zoltan" />
     <aug name="RAD_ZS_CHARGE" />
   </shipBlueprint>
 
@@ -2445,9 +2445,9 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <bp>2</bp>
     <rarity>0</rarity>
     <color>
-      <r>220</r>
-      <g>220</g>
-      <b>220</b>
+      <r>100</r>
+      <g>100</g>
+      <b>100</b>
     </color>
     <image>beam_contact</image>
     <launchSounds>
@@ -2463,8 +2463,8 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <title>Tesla Cannon Mk1</title>
     <short>Tesla I</short>
     <tip>tip_lightning</tip>
-    <desc>Lightning weapons chain to an adjacent rooms 2 times.</desc>
-    <tooltip>Deals 3 system damage across 3 rooms.</tooltip>
+    <desc>This lightning weapon chains to an adjacent room 5 times.</desc>
+    <tooltip>Deals 6 system damage across 6 rooms.</tooltip>
     <damage>0</damage>
     <sysDamage>1</sysDamage>
     <shots>1</shots>
@@ -2503,8 +2503,8 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <title>Tesla Cannon Mk2</title>
     <short>Tesla II</short>
     <tip>tip_lightning</tip>
-    <desc>Lightning weapons chain to an adjacent rooms 2 times.</desc>
-    <tooltip>deals 3 total damage across 3 rooms.</tooltip>
+    <desc>This lightning weapon chains to an adjacent room 4 times.</desc>
+    <tooltip>deals 4 total damage across 4 rooms.</tooltip>
     <damage>1</damage>
     <sysDamage>0</sysDamage>
     <shots>1</shots>
@@ -2543,7 +2543,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <title>Tesla Cannon Mk3</title>
     <short>Tesla III</short>
     <tip>tip_lightning</tip>
-    <desc>Lightning weapons chain to an adjacent rooms 2 times.</desc>
+    <desc>This lightning weapon chains to an adjacent room 2 times.</desc>
     <tooltip>Deals 6 total damage across 3 rooms.</tooltip>
     <damage>2</damage>
     <sysDamage>0</sysDamage>
@@ -2576,6 +2576,88 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
       <sound>miss</sound>
     </missSounds>
     <weaponArt>rad_lightning_3</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_LIGHTNING_ION">
+    <type>LASER</type>
+    <title>Ion Cascade Cannon</title>
+    <short>Ion Cascade</short>
+    <tip>tip_lightning</tip>
+    <desc>This lightning weapon chains to an adjacent room 3 times.</desc>
+    <tooltip>deals 8 total ion damage across 4 rooms.</tooltip>
+    <damage>0 </damage>
+    <sysDamage>0</sysDamage>
+    <ion>2</ion>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>18</cooldown>
+    <power>2</power>
+    <cost>60</cost>
+    <bp>2</bp>
+    <rarity>5</rarity>
+    <image>laser_hull</image>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <sound>lightLaser2</sound>
+      <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_lightning_ion</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_LIGHTNING_FIRE">
+    <type>LASER</type>
+    <title>Re-Action Cannon</title>
+    <short>Re-Action</short>
+    <tip>tip_lightning</tip>
+    <desc>This lightning weapon chains to an adjacent room 6 times.</desc>
+    <tooltip>Starts fires in 7 adjacent rooms.</tooltip>
+    <damage>0 </damage>
+    <sysDamage>0</sysDamage>
+    <ion>0</ion>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>5</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>18</cooldown>
+    <power>2</power>
+    <cost>60</cost>
+    <bp>2</bp>
+    <rarity>5</rarity>
+    <image>laser_hull</image>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <sound>lightLaser2</sound>
+      <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_lightning_fire</weaponArt>
     <iconImage>laser</iconImage>
   </weaponBlueprint>
 

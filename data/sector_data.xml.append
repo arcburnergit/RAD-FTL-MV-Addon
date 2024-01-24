@@ -27,6 +27,11 @@
     <mod-append:blueprint name="RAD_ZSGUN_3" rarity="0" />
     <mod-append:blueprint name="RAD_ZSGUN_2" rarity="0" />
     <mod-append:blueprint name="RAD_ZSGUN_1" rarity="0" />
+    <mod-append:blueprint name="RAD_LIGHTNING_1" rarity="0" />
+    <mod-append:blueprint name="RAD_LIGHTNING_2" rarity="0" />
+    <mod-append:blueprint name="RAD_LIGHTNING_3" rarity="0" />
+    <mod-append:blueprint name="RAD_LIGHTNING_ION" rarity="0" />
+    <mod-append:blueprint name="RAD_LIGHTNING_FIRE" rarity="0" />
 	</mod:findLike>
 </mod:findName>
 
@@ -49,6 +54,11 @@
     <mod-append:blueprint name="RAD_ZSGUN_3" rarity="0" />
     <mod-append:blueprint name="RAD_ZSGUN_2" rarity="0" />
     <mod-append:blueprint name="RAD_ZSGUN_1" rarity="0" />
+    <mod-append:blueprint name="RAD_LIGHTNING_1" rarity="0" />
+    <mod-append:blueprint name="RAD_LIGHTNING_2" rarity="0" />
+    <mod-append:blueprint name="RAD_LIGHTNING_3" rarity="0" />
+    <mod-append:blueprint name="RAD_LIGHTNING_ION" rarity="0" />
+    <mod-append:blueprint name="RAD_LIGHTNING_FIRE" rarity="0" />
 	</mod:findLike>
 </mod:findName>
 </FTL>

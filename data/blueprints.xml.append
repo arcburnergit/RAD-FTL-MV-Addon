@@ -2661,4 +2661,12 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <iconImage>laser</iconImage>
   </weaponBlueprint>
 
+  <augBlueprint name="RAD_WM_MULTISHOT">
+    <title>Multishot Weapon Mod</title>
+    <desc>Halves the damage and status effects of every projectile fired from your ship (If spliting an odd damage number, one projectile will have more damage than the other), However it spawns a duplicate projectile every time you fire.</desc>
+    <cost>60</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
 </FTL>

@@ -334,6 +334,9 @@
 	<aug name="RAD_CREDIT">
 		<locked />
 	</aug>
+  <aug name="RAD_WM_MULTISHOT">
+      
+  </aug>
 </augments>
 
 <mod:findWithChildLike type="ships" child-type="ship" reverse="true" start="1" limit="1">

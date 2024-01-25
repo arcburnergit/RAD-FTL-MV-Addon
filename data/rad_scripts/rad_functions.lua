@@ -1443,7 +1443,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.destinationSpace,
                 projectile.heading)
             laser:SetDamage(newDamage2)
-        elseif weaponType == "MISSILE" then 
+        elseif weaponType == "MISSILES" then 
             local missile = spaceManager:CreateMissile(
                 weapon.blueprint,
                 projectile.position,

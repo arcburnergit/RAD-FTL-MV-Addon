@@ -115,6 +115,11 @@
   <name>RAD_LIGHTNING_FIRE</name>
 </blueprintList>
 
+<blueprintList name="LABRATORY_AUGMENTS">
+  <name>RAD_WM_BIGSHOT</name>
+  <name>RAD_WM_MULTISHOT</name>
+</blueprintList>
+
 <!--STATION-->
 <shipBlueprint name="MU_CIVILIAN_LAB" layout="mu_civilian_lab" img="mu_civilian_lab">
 	<class>Union Labratory</class>

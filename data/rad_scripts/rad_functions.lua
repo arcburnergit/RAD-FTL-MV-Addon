@@ -1398,29 +1398,41 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         newDamage.iIonDamage = math.floor(damage.iIonDamage/2)
         newDamage.iSystemDamage = math.floor(damage.iSystemDamage/2)
         newDamage.iPersDamage = math.floor(damage.iPersDamage/2)
-        newDamage.ownerId = math.floor(damage.ownerId/2)
-        newDamage.selfId = math.floor(damage.selfId/2)
         newDamage.iStun = math.floor(damage.iStun/2)
+
+        newDamage.ownerId = damage.ownerId
+        newDamage.selfId = damage.selfId
 
         newDamage.bHullBuster = damage.bHullBuster
         newDamage.bLockdown = damage.bLockdown
         newDamage.crystalShard = damage.crystalShard
         newDamage.bFriendlyFire = damage.bFriendlyFire
+        log(newDamage.iDamage)
+        
 
-        projectile:SetDamage(newDamage)
+        log("AAAAAAAA")
+        damage = projectile.damage
+        local newDamage2 = projectile.damage
+        log(newDamage2.iDamage)
+        newDamage2.iDamage = math.ceil(damage.iDamage/2)
+        newDamage2.iShieldPiercing = math.ceil(damage.iShieldPiercing/2)
+        newDamage2.fireChance = math.ceil(damage.fireChance/2)
+        newDamage2.breachChance = math.ceil(damage.breachChance/2)
+        newDamage2.stunChance = math.ceil(damage.stunChance/2)
+        newDamage2.iIonDamage = math.ceil(damage.iIonDamage/2)
+        newDamage2.iSystemDamage = math.ceil(damage.iSystemDamage/2)
+        newDamage2.iPersDamage = math.ceil(damage.iPersDamage/2)
+        newDamage2.iStun = math.ceil(damage.iStun/2)
 
-        newDamage.iDamage = math.ceil(damage.iDamage/2)
-        newDamage.iShieldPiercing = math.ceil(damage.iShieldPiercing/2)
-        newDamage.fireChance = math.ceil(damage.fireChance/2)
-        newDamage.breachChance = math.ceil(damage.breachChance/2)
-        newDamage.stunChance = math.ceil(damage.stunChance/2)
-        newDamage.iIonDamage = math.ceil(damage.iIonDamage/2)
-        newDamage.iSystemDamage = math.ceil(damage.iSystemDamage/2)
-        newDamage.iPersDamage = math.ceil(damage.iPersDamage/2)
-        newDamage.ownerId = math.ceil(damage.ownerId/2)
-        newDamage.selfId = math.ceil(damage.selfId/2)
-        newDamage.iStun = math.ceil(damage.iStun/2)
+        newDamage2.ownerId = damage.ownerId
+        newDamage2.selfId = damage.selfId
 
+        newDamage2.bHullBuster = damage.bHullBuster
+        newDamage2.bLockdown = damage.bLockdown
+        newDamage2.crystalShard = damage.crystalShard
+        newDamage2.bFriendlyFire = damage.bFriendlyFire
+
+        log(newDamage2.iDamage)
         if weaponType == "LASER" or weaponType == "BURST" then 
             local laser = spaceManager:CreateLaserBlast(
                 weapon.blueprint,
@@ -1430,7 +1442,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.target,
                 projectile.destinationSpace,
                 projectile.heading)
-            laser:SetDamage(newDamage)
+            laser:SetDamage(newDamage2)
         elseif weaponType == "MISSILE" then 
             local missile = spaceManager:CreateMissile(
                 weapon.blueprint,
@@ -1440,17 +1452,29 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.target,
                 projectile.destinationSpace,
                 projectile.heading)
-            missile:SetDamage(newDamage)
+            missile:SetDamage(newDamage2)
         elseif weaponType == "BOMB" then 
             local bomb = spaceManager:CreateBomb(
                 weapon.blueprint,
                 projectile.ownerId,
                 projectile.target,
                 projectile.destinationSpace)
-            bomb:SetDamage(newDamage)
+            bomb:SetDamage(newDamage2)
         elseif weaponType == "BEAM" then 
             log("BEAM")
+            local beam = spaceManager:CreateBeam(
+                weapon.blueprint,
+                projectile.position,
+                projectile.currentSpace,
+                projectile.ownerId,
+                projectile.target2,
+                projectile.target1,
+                projectile.destinationSpace,
+                projectile.length,
+                projectile.heading)
+            beam:SetDamage(newDamage2)
         end
+        projectile:SetDamage(newDamage)
     end
 end)
 
@@ -1470,3 +1494,37 @@ bool bLockdown;
 bool crystalShard;
 bool bFriendlyFire;
 int iStun;]]--
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+    if shipManager:HasAugmentation("RAD_WM_BIGSHOT") > 0 then
+        local damage = projectile.damage
+        local newDamage = Hyperspace.Damage()
+        newDamage.iDamage = (damage.iDamage*2)
+        newDamage.iShieldPiercing = (damage.iShieldPiercing*2)
+        newDamage.fireChance = (damage.fireChance*2)
+        newDamage.breachChance = (damage.breachChance*2)
+        newDamage.stunChance = (damage.stunChance*2)
+        newDamage.iIonDamage = (damage.iIonDamage*2)
+        newDamage.iSystemDamage = (damage.iSystemDamage*2)
+        newDamage.iPersDamage = (damage.iPersDamage*2)
+        newDamage.iStun = (damage.iStun*2)
+
+        newDamage.ownerId = damage.ownerId
+        newDamage.selfId = damage.selfId
+
+        newDamage.bHullBuster = damage.bHullBuster
+        newDamage.bLockdown = damage.bLockdown
+        newDamage.crystalShard = damage.crystalShard
+        newDamage.bFriendlyFire = damage.bFriendlyFire
+        
+        projectile:SetDamage(newDamage)
+    end
+end)
+
+--[[script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augName, augValue)
+    if augName == "AUTO_COOLDOWN" and shipManager:HasAugmentation("RAD_WM_BIGSHOT")>0 then
+        augValue = augValue / 2
+    end
+    return Defines.Chain.CONTINUE, augValue
+end, -100)]]--

@@ -1783,7 +1783,7 @@ This is becuase the systems are designed for low skill crew members, and so high
     <class>Yacht Class Cruiser</class>
     <name>Expensive</name>
     <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
-    <desc>At one point I considered writing a description for this ship but then I forgot.</desc>
+    <desc>The ultimate ship for a rich person, it comes with a credit card, and has no requirement for thinking.</desc>
     <systemList>
       <battery power="1" room="12" max="3" start="false" img="room_battery_13" />
       <cloaking power="1" room="10" start="false" img="room_cloaking" />
@@ -1998,7 +1998,7 @@ The shield generator now generates Super Shield layers instead of normal shield 
 
   <shipBlueprint name="PLAYER_SHIP_RAD_FLESH_2" layout="radp_flesh_cruiserb" img="radp_flesh_cruiserb">
     <class>Zolgi Cruiser</class>
-    <name>InsertName</name>
+    <name>Endurance</name>
     <unlock id="ship_PLAYER_SHIP_RAD_FLESH_2_unlock"/>
     <desc>A combination of Zoltan and Engi technology, this ship combines the Engi power generation technology with that of the Zoltan shield technology, allowing the ship to generate a super shield layer every few seconds.</desc>
     <systemList>
@@ -2662,8 +2662,16 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
   </weaponBlueprint>
 
   <augBlueprint name="RAD_WM_MULTISHOT">
-    <title>Multishot Weapon Mod</title>
-    <desc>Halves the damage and status effects of every projectile fired from your ship (If spliting an odd damage number, one projectile will have more damage than the other), However it spawns a duplicate projectile every time you fire.</desc>
+    <title>Multishot Weapons</title>
+    <desc>Halves the damage and status effects of every projectile or beam fired from your ship (If spliting an odd damage number, one projectile will have more damage than the other), However it spawns a duplicate projectile every time you fire.</desc>
+    <cost>60</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_WM_BIGSHOT">
+    <title>High Energy Weapons</title>
+    <desc>Doubles the damage of all projectiles or beams you fire, but provides a -50% weapon cooldown.</desc>
     <cost>60</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>

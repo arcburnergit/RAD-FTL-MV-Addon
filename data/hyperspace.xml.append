@@ -334,8 +334,10 @@
 	<aug name="RAD_CREDIT">
 		<locked />
 	</aug>
-  <aug name="RAD_WM_MULTISHOT">
-      
+  <aug name="RAD_WM_MULTISHOT">    
+  </aug>
+  <aug name="RAD_WM_BIGSHOT">
+    <function name="AUTO_COOLDOWN" value="-0.5" useForReqs="false" warning="false" />
   </aug>
 </augments>
 
@@ -439,6 +441,16 @@
       </item>
       <item>
         <blueprint>LABRATORY_WEAPONS</blueprint>
+        <price>-1</price>
+      </item>
+    </category>
+    <category type="AUGMENTS">
+      <item>
+        <blueprint>LABRATORY_AUGMENTS</blueprint>
+        <price>-1</price>
+      </item>
+      <item>
+        <blueprint>LABRATORY_AUGMENTS</blueprint>
         <price>-1</price>
       </item>
     </category>

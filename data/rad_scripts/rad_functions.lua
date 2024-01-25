@@ -1301,7 +1301,7 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
         if jumptable.table == nil then
             jumptable.table = {}
         end
-        log("hit")
+        --log("hit")
         log(shipManager.iShipId)
         table.insert(jumptable.table, {aoeDamage, aoeDamage.iShieldPiercing, location.x, location.y, 0.1, projectile.currentSpace})
     end
@@ -1311,16 +1311,16 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
     local jumptable = userdata_table(shipManager, "mods.rad.lightning")
 
     if jumptable.table then 
-        log("jumptable.table exists")
+        --log("jumptable.table exists")
         log(shipManager.iShipId)
         local removeTable = {}
         for k,v in pairs(jumptable.table) do
-            log("Inner Table Exists")
+            --log("Inner Table Exists")
             local timer = v[5]
             timer = math.max(timer - Hyperspace.FPS.SpeedFactor/16, 0)
-            log(timer)
+            --log(timer)
             if timer == 0 then
-                log("timer hits 0")
+                --log("timer hits 0")
                 local lastLocation = Hyperspace.Pointf(v[3],v[4])
                 local aoeDamage = v[1]
                 local countDown = v[2]
@@ -1334,7 +1334,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
                 --Hyperspace.Get_Projectile_Extend(projectile).name = ""
                 for roomId, roomPos in pairs(get_adjacent_rooms(shipManager.iShipId, get_room_at_location(shipManager, lastLocation, false), false)) do
                     table.insert(roomPositions, roomPos)
-                    log("add room")
+                    --log("add room")
                     tblSize = tblSize + 1
                 end
                 log(tblSize)
@@ -1364,14 +1364,14 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
                     --lastLocation = randomRoom
                     countDown = countDown - 1
                     if countDown == 0 then 
-                        log("TABLE fail no more jumps")
+                        --log("TABLE fail no more jumps")
                         table.remove(jumptable.table, k)
                     else
                         local newEntry = {aoeDamage, countDown, randomRoom.x, randomRoom.y,0.4, spaceSpace}
                         jumptable.table[k] = newEntry
                     end
                 else
-                    log("TABLE fail no rooms")
+                    --log("TABLE fail no rooms")
                     table.remove(jumptable.table, k)
                 end
             else 
@@ -1387,7 +1387,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
     if shipManager:HasAugmentation("RAD_WM_MULTISHOT") then
         local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
         local weaponType = weapon.blueprint.typeName
-        log(weaponType)
+        --log(weaponType)
         local damage = projectile.damage
         local newDamage = Hyperspace.Damage()
         newDamage.iDamage = math.floor(damage.iDamage/2)
@@ -1407,13 +1407,13 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         newDamage.bLockdown = damage.bLockdown
         newDamage.crystalShard = damage.crystalShard
         newDamage.bFriendlyFire = damage.bFriendlyFire
-        log(newDamage.iDamage)
+        --log(newDamage.iDamage)
         
 
-        log("AAAAAAAA")
+        --log("AAAAAAAA")
         damage = projectile.damage
         local newDamage2 = projectile.damage
-        log(newDamage2.iDamage)
+        --log(newDamage2.iDamage)
         newDamage2.iDamage = math.ceil(damage.iDamage/2)
         newDamage2.iShieldPiercing = math.ceil(damage.iShieldPiercing/2)
         newDamage2.fireChance = math.ceil(damage.fireChance/2)
@@ -1432,7 +1432,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         newDamage2.crystalShard = damage.crystalShard
         newDamage2.bFriendlyFire = damage.bFriendlyFire
 
-        log(newDamage2.iDamage)
+        --log(newDamage2.iDamage)
         if weaponType == "LASER" or weaponType == "BURST" then 
             local laser = spaceManager:CreateLaserBlast(
                 weapon.blueprint,
@@ -1461,7 +1461,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.destinationSpace)
             bomb:SetDamage(newDamage2)
         elseif weaponType == "BEAM" then 
-            log("BEAM")
+            --log("BEAM")
             local beam = spaceManager:CreateBeam(
                 weapon.blueprint,
                 projectile.position,

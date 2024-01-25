@@ -1384,7 +1384,7 @@ end)
 
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
-    if shipManager:HasAugmentation("RAD_WM_MULTISHOT") then
+    if shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0 then
         local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
         local weaponType = weapon.blueprint.typeName
         --log(weaponType)

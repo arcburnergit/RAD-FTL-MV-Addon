@@ -1071,6 +1071,7 @@
 	<crewCount amount="1" class="unique_coomer" />
 	<crewCount amount="1" class="unique_bubby" />
 	<crewCount amount="1" class="human_medic" />
+  <mv-mapImage>map_icon_mup_rhyme_a</mv-mapImage>
 </shipBlueprint>
 
 
@@ -1148,6 +1149,7 @@
 	<crewCount amount="1" class="human" />
 	<crewCount amount="1" class="human_engineer" />
 	<crewCount amount="1" class="human_medic" />
+  <mv-mapImage>map_icon_mup_rhyme_a</mv-mapImage>
 </shipBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_RAD_FLESH" layout="radp_flesh_cruisera" img="radp_flesh_cruisera">
@@ -1223,6 +1225,8 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
 	<crewCount amount="1" class="human_medic" />
 	<crewCount amount="1" class="human_medic" />
 	<aug name="FLESH_HULL" />
+  <shieldImage>mup_orb1</shieldImage>
+  <mv-mapImage>map_icon_mup_mvengi_a</mv-mapImage>
 </shipBlueprint>
 
 <weaponBlueprint name="ARTILLERY_FLESH">
@@ -1374,6 +1378,7 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 	<crewCount amount="1" class="phantom_experiment_alpha" />
 	<aug name="TELE_EVAC" />
 	<aug name="EX_FIRE_EXTINGUISHERS" />
+  <mv-mapImage>map_icon_mup_mfk_a</mv-mapImage>
 </shipBlueprint>
 
 <augBlueprint name="TELE_EVAC">
@@ -1631,6 +1636,7 @@ This is becuase the systems are designed for low skill crew members, and so high
     <crewCount amount="1" class="slug" />
     <crewCount amount="1" class="slug" />
     <aug name="RAD_CREDIT" />
+    <mv-mapImage>map_icon_mup_hacker_a</mv-mapImage>
   </shipBlueprint>
 
 
@@ -1705,6 +1711,7 @@ This is becuase the systems are designed for low skill crew members, and so high
     <health amount="45" />
     <maxPower amount="10" />
     <aug name="NANOBOT_DEFENSE_SYSTEM" />
+    <mv-mapImage>map_icon_mup_rhyme_a</mv-mapImage>
   </shipBlueprint>
 
   <shipBlueprint name="PLAYER_SHIP_RAD_RICH_2" layout="mup_rad_rich_b" img="mup_rad_rich_b">
@@ -1777,6 +1784,7 @@ This is becuase the systems are designed for low skill crew members, and so high
     <maxPower amount="6" />
     <crewCount amount="3" class="human" />
     <aug name="RAD_SYSTEM_DUMB" />
+    <mv-mapImage>map_icon_mup_hacker_a</mv-mapImage>
   </shipBlueprint>
   
   <shipBlueprint name="PLAYER_SHIP_RAD_RICH_3" layout="mup_rad_rich_c" img="mup_rad_rich_c">
@@ -1853,6 +1861,7 @@ This is becuase the systems are designed for low skill crew members, and so high
     <crewCount amount="1" class="human" />
     <aug name="RAD_SYSTEM_DUMB" />
     <aug name="RAD_CREDIT" />
+    <mv-mapImage>map_icon_mup_hacker_a</mv-mapImage>
   </shipBlueprint>
 
   <augBlueprint name="RAD_SMALL">
@@ -1938,6 +1947,7 @@ Weapons charge 50% faster.</desc>
     <maxPower amount="10" />
     <crewCount amount="1" class="human" />
     <aug name="RAD_SMALL" />
+    <mv-mapImage>map_icon_mup_orchid_a</mv-mapImage>
   </shipBlueprint>
 
 
@@ -2070,6 +2080,8 @@ The shield generator now generates Super Shield layers instead of normal shield 
     <crewCount amount="1" class="engi" />
     <crewCount amount="1" class="zoltan" />
     <aug name="RAD_ZS_CHARGE" />
+    <shieldImage>mup_orb1</shieldImage>
+    <mv-mapImage>map_icon_mup_mvengi_a</mv-mapImage>
   </shipBlueprint>
 
   <shipBlueprint name="PLAYER_SHIP_RAD_FLESH_3" layout="radp_flesh_cruiserc" img="radp_flesh_cruiserc">
@@ -2146,6 +2158,8 @@ The shield generator now generates Super Shield layers instead of normal shield 
     <crewCount amount="1" class="engi" />
     <crewCount amount="1" class="mantis" />
     <aug name="SYSTEM_CASING_NEW" />
+    <shieldImage>mup_orb1</shieldImage>
+    <mv-mapImage>map_icon_mup_mvengi_a</mv-mapImage>
   </shipBlueprint>
 
   <shipBlueprint name="PLAYER_SHIP_RAD_EXPERIMENT_2" layout="radp_ghost_playerb" img="radp_ghost_playerb">
@@ -2224,6 +2238,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <crewCount amount="1" class="zoltan" />
     <crewCount amount="1" class="zoltan" />
     <aug name="RAD_ZS_UNDER" />
+    <mv-mapImage>map_icon_mup_mfk_a</mv-mapImage>
   </shipBlueprint>
   
   
@@ -2294,6 +2309,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <crewCount amount="3" class="engi" />
     <aug name="RAD_SCRAM" />
     <aug name="EX_FIRE_EXTINGUISHERS" />
+    <mv-mapImage>map_icon_mup_mfk_a</mv-mapImage>
   </shipBlueprint>
 
   <augBlueprint name="RAD_ZS_UNDER">

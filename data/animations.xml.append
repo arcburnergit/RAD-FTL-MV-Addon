@@ -489,4 +489,13 @@
     <mountPoint x="4" y="31" />
   </weaponAnim>
 
+  <animSheet name="rad_tractorbeam" w="240" h="64" fw="24" fh="64">weapon/rad_tractorbeam.png</animSheet>
+  <weaponAnim name="rad_tractorbeam">
+    <sheet>rad_tractorbeam</sheet>
+    <desc length="10" x="0" y="0" />
+    <chargedFrame>5</chargedFrame>
+    <fireFrame>9</fireFrame>
+    <firePoint x="13" y="7" />
+    <mountPoint x="3" y="36" />
+  </weaponAnim>
 </FTL>

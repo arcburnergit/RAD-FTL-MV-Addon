@@ -2687,10 +2687,299 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <augBlueprint name="RAD_WM_BIGSHOT">
     <title>High Energy Weapons</title>
-    <desc>Doubles the damage of all projectiles or beams you fire, but provides a -50% weapon cooldown.</desc>
+    <desc>Doubles the damage of all projectiles or beams you fire, but reduces weapon recharge rate by 60%</desc>
     <cost>60</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
   </augBlueprint>
 
+  <augBlueprint name="RAD_REFLECT_HULL">
+    <title>Reflective Hull Plating</title>
+    <desc>This hull plating is specially designed to reflect any beams that hit the ship.
+The beams are reflected back at the enemy ship and only deal half their damage to your ship (rounding down).
+
+This plating also provides 5 Super Hull point, this stops 5 hits per battle from dealing damage to the hull.
+    </desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_TIME_HULL">
+    <title>Warped Hull Plating</title>
+    <desc>Each time this ship will take hull damage, the cooldown on the temporal system is ended and one random weapon has it's cooldown finished, also reduces weapon recharge rate by 25%.
+
+This plating also provides 5 Super Hull point, this stops 5 hits per battle from dealing damage to the hull.
+    </desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_SUPER_HULL">
+    <title>Super Hull Plating</title>
+    <desc>This plating provides 5 Super Hull point, this stops 5 hits per battle from dealing damage to the hull.
+    </desc>
+    <cost>90</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_BULLET_HELL">
+    <title>Dark Matter Hull Plating</title>
+    <desc>This Hull is completely invincible, however due to warping of the space-time continuum all projectiles are slowed to 1/4 the speed, have had crew damage increased by 45 up to a maximum of 75, and show the impact point on your ship.
+It also appears that the clonebay on the ship has been made almost useless by the warping of space and time, and as such is unable to clone anyone, it is however still able to heal the crew on jump.
+Your crew is unable to heal from any other source, however all of your crew do 1.5 times more damage.
+    </desc>
+    <cost>1000</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <weaponBlueprint name="RAD_TRASH_BEAM">
+    <type>BEAM</type>
+    <title>Tractor Beam</title>
+    <short>Tractor</short>
+    <desc>The beam itself does no damage, however it creates a strong gravitational pull on impact.
+For every tile the beam hits, it pulls an asteroid in towards the tile.</desc>
+    <tooltip>Delayed Trash Beam.</tooltip>
+    <damage>0</damage>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>16</cooldown>
+    <sp>10</sp>
+    <speed>3</speed>
+    <power>3</power>
+    <cost>100</cost>
+    <bp>2</bp>
+    <rarity>0</rarity>
+    <color>
+      <r>255</r>
+      <g>0</g>
+      <b>0</b>
+    </color>
+    <image>beam_contact</image>
+    <length>140</length>
+    <launchSounds>
+      <sound>beam2</sound>
+    </launchSounds>
+    <weaponArt>rad_tractorbeam</weaponArt>
+    <iconImage>beam</iconImage>
+  </weaponBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_CRYSTAL" layout="radp_crystal_a" img="radp_crystal_a">
+    <class>Mirror Cruiser</class>
+    <name>Inflection</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_CRYSTAL_unlock"/>
+    <desc>This Ship makes use of a mysterious crystaline structure able to reflect beams straight back at the enemy.&#xD;
+It also provides 5 super hull points.
+    </desc>
+    <systemList>
+      <battery power="1" room="12" start="false" img="room_battery_6" />
+      <cloaking power="1" room="2" start="false" img="room_cloaking_2" />
+      <clonebay power="1" room="13" start="false">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="6" start="false" img="room_doors">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="2" room="10" max="8" start="true" img="room_drones_13" />
+      <engines power="2" room="0" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="11" start="false" img="room_hacking_7" />
+      <medbay power="1" room="13" start="true" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="7" start="false" img="room_mind_4" />
+      <oxygen power="1" room="1" start="true" img="room_oxygen_10" />
+      <pilot power="1" room="15" start="true" img="room_pilot_2">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="5" start="true" img="room_sensors">
+        <slot>
+          <direction>down</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="8" max="3" start="false" img="room_shields_2">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="3" start="true" />
+      <weapons power="3" room="14" max="8" start="true" img="room_weapons_10">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>3</weaponSlots>
+    <droneSlots>3</droneSlots>
+    <weaponList missiles="2" count="3">
+      <weapon name="RAD_TRASH_BEAM" />
+    </weaponList>
+    <droneList drones="10" count="3">
+      <drone name="DEFENSE_3_PLAYER_PLAYER" />
+    </droneList>
+    <health amount="30" />
+    <maxPower amount="7" />
+    <crewCount amount="1" class="crystal" />
+    <crewCount amount="1" class="crystal" />
+    <crewCount amount="1" class="human" />
+    <aug name="RAD_REFLECT_HULL" />
+  </shipBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_CRYSTAL_2" layout="radp_crystal_b" img="radp_crystal_b">
+    <class>Time Wrecker Cruiser</class>
+    <name>Wilczek</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_CRYSTAL_2_unlock"/>
+    <desc>The hull of the ship has some weird properties, every time it gets hit a room gets hit with a random temporal effect, and one weapon has it's cooldown finished.</desc>
+    <systemList>
+      <battery power="1" room="6" start="false" img="room_battery_3" />
+      <cloaking power="1" room="11" start="false" img="room_cloaking_2" />
+      <clonebay power="1" max="3" room="8" start="false">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="14" start="false" img="room_doors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="2" room="10" max="8" start="false" img="room_drones_13" />
+      <engines power="1" room="2" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="3" start="false" img="room_hacking_7" />
+      <medbay power="1" room="8" start="true" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="4" start="false" img="room_mind_10" />
+      <oxygen power="1" room="16" start="true" img="room_oxygen_10" />
+      <pilot power="1" room="12" start="true" img="room_pilot_2">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </pilot>
+      <sensors power="2" room="13" start="true" img="room_sensors_2">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="7" max="8" start="true" img="room_shields_7">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="15" max="3" start="false" />
+      <temporal power="1" room="5" start="true" img="room_temporal_rad" />
+      <weapons power="3" room="0" max="8" start="true" img="room_weapons_7">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="4" count="4">
+      <weapon name="RAD_LIGHTNING_FIRE" />
+      <weapon name="ION_2" />
+    </weaponList>
+    <droneList drones="4" count="2" />
+    <health amount="30" />
+    <maxPower amount="8" />
+    <crewCount amount="1" class="siren" />
+    <crewCount amount="1" class="crystal" />
+    <crewCount amount="1" class="orchid" />
+    <aug name="RAD_TIME_HULL" />
+  </shipBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_CRYSTAL_3" layout="radp_crystal_c" img="radp_crystal_c">
+    <class>Dark Cruiser</class>
+    <name>The Blackhole</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
+    <desc>Due to the properties of the armour on the ship, you won't have to worry about the ship exploding, but you'll need to be careful with your crew, they're quite vulnerable.
+You'll need to avoid as much damage to your crew as possible, the meagre healing from the clonebay may not be enough.
+    </desc>
+    <systemList>
+      <battery power="1" room="7" start="false" img="room_battery_6" />
+      <cloaking power="1" room="12" max="1" start="false" img="room_cloaking_2" />
+      <doors power="1" room="13" start="true" img="room_doors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="5" room="0" max="12" start="true" img="room_drones_8" />
+      <engines power="2" room="5" max="4" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="10" start="false" img="room_hacking_7" />
+      <clonebay power="1" room="4" start="true">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay>
+      <mind power="1" room="8" start="true" img="room_mind_4" />
+      <oxygen power="1" room="15" start="true" img="room_oxygen_2" />
+      <pilot power="1" room="2" start="true" img="room_pilot_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="14" start="true" img="room_sensors_4">
+        <slot>
+          <direction>left</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <teleporter power="1" room="11" start="false" />
+    </systemList>
+    <weaponSlots>0</weaponSlots>
+    <droneSlots>6</droneSlots>
+    <weaponList missiles="0" count="0" />
+    <droneList drones="12" count="6">
+      <drone name="ION_1_AMP2" />
+      <drone name="COMBAT_2_BEAM" />
+    </droneList>
+    <health amount="30" />
+    <maxPower amount="9" />
+    <crewCount amount="1" class="engi_defender" />
+    <crewCount amount="1" class="engi" />
+    <crewCount amount="1" class="mantis_free" />
+    <aug name="RAD_BULLET_HELL" />
+    <aug name="DRONE_RECOVERY" />
+  </shipBlueprint>
+  
 </FTL>

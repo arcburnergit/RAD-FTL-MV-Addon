@@ -21,6 +21,7 @@
   <mod-append:name>RAD_LIGHTNING_3</mod-append:name>
   <mod-append:name>RAD_LIGHTNING_2</mod-append:name>
   <mod-append:name>RAD_LIGHTNING_1</mod-append:name>
+  <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_WEAPONS_ALL_CRAPBUCKET">
 	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
@@ -45,6 +46,7 @@
   <mod-append:name>RAD_LIGHTNING_1</mod-append:name>
   <mod-append:name>RAD_LIGHTNING_ION</mod-append:name>
   <mod-append:name>RAD_LIGHTNING_FIRE</mod-append:name>
+  <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="LIST_DRONES_ALL">
@@ -85,6 +87,7 @@
   
 <mod:findName type="blueprintList" name="BLUELIST_BEAMS_ALL">
   <mod-append:name>RAD_JAILERBEAM_PLAYER</mod-append:name>
+  <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="SHOP_ITEM_SYLVAN_MISSILES_SPECIAL">
@@ -118,6 +121,7 @@
 <blueprintList name="LABRATORY_AUGMENTS">
   <name>RAD_WM_BIGSHOT</name>
   <name>RAD_WM_MULTISHOT</name>
+  <!--name>RAD_SUPER_HULL</name-->
 </blueprintList>
 
 <!--STATION-->
@@ -562,5 +566,85 @@
     <boardingAI>sabotage</boardingAI>
     <aug name="RAD_ZS_UNDER" />
     <aug name="SHIELD_RECHARGE" />
+  </shipBlueprint>
+
+  <shipBlueprint name="MU_RAD_REBELOUT" layout="mu_rad_rebelout" img="mu_rad_rebelout">
+		<class>Rebel Outpost</class>
+		<systemList>
+			<battery power="1" max="1" room="12" start="true" />
+			<clonebay power="1" max="1" room="17" start="true" />
+			<doors power="3" max="3" room="7" start="true" />
+			<oxygen power="3" max="3" room="3" start="true" />
+			<shields power="1" max="1" room="5" start="true" />
+		</systemList>
+		<weaponSlots>0</weaponSlots>
+		<droneSlots>3</droneSlots>
+		<weaponList missiles="0" count="0" />
+		<droneList drones="10" count="3">
+			<drone name="REPAIR" />
+			<drone name="DOCTOR_DEFENSE" />
+			<drone name="RECON_DEFENSE" />
+		</droneList>
+		<health amount="35" />
+		<maxPower amount="30" />
+		<crewCount amount="4" max="7" class="crystal" />
+		<boardingAI>sabotage</boardingAI>
+		<aug name="O2_MASKS" />
+  </shipBlueprint>
+
+  <shipBlueprint name="MU_RAD_CRYSTALENEMY" layout="mu_rad_crystalenemy" img="mu_rad_crystalenemy">
+    <class>Crystal Cruiser</class>
+    <systemList>
+      <doors power="2" max="2" room="13" start="true" />
+      <engines power="2" max="2" room="15" start="true" />
+      <medbay power="1" max="1" room="11" start="true" />
+      <oxygen power="1" max="1" room="19" start="true" />
+      <pilot power="1" max="1" room="0" start="true" />
+      <shields power="4" max="8" room="6" start="true" />
+      <teleporter power="2" max="2" room="12" start="true" />
+      <weapons power="8" max="8" room="1" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="0" count="4">
+      <weapon name="RAD_TRASH_BEAM" />
+      <weapon name="CRYSTAL_HEAVY_1_RED" />
+      <weapon name="CRYSTAL_BURST_1_RED" />
+      <weapon name="CRYSTAL_CHARGEGUN_RED" />
+    </weaponList>
+    <droneList drones="0" count="2" />
+    <health amount="18" />
+    <maxPower amount="30" />
+    <crewCount amount="4" max="7" class="crystal_sentinel" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="RAD_REFLECT_HULL" />
+  </shipBlueprint>
+
+  <shipBlueprint name="MU_RAD_CRYSTALENEMY2" layout="mu_rad_crystalenemy" img="mu_rad_crystalenemy2">
+    <class>Crystal Cruiser</class>
+    <systemList>
+      <doors power="2" max="2" room="13" start="true" />
+      <engines power="2" max="2" room="15" start="true" />
+      <medbay power="1" max="1" room="11" start="true" />
+      <oxygen power="1" max="1" room="19" start="true" />
+      <pilot power="1" max="1" room="0" start="true" />
+      <shields power="4" max="8" room="6" start="true" />
+      <teleporter power="2" max="2" room="12" start="true" />
+      <weapons power="8" max="8" room="1" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="0" count="4">
+      <weapon name="RAD_TRASH_BEAM" />
+      <weapon name="CRYSTAL_HEAVY_1_RED" />
+      <weapon name="CRYSTAL_BURST_1_RED" />
+      <weapon name="CRYSTAL_CHARGEGUN_RED" />
+    </weaponList>
+    <droneList drones="0" count="2" />
+    <health amount="18" />
+    <maxPower amount="30" />
+    <crewCount amount="4" max="7" class="crystal_sentinel" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="RAD_WARPED_HULL" />
   </shipBlueprint>
 </FTL>

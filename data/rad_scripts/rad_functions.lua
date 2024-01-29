@@ -134,6 +134,28 @@ script.on_game_event("RAD_GHOST_BEFORE_FIGHT", false, function()
     end
 end)
 
+script.on_game_event("RAD_MIRROR_3", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    for crewmem in vter(shipManager.vCrewList) do
+        local teleTable = userdata_table(crewmem, "mods.tpbeam.time")
+        if teleTable.tpTime then
+            teleTable.tpTime = nil
+        end
+        crewmem.extend:InitiateTeleport(1,0,0)
+    end
+end)
+
+script.on_game_event("DEAD_CREW_RAD_REBELOUT", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(1)
+    for crewmem in vter(shipManager.vCrewList) do
+        local teleTable = userdata_table(crewmem, "mods.tpbeam.time")
+        if teleTable.tpTime then
+            teleTable.tpTime = nil
+        end
+        crewmem.extend:InitiateTeleport(0,0,0)
+    end
+end)
+
 mods.rad.aoeWeapons = {}
 local aoeWeapons = mods.rad.aoeWeapons
 aoeWeapons["RAD_CLUSTER_MISSILE"] = Hyperspace.Damage()
@@ -486,8 +508,10 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
         for system in vter(shipManager.vSystemList) do
             if (system.iSystemType == 0 or system.iSystemType == 1 or system.iSystemType == 2 or system.iSystemType == 5 or system.iSystemType == 13) then
                 slot1X = slot1X + 36
-            elseif (system.iSystemType == 9 or system.iSystemType == 10 or system.iSystemType == 11 or system.iSystemType == 14 or system.iSystemType >= 15) then
+            elseif (system.iSystemType == 9 or system.iSystemType == 10 or system.iSystemType == 11 or system.iSystemType == 14) then
                 slot1X = slot1X + 54
+            elseif system.iSystemType >= 15 then
+
             end
         end
     end
@@ -1302,7 +1326,7 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
             jumptable.table = {}
         end
         --log("hit")
-        log(shipManager.iShipId)
+        --log(shipManager.iShipId)
         table.insert(jumptable.table, {aoeDamage, aoeDamage.iShieldPiercing, location.x, location.y, 0.1, projectile.currentSpace})
     end
 end)
@@ -1312,7 +1336,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 
     if jumptable.table then 
         --log("jumptable.table exists")
-        log(shipManager.iShipId)
+        --log(shipManager.iShipId)
         local removeTable = {}
         for k,v in pairs(jumptable.table) do
             --log("Inner Table Exists")
@@ -1328,16 +1352,16 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 
                 local roomPositions = {}
                 local tblSize = 0
-                log(lastLocation.x)
-                log(lastLocation.y)
-                log(get_room_at_location(shipManager,lastLocation,false))
+                --log(lastLocation.x)
+                --log(lastLocation.y)
+                --log(get_room_at_location(shipManager,lastLocation,false))
                 --Hyperspace.Get_Projectile_Extend(projectile).name = ""
                 for roomId, roomPos in pairs(get_adjacent_rooms(shipManager.iShipId, get_room_at_location(shipManager, lastLocation, false), false)) do
                     table.insert(roomPositions, roomPos)
                     --log("add room")
                     tblSize = tblSize + 1
                 end
-                log(tblSize)
+                --log(tblSize)
 
                 if tblSize > 0 then
                     local randomNumber = math.random(1, tblSize)
@@ -1391,7 +1415,6 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         local damage = projectile.damage
         local newDamage = Hyperspace.Damage()
         newDamage.iDamage = math.floor(damage.iDamage/2)
-        newDamage.iShieldPiercing = math.floor(damage.iShieldPiercing/2)
         newDamage.fireChance = math.floor(damage.fireChance/2)
         newDamage.breachChance = math.floor(damage.breachChance/2)
         newDamage.stunChance = math.floor(damage.stunChance/2)
@@ -1402,6 +1425,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
 
         newDamage.ownerId = damage.ownerId
         newDamage.selfId = damage.selfId
+        newDamage.iShieldPiercing = damage.iShieldPiercing
 
         newDamage.bHullBuster = damage.bHullBuster
         newDamage.bLockdown = damage.bLockdown
@@ -1415,7 +1439,6 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         local newDamage2 = projectile.damage
         --log(newDamage2.iDamage)
         newDamage2.iDamage = math.ceil(damage.iDamage/2)
-        newDamage2.iShieldPiercing = math.ceil(damage.iShieldPiercing/2)
         newDamage2.fireChance = math.ceil(damage.fireChance/2)
         newDamage2.breachChance = math.ceil(damage.breachChance/2)
         newDamage2.stunChance = math.ceil(damage.stunChance/2)
@@ -1426,6 +1449,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
 
         newDamage2.ownerId = damage.ownerId
         newDamage2.selfId = damage.selfId
+        newDamage2.iShieldPiercing = damage.iShieldPiercing
 
         newDamage2.bHullBuster = damage.bHullBuster
         newDamage2.bLockdown = damage.bLockdown
@@ -1501,7 +1525,6 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         local damage = projectile.damage
         local newDamage = Hyperspace.Damage()
         newDamage.iDamage = (damage.iDamage*2)
-        newDamage.iShieldPiercing = (damage.iShieldPiercing*2)
         newDamage.fireChance = (damage.fireChance*2)
         newDamage.breachChance = (damage.breachChance*2)
         newDamage.stunChance = (damage.stunChance*2)
@@ -1512,6 +1535,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
 
         newDamage.ownerId = damage.ownerId
         newDamage.selfId = damage.selfId
+        newDamage.iShieldPiercing = damage.iShieldPiercing
 
         newDamage.bHullBuster = damage.bHullBuster
         newDamage.bLockdown = damage.bLockdown
@@ -1528,3 +1552,426 @@ end)
     end
     return Defines.Chain.CONTINUE, augValue
 end, -100)]]--
+
+script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
+
+end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile,weapon) 
+
+end)
+
+--[[script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL,function() end, function()
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+        local weaponlist = nil
+        if shipManager:HasSystem(3) then
+            weaponlist = shipManager:GetWeaponList()
+            local weaponSlot = 0
+            for weapon in vter(weaponlist) do
+                if weapon.blueprint.name == "RAD_SHIELD_CHAINER" then
+                    local slot1X = 141
+                    local slotY = 643
+                    local weaponlist = {}
+                    if shipManager then
+                        for system in vter(shipManager.vSystemList) do
+                            if (system.iSystemType == 0 or system.iSystemType == 1 or system.iSystemType == 2 or system.iSystemType == 5 or system.iSystemType == 13) then
+                                slot1X = slot1X + 36
+                            elseif (system.iSystemType == 9 or system.iSystemType == 10 or system.iSystemType == 11 or system.iSystemType == 14) then
+                                slot1X = slot1X + 54
+                            elseif system.iSystemType >= 15 then
+                                slot1X = slot1X + 36
+                            end
+                        end
+                    end
+                    local slot1X = slot1X + (weaponSlot * 97)
+
+                    Graphics.freetype.easy_print(0, slot1X, slotY, "ahhhah")
+                end
+                weaponSlot = weaponSlot + 1
+            end
+        end
+    end
+end)
+
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
+    if projectile.extend.name == "RAD_TRASH_BEAM" then 
+        log("TRASH FIRE")
+        local pointLoc = Hyperspace.Point(math.Round(location.x,0),math.Round(location.y,0))
+        local roomSlot = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId):GetClosestSlot(pointLoc)
+        local projData = userdata_table(projectile, "mods.rad.trashbeam")
+        if projData.slotId then 
+            log("SLOTID EXISTS")
+            log(roomSlot.slotId)
+            local oldSlot = projData.slotId
+            log(oldSlot)
+            if not roomSlot.slotId == oldSlot then 
+                log("CREATE ASTEROID")
+                local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+                local asteroid = spaceManager:CreateAsteroid(Hyperspace.Pointf(0,0), ((projectile.currentSpace+1)%2), projectile.ownerId, location, projectile.currentSpace, projectile.heading);
+            end
+            projData.slotId = roomSlot.slotId
+        else
+            log("CREATE ASTEROID FIRST")
+            projData.slotId = roomSlot.slotId
+            local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+            local asteroid = spaceManager:CreateAsteroid(Hyperspace.Pointf(0,0), ((projectile.currentSpace+1)%2), projectile.ownerId, location, projectile.currentSpace, projectile.heading);
+        end
+    end
+end)]]
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
+    if projectile.extend.name == "RAD_TRASH_BEAM" and realNewTile then
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+        local asteroid = spaceManager:CreateAsteroid(Hyperspace.Pointf(1000,1000), projectile.currentSpace, projectile.ownerId, location, ((projectile.currentSpace+1)%2), projectile.heading)
+    end 
+    return Defines.Chain.CONTINUE, beamHitType
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
+    local hullData = userdata_table(shipManager, "mods.rad.reflecthull")
+    if shipManager:HasAugmentation("RAD_SUPERHULL") > 0   then
+        hullData.tempHp = math.floor(shipManager:GetAugmentationValue("RAD_SUPERHULL"))
+    else
+        hullData.tempHp = nil
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
+    --log(beamHitType)
+    if shipManager:HasAugmentation("RAD_SUPER_HULL") > 0 and beamHitType == 2 then
+       local hullData = userdata_table(shipManager, "mods.rad.reflecthull")
+        if hullData.tempHp then 
+            if hullData.tempHp > 0 and damage.iDamage > 0 then
+                hullData.tempHp = hullData.tempHp - 1
+                shipManager:DamageHull((-1 * damage.iDamage), true)
+            end
+        end
+    end 
+    return Defines.Chain.CONTINUE, beamHitType
+end) 
+
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
+    --log(beamHitType)
+    if shipManager:HasAugmentation("RAD_REFLECT_HULL") > 0 and beamHitType == 2 then
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+        local WeaponBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name)
+        local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId+1)%2)
+        local randomRoom = otherShip:GetRandomRoomCenter()
+        local beam = spaceManager:CreateBeam(WeaponBlueprint, 
+            location, 
+            shipManager.iShipId, 
+            shipManager.iShipId, 
+            Hyperspace.Pointf(randomRoom.x,randomRoom.y-5), 
+            Hyperspace.Pointf(randomRoom.x,randomRoom.y+5), 
+            otherShip.iShipId, 
+            10, 
+            (math.random()-0.5))
+
+        local beam = spaceManager:CreateBeam(WeaponBlueprint, 
+            location, 
+            shipManager.iShipId, 
+            ((shipManager.iShipId+1)%2), 
+            Hyperspace.Pointf(location.x+1000,location.y), 
+            Hyperspace.Pointf(location.x+1010,location.y), 
+            shipManager.iShipId, 
+            10, 
+            (math.random()-0.5))
+        beam.speed_magnitude = 1
+
+        shipManager:DamageHull((math.ceil(damage.iDamage/2) * -1), true)
+
+        local hullData = userdata_table(shipManager, "mods.rad.reflecthull")
+        if hullData.tempHp then 
+            if hullData.tempHp > 0 and damage.iDamage > 0 then
+                hullData.tempHp = hullData.tempHp - 1
+                shipManager:DamageHull((-1 * damage.iDamage), true)
+            end
+        end
+    end 
+    return Defines.Chain.CONTINUE, beamHitType
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
+    if shipManager:HasAugmentation("RAD_TIME_HULL") > 0 and beamHitType == 2 then
+        local hullData = userdata_table(shipManager, "mods.rad.reflecthull")
+        if hullData.tempHp then 
+            if hullData.tempHp > 0 and damage.iDamage > 0 then
+                hullData.tempHp = hullData.tempHp - 1
+                shipManager:DamageHull((-1 * damage.iDamage), true)
+            end
+        end
+        local temporalSystem = shipManager:GetSystem(20)
+        temporalSystem.lockTimer:Stop()
+        temporalSystem.iLockCount = 0
+        temporalSystem.iTempPowerLoss = 0
+        --temporalSystem:Restart()
+        local weaponList = {}
+        local weaponCount = 0
+        for weapon in vter(shipManager:GetWeaponList()) do
+            log(weapon.name)
+            if not weapon:IsChargedGoal() then 
+                log("Add weapon")
+                table.insert(weaponList, weapon)
+                weaponCount = weaponCount + 1
+            end
+        end
+        log(weaponCount)
+        if weaponCount > 0 then
+            local randomNum = math.random(1, weaponCount)
+            for k,v in pairs(weaponList) do 
+                if k == randomNum then
+                    v:ForceCoolup()
+                end
+            end
+        end
+    end 
+    return Defines.Chain.CONTINUE, beamHitType
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
+    if shipManager:HasAugmentation("RAD_REFLECT_HULL") > 0 or shipManager:HasAugmentation("RAD_TIME_HULL") > 0 or shipManager:HasAugmentation("RAD_SUPER_HULL") then
+        local hullData = userdata_table(shipManager, "mods.rad.reflecthull")
+        if hullData.tempHp then 
+            if hullData.tempHp > 0 and damage.iDamage > 0 then
+                hullData.tempHp = hullData.tempHp - 1
+                shipManager:DamageHull((-1 * damage.iDamage), true)
+            end
+        end
+        if shipManager:HasAugmentation("RAD_TIME_HULL") > 0 then
+            local temporalSystem = shipManager:GetSystem(20)
+            temporalSystem.lockTimer:Stop()
+            temporalSystem.iLockCount = 0
+            temporalSystem.iTempPowerLoss = 0
+            --temporalSystem:Restart()
+            local weaponList = {}
+            local weaponCount = 0
+            for weapon in vter(shipManager:GetWeaponList()) do
+                log(weapon.name)
+                if not weapon:IsChargedGoal() then 
+                    log("Add weapon")
+                    table.insert(weaponList, weapon)
+                    weaponCount = weaponCount + 1
+                end
+            end
+            log(weaponCount)
+            if weaponCount > 0 then
+                local randomNum = math.random(1, weaponCount)
+                for k,v in pairs(weaponList) do 
+                    if k == randomNum then
+                        v:ForceCoolup()
+                    end
+                end
+            end
+        end
+    end
+end)
+
+script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+        local hullData = userdata_table(shipManager, "mods.rad.reflecthull")
+        if hullData.tempHp then
+            local hullHP = hullData.tempHp
+            local xPos = 380
+            local yPos = 47
+            local xText = 413
+            local yText = 58
+            local tempHpImage = Hyperspace.Resources:CreateImagePrimitiveString(
+                "statusUI/rad_tempHull.png",
+                xPos,
+                yPos,
+                0,
+                Graphics.GL_Color(1, 1, 1, 1),
+                1.0,
+                false)
+            Graphics.CSurface.GL_RenderPrimitive(tempHpImage)
+            Graphics.freetype.easy_print(0, xText, yText, hullHP)
+        end
+    end
+end, function() end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then 
+
+    end
+end)
+
+local function addWarning(projectile, warningData)
+    if projectile.damage.iIonDamage > 0 then 
+        table.insert(warningData.warnings, {projectile.target.x, projectile.target.y, true, 120})
+    else
+        table.insert(warningData.warnings, {projectile.target.x, projectile.target.y, false, 120})
+    end
+end
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
+    local weaponType = weaponBlueprint.typeName
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then 
+        if projectile.extend.name ~= "DRONE_LASER_DEFENSE" and projectile.extend.name ~= "DRONE_MISSILE_DEFENSE" and projectile.extend.name ~= "DRONE_ION_DEFENSE" and projectile.extend.name ~= "ANCIENT_DRONE_DEFENSE" and projectile.extend.name ~= "ROYAL_DRONE_DEFENSE" and projectile.extend.name ~= "DRONE_LASER_ENGI_DEFENSE_LOOT" then    
+            if weaponType == "BEAM" then
+                local damageNew = projectile.damage
+                damageNew.iPersDamage = 0
+                projectile:SetDamage(damageNew)
+            else
+                if projectile.currentSpace == projectile.destinationSpace then 
+                    projectile.speed_magnitude = (projectile.speed_magnitude / 8)
+                else
+                    projectile.speed_magnitude = (projectile.speed_magnitude / 4)
+                end
+
+                local damageNew = projectile.damage
+                damageNew.iPersDamage = math.min(projectile.damage.iPersDamage + 3,5)
+                projectile:SetDamage(damageNew)
+                if weaponType ~= "BEAM" and projectile.destinationSpace == 0 then 
+                    --log("ADD WARNING")
+                    local warningData = userdata_table(shipManager, "mods.rad.warnings")
+                    
+
+                    if warningData.warnings then 
+                        addWarning(projectile, warningData)
+                    else
+                        warningData.warnings = {}
+                        addWarning(projectile, warningData)
+                    end
+                end 
+            end
+        else
+            projectile.speed_magnitude = (projectile.speed_magnitude / 3)
+        end
+    end
+end)
+
+ 
+
+script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship)
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame and ship.iShipId == 0 then
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+        local warningData = userdata_table(shipManager, "mods.rad.warnings")
+        if warningData.warnings then
+
+            for k,v in pairs(warningData.warnings) do 
+                --log("RENDER WARNING")
+                local xPos = v[1]
+                local yPos = v[2]
+                local ion = v[3]
+                local timeLeft = v[4]
+                local warningImageRed = Hyperspace.Resources:CreateImagePrimitiveString(
+                    "statusUI/rad_warning.png",
+                    xPos-11,
+                    yPos-11,
+                    0,
+                    Graphics.GL_Color(1, 1, 1, 1),
+                    1.0,
+                    false)
+                local warningImageBlue = Hyperspace.Resources:CreateImagePrimitiveString(
+                    "statusUI/rad_warning2.png",
+                    xPos-11,
+                    yPos-11,
+                    0,
+                    Graphics.GL_Color(1, 1, 1, 1),
+                    1.0,
+                    false)
+                if ion then
+                    Graphics.CSurface.GL_RenderPrimitive(warningImageBlue)
+                else
+                    Graphics.CSurface.GL_RenderPrimitive(warningImageRed)
+                end
+                warningData.warnings[k][4] = math.max(0, timeLeft - Hyperspace.FPS.SpeedFactor/16)
+                if warningData.warnings[k][4] == 0 then
+                    table.remove(warningData.warnings, k)
+                end
+            end
+        end
+    end
+end, function() end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_COLLISION, function(thisProjectile, otherProjectile, damage, response)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    local warningData = userdata_table(shipManager, "mods.rad.warnings")
+    local x = thisProjectile.target.x
+    local y = thisProjectile.target.y 
+    if warningData.warnings then
+        for k,v in pairs(warningData.warnings) do 
+            local xPos = v[1]
+            local yPos = v[2]
+            if math.abs(xPos - x) < 3 and math.abs(yPos - y) < 3 then
+                table.remove(warningData.warnings, k)
+            end
+        end
+    end
+    return Defines.Chain.CONTINUE
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+    local warningData = userdata_table(shipManager, "mods.rad.warnings")
+    if warningData.warnings then 
+        warningData.warnings = nil
+        warningData.warnings = {}
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, evasion, friendlyfire)
+    if shipManager.iShipId == 0 then 
+        local x = location.x
+        local y = location.y 
+        local warningData = userdata_table(shipManager, "mods.rad.warnings")
+        if warningData.warnings then
+            for k,v in pairs(warningData.warnings) do 
+                local xPos = v[1]
+                local yPos = v[2]
+                if math.abs(xPos - x) < 3 and math.abs(yPos - y) < 3 then
+                    table.remove(warningData.warnings, k)
+                end
+            end
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then
+        for system in vter(shipManager.vSystemList) do
+            if system:NeedsRepairing() then
+                system:PartialRepair(0,true)
+            end
+        end
+        shipManager.cloneSystem.fTimeToClone = shipManager.cloneSystem.fTimeGoal
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    if crewmem.iShipId == 0 and crewmem.intruder == false and shipManager:HasAugmentation("RAD_BULLET_HELL")>0 then 
+        if crewmem.bCloned then 
+            crewmem:Kill(true)
+        end
+    end
+end)
+
+--[[script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augName, augValue)
+    if augName == "UPG_CLONEBAY_DNA" and shipManager:HasAugmentation("RAD_BULLET_HELL")>0 then
+        augValue = 1
+    end
+    return Defines.Chain.CONTINUE, augValue
+end, -100)]]
+
+--[[local repairData = userdata_table(system, "mods.rad.repairRate")
+                local crewInRoom = get_ship_crew_room(shipManager, system.roomId)
+                local crewRoomBool = false
+                for k,v in pairs(crewInRoom) do
+                    crewRoomBool = true
+                end
+                if crewRoomBool then
+                    repairData.repairFloat = system.fRepairOverTime
+                elseif repairData.repairFloat then
+                    system.fRepairOverTime = repairData.repairFloat
+                end
+            else
+                local repairData = userdata_table(system, "mods.rad.repairRate")
+                if repairData.repairFloat then
+                    repairData.repairFloat = nil
+                end]]

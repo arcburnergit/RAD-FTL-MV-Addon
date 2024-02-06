@@ -54,10 +54,10 @@
 		<!-- -->
     <mod-append:ship>PLAYER_SHIP_RAD_CRYSTAL</mod-append:ship>
 		<mod-append:empty/>
-		<mod-append:empty/>
-		<mod-append:empty/>
+    <mod-append:ship>PLAYER_SHIP_RAD_CUTTER</mod-append:ship>
+    <mod-append:ship>PLAYER_SHIP_RAD_CORVETTE</mod-append:ship>
     
-    <mod-append:ship>PLAYER_SHIP_RAD_HUGE</mod-append:ship>
+    <mod-append:ship>PLAYER_SHIP_RAD_CORVETTE_ELITE</mod-append:ship>
 		<mod-append:empty/>
 
 	</mod:findLike>
@@ -127,12 +127,12 @@
     </unlock>
     <unlock variant="c" silent="false">
       <type>1</type>
-      <shipReq>PLAYER_SHIP_RAD_STATION</shipReq>
+      <shipReq>PLAYER_SHIP_RAD_RICH</shipReq>
       <value>5</value>
     </unlock>
     <unlock variant="c" silent="false">
       <type>1</type>
-      <shipReq>PLAYER_SHIP_RAD_STATION_2</shipReq>
+      <shipReq>PLAYER_SHIP_RAD_RICH_2</shipReq>
       <value>5</value>
     </unlock>
   </mod-append:ship>
@@ -154,7 +154,45 @@
       <value>5</value>
     </unlock>
   </mod-append:ship>
-  <mod-append:ship name="PLAYER_SHIP_RAD_HUGE" b="false" c="false">
+  <mod-append:ship name="PLAYER_SHIP_RAD_CORVETTE" b="true" c="true" >
+    <unlock variant="a" silent="false">
+      <type>4</type>
+    </unlock>
+    <unlock variant="b" silent="false">
+      <type>1</type>
+        <shipReq>PLAYER_SHIP_RAD_CORVETTE</shipReq>
+      <value>5</value>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_CORVETTE_2</shipReq>
+      <value>5</value>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>2</type>
+      <shipReq>PLAYER_SHIP_RAD_CORVETTE</shipReq>
+    </unlock>
+  </mod-append:ship>
+  <mod-append:ship name="PLAYER_SHIP_RAD_CUTTER" b="true" c="true" >
+    <unlock variant="a" silent="false">
+      <type>4</type>
+    </unlock>
+    <unlock variant="b" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_CUTTER</shipReq>
+      <value>5</value>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_CUTTER_2</shipReq>
+      <value>5</value>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>2</type>
+      <shipReq>PLAYER_SHIP_RAD_CUTTER</shipReq>
+    </unlock>
+  </mod-append:ship>
+  <mod-append:ship name="PLAYER_SHIP_RAD_CORVETTE_ELITE" b="false" c="false">
     <unlock variant="a" silent="false">
       <type>3</type>
       <otherUnlocks>
@@ -162,14 +200,23 @@
         <ship>PLAYER_SHIP_RAD_FLESH</ship>
         <ship>PLAYER_SHIP_RAD_EXPERIMENT</ship>
         <ship>PLAYER_SHIP_RAD_RICH</ship>
+        <ship>PLAYER_SHIP_RAD_CRYSTAL</ship>
+        <ship>PLAYER_SHIP_RAD_CORVETTE</ship>
         <ship>PLAYER_SHIP_RAD_STATION_2</ship>
         <ship>PLAYER_SHIP_RAD_FLESH_2</ship>
         <ship>PLAYER_SHIP_RAD_EXPERIMENT_2</ship>
         <ship>PLAYER_SHIP_RAD_RICH_2</ship>
+        <ship>PLAYER_SHIP_RAD_CRYSTAL_2</ship>
+        <ship>PLAYER_SHIP_RAD_CORVETTE_2</ship>
         <ship>PLAYER_SHIP_RAD_STATION_3</ship>
         <ship>PLAYER_SHIP_RAD_FLESH_3</ship>
         <ship>PLAYER_SHIP_RAD_EXPERIMENT_3</ship>
         <ship>PLAYER_SHIP_RAD_RICH_3</ship>
+        <ship>PLAYER_SHIP_RAD_CRYSTAL_3</ship>
+        <ship>PLAYER_SHIP_RAD_CORVETTE_3</ship>
+        <ship>PLAYER_SHIP_RAD_CUTTER</ship>
+        <ship>PLAYER_SHIP_RAD_CUTTER_2</ship>
+        <ship>PLAYER_SHIP_RAD_CUTTER_3</ship>
       </otherUnlocks>
     </unlock>
   </mod-append:ship>
@@ -251,10 +298,28 @@
     <crewLimit>6</crewLimit>
     <systemLimit>10</systemLimit>
   </mod-append:customShip>
-  <mod-append:customShip name="PLAYER_SHIP_RAD_HUGE">
+  <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE">
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
-    <crewLimit>2</crewLimit>
-    <systemLimit>10</systemLimit>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE_2">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE_3">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_CUTTER">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <crewLimit>6</crewLimit>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_CUTTER_2">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_CUTTER_3">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <crewLimit>6</crewLimit>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE_ELITE">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
 
 
@@ -267,7 +332,7 @@
   
 	<mod-append:customShip name="ENEMY_SHIP_RAD_FLESH">
 		<shipIcons>
-			<shipIcon>icon_resist</shipicon>
+			<shipIcon>icon_resist</shipIcon>
 		</shipIcons>
 		<rooms>
 			<room id="3">
@@ -415,6 +480,44 @@
   <aug name="RAD_WM_BIGSHOT">
     <function name="AUTO_COOLDOWN" value="-0.6" useForReqs="false" warning="false" />
   </aug>
+  <aug name="RAD_CREVERSAL">
+    <locked />
+  </aug>
+  <aug name="RAD_CBEAM">
+    <locked />
+  </aug>
+  <aug name="RAD_CHACK">
+    <locked />
+  </aug>
+  <aug name="RAD_LOW_WEAPON">
+    <locked />
+  </aug>
+  <aug name="RAD_CUTTER_OXY">
+    <locked />
+    <statBoosts>
+      <statBoost name="suffocationModifier">
+        <boostType>MULT</boostType>
+        <amount>2</amount>
+        <shipTarget>ALL</shipTarget>
+        <crewTarget>ALLIES</crewTarget>
+        <priority>0</priority>
+        <healthFractionReq below="0.5" />
+      </statBoost>
+      <statBoost name="canSuffocate">
+        <boostType>SET</boostType>
+        <value>true</value>
+        <shipTarget>ALL</shipTarget>
+        <crewTarget>ALLIES</crewTarget>
+        <priority>0</priority>
+      </statBoost>
+    </statBoosts>
+  </aug>
+  <aug name="RAD_LOW_SHIELD">
+    <locked />
+  </aug>
+  <aug name="RAD_SHRAPNEL_SHIELD">
+    <locked />
+  </aug>
 </augments>
 
 <mod:findWithChildLike type="ships" child-type="ship" reverse="true" start="1" limit="1">
@@ -441,16 +544,8 @@
 	<!--<bossShip>MU_COLLECTOR</bossShip>
 	<bossShip>MU_CONTINUITY_BOSS</bossShip>
 	
-	<variable name="addon_extraequipment_enabled" op="set" val="1"/>
+	<variable name="addon_extraequipment_enabled" op="set" val="1"/-->
 	
-	<variable name="trc_collector" op="set" val="0"/>
-	<metaVariable name="trc_found_collector" op="set" val="0"/>
-	<metaVariable name="trc_fed" op="set" val="0"/>
-	<metaVariable name="trc_zoltan" op="set" val="0"/>
-	<metaVariable name="trc_auto" op="set" val="0"/>
-	<metaVariable name="trc_rock" op="set" val="0"/>
-	<metaVariable name="trc_lanius" op="set" val="0"/>
-	<metaVariable name="trc_probe" op="set" val="0"/>-->
 
   <metaVariable name="rad_q1" op="set" val="0"/>
   <metaVariable name="rad_q2" op="set" val="0"/>
@@ -462,6 +557,80 @@
   <metaVariable name="rad_q8" op="set" val="0"/>
   <metaVariable name="rad_q9" op="set" val="0"/>
   <metaVariable name="rad_q10" op="set" val="0"/>
+  
+
+  <req name="rad_2" type="all">
+    <req lvl="1">
+      <name>rad_q1</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q2</name>
+    </req>
+  </req>
+  <req name="rad_3" type="all">
+    <req lvl="1">
+      <name>rad_q2</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q3</name>
+    </req>
+  </req>
+  <req name="rad_4" type="all">
+    <req lvl="1">
+      <name>rad_q3</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q4</name>
+    </req>
+  </req>
+  <req name="rad_5" type="all">
+    <req lvl="1">
+      <name>rad_q4</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q5</name>
+    </req>
+  </req>
+  <req name="rad_6" type="all">
+    <req lvl="1">
+      <name>rad_q5</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q6</name>
+    </req>
+  </req>
+  <req name="rad_7" type="all">
+    <req lvl="1">
+      <name>rad_q6</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q7</name>
+    </req>
+  </req>
+  <req name="rad_8" type="all">
+    <req lvl="1">
+      <name>rad_q7</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q8</name>
+    </req>
+  </req>
+  <req name="rad_9" type="all">
+    <req lvl="1">
+      <name>rad_q8</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q9</name>
+    </req>
+  </req>
+  <req name="rad_10" type="all">
+    <req lvl="1">
+      <name>rad_q9</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q10</name>
+    </req>
+  </req>
 
   <variable name="loc_rad_board_charged" op="set" val="1"/>
 
@@ -480,9 +649,34 @@
 	<req name="RAD_JUMP_TRACER" type="all">
 		<name>RAD_JUMP_TRACKER</name>
 	</req>
-	
+  
+  <!--coordinates-->
+  <variable name="coords_rad_science" op="set" val="0"/>
+
+
+
+  <variable name="ach_trans_rad_science" op="set" val="1" />
+
+  <eventFile>sector_rad_science</eventFile>
+  
 </events>
 
+<mod:findLike type="events">
+  <mod:findName name="COORDS">
+    <mod-append:name>coords_rad_science</mod-append:name>
+  </mod:findName>
+  <mod:findName name="COORDS_BOSS">
+    <mod:findLike type="req">
+      <mod-append:name>coords_rad_science</mod-append:name>
+    </mod:findLike>
+  </mod:findName>
+  <mod:findName name="COORDS_BOSS_TOOLATE">
+    <mod:findLike type="req">
+      <mod-append:name>coords_rad_science</mod-append:name>
+    </mod:findLike>
+  </mod:findName>
+</mod:findLike>
+  
 <store>
 	<customStore id="STORE_RADLAB">
 		<resource>
@@ -531,6 +725,16 @@
       </item>
       <item>
         <blueprint>LABRATORY_AUGMENTS</blueprint>
+        <price>-1</price>
+      </item>
+    </category>
+    <category type="CREW">
+      <item>
+        <blueprint>rad_scientist</blueprint>
+        <price>-1</price>
+      </item>
+      <item>
+        <blueprint>rad_scientist</blueprint>
         <price>-1</price>
       </item>
     </category>
@@ -592,6 +796,85 @@
 		<moveSpeedMultiplier>2</moveSpeedMultiplier>
 		<controllable>true</controllable>
 	</race>
+  <race name="rad_scientist">
+    <repairSpeed>1.2</repairSpeed>
+    <suffocationModifier>0.83</suffocationModifier>
+    <fireDamageMultiplier>0.60</fireDamageMultiplier>
+    <passiveStatBoosts>
+      <statBoost name="allDamageTakenMultiplier">
+        <boostType>MULT</boostType>
+        <amount>1.25</amount>
+        <shipTarget>CURRENT_ROOM</shipTarget>
+        <crewTarget>ENEMIES</crewTarget>
+        <droneTarget>DRONES</droneTarget>
+        <affectsSelf>false</affectsSelf>
+        <priority>0</priority>
+      </statBoost>
+    </passiveStatBoosts>
+    <animBase>human</animBase>
+    <deathSounds>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>humanDeathSpecial</deathSound>
+    </deathSounds>
+    <shootingSounds>
+      <shootingSound>detectiveShoot1</shootingSound>
+      <shootingSound>detectiveShoot2</shootingSound>
+      <shootingSound>detectiveShoot3</shootingSound>
+    </shootingSounds>
+    <skills>
+      <piloting req="13" />
+      <engines req="13" />
+      <shields req="50" />
+      <weapons req="58" />
+      <repair req="12" />
+      <combat req="7" />
+    </skills>
+  </race>
 </crew>
 
 

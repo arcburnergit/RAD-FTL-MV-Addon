@@ -12,4 +12,8 @@
 <text name="ship_PLAYER_SHIP_RAD_HUGE_unlock">Unlock every other ship on this page.</text>
 <text name="ship_PLAYER_SHIP_RAD_CRYSTAL_unlock">Deal with some crystalin rebels.</text>
 <text name="ship_PLAYER_SHIP_RAD_CRYSTAL_2_unlock">Find out what happened to the missing station.</text>
+
+<text name="ship_PLAYER_SHIP_RAD_CORVETTE_unlock">???</text>
+<text name="ship_PLAYER_SHIP_RAD_CORVETTE_2_unlock">Get to Sector 5 with the Type A to unlock this ship.</text>
+<text name="ship_PLAYER_SHIP_RAD_CORVETTE_3_unlock">Get to Sector 5 with the Type B or beat the game with the Type A to unlock this ship.</text>
 </FTL>

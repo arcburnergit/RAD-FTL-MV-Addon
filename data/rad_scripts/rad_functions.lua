@@ -506,9 +506,9 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
     if shipManager then
         weaponlist = shipManager:GetWeaponList()
         for system in vter(shipManager.vSystemList) do
-            if (system.iSystemType == 0 or system.iSystemType == 1 or system.iSystemType == 2 or system.iSystemType == 5 or system.iSystemType == 13) then
+            if (system.iSystemType == 0 or system.iSystemType == 1 or system.iSystemType == 2 or system.iSystemType == 5 or system.iSystemType == 13 or system.iSystemType == 11) then
                 slot1X = slot1X + 36
-            elseif (system.iSystemType == 9 or system.iSystemType == 10 or system.iSystemType == 11 or system.iSystemType == 14) then
+            elseif (system.iSystemType == 9 or system.iSystemType == 10 or system.iSystemType == 14 or system.iSystemType == 20) then
                 slot1X = slot1X + 54
             elseif system.iSystemType >= 15 then
 
@@ -1975,3 +1975,363 @@ end, -100)]]
                 if repairData.repairFloat then
                     repairData.repairFloat = nil
                 end]]
+local lastBoolCloak = {false,false}
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    --log(shipManager.iShipId)
+    if shipManager:HasAugmentation("RAD_CREVERSAL") > 0 then 
+        local cloakSystem = shipManager.cloakSystem
+        
+        --log(cloakSystem.timer.currTime)
+        --log(cloakSystem.timer.currGoal)
+        if cloakSystem.timer:Running() and cloakSystem.timer.currTime >= (cloakSystem.timer.currGoal/2) then 
+            --cloakSystem.timer:Stop()
+            cloakSystem.timer.currTime = cloakSystem.timer.currGoal
+        end
+        if cloakSystem.bTurnedOn and (not lastBoolCloak[shipManager.iShipId]) then 
+            --log("CLOAK START")
+            local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+            local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2) 
+            --cloakSystem.timer.currGoal = cloakSystem.timer.currGoal/2
+            for projectile in vter(spaceManager.projectiles) do
+                if projectile.ownerId == ((shipManager.iShipId+1)%2) then
+                    local pType = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name).typeName
+                    if pType == "LASER" or pType == "BURST" or pType == "MISSILES" or pType == "BOMB" then 
+                        projectile.ownerId = shipManager.iShipId
+                        projectile:SetDestinationSpace(otherShip.iShipId)
+                        projectile.target = otherShip:GetRandomRoomCenter()
+                        projectile:ComputeHeading()
+                    end
+                end
+            end
+        end
+        lastBoolCloak[shipManager.iShipId] = cloakSystem.bTurnedOn
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    --log(shipManager.iShipId)
+    if shipManager:HasAugmentation("RAD_CBEAM") > 0 then 
+        local cloakSystem = shipManager.cloakSystem
+        --log(lastBoolCloak[shipManager.iShipId])
+        --log(cloakSystem.bTurnedOn)
+        --log(cloakSystem.timer.currTime)
+        --log(cloakSystem.timer.currGoal)
+        if cloakSystem.timer:Running() and cloakSystem.timer.currTime >= (cloakSystem.timer.currGoal/2) then 
+            --cloakSystem.timer:Stop()
+            cloakSystem.timer.currTime = cloakSystem.timer.currGoal
+        end
+        if cloakSystem.bTurnedOn and (not lastBoolCloak[shipManager.iShipId]) then 
+            --log("CLOAK START")
+            local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+            local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2) 
+            local shieldRoom = 0
+            if otherShip:HasSystem(0) then
+                shieldRoom = otherShip.shieldSystem.roomId
+            end
+            local weaponRoom = 1
+            if otherShip:HasSystem(3) then
+                weaponRoom = otherShip.weaponSystem.roomId
+            end
+            local beam = spaceManager:CreateBeam(
+                Hyperspace.Blueprints:GetWeaponBlueprint("RAD_CLOAKBEAM"),
+                Hyperspace.Pointf(600,348),
+                shipManager.iShipId,
+                shipManager.iShipId,
+                otherShip:GetRoomCenter(shieldRoom),
+                otherShip:GetRoomCenter(weaponRoom),
+                otherShip.iShipId,
+                1000,
+                0)
+            local damageNew = beam.damage
+            local power = shipManager.weaponSystem.powerState.first
+            damageNew.iDamage = damageNew.iDamage + math.floor(power/2)
+            beam:SetDamage(damageNew)
+        end
+        lastBoolCloak[shipManager.iShipId] = cloakSystem.bTurnedOn
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    --log(shipManager.iShipId)
+    if shipManager:HasAugmentation("RAD_CHACK") > 0 then 
+        local cloakSystem = shipManager.cloakSystem
+        
+        if cloakSystem.bTurnedOn and (not lastBoolCloak[shipManager.iShipId]) then 
+            --log("CLOAK START")
+            local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+            local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2) 
+            --cloakSystem.timer.currGoal = cloakSystem.timer.currGoal*1.5
+            local hackWeapon = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_HACK1")
+            if shipManager.cloakSystem.powerState.first == 2 then 
+                --log("2")
+                hackWeapon = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_HACK2")
+            elseif shipManager.cloakSystem.powerState.first == 3 then 
+                --log("2")
+                hackWeapon = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_HACK3")
+            end
+            shipManager.weaponSystem:SetHackingLevel(1)
+            spaceManager:CreateBomb(
+                    hackWeapon,
+                    otherShip.iShipId,
+                    shipManager:GetRoomCenter(shipManager.weaponSystem.roomId),
+                    shipManager.iShipId)
+
+            if otherShip:HasSystem(0) then 
+                local shieldSystem = otherShip.shieldSystem
+                shieldSystem:SetHackingLevel(1)
+                spaceManager:CreateBomb(
+                    hackWeapon,
+                    shipManager.iShipId,
+                    otherShip:GetRoomCenter(otherShip.shieldSystem.roomId),
+                    otherShip.iShipId)
+            end
+
+            --for drones
+        end
+        if (not cloakSystem.bTurnedOn) and lastBoolCloak[shipManager.iShipId] then 
+            --log("CLOAK END")
+            local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+            local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2)
+            shipManager.weaponSystem:SetHackingLevel(0)
+            if otherShip:HasSystem(0) then 
+                local shieldSystem = otherShip.shieldSystem
+                shieldSystem:SetHackingLevel(0)
+            end
+        end
+        lastBoolCloak[shipManager.iShipId] = cloakSystem.bTurnedOn
+    end
+end)
+
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RAD_LOW_WEAPON") > 0 then 
+        for weapon in vter(shipManager:GetWeaponList()) do 
+            if weapon.requiredPower > 1 then 
+                weapon:SetCooldownModifier(-1)
+            end
+        end 
+    end
+end)
+
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RAD_CUTTER_OXY") > 0 then 
+        shipManager.oxygenSystem:AddDamage(1)
+    end
+end)
+
+--[[script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RAD_LOW_SHIELD") > 0 then 
+        local shieldPower = shipManager.shieldSystem.shields.power
+        log(shieldPower.first)
+        log(shieldPower.second)
+        log(shipManager.shieldSystem.powerState.first)
+        shieldPower.second = (math.max(1, math.floor(shipManager.shieldSystem.powerState.first/4)))
+    end
+end)]]
+
+script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augName, augValue)
+    if augName == "SHIELD_RECHARGE" and shipManager:HasAugmentation("RAD_LOW_SHIELD")>0 then
+        local shieldPower = shipManager:GetShieldPower()
+        augValue = augValue + (0.25 * math.floor(shipManager.shieldSystem.powerState.first/2))
+    end
+    return Defines.Chain.CONTINUE, augValue
+end, -100)
+
+
+------------------------
+-- CUSTOM DRONE ORBIT --
+------------------------
+local escortEllipse = {
+    center = {
+        x = 281,
+        y = 176
+    }, 
+    a = 402.5,
+    b = 253
+}
+local droneSpeedFactor = 1.6
+local activeProjectileIds = {}
+
+local calculate_coord_offset = function(angleFromCenter)
+    local angleCos = escortEllipse.b*math.cos(angleFromCenter)
+    local angleSin = escortEllipse.a*math.sin(angleFromCenter)
+    local denom = math.sqrt(angleCos^2 + angleSin^2)
+    return (escortEllipse.a*angleCos)/denom, (escortEllipse.b*angleSin)/denom
+end
+
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
+    local hasChaffGun = false
+    --local artilleryPower = 0
+    for artillery in vter(Hyperspace.ships.player.artillerySystems) do 
+        if artillery.projectileFactory.blueprint.name == "ARTILLERY_RAD_CORVETTE" then 
+            hasChaffGun = true
+            artillery.projectileFactory:ForceCoolup()
+        end
+    end
+    if hasChaffGun then 
+        log("start")
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+        for i=1, 10 do
+            log("debris_large")
+            local debrisL = spaceManager:CreateBurstProjectile(
+                Hyperspace.Blueprints:GetWeaponBlueprint("ARTILLERY_RAD_CORVETTE"),
+                "debris_large",
+                false,
+                Hyperspace.Pointf(0,0)
+                ,0
+                ,0
+                ,Hyperspace.Pointf(-1,0),
+                0,
+                0)
+        end
+        for i=1, 6 do
+            log("debris_med")
+            local debrisM = spaceManager:CreateBurstProjectile(Hyperspace.Blueprints:GetWeaponBlueprint("ARTILLERY_RAD_CORVETTE"),"debris_med",false,Hyperspace.Pointf(0,0),0,0,Hyperspace.Pointf(-1,0),0,0)
+        end
+        for i=1, 4 do
+            log("debris_small")
+            local debrisS = spaceManager:CreateBurstProjectile(Hyperspace.Blueprints:GetWeaponBlueprint("ARTILLERY_RAD_CORVETTE"),"debris_small",false,Hyperspace.Pointf(0,0),0,0,Hyperspace.Pointf(-1,0),0,0)
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+    -- Iterate through all defense drones if the ship is escort duty
+    local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+    local stillActiveProj = {}
+    local projCount = 0
+    --[[for artillery in vter(Hyperspace.ships.player.artillerySystems) do 
+        if artillery.projectileFactory.blueprint.name == "ARTILLERY_RAD_CORVETTE" and artillery.projectileFactory:IsChargedGoal() then 
+            artillery.projectileFactory:Fire({Hyperspace.Pointf(0,0)},1)
+        end
+    end]]
+    for projectile in vter(spaceManager.projectiles) do
+        if projectile.extend.name == "ARTILLERY_RAD_CORVETTE" then 
+            projCount = projCount + 1
+            if projCount > 250 then
+                projectile:Kill()
+                return
+            end
+            stillActiveProj[projectile.selfId] = true
+            local xOffset = nil
+            local yOffset = nil
+
+            if not activeProjectileIds[projectile.selfId] then
+                --projectile.ownerId = 1
+                projectile.destinationSpace = projectile.currentSpace
+                projectile.speed_magnitude = projectile.speed_magnitude * ((math.random()/2)+0.75)
+                activeProjectileIds[projectile.selfId] = true
+                xOffset, yOffset = calculate_coord_offset((Hyperspace.random32()%360)*(math.pi/180))
+                projectile.position = (Hyperspace.Pointf(
+                    escortEllipse.center.x + xOffset,
+                    escortEllipse.center.y + yOffset))
+                projectile.target = (Hyperspace.Pointf(
+                    escortEllipse.center.x + xOffset,
+                    escortEllipse.center.y + yOffset))
+            end
+            --log(Hyperspace.FPS.SpeedFactor)
+
+            local lookAhead = projectile.speed_magnitude*Hyperspace.FPS.SpeedFactor
+            xOffset, yOffset = calculate_coord_offset(math.atan(
+                projectile.position.y - escortEllipse.center.y,
+                projectile.position.x - escortEllipse.center.x))
+            local xIntersect = escortEllipse.center.x + xOffset
+            local yIntersect = escortEllipse.center.y + yOffset
+            local tanAngle = math.atan((escortEllipse.b^2/escortEllipse.a^2)*(xOffset/yOffset))
+            if (projectile.position.y < escortEllipse.center.y) then
+                --[[projectile.position = Hyperspace.Pointf(
+                    xIntersect + lookAhead*math.cos(tanAngle),
+                    yIntersect - lookAhead*math.sin(tanAngle))]]
+                projectile.target = Hyperspace.Pointf(
+                    xIntersect + 2*lookAhead*math.cos(tanAngle),
+                    yIntersect - 2*lookAhead*math.sin(tanAngle))
+            else
+                --[[projectile.position = Hyperspace.Pointf(
+                    xIntersect - lookAhead*math.cos(tanAngle),
+                    yIntersect + lookAhead*math.sin(tanAngle))]]
+                projectile.target = Hyperspace.Pointf(
+                    xIntersect - 2*lookAhead*math.cos(tanAngle),
+                    yIntersect + 2*lookAhead*math.sin(tanAngle))
+            end
+            projectile:ComputeHeading()
+        end
+    end
+    -- Clean out inactive drone IDs
+
+    for projId in pairs(activeProjectileIds) do
+        if not stillActiveProj[projId] then
+            activeProjectileIds[projId] = nil
+        end
+    end
+end)
+
+script.on_game_event("COMBAT_CHECK_REAL", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    if shipManager:HasAugmentation("RAD_LOW_SHIELD") > 0 then 
+        local weaponList = shipManager:GetWeaponList()
+        if not weaponList then return end
+        for weapon in vter(weaponList) do
+            if weapon and weapon.blueprint then
+                shipManager:RemoveItem(weapon.blueprint.name)
+            end
+        end
+    end
+end)
+
+
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+    if shipManager:HasAugmentation("RAD_LOW_WEAPON") > 0 then
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+        local weaponType = weapon.blueprint.typeName
+        if weaponType == "LASER" or weaponType == "BURST" then 
+            local laser = spaceManager:CreateLaserBlast(
+                weapon.blueprint,
+                projectile.position,
+                projectile.currentSpace,
+                projectile.ownerId,
+                projectile.target,
+                projectile.destinationSpace,
+                projectile.heading)
+        elseif weaponType == "MISSILES" then 
+            local missile = spaceManager:CreateMissile(
+                weapon.blueprint,
+                projectile.position,
+                projectile.currentSpace,
+                projectile.ownerId,
+                projectile.target,
+                projectile.destinationSpace,
+                projectile.heading)
+        elseif weaponType == "BOMB" then 
+            local bomb = spaceManager:CreateBomb(
+                weapon.blueprint,
+                projectile.ownerId,
+                projectile.target,
+                projectile.destinationSpace)
+        elseif weaponType == "BEAM" then 
+            --log("BEAM")
+            local beam = spaceManager:CreateBeam(
+                weapon.blueprint,
+                projectile.position,
+                projectile.currentSpace,
+                projectile.ownerId,
+                projectile.target2,
+                projectile.target1,
+                projectile.destinationSpace,
+                projectile.length,
+                projectile.heading)
+        end
+    end
+end)
+
+script.on_game_event("RAD_UNDER_3", false, function()
+    local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+    --local EventGenerator = Hyperspace.Global.GetInstance():GetEventGenerator()
+    --worldManager:UpdateLocation(EventGenerator:CreateEvent("PIRATE",0,true))
+    --Hyperspace.CommandGui:RunCommand("EVENT PIRATE")
+    --Hyperspace.EventGenerator:CreateEvent("EVENT PIRATE",0,true)
+    Hyperspace.CommandConsole.GetInstance():RunCommand(Hyperspace.CommandGui,"EVENT PIRATE")
+end)

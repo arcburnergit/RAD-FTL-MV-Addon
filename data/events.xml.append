@@ -17,9 +17,7 @@
 	</choice>
 </event>
 
-<mod:findName type="eventList" name="NEMESIS_ENCOUNTER_LIST_NORMAL">
-	<mod-append:event load="NEMESIS_RAD" />
-</mod:findName>
+
 
 <ship name="SHIP_CIVILIAN_LAB" auto_blueprint="MU_RADLAB_STATION">
 	<surrender  chance="0.8" min="2" max="3" load="SURRENDER_RAD_LAB"/>
@@ -56,48 +54,48 @@
 						<text>You'll help. [Random Quest]</text>
 						<event load="RAD_LAB_QUEST_LIST"/>
 					</choice>
-          <choice hidden="true" req="rad_q10" max_group="1">
+          <!--choice hidden="true" req="rad_q10">
             <text>All quests complete.</text>
             <event load="OPTION_INVALID" />
-          </choice>
-          <choice hidden="true" req="rad_q9" max_group="1">
-            <text>You'll help. [Uncompleted Quest]</text>
+          </choice-->
+          <choice hidden="true" req="rad_q9">
+            <text>You'll help. [??? Quest]</text>
             <event load="RAD_WARPED_1"/>
           </choice>
-          <choice hidden="true" req="rad_q8" max_group="1">
-            <text>You'll help. [Uncompleted Quest]</text>
+          <choice hidden="true" req="rad_9">
+            <text>You'll help. [Uncompleted Quest 9]</text>
             <event load="RAD_MIRROR_1"/>
           </choice>
-          <choice hidden="true" req="rad_q7" max_group="1">
-            <text>You'll help. [Uncompleted Quest]</text>
+          <choice hidden="true" req="rad_8">
+            <text>You'll help. [Uncompleted Quest 8]</text>
             <event load="RAD_UNDER_1"/>
           </choice>
-          <choice hidden="true" req="rad_q6" max_group="1">
-            <text>You'll help. [Uncompleted Quest]</text>
+          <choice hidden="true" req="rad_7">
+            <text>You'll help. [Uncompleted Quest 7]</text>
             <event load="RAD_SUPERGUN_1"/>
           </choice>
-          <choice hidden="true" req="rad_q5" max_group="1">
-            <text>You'll help. [Uncompleted Quest]</text>
+          <choice hidden="true" req="rad_6">
+            <text>You'll help. [Uncompleted Quest 6]</text>
             <event load="RAD_MONEY_1"/>
           </choice>
-          <choice hidden="true" req="rad_q4" max_group="1">
-            <text>You'll help. [Uncompleted Quest]</text>
+          <choice hidden="true" req="rad_5">
+            <text>You'll help. [Uncompleted Quest 5]</text>
             <event load="RAD_MONEY_1" />
           </choice>
-          <choice hidden="true" req="rad_q3" max_group="1">
-            <text>You'll help. [Uncompleted Quest]</text>
+          <choice hidden="true" req="rad_4">
+            <text>You'll help. [Uncompleted Quest 4]</text>
             <event load="RAD_LAB_FLESH_1" />
           </choice>
-          <choice hidden="true" req="rad_q2" max_group="1">
-            <text>You'll help. [Uncompleted Quest]</text>
+          <choice hidden="true" req="rad_3">
+            <text>You'll help. [Uncompleted Quest 3]</text>
             <event load="RAD_LAB_ROGUE_1" />
           </choice>
-          <choice hidden="true" req="rad_q1" max_group="1">
-            <text>You'll help. [Uncompleted Quest]</text>
+          <choice hidden="true" req="rad_2">
+            <text>You'll help. [Uncompleted Quest 2]</text>
             <event load="RAD_LAB_GHOST_1" />
           </choice>
-          <choice hidden="true" req="pilot" lvl="1" max_group="1">
-            <text>You'll help. [Uncompleted Quest]</text>
+          <choice hidden="true" req="rad_q1" lvl="0" max_lvl="0">
+            <text>You'll help. [Uncompleted Quest 1]</text>
             <event load="RAD_LAB_QUEST_1" />
           </choice>
 					<choice hidden="true">
@@ -134,7 +132,6 @@
   <event load="RAD_SUPERGUN_1"/>
   <event load="RAD_UNDER_1" />
   <event load="RAD_MIRROR_1" />
-  <event load="RAD_WARPED_1" />
 </eventList>
 
 <!-- QUEST PIRATE TRACKING -->
@@ -316,6 +313,7 @@
 </event>
 
 <event name="RAD_PIRATE_TRACKING_1">
+  <preventQuest />
 	<beaconType id="map_icon_rad_pirate" global="true">
 		<color r="242" g="50" b="29"/>
 	</beaconType>
@@ -330,6 +328,7 @@
 </event>
 
 <event name="RAD_PIRATE_TRACKING_2">
+  <preventQuest />
 	<beaconType id="map_icon_rad_pirate" global="true">
 		<color r="242" g="50" b="29"/>
 	</beaconType>
@@ -371,6 +370,7 @@
 </event>
 
 <event name="RAD_PIRATE_TRACKING_3_D">
+  <preventQuest />
 	<beaconType id="map_icon_rad_pirate_d" global="true">
 		<color r="255" g="96" b="23"/>
 	</beaconType>
@@ -383,6 +383,7 @@
 </event>
 
 <event name="RAD_PIRATE_TRACKING_3_E">
+  <preventQuest />
 	<beaconType id="map_icon_rad_pirate_e" global="true">
 		<color r="255" g="31" b="23"/>
 	</beaconType>
@@ -527,6 +528,8 @@
 </event>
 
 <event name="RAD_GHOST_2">
+  <preventQuest />
+  <preventFleet />
 	<quest>
 		<nebulaBeacon>true</nebulaBeacon>
 		<createNebula>true</createNebula>
@@ -555,6 +558,8 @@
 </event>
 
 <event name="RAD_GHOST_3">
+  <preventQuest />
+  <preventFleet />
 	<beaconType id="map_icon_rad_dynasty_out" global="true">
 		<color r="29" g="50" b="242"/>
 	</beaconType>
@@ -593,6 +598,8 @@
 </event>
 
 <event name="RAD_GHOST_4">
+  <preventQuest />
+  <preventFleet />
 	<beaconType id="map_icon_rad_dynasty_sta" global="true">
 		<color r="29" g="50" b="242"/>
 	</beaconType>
@@ -659,6 +666,8 @@
 </event>
 
 <event name="RAD_GHOST_5">
+  <preventQuest />
+  <preventFleet />
 	<beaconType id="map_icon_rad_science_meet" global="true">
 		<color r="242" g="50" b="29"/>
 	</beaconType>
@@ -786,6 +795,8 @@
 </event>
 
 <event name="RAD_ROGUE_2">
+  <preventQuest />
+  <preventFleet />
 	<ship load="MU_RAD_ZOLTAN_STATION" hostile="false"/>
 	<text>You arrive at the station. After a quick exchange, you're granted docking rights.
 	
@@ -826,6 +837,8 @@
 </event>
 
 <event name="RAD_ROGUE_3">
+  <preventQuest />
+  <preventFleet />
 	<ship load="MU_RAD_ZOLTAN_ELITE" hostile="true"/>
 	<text>You arrive at the beacon just in time to see an exchange between the science vessel you're after and the elite Ministry ship.
 	
@@ -839,6 +852,8 @@
 </event>
 
 <event name="RAD_ROGUE_4">
+  <preventQuest />
+  <preventFleet />
 	<ship load="MU_RAD_SCIENCE_OPERATOR" hostile="true"/>
 	<text>You arrive at the beacon and you pickup the science vessel waiting.
 	Obviously expecting the Ministry ship, their surprise doesn't last long and they soon power on their weapons.</text>
@@ -915,6 +930,8 @@
 </event>
 
 <event name="RAD_FLESH_2">
+  <preventQuest />
+  <preventFleet />
 	<ship load="MU_RAD_SECURITY" hostile="false"/>
 	<text>You arrive at the location. It's a large corporate tower in the middle of a sprawling city.
 	As you go to dock with the tower, a security ship hails you, telling you to leave.</text>
@@ -1079,7 +1096,8 @@
 </event>
 
 <event name="RAD_FLESH_5" unique="true">
-	
+  <preventQuest />
+  <preventFleet />
 	<text>You arrive at the storage facility and begin searching for the cruiser.
 	Before long, you find it. However it's being used by the alien rights group!</text>
 	<ship load="MU_RAD_FLESH" hostile="false"/>
@@ -1151,6 +1169,8 @@
 </event>
 
   <event name="RAD_MONEY_2">
+    <preventQuest />
+    <preventFleet />
     <beaconType id="map_icon_rad_pulsar" global="true">
       <color r="0" g="255" b="255"/>
     </beaconType>
@@ -1422,6 +1442,8 @@ However the ship in question has gone missing, we suspect it's the work of the s
   </event>
 
   <event name="RAD_SUPERGUN_2">
+    <preventQuest />
+    <preventFleet />
     <beaconType id="map_icon_rad_link" global="true">
       <color r="137" g="142" b="148" a="1.0" />
       <unvisitedTooltip>This is the location of a Harmony Link, and your current quest objective.</unvisitedTooltip>
@@ -1496,6 +1518,8 @@ It appears to be an engi ship, but it has been painted weird colours.
   </event>
 
   <event name="RAD_SUPERGUN_3">
+    <preventQuest />
+    <preventFleet />
     <text>You arrive at the beacon and discover something odd, it appears to be a seperatist education ship.
 You could attack the ship, they might have something to do with the missing ship, but it does seem like the engi just sent you here to destroy the seperatists.
     </text>
@@ -1543,6 +1567,8 @@ You could attack the ship, they might have something to do with the missing ship
   </event>
 
   <event name="RAD_SUPERGUN_7">
+    <preventQuest />
+    <preventFleet />
     <text>You arrive at the beacon, and imidietly notice an odd looking engi ship. You scan it and discover it's the stolen ship, the ship appears to be offline, you can see drones working on it.
 However next to the ship is another one of the zoltan manned engi ships, it looks like you're going to have to take it out in order to recover the ship.
     </text>
@@ -1611,6 +1637,8 @@ However next to the ship is another one of the zoltan manned engi ships, it look
   </event>
 
   <event name="RAD_UNDER_2">
+    <preventQuest />
+    <preventFleet />
     <text>You arrive at the beacon, it looks like the scientist's tracker is reliable, infront of you is the test cruiser and you can an argument happening on an open frequency.
 "What do you mean the ship will blow up!"
 "I mean if we take out the super shield the ship will blow up."
@@ -1783,6 +1811,100 @@ You tell them what happened and they begin firing on the base.
     <text>"Ok, well this is a bit embarrasing, but we lost a station."
 "Like we left a station at this one beacon, and then we went back and it was gone."
 "Anyway, we need you to work out what happened, we're a bit clueless on this occasion."</text>
+    <choice>
+      <text>Continue...</text>
+      <event>
+        <text>"We'll give you the coordinates of the tracker on the station, ideally see if you can recover the station, hopefully it's just drifted away or something."</text>
+        <choice>
+          <text>Continue...</text>
+          <event>
+            <text>"Alright, we're uploading the position of the tracker now"</text>
+            <quest event="RAD_WARPED_2"/>
+            <store>STORE_RADLAB</store>
+          </event>
+        </choice>
+      </event>
+    </choice>
+  </event>
+
+  <ship name="MU_RAD_CRYSTALENEMY2" auto_blueprint="MU_RAD_CRYSTALENEMY2">
+    <destroyed load="DESTROYED_RAD_CRYSTALENEMY2"/>
+    <deadCrew load="DEAD_CREW_RAD_CRYSTALENEMY2"/>
+  </ship>
+
+  <event name="DESTROYED_RAD_CRYSTALENEMY2">
+    <text>You've destroyed the crystal ship. You send out a message to the scientists letting them know you've destroyed the ship.</text>
+    <autoReward level="MED">standard</autoReward>
+    <quest event="RAD_WARPED_3" />
+  </event>
+
+  <event name="DEAD_CREW_RAD_CRYSTALENEMY2">
+    <text>You've killed the crew of the crystal ship. You're able to recover some data on the ship and you're able to determine where the ship jumped in from.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <quest event="RAD_WARPED_3" />
+  </event>
+
+  <event name="RAD_WARPED_2">
+    <preventQuest />
+    <preventFleet />
+    <beaconType id="map_icon_rad_warped1" global="true">
+      <color r="40" g="112" b="112"/>
+    </beaconType>
+    <text>You arrive at the beacon, there's nothing in sight.</text>
+    <choice>
+      <text>Do something onboard the ship.</text>
+      <event load="RAD_WARPED_2_2" />
+    </choice>
+    <choice>
+      <text>Do nothing.</text>
+      <event name="RAD_WARPED_2_2">
+        <text>Just as you're about to give up, a strange looking ship jumps into the beacon.
+The ship imidietly powers up its weapons.
+
+Luckily one of your crew was smart enough to have the weapons charged up just in case, you fire off a volley which break through the shields and impact the hull.
+
+Unfortunately this doesn't seem to damage the ship much, and instead the ship is able to harness the impact and instantly charges up one of its weapons and responds with a volley of its own, which luckily misses.</text>
+        <ship load="MU_RAD_CRYSTALENEMY2" hostile="true" />
+      </event>
+    </choice>
+  </event>
+  
+  <event name="RAD_WARPED_3">
+    <preventQuest />
+    <preventFleet />
+    <beaconType id="map_icon_rad_warped2" global="true">
+      <color r="112" g="112" b="112"/>
+    </beaconType>
+    <text>You arrive and imidietly notice the station, it appears that the ship you destroyed somehow moved the station here.</text>
+    <ship load="SHIP_CIVILIAN_LAB" hostile="false" />
+    <choice>
+      <text>Continue...</text>
+      <event>
+        <text>You board the station and find it empty.
+You search the ship and find it empty of anything useful, however in one of the computers you find the cooridinates of a strange sector, however they appear to be written in some strange characters that you can't decypher, you'll need some kind of translator to decypher it.</text>
+        <choice hidden="true" req="UPG_AETHER_TRANSLATOR" blue="true">
+          <text>(Runic Translator) Translate the cooridinates.</text>
+          <event>
+            <text>You're able decypher the cooridinates, looks like you'll be able to reroute there at the next exit beacon.</text>
+            <variable name="coords_rad_science" op="set" val="1"/>
+            <choice>
+              <text>Contact the scientists</text>
+              <event load="RAD_WARPED_4" />
+            </choice>
+          </event>
+        </choice>
+        <choice hidden="true">
+          <text>Contact the scientists.</text>
+          <event name="RAD_WARPED_4">
+            <text>The scientists arrive.
+
+"Excellent work Captain, we'll be sure to contact you again in the future if we have any work for you."</text>
+            <weapon name="RAD_TRASH_BEAM"/>
+            <unlockCustomShip silent="false">PLAYER_SHIP_RAD_CRYSTAL</unlockCustomShip>
+          </event>
+        </choice>
+      </event>
+    </choice>
   </event>
   
 </FTL>

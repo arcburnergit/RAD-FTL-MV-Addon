@@ -647,4 +647,422 @@
     <boardingAI>sabotage</boardingAI>
     <aug name="RAD_WARPED_HULL" />
   </shipBlueprint>
+
+  
+  
+  <blueprintList name="LIST_WEAPONS_RAD_SCIENCE">
+    <name>LASER_BURST_1</name>
+    <name>LASER_BURST_2_ENEMY</name>
+    <name>LASER_BURST_3</name>
+    <name>LASER_BURST_5</name>
+    <name>LASER_HEAVY_1</name>
+    <name>LASER_HULL_1_ENEMY</name>
+    <name>LASER_HEAVY_2</name>
+    <name>LASER_HULL_2</name>
+    <name>MISSILES_1_ENEMY</name>
+    <name>MISSILES_2_ENEMY</name>
+    <name>MISSILES_3_ENEMY</name>
+    <name>BOMB_1_ENEMY</name>
+
+    <name>SHOTGUN_1_ENEMY</name>
+    <name>SHOTGUN_2</name>
+    <name>LASER_CHARGEGUN_ENEMY</name>
+    <name>LASER_CHARGEGUN_2</name>
+    <name>LASER_CHARGEGUN_3</name>
+    <name>LASER_CHAINGUN_ENEMY</name>
+
+    <name>LASER_PIERCE_ENEMY</name>
+    <name>LASER_PARTICLE</name>
+    <name>MISSILES_FIRE_ENEMY</name>
+    <name>ENERGY_1</name>
+    <name>ENERGY_2</name>
+    <name>ENERGY_HULL</name>
+
+    <name>LASER_CHAINGUN_DAMAGE</name>
+    <name>LASER_HEAVY_CHAINGUN</name>
+    <name>LASER_HULL_CHAINGUN</name>
+    <name>SHOTGUN_CHAIN</name>
+    <name>SHOTGUN_CHARGE</name>
+    <name>TRC_LASER_CHARGEGUN_HEAVY</name>
+    <name>TRC_SHOTGUN_TRIFECTA</name>
+  </blueprintList>
+
+  <blueprintList name="LIST_SHIPS_RAD_SCIENCE_ALL">
+    <name>RAD_SCIENCE_ASSUALT</name>
+    <name>RAD_SCIENCE_BOMBER</name>
+    <name>RAD_SCIENCE_SCOUT</name>
+    <name>RAD_SCIENCE_INTERCEPTOR</name>
+    <name>RAD_SCIENCE_TRANSPORT</name>
+    <name>RAD_SCIENCE_GUARD</name>
+  </blueprintList>
+  <blueprintList name="LIST_SHIPS_RAD_SCIENCE_GENERIC">
+    <name>RAD_SCIENCE_ASSUALT</name>
+    <name>RAD_SCIENCE_BOMBER</name>
+    <name>RAD_SCIENCE_SCOUT</name>
+    <name>RAD_SCIENCE_INTERCEPTOR</name>
+    <name>RAD_SCIENCE_TRANSPORT</name>
+  </blueprintList>
+  <blueprintList name="LIST_SHIPS_RAD_SCIENCE_FIGHT">
+    <name>RAD_SCIENCE_ASSUALT</name>
+    <name>RAD_SCIENCE_BOMBER</name>
+    <name>RAD_SCIENCE_SCOUT</name>
+    <name>RAD_SCIENCE_INTERCEPTOR</name>
+  </blueprintList>
+  <blueprintList name="LIST_SHIPS_RAD_SCIENCE_ELITE">
+    <name>RAD_SCIENCE_ASSUALT_ELITE</name>
+    <name>RAD_SCIENCE_BOMBER_ELITE</name>
+    <name>RAD_SCIENCE_SCOUT_ELITE</name>
+    <name>RAD_SCIENCE_INTERCEPTOR_ELITE</name>
+  </blueprintList>
+
+  <shipBlueprint name="RAD_SCIENCE_GUARD" layout="rad_science_guard" img="rad_science_guard">
+    <class>Scientist Guard</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <battery power="1" max="1" room="7" start="false" />
+      <cloaking power="1" max="1" room="14" start="false" />
+      <clonebay power="1" max="2" room="15" start="false" />
+      <doors power="2" max="3" room="6" start="true" />
+      <drones power="1" max="6" room="1" start="true" />
+      <engines power="1" max="3" room="13" start="true" />
+      <hacking power="1" max="2" room="2" start="true" />
+      <medbay power="1" max="1" room="15" start="false" />
+      <mind power="1" max="1" room="16" start="false" />
+      <oxygen power="1" max="1" room="3" start="true" />
+      <pilot power="1" max="2" room="4" start="true" />
+      <shields power="3" max="10" room="12" start="true" />
+      <teleporter power="1" max="1" room="17" start="false" />
+      <weapons power="5" max="10" room="9" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="8" count="4">
+      <weapon name="RAD_BEAM_BURST_2" />
+      <weapon name="RAD_LIGHTNING_FIRE" />
+      <weapon name="RAD_TRASH_BEAM" />
+      <weapon name="RAD_CLUSTER_MISSILE_2" />
+    </weaponList>
+    <droneList drones="8" count="2" load="LIST_DRONES_AUTO" />
+    <health amount="15" />
+    <maxPower amount="20" />
+    <crewCount amount="4" max="8" class="rad_scientist" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_TRANSPORT" layout="rad_science_transport" img="rad_science_transport">
+    <class>Scientist Transport</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <cloaking power="1" max="1" room="8" start="false" />
+      <clonebay power="1" max="1" room="5" start="false" />
+      <doors power="1" max="3" room="2" start="true" />
+      <engines power="1" max="2" room="9" start="true" />
+      <hacking power="1" max="2" room="6" start="true" />
+      <medbay power="1" max="3" room="5" start="false" />
+      <oxygen power="1" max="3" room="1" start="true" />
+      <pilot power="1" max="1" room="0" start="true" />
+      <shields power="3" max="9" room="3" start="true" />
+      <teleporter power="1" max="3" room="7" start="false" />
+      <weapons power="2" max="9" room="4" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>0</droneSlots>
+    <weaponList missiles="15" count="4" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="0" count="0" />
+    <health amount="12" />
+    <maxPower amount="20" />
+    <crewCount amount="3" max="7" class="rad_scientist" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_ASSUALT" layout="rad_science_assualt" img="rad_science_assualt">
+    <class>Scientist Assualt Cruiser</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <battery power="1" max="1" room="4" start="false" />
+      <cloaking power="1" max="1" room="10" start="false" />
+      <clonebay power="1" max="1" room="2" start="false" />
+      <doors power="1" max="2" room="8" start="true" />
+      <drones power="1" max="4" room="5" start="false" />
+      <engines power="1" max="2" room="1" start="true" />
+      <hacking power="1" max="1" room="6" start="true" />
+      <medbay power="1" max="1" room="2" start="false" />
+      <mind power="1" max="1" room="11" start="false" />
+      <oxygen power="1" max="1" room="0" start="true" />
+      <pilot power="1" max="1" room="9" start="true" />
+      <shields power="2" max="8" room="7" start="true" />
+      <teleporter power="1" max="1" room="3" start="false" />
+      <weapons power="3" max="10" room="12" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="10" count="4" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="5" count="2" load="LIST_DRONES_AUTO" />
+    <health amount="10" />
+    <maxPower amount="20" />
+    <crewCount amount="3" max="6" class="rad_scientist" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_ASSUALT_ELITE" layout="rad_science_assualt_elite" img="rad_science_assualt_elite">
+    <class>Elite Scientist Assualt Cruiser</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <battery power="1" max="1" room="4" start="false" />
+      <cloaking power="1" max="2" room="10" start="false" />
+      <clonebay power="1" max="1" room="2" start="false" />
+      <doors power="1" max="2" room="8" start="true" />
+      <drones power="1" max="4" room="5" start="false" />
+      <engines power="1" max="2" room="1" start="true" />
+      <hacking power="2" max="2" room="6" start="true" />
+      <medbay power="1" max="1" room="2" start="false" />
+      <mind power="1" max="2" room="11" start="false" />
+      <oxygen power="1" max="1" room="0" start="true" />
+      <pilot power="1" max="1" room="9" start="true" />
+      <shields power="4" max="10" room="7" start="true" />
+      <teleporter power="1" max="1" room="3" start="false" />
+      <weapons power="4" max="10" room="12" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="10" count="4" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="5" count="2" load="LIST_DRONES_AUTO" />
+    <health amount="12" />
+    <maxPower amount="30" />
+    <crewCount amount="2" max="5" class="rad_scientist" />
+    <crewCount amount="2" max="4" class="human_soldier" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_SCOUT" layout="rad_science_scout" img="rad_science_scout">
+    <class>Scientist Scout</class>
+    <minSector>1</minSector>
+    <maxSector>6</maxSector>
+    <systemList>
+      <engines power="1" max="2" room="2" start="true" />
+      <oxygen power="1" max="2" room="3" start="true" />
+      <pilot power="1" max="3" room="0" start="true" />
+      <shields power="2" max="8" room="4" start="true" />
+      <weapons power="2" max="8" room="1" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="10" count="3" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="0" count="2" />
+    <health amount="9" />
+    <maxPower amount="20" />
+    <crewCount amount="2" max="5" class="rad_scientist" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_SCOUT_ELITE" layout="rad_science_scout_elite" img="rad_science_scout_elite">
+    <class>Elite Scientist Scout</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <engines power="1" max="2" room="2" start="true" />
+      <oxygen power="1" max="2" room="3" start="true" />
+      <pilot power="1" max="3" room="0" start="true" />
+      <shields power="4" max="8" room="4" start="true" />
+      <weapons power="4" max="10" room="1" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>0</droneSlots>
+    <weaponList missiles="10" count="4" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="0" count="0" />
+    <health amount="11" />
+    <maxPower amount="30" />
+    <crewCount amount="2" max="5" class="rad_scientist" />
+    <crewCount amount="2" max="4" class="human_soldier" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+  
+  <shipBlueprint name="RAD_SCIENCE_BOMBER" layout="rad_science_bomber" img="rad_science_bomber">
+    <class>Scientist Bomber</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <battery power="1" max="1" room="11" start="false" />
+      <cloaking power="1" max="1" room="9" start="false" />
+      <clonebay power="1" max="1" room="2" start="false" />
+      <doors power="1" max="2" room="12" start="true" />
+      <drones power="3" max="6" room="7" start="false" />
+      <engines power="1" max="2" room="1" start="true" />
+      <hacking power="1" max="1" room="6" start="true" />
+      <medbay power="1" max="1" room="2" start="false" />
+      <oxygen power="1" max="1" room="5" start="true" />
+      <pilot power="1" max="1" room="4" start="true" />
+      <shields power="2" max="8" room="0" start="true" />
+      <teleporter power="1" max="1" room="8" start="false" />
+      <weapons power="2" max="9" room="3" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="10" count="4" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="5" count="2" load="LIST_DRONES_AUTO" />
+    <health amount="15" />
+    <maxPower amount="20" />
+    <crewCount amount="4" max="7" class="rad_scientist" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_BOMBER_PIRATE" layout="rad_science_bomber" img="rad_science_bomber">
+    <class>Pirate Bomber</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <battery power="1" max="1" room="11" start="false" />
+      <cloaking power="1" max="1" room="9" start="false" />
+      <clonebay power="1" max="1" room="2" start="false" />
+      <doors power="1" max="2" room="12" start="true" />
+      <drones power="3" max="6" room="7" start="false" />
+      <engines power="1" max="2" room="1" start="true" />
+      <hacking power="1" max="1" room="6" start="true" />
+      <medbay power="1" max="1" room="2" start="false" />
+      <oxygen power="1" max="1" room="5" start="true" />
+      <pilot power="1" max="1" room="4" start="true" />
+      <shields power="2" max="8" room="0" start="true" />
+      <teleporter power="1" max="1" room="8" start="false" />
+      <weapons power="2" max="9" room="3" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="10" count="4" load="LIST_WEAPONS_REBEL" />
+    <droneList drones="5" count="2" load="LIST_DRONES_AUTO" />
+    <health amount="15" />
+    <maxPower amount="20" />
+    <crewCount amount="1" max="4" class="human" />
+    <crewCount amount="1" max="2" class="rock" />
+    <crewCount amount="1" max="2" class="mantis" />
+    <crewCount amount="0" max="1" class="orchid" />
+    <crewCount amount="0" max="2" class="slug" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_BOMBER_ELITE" layout="rad_science_bomber_elite" img="rad_science_bomber_elite">
+    <class>Elite Scientist Bomber</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <battery power="1" max="1" room="11" start="false" />
+      <cloaking power="1" max="1" room="9" start="false" />
+      <clonebay power="1" max="1" room="2" start="false" />
+      <doors power="2" max="3" room="12" start="true" />
+      <drones power="4" max="8" room="7" start="true" />
+      <engines power="1" max="3" room="1" start="true" />
+      <hacking power="1" max="2" room="6" start="true" />
+      <medbay power="1" max="1" room="2" start="false" />
+      <oxygen power="1" max="1" room="5" start="true" />
+      <pilot power="1" max="1" room="4" start="true" />
+      <shields power="3" max="10" room="0" start="true" />
+      <teleporter power="1" max="1" room="8" start="false" />
+      <weapons power="4" max="10" room="3" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>3</droneSlots>
+    <weaponList missiles="12" count="4" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="5" count="3" load="LIST_DRONES_AUTO" />
+    <health amount="18" />
+    <maxPower amount="30" />
+    <crewCount amount="2" max="5" class="rad_scientist" />
+    <crewCount amount="2" max="4" class="human_soldier" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_INTERCEPTOR" layout="rad_science_interceptor" img="rad_science_interceptor">
+    <class>Scientist Interceptor</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <battery power="1" max="1" room="9" start="false" />
+      <cloaking power="1" max="1" room="10" start="false" />
+      <clonebay power="1" max="2" room="4" start="false" />
+      <doors power="1" max="3" room="7" start="true" />
+      <drones power="3" max="7" room="6" start="false" />
+      <engines power="1" max="2" room="1" start="true" />
+      <hacking power="1" max="1" room="11" start="true" />
+      <medbay power="1" max="2" room="4" start="false" />
+      <oxygen power="1" max="2" room="5" start="true" />
+      <pilot power="1" max="3" room="0" start="true" />
+      <shields power="2" max="8" room="2" start="true" />
+      <teleporter power="1" max="1" room="8" start="false" />
+      <weapons power="2" max="8" room="3" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="8" count="4" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="5" count="2" load="LIST_DRONES_AUTO" />
+    <health amount="12" />
+    <maxPower amount="20" />
+    <crewCount amount="3" max="7" class="rad_scientist" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_INTERCEPTOR_PIRATE" layout="rad_science_interceptor" img="rad_science_interceptor_pirate">
+    <class>Pirate Interceptor</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <battery power="1" max="1" room="9" start="false" />
+      <cloaking power="1" max="1" room="10" start="false" />
+      <clonebay power="1" max="2" room="4" start="false" />
+      <doors power="1" max="3" room="7" start="true" />
+      <drones power="3" max="7" room="6" start="false" />
+      <engines power="1" max="2" room="1" start="true" />
+      <hacking power="1" max="1" room="11" start="true" />
+      <medbay power="1" max="2" room="4" start="false" />
+      <oxygen power="1" max="2" room="5" start="true" />
+      <pilot power="1" max="3" room="0" start="true" />
+      <shields power="2" max="8" room="2" start="true" />
+      <teleporter power="1" max="1" room="8" start="false" />
+      <weapons power="3" max="8" room="3" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="8" count="4" load="LIST_WEAPONS_REBEL" />
+    <droneList drones="5" count="2" load="LIST_DRONES_AUTO" />
+    <health amount="12" />
+    <maxPower amount="20" />
+    <crewCount amount="1" max="4" class="human" />
+    <crewCount amount="1" max="2" class="rock" />
+    <crewCount amount="1" max="2" class="mantis" />
+    <crewCount amount="0" max="1" class="orchid" />
+    <crewCount amount="0" max="2" class="slug" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_INTERCEPTOR_ELITE" layout="rad_science_interceptor_elite" img="rad_science_interceptor_elite">
+    <class>Elite Scientist Interceptor</class>
+    <minSector>1</minSector>
+    <maxSector>8</maxSector>
+    <systemList>
+      <battery power="1" max="1" room="9" start="false" />
+      <cloaking power="1" max="1" room="10" start="false" />
+      <clonebay power="1" max="2" room="4" start="false" />
+      <doors power="2" max="3" room="7" start="true" />
+      <drones power="4" max="8" room="6" start="false" />
+      <engines power="1" max="2" room="1" start="true" />
+      <hacking power="2" max="2" room="11" start="true" />
+      <medbay power="1" max="2" room="4" start="false" />
+      <oxygen power="1" max="2" room="5" start="true" />
+      <pilot power="1" max="3" room="0" start="true" />
+      <shields power="3" max="10" room="2" start="true" />
+      <teleporter power="1" max="1" room="8" start="false" />
+      <weapons power="4" max="10" room="3" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>3</droneSlots>
+    <weaponList missiles="8" count="4" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="5" count="3" load="LIST_DRONES_AUTO" />
+    <health amount="15" />
+    <maxPower amount="20" />
+    <crewCount amount="2" max="5" class="rad_scientist" />
+    <crewCount amount="2" max="4" class="human_soldier" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
 </FTL>

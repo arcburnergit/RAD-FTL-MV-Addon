@@ -1,0 +1,947 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+					SCIENCE SECTOR
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-->
+
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+					EXIT BEACON
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-->
+<event name="FINISH_BEACON_RAD_SCIENCE">
+	<text id="finish_beacon" />
+	<choice hidden="true">
+		<text>Explore.</text>
+		<event load="EXIT_FILLER_LIST" />
+	</choice>
+	<choice hidden="true">
+		<text>Do something onboard the ship.</text>
+		<event load="STORAGE_CHECK" />
+	</choice>
+	<choice hidden="true">
+		<text>Do nothing.</text>
+		<event />
+	</choice>
+</event>
+
+  <event name="START_RAD_SCIENCE">
+    <metaVariable name="juke_galactic" op="set" val="1" />
+    <preventQuest />
+    <beaconType id="map_icon_start" global="false">
+      <color r="46" g="252" b="51" a="1" />
+    </beaconType>
+    <text>You have arrived in the sector belonging to the Scientists. The scientists keep to themselves, although there is a large civilian population who feel safe in their sector. The scientists in turn have started guarding their beacons against all who try to start trouble. We be fine if we keep out of the way.</text>
+    <ship load="SHIP_GUARD_RAD_SCIENCE" hostile="false" />
+    <changeBackground>BACK_SECTOR_UNION</changeBackground>
+    <choice hidden="true" req="rep_comb_union" lvl="2" max_lvl="999" max_group="0" blue="false">
+      <text>Continue...</text>
+      <event load="GUARD_RAD_SCIENCE" />
+    </choice>
+  </event>
+
+  <event name="GUARD_RAD_SCIENCE">
+    <text>The guard hails you. "Renegade, We understand your cause, but we cannot risk the disruption of the research or the lives of the people by letting you drag the rebellion through here, we want no part in it!"</text>
+    <modifyPursuit amount="1" />
+    <choice hidden="true">
+      <text>Prepare to fight!</text>
+      <event>
+        <text>You rush to defensive positions as the guard approaches menacingly.</text>
+        <ship hostile="true" />
+        <choice hidden="true">
+          <text>Continue...</text>
+          <event load="COMBAT_CHECK" />
+        </choice>
+      </event>
+    </choice>
+    <choice>
+      <text>Try to bribe them.</text>
+      <event>
+        <text>You hope this is enough to satisfy them...</text>
+        <item_modify>
+          <item type="scrap" min="-65" max="-80" />
+        </item_modify>
+        <choice hidden="true">
+          <text>Continue...</text>
+          <event>
+            <text>"Funny, I just can't seem to remember who gave me this scrap... Now hurry along before I change my mind."</text>
+          </event>
+        </choice>
+      </event>
+    </choice>
+    <choice hidden="true" req="LIST_CREW_HUMAN">
+      <text>(Human Crew) Try to persuade them to let you go.</text>
+      <event load="GUARD_RAD_SCIENCE_TALK" />
+    </choice>
+    <choice hidden="true" req="rad_scientist">
+      <text>(Human Scientist) Have the scientist convince them to let you through.</text>
+      <event load="GUARD_RAD_SCIENCE_SCIENTIST_TALK" />
+    </choice>
+    <choice hidden="true" req="mind">
+      <text>(Mind Control) Convince the guard to leave you alone.</text>
+      <event load="GUARD_MIND" />
+    </choice>
+    <choice hidden="true" req="cloaking">
+      <text>(Cloaking) Cloak and try to escape.</text>
+      <event load="GUARD_CLOAK" />
+    </choice>
+    <choice hidden="true" req="engines" lvl="5">
+      <text>(Adv. Engines) Try to escape the guard.</text>
+      <event load="GUARD_ESCAPE" />
+    </choice>
+    <choice hidden="true" req="pilot" lvl="3">
+      <text>(Adv. Piloting) Activate the auto-pilot to try and escape.</text>
+      <event load="GUARD_ESCAPE" />
+    </choice>
+  </event>
+
+  <eventList name="GUARD_RAD_SCIENCE_TALK">
+    <event>
+      <text>"I understand your cause, but if you do not leave I will be forced to make you leave!"</text>
+      <ship hostile="true" />
+      <choice hidden="true">
+        <text>Continue...</text>
+        <event load="COMBAT_CHECK" />
+      </choice>
+    </event>
+    <event>
+      <text>"I understand your cause, but if you do not leave I will be forced to make you leave!"</text>
+      <ship hostile="true" />
+      <choice hidden="true">
+        <text>Continue...</text>
+        <event load="COMBAT_CHECK" />
+      </choice>
+    </event>
+    <event>
+      <text>"Perhaps your cause is worth the risk, very well you may pass, we'll do our best to hold off the rebels."</text>
+      <modifyPursuit amount="-1" />
+    </event>
+  </eventList>
+  <eventList name="GUARD_RAD_SCIENCE_SCIENTIST_TALK">
+    <event>
+      <text>"Ah, a fellow scientist, you may pass through if you'd like, but the rest of your crew cannont."</text>
+      <ship hostile="true" />
+      <choice hidden="true">
+        <text>Continue...</text>
+        <event load="COMBAT_CHECK" />
+      </choice>
+    </event>
+    <event>
+      <text>"Oh, my mistake, I didn't realise there was a fellow scientist on your ship, you may pass through."</text>
+      <modifyPursuit amount="-1" />
+    </event>
+    <event>
+      <text>"Oh, my mistake, I didn't realise there was a fellow scientist on your ship, you may pass through."</text>
+      <modifyPursuit amount="-1" />
+    </event>
+  </eventList>
+
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+					ITEM EVENTS ()
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-->	
+<eventList name="ITEMS_RAD_SCIENCE">
+	<event load="RAD_SCIENCE_FREE_DRONES" />
+	<event load="RAD_SCIENCE_SCIENTIST" />
+	<event load="MILITIA_AUTOGRAPHS" />
+</eventList>
+
+<event name="RAD_SCIENCE_FREE_DRONES" unique="true">
+	<text load="RAD_SCIENCE_FREE_DRONES" />
+	<autoReward level="MED">drones_only</autoReward>
+	<choice>
+		<text>Do something onboard the ship.</text>
+		<event load="STORAGE_CHECK" />
+	</choice>
+	<choice>
+		<text>Do nothing.</text>
+		<event />
+	</choice>
+</event>
+<textList name="RAD_SCIENCE_FREE_DRONES">
+	<text>Nearby drifts the several discarded drones, they may not be functional however you're able to salvage a few drone parts from them.</text>
+	<text>You notice a mine drifting nearby, followed by several more. Most, if not all, are inactive, probably left over from some sort of training exercise. Fortunately, this means you can salvage them with relative ease.</text>
+	<text>A small craft appears on your scanners, it looks like it's coming straigh towards you. Your crew quickly moves into action and blasts it to pieces, you attempt to salvage it but the only thing that survived was a box of drone parts.</text>
+</textList>
+
+<event name="RAD_SCIENCE_SCIENTIST" unique="true">
+	<text>You receive a hail from a small craft floating nearby, it appears to be one of the scientists.</text>	
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event>
+			<text>"Ahh a fine ship you have there Captain, Would you consider taking me aboard?"</text>
+			<choice hidden="true">
+				<text>Welcome him aboard.</text>
+				<event>
+					<crewMember amount="1" class="rad_scientist" />
+					<ship load="PIRATE" hostile="true" />
+					<text>"Now I probably should have mentioned this, but some pirates want to kill me, I'm sure a strong capable Captain like you can deal with them though."</text>
+					<choice hidden="true">
+						<text>Continue...</text>
+						<event load="COMBAT_CHECK" />
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Refuse.</text>
+				<event>
+					<text>The scientist's small craft flies away, just as you think it's over you see a pirate ship fly right by you in pursuit.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK" />
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event />
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+					NEUTRAL EVENT SHIPS ()
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-->
+
+  <ship name="SHIP_RAD_SCIENCE_GUARD" auto_blueprint="RAD_SCIENCE_GUARD">
+    <surrender min="8" max="10" load="GUARD_SIGNAL" />
+    <destroyed load="GUARD_RAD_SCIENCE_DESTROY" />
+    <deadCrew load="GUARD_RAD_SCIENCE_DEADCREW" />
+  </ship>
+
+  <event name="GUARD_RAD_SCIENCE_DESTROY">
+    <text>You have defeated the Militia guard. Whatever might have been in their cargo has for certain been destroyed, but you can at least salvage some supplies from the ship.</text>
+    <autoReward level="MED">standard</autoReward>
+    <choice hidden="true">
+      <text>Continue...</text>
+      <event load="GUARD_UNION_FOLLOWUP" />
+    </choice>
+  </event>
+  <event name="GUARD_RAD_SCIENCE_DEADCREW">
+    <text>You have defeated the Militia guard. Without crew on-board to stop you, you can investigate their cargo. You find a weapon to bring back to the ship, and move on to scrap their hull.</text>
+    <autoReward level="MED">standard</autoReward>
+    <weapon name="LABRATORY_WEAPONS" />
+    <choice hidden="true">
+      <text>Continue...</text>
+      <event load="GUARD_RAD_SCIENCE_FOLLOWUP" />
+    </choice>
+  </event>
+  <event name="GUARD_RAD_SCIENCE_FOLLOWUP">
+    <noQuestText />
+    <removeHazards />
+    <clearCustomFleet />
+    <text>By killing the Science Guard you've definently pissed someone off, lets just hope word doesn't travel fast.</text>
+    <choice>
+      <text>Do something onboard the ship.</text>
+      <event load="STORAGE_CHECK" />
+    </choice>
+    <choice>
+      <text>Do nothing.</text>
+      <event />
+    </choice>
+  </event>
+  
+<ship name="SHIP_RAD_SCIENCE_ALL" auto_blueprint="LIST_SHIPS_RAD_SCIENCE_ALL">
+	<surrender chance="0.6" min="2" max="4" load="SURRENDER_RAD_SCIENCE" />
+	<destroyed load="DESTROYED_RAD_SCIENCE" />
+	<deadCrew load="DEAD_CREW_RAD_SCIENCE" />
+</ship>
+
+<ship name="SHIP_RAD_SCIENCE_GENERIC" auto_blueprint="LIST_SHIPS_RAD_SCIENCE_GENERIC">
+	<surrender chance="0.6" min="2" max="4" load="SURRENDER_RAD_SCIENCE" />
+	<destroyed load="DESTROYED_RAD_SCIENCE" />
+	<deadCrew load="DEAD_CREW_RAD_SCIENCE" />
+</ship>
+
+<ship name="SHIP_RAD_SCIENCE_FIGHT" auto_blueprint="LIST_SHIPS_RAD_SCIENCE_FIGHT">
+	<surrender chance="0.6" min="2" max="4" load="SURRENDER_RAD_SCIENCE" />
+	<destroyed load="DESTROYED_RAD_SCIENCE" />
+	<deadCrew load="DEAD_CREW_RAD_SCIENCE" />
+</ship>
+
+<ship name="SHIP_RAD_SCIENCE_TRANSPORT" auto_blueprint="RAD_SCIENCE_TRANSPORT">
+	<escape timer="30" min="999" max="999">
+		<text>They look like they don't want to fight. They are trying to escape.</text>
+		<ship hostile="true" />
+	</escape>
+	<destroyed load="TRANSPORT_DESTROYED" />
+	<deadCrew load="TRANSPORT_CAPTURE_RAD_SCIENCE" />
+</ship>
+
+  <ship name="SHIP_RAD_SCIENCE_INTERCEPTOR_PIRATE" auto_blueprint="RAD_SCIENCE_INTERCEPTOR_PIRATE">
+    <surrender chance="0.6" min="2" max="4" load="SURRENDER_PIRATE" />
+    <destroyed load="DESTROYED_PIRATE" />
+    <deadCrew load="DEAD_CREW_PIRATE" />
+  </ship>
+
+  <event name="DESTROYED_RAD_SCIENCE">
+    <text load="TEXT_DESTROYED_RAD_SCIENCE" />
+    <autoReward level="LOW">standard</autoReward>
+  </event>
+  <textList name="TEXT_DESTROYED_RAD_SCIENCE">
+    <text>As you harvest the remains of the Scientist's ship, it's clear their advanced technology isn't enough to save them from you.</text>
+    <text>The Scientist captain lets out one final expletive as the ship is obliterated.</text>
+    <text>The gleaming hull of the scientist ship fragments out into space. You swoop in to salvage the remains.</text>
+    <text>The ship explodes, extinguishing all lives within. Your crew avoids their remains as they salvage the ship pieces.</text>
+    <text>In a fury of sparks and explosions, the hull of the ship collapses. You quickly scrap the remains, which still seem to be in good quality.</text>
+  </textList>
+
+  <event name="DEAD_CREW_RAD_SCIENCE">
+    <text load="TEXT_DEAD_CREW_RAD_SCIENCE" />
+    <autoReward level="MED">standard</autoReward>
+  </event>
+  <textList name="TEXT_DEAD_CREW_RAD_SCIENCE">
+    <text>"Your bloodlust... will be your downfall someday, Renegade. You are only proof... the Federation... is no better than the Rebellion..."</text>
+    <text>"Man down, man down! Agh!" The crewmate's shouts go unheard as he is put down with the rest of his crew.</text>
+    <text>You've slaughtered the entirety of the crew. All that's left is to scrap their ship.</text>
+    <text>"To be fair... this was way above my... pay-grade..." The enemy captain clutches their heart and collapses.</text>
+    <text>"You will regret this! Karma always comes back to people like you. Damn you... Us scientists would have been better off without you renegades around..."</text>
+  </textList>
+
+  <event name="SURRENDER_RAD_SCIENCE">
+    <text load="TEXT_SURRENDER_RAD_SCIENCE" />
+    <choice>
+      <text>Accept their surrender.</text>
+      <event name="SURRENDER_ACCEPT">
+        <ship hostile="false" />
+        <autoReward level="RANDOM">stuff</autoReward>
+      </event>
+    </choice>
+    <choice>
+      <text load="GENERIC_SURRENDER_CHOICE_NOMERCY" />
+      <!--<event load="MORALITY_UPDATE_UNION"/>-->
+      <event />
+    </choice>
+  </event>
+  <textList name="TEXT_SURRENDER_RAD_SCIENCE">
+    <text>"Please! Us Scientists are the only reason half the multiverse's technology exists, We invented the space waffle iron! You can't kill us!"</text>
+    <text>"Look, just let us live and we'll give you our stuff, that's what you renegades want right?"</text>
+    <text>The Scientist captain pleads with you to let them live. "Please, my family! They need me, I am their only source of income! I'll give you everything I can if you let me live!"</text>
+    <text>You receive a hail from another part of the ship, where another crew besides the captain speaks softly. "Please, if you stop firing I'll give you whatever is left in the cargo. Our captain is adamant, but the rest of the crew doesn't want to die!"</text>
+    <text>The Scientist ship is in tatters. You could probably negotiate their surrender at this point.</text>
+  </textList>
+
+<event name="TRANSPORT_CAPTURE_RAD_SCIENCE" unique="true">
+	<text>The crew is dead, leaving you with the ship. Its cargo is yours for the taking. Aboard is the special tech you expected, which you bring back to your ship.</text>
+	<autoReward level="MED">standard_no_item</autoReward>
+	<weapon name="LIST_LOOT_UNION" />
+	<variable name="ach_trans_rad_science" op="set" val="1" />
+	<!--achievement>ACH_TRANS_UNION</achievement-->
+</event>
+
+<ship name="SHIP_RAD_SCIENCE_PIRATE" auto_blueprint="RAD_SCIENCE_BOMBER_PIRATE">
+	<destroyed load="DESTROYED_RAD_SCIENCE" />
+	<deadCrew load="RAD_SCIENCE_PIRATE_CAPTURE" />
+</ship>
+
+<event name="RAD_SCIENCE_PIRATE_CAPTURE">
+	<text>You clear out the defense cruiser and tow it back to the station, You're thanked and recieve a large amount of scrap as a reward.
+
+One of the crew on the station offer to join your crew.</text>
+	<choice hidden="false">
+		<text>Accept them onto your ship.</text>
+		<event>
+			<autoReward level="MED">scrap_only</autoReward>
+			<text>It turns out it's one of the soldier who was prevoisly stationed aboard the defense cruiser.</text>
+			<crewMember amount="1" class="human_soldier" />
+		</event>
+	</choice>
+	<choice hidden="false">
+		<text>Reject their offer.</text>
+		<event>
+			<autoReward level="HIGH">scrap_only</autoReward>
+			<text>You turn down the offer, you don't need any new crew right now.</text>
+		</event>
+	</choice>
+</event>
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+					NEUTRAL EVENTS ()
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-->	
+
+<event name="TRANSPORT_RAD_SCIENCE_LOOT" unique="true">
+	<preventQuest />
+	<beaconType id="map_icon_transport" global="true" req="LOOT_COMPASS">
+		<color r="255" g="186" b="0" a="1" />
+		<unvisitedTooltip>An unvisited location.</unvisitedTooltip>
+		<visitedTooltip>Explored location. Nothing left of interest.</visitedTooltip>
+		<undiscoveredTooltip>An unvisited location.</undiscoveredTooltip>
+	</beaconType>
+	<text>This beacon hosts a scientist transport. It's safe to bet the ship is most likely carrying some special tech. If you can kill its crew, their cargo will be yours.</text>
+	<ship load="SHIP_RAD_SCIENCE_TRANSPORT" hostile="false" />
+	<choice>
+		<text>Demand the surrender of their goods.</text>
+		<event>
+			<text>You prepare to secure their cargo by force.</text>
+			<ship hostile="true" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK" />
+			</choice>
+		</event>
+	</choice>
+	<choice>
+    <text>Avoid the ship.</text>
+    <event>
+      <text>They stay outside your weapons range, and eventually jump away.</text>
+			<choice hidden="true">
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK" />
+			</choice>
+			<choice hidden="true">
+				<text>Do nothing.</text>
+				<event />
+			</choice>
+				</event>
+	</choice>
+</event>
+
+<eventList name="NEUTRAL_RAD_SCIENCE">
+	<event load="RAD_SCIENCE_CHOICE" />
+	<event load="RAD_SCIENCE_DEPOT" />
+	<event load="RAD_SCIENCE_PIRATE_CAPTURE" />
+	<event load="MILITIA_RECRUITMENT" />
+	<event load="MILITIA_COCKY_ZOLTAN" />
+</eventList> 
+
+<event name="RAD_SCIENCE_CHOICE">
+	<text load="TEXT_RAD_SCIENCE_CHOICE" />
+	<ship load="SHIP_RAD_SCIENCE_ALL" hostile="false" />
+	<choice hidden="true">
+		<text>Fight them!</text>
+		<event>
+			<text>You power up the weapons and attack the Scientists.</text>
+			<ship hostile="true" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK" />
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Ignore the Scientist ship.</text>
+		<event>
+			<text>You fly past the Scientist vessel.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK" />
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event />
+			</choice>
+		</event>
+	</choice>
+</event>
+<textList name="TEXT_RAD_SCIENCE_CHOICE">
+	<text>A Scientist ship is surveying a planet in the area. No other ships are nearby.</text>
+	<text>You notice another ship, belonging to the Scientists, drifting some distance away. The ship is fully functional but politely declines any hails.</text>
+	<text>A decently armed Scientist vessel is patrolling the beacon, if you don't make any trouble they're unlikely to care about you.</text>
+</textList>
+
+<event name="RAD_SCIENCE_DEPOT" unique="true">
+	<text>A nearby scienctist vessel is acting as a supply depot, they offer you a resupply.</text>
+	<ship load="SHIP_RAD_SCIENCE_GENERIC" hostile="false" />
+	<choice>
+		<text>Submit your ID and get some supplies.</text>
+		<event>
+			<autoReward level="LOW">stuff</autoReward>
+		</event>
+	</choice>
+	<choice req="rad_scientist">
+		<text>(Human Scientist) Request more supplies.</text>
+		<event>
+			<autoReward level="HIGH">stuff</autoReward>
+		</event>
+	</choice>
+	<choice req="LIST_CREW_MEDIC">
+		<text>(Medic Crew) Request medical supplies.</text>
+		<event>
+			<autoReward level="MED">missiles_only</autoReward>
+			<weapon name="BOMB_HEAL" />
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Attack, surely we can get more from them!</text>
+		<event>
+			<text>You power up the weapons and attack the Scientists.</text>
+			<ship hostile="true" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK" />
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Ignore the depot.</text>
+		<event>
+			<text>You ignore the Scientists.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK" />
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event />
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<event name="RAD_SCIENCE_PIRATE_CAPTURE" unique="true">
+	<text>A nearby station is putting out a distress beacon, it appears that their defense cruiser has been stolen by pirates.</text>
+	<ship load="SHIP_RAD_SCIENCE_PIRATE" hostile="false" />
+	<choice hidden="true">
+		<text>Destroy or re-capture the defense cruiser.</text>
+		<event>
+			<text>You power up the weapons and attack the Pirates.</text>
+			<ship hostile="true" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK" />
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="cloaking" lvl="2">
+		<text>(Upg. Cloaking) Cloak and scrap some of the station while they're defenseless.</text>
+		<event>
+			<text>With the defence cruiser stolen, there's no one around to guard the station. Under the veil of your cloak you tear off some of the plating and leave quickly.</text>
+			<autoReward level="MED">standard</autoReward>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Stay away from this.</text>
+		<event>
+			<text>You fly past the station. Hopefully, the situation will be resolved... no thanks to you.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK" />
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event />
+			</choice>
+		</event>
+	</choice>
+</event>
+<event name="MILITIA_COCKY_ZOLTAN" unique="true">
+	<text>A flotilla of Zoltan vessels is present at this beacon - they seem to be performing training drills related to the endurance of their Super Shields. One ship among the group hails you: "Uh. Renegades, here? Not a common sight in Militia space. You know, you really stand out from the rest of the ships in this sector..."</text>
+	<choice>
+		<text>How so?</text>
+		<event>
+			<text>"I mean, your cobbled-up and makeshift tech! Have you no shame, comparing your Federation to our orderly discipline and advanced shield technology? It's no wonder the Union calls for our help. This might be advertised as a 'joint effort', but it really falls upon us to give the local inhabitants safety, seeing as they fell behind on the technological spectrum."
+				
+				Overhearing the conversation, the commander of the squadron pitches in to save face. "Quit pestering the Renegade. You have not yet seen what the rest of the galaxy has to offer. Such naivete could lead to your downfall!"</text>
+			<choice hidden="true">
+				<text>Point out the inadequacies of the Super Shield.</text>
+				<event>
+					<text>You explain that their shield can easily be downed in a reasonable amount of time through specific weaponry fit for such, and throw in the fact that overconfidence, just like their famed Super Shield, cannot guarantee their safety from whatever the greater galaxy holds. Agitated by this comeback, the rookie defies orders to stand down, and attacks you! The commander pleads to avoid unnecessary bloodshed, but it looks like you'll have to make use of some force to discourage your attacker.</text>
+					<ship load="SHIP_ZOLTAN_COCKY_TAUNTED" hostile="true" />
+					<choice hidden="true">
+						<text>Continue...</text>
+						<event load="COMBAT_CHECK" />
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true" req="weapons" lvl="6">
+				<text>(Adv. Weapons) Show off your weaponry.</text>
+				<event>
+					<text>You proudly display your weapons to the Zoltan rookie, and they awestruck at the sight. The commander thanks you for clearing the haughtiness of his subordinate and offers a reward.</text>
+					<autoReward level="LOW">standard</autoReward>
+				</event>
+			</choice>
+			<choice hidden="true" req="artillery" lvl="3">
+				<text>(Adv. Artillery) Show off your weaponry.</text>
+				<event>
+					<text>You proudly display your Artillery to the Zoltan rookie, and they awestruck at the sight. The commander thanks you for clearing the haughtiness of his subordinate and offers a reward.</text>
+					<autoReward level="LOW">standard</autoReward>
+				</event>
+			</choice>
+			<choice hidden="true" req="drones" lvl="5">
+				<text>(Upg. Drone Control) Show that you're not so behind on the technological curve.</text>
+				<event>
+					<text>You proudly display your sophisticated drone technology, taking the rookie by surprise. The commander thanks you for clearing the haughtiness of his subordinate and offers a reward.</text>
+					<autoReward level="MED">standard</autoReward>
+				</event>
+			</choice>
+			<choice hidden="true" req="LIST_CHECK_ENERGY_SHIELD">
+				<text>(Energy Shield) Show that you're not so behind on the technological curve.</text>
+				<event>
+					<text>You proudly display your own Super Shield, taking the rookie by surprise. The commander thanks you for clearing the haughtiness of his subordinate and offers a reward.</text>
+					<autoReward level="MED">standard</autoReward>
+				</event>
+			</choice>
+			<choice hidden="true" req="BYPASS_AND_BOMB">
+				<text>(Shield Bypass + Bomb) Demonstrate a gap in his protection. [-1}]</text>
+				<event>
+					<text>You teleport a payload right in their weapon system, taking the rookie by surprise. He promptly hails you - "Bah, we never expected you Renegades to be such... assholes!" The commander offers you a reward, supposedly for showing his men how to improve, but you suspect the real motive is to avoid any further escalation and get you to leave.</text>
+					<item_modify>
+						<item type="missiles" min="-1" max="-1" />
+					</item_modify>
+					<autoReward level="HIGH">droneparts</autoReward>
+				</event>
+			</choice>
+			<choice hidden="true" req="BYPASS_AND_TELEPORT">
+				<text>(Shield Bypass + Teleport) Overtake his crew before they can respond.</text>
+				<event>
+					<choiceRequiresCrew />
+					<text>You teleport a boarding party through and wipe them out with ease, showing that the haughtiness of the now dead rookie was unfounded. You begin to recover some scrap, but the commander rushes to the scene to stop you!</text>
+					<autoReward level="LOW">standard</autoReward>
+					<ship load="SHIP_ZOLTAN_COCKY_CHIEF" hostile="true" />
+					<choice hidden="true">
+						<text>Continue...</text>
+						<event load="MORALITY_UPDATE_ZOLTAN_FIGHT" />
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Ignore the arrogant Zoltan and dedicate time to doing something else.</text>
+				<event>
+					<text>You didn't ask for anyone's opinion, so it's only fair to tune them out.</text>
+					<choice>
+						<text>Do something onboard the ship.</text>
+						<event load="STORAGE_CHECK" />
+					</choice>
+					<choice>
+						<text>Do nothing.</text>
+						<event />
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+					DISTRESS EVENTS ()
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-->
+<eventList name="DISTRESS_RAD_SCIENCE">
+	<event load="DISTRESS_MILITIA_KERNELS" />
+	<event load="DISTRESS_MILITIA_OUTPOST" />
+</eventList> 
+
+<event name="DISTRESS_RAD_SCIENCE_KERNELS" unique="true">
+	<distressBeacon />
+	<text>The source of the distress beacon appears to be an Orchid merchant under attack by a pirate vessel! Should we assist?</text>
+	<ship load="SHIP_MILITIA_KERNELPIRATE" hostile="false" />
+	<choice hidden="true">
+		<text>Save the Orchids.</text>
+		<event>
+			<text>You power up the weapons and engage the pirate vessel.</text>
+			<ship hostile="true" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK" />
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>Ignore the ships.</text>
+		<event>
+			<text>Orchid ships are considerably well armed, so you hope that they'll be able to save themselves.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK" />
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event />
+			</choice>
+		</event>
+	</choice>
+</event>
+<event name="RAD_SCIENCE_KERNELS_SAVE">
+	<text>The Orchids thank you for your assistance. They explain that they were sent to sell their Kernel weapons to the Militia vessels in this sector. As payment for your help, they offer one for free.</text>
+	<weapon name="GIFTLIST_KERNEL" />
+</event>
+
+<event name="DISTRESS_RAD_SCIENCE_OUTPOST" unique="true">
+	<distressBeacon />
+	<text>The distress beacon's source is a small Militia outpost under attack by pirates. The Militiamen don't appear to be holding out well.</text>
+	<ship load="SHIP_PIRATE_RAD_SCIENCE_OUTPOST" hostile="false" />
+	<choice hidden="true">
+		<text>Protect the outpost.</text>
+		<event>
+			<text>You power up the weapons and engage the pirate vessel.</text>
+			<ship hostile="true" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK" />
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true" req="weapons" lvl="5">
+		<text>(Upg. Weapons) Threaten the pirates.</text>
+		<event>
+			<text>"Hey, who the hell do you think you are- oh crap. Okay okay you win, have fun!" The pirate jumps away. The fatigued Militia station seems defenseless against anything you might try.</text>
+			<instantEscape />
+			<choice hidden="true">
+				<text>Inform the Militiamen they're safe.</text>
+				<event>
+					<text>"Thank you, it was unlikely we'd have survived that pirate attack otherwise. We cannot offer much other than some fuel that we don't need."</text>
+					<autoReward level="LOW">fuel_only</autoReward>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Demand they surrender one of their crew as a slave.</text>
+				<event>
+					<text>The Militiamen have few options but to give in to your demands.</text>
+					<crewMember amount="1" class="random" />
+					<choice hidden="true">
+						<text>Continue...</text>
+						<event load="MORALITY_UPDATE_GENERAL" /> <!--intended-->
+					</choice>
+				</event>
+			</choice>
+			<choice hidden="true">
+				<text>Destroy the station and loot the remains.</text>
+				<event>
+					<text>As you expected, the Militia outpost barely defends itself and is destroyed quickly.</text>
+					<autoReward level="MED">standard</autoReward>
+					<choice hidden="true">
+						<text>Continue...</text>
+						<event load="MORALITY_UPDATE_UNION" />
+					</choice>
+				</event>
+			</choice>
+		</event>
+	</choice>
+	<choice hidden="true">
+		<text>We cannot help.</text>
+		<event>
+			<text>You decide not to fight the pirates.</text>
+			<choice>
+				<text>Do something onboard the ship.</text>
+				<event load="STORAGE_CHECK" />
+			</choice>
+			<choice>
+				<text>Do nothing.</text>
+				<event />
+			</choice>
+		</event>
+	</choice>
+</event>
+
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+					QUEST EVENTS ()
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-->
+<eventList name="QUESTS_RAD_SCIENCE">
+	<event load="MILITIA_AUTOSEARCH" />
+</eventList> 
+
+
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+					HOSTILE EVENTS ()
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-->
+<eventList name="HOSTILE_RAD_SCIENCE">
+	<event load="ENCOUNTER_RAD_SCIENCE_MISTAKE" />
+	<event load="ENCOUNTER_RAD_SCIENCE_STATION_MISTAKE" />
+	
+	<event load="ENCOUNTER_PIRATE_RAD_SCIENCE" />
+	<event load="ENCOUNTER_PIRATE_RAD_SCIENCE_ONLY" />
+	<event load="ENCOUNTER_REBEL_RAD_SCIENCE" />
+</eventList>
+
+<event name="ENCOUNTER_RAD_SCIENCE_MISTAKE" unique="true">
+	<text load="TEXT_ENCOUNTER_RAD_SCIENCE_MISTAKE" />
+	<ship load="SHIP_RAD_SCIENCE_FIGHT" hostile="true" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK" />
+	</choice>
+</event>
+<textList name="TEXT_ENCOUNTER_RAD_SCIENCE_MISTAKE">
+	<text>The wreckage of a civilian ship drift nearby, but before you can even think to salvage some of it, a Scientist ship mistakes you as the attacker and prepares to avenge the civilians.</text>
+	<text>You get into some trouble over your identification with the Scientist ship at this beacon, and not long after things get heated to the point of conflict!</text>
+	<text>The Scientists at this beacon seem to mistake one of your crew as an infamous pirate with a heavy bounty. Not about to hand over your crew, you prepare to fight.</text>
+</textList>
+
+<event name="ENCOUNTER_RAD_SCIENCE_STATION_MISTAKE" unique="true">
+	<text>You run into a Scientist outpost near this beacon, who refuses to let you past. Apparently this beacon requires a toll to pass through.</text>
+	<ship load="SHIP_RAD_SCIENCE_FIGHT" hostile="false" />
+	<choice>
+		<text>Refuse to pay.</text>
+		<event>
+			<text>The Scientists wastes no time with conversation - the second you refuse their weapons come online!</text>
+			<ship hostile="true" />
+			<choice hidden="true">
+				<text>Continue...</text>
+				<event load="COMBAT_CHECK" />
+			</choice>
+		</event>
+	</choice>
+	<choice>
+		<text>Pay the toll.</text>
+		<event>
+			<text>The Scientists collect the payment and allow you to continue.</text>
+			<item_modify>
+				<item type="scrap" min="-20" max="-10" />
+			</item_modify>
+		</event>
+	</choice>
+</event>
+
+<event name="ENCOUNTER_PIRATE_RAD_SCIENCE">
+	<text load="TEXT_ENCOUNTER_PIRATE_RAD_SCIENCE" />
+	<ship load="SHIP_PIRATE_ALL" hostile="true" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK" />
+	</choice>
+</event>
+<textList name="TEXT_ENCOUNTER_PIRATE_RAD_SCIENCE">
+	<text>It takes a bold pirate captain - or a stupid one - to try and take on the scientists space. When you notice the hostile ship approaching, you hope they're the latter as you prepare for combat.</text>
+	<text>A pirate vessel approaches, weapons already charging. They must be on quite the killing spree in this territory, and they're ready to take a break from Scientist and Civilian ships and fight yours!</text>
+	<text>Despite their advanced technology, it seems the scientists have been unable to completely wipe out the pirates. There's one heading straight towards your ship!</text>
+	<text>You catch the glimpse of purple fly past. Not long after, a pirate ship comes into view. "Haha! I have claimed the lives of many Civilians, and now I shall claim yours! Prepare to fight!"</text>
+</textList>
+
+<event name="ENCOUNTER_PIRATE_RAD_SCIENCE_ONLY" unique="true">
+	<text load="TEXT_ENCOUNTER_PIRATE_RAD_SCIENCE_ONLY" />
+	<ship load="SHIP_RAD_SCIENCE_INTERCEPTOR_PIRATE" hostile="true" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK" />
+	</choice>
+</event>
+<textList name="TEXT_ENCOUNTER_PIRATE_RAD_SCIENCE_ONLY">
+	<text>The Militia fleet boasts a large amount of ships, but this also makes them a prime target for pirates in need of a new ride. A pirate controlled Militia ship approaches, weapons blazing.</text>
+	<text>A pirate ship, looking to test out the new gear they just stole from the Militia, locks onto your ship and attacks!</text>
+	<text>At first you assume the ship here is just another ordinary Militia ship, until you see the pirate paint decorating its hull. Pirates inbound!</text>
+</textList>
+
+<event name="ENCOUNTER_REBEL_RAD_SCIENCE">
+	<text load="TEXT_ENCOUNTER_REBEL_RAD_SCIENCE" />
+	<ship load="SHIP_REBEL_ALL" hostile="true" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK" />
+	</choice>
+</event>
+<textList name="TEXT_ENCOUNTER_REBEL_RAD_SCIENCE">
+	<text>"The Rebellion shall never cease! All who ally with the Federation will be killed!" You doubt the moral superiority of murdering civilians only trying to protect their sectors, but if the Rebels want a fight, a fight they will get.</text>
+	<text>The Rebellion seem to hold a grudge against the Scientists, probably becuase they've lost their money at one too many Scientist Casinos. The Rebel ship here seems hell-bent on a fight, and since you're the only ship here they decide you will be a satisfactory opponent.</text>
+	<text>A Rebel ship has picked clean the remains of a Civilian station. Nearly seconds after you jump in they spot you and decide to make you their next target.</text>
+</textList>
+
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+					UNIQUE EVENTS
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-->
+  <ship name="SHIP_RAD_SCIENCE_ELITE_FIGHT" auto_blueprint="LIST_SHIPS_RAD_SCIENCE_ELITE">
+    <destroyed load="DESTROYED_RAD_SCIENCE_ELITE" />
+    <deadCrew load="DEAD_CREW_RAD_SCIENCE_ELITE" />
+  </ship>
+
+  <event name="DESTROYED_RAD_SCIENCE_ELITE">
+    <text>You've managed to destroy one of the most dangerous ships in the sector, you scrap their ship and come out richer for it.</text>
+    <autoReward level="MED">standard</autoReward>
+  </event>
+
+  <event name="DEAD_CREW_RAD_SCIENCE_ELITE">
+    <text>As the last soldier falls, your crew begin scraping their ship. you leave their ship with bucket loads of scrap.</text>
+    <autoReward level="HIGH">standard</autoReward>
+  </event>
+  
+<event name="ENCOUNTER_RAD_SCIENCE_ELITE" unique="true">
+	<text>The vessels of the Elite R&amp;D Defense Force are some of the deadliest in the Scientist fleet, and for good reason. Boasting highly trained crew, these ships don't mess around in combat. Unfortunately for you, the ship here deems you a threat and attacks!</text>
+	<ship load="SHIP_RAD_SCIENCE_ELITE_FIGHT" hostile="true" />
+	<choice hidden="true">
+		<text>Continue...</text>
+		<event load="COMBAT_CHECK" />
+	</choice>
+</event>
+
+
+  <eventList name="STORELIST_RAD_SCIENCE">
+    <event load="STOREEVENT_ALIENS" />
+    <event load="STOREEVENT_OUTPOST" />
+    <event load="STOREEVENT_MERCHANTS" />
+    <event load="STOREEVENT_REFUELING" />
+    <event load="STOREEVENT_DAMAGED" />
+    <event load="STOREEVENT_TERRAFORMING" />
+    <event load="STOREEVENT_WEATHER_STUCK" />
+
+    <event load="STOREEVENT_FED_AUTO" />
+    <event load="STOREEVENT_FED_MARKET" />
+    <event load="STOREEVENT_FED_OUTPOSTDAMAGE" />
+    <event load="STOREEVENT_FED_NOTFREE" />
+
+    <event load="STOREEVENT_UNION_WAR_ORPHANS" />
+
+    <event load="STOREEVENT_ENGI_THREAT" />
+    <event load="STOREEVENT_ENGI_SMITH" />
+
+    <event load="STOREEVENT_ZOLTAN_MERCHANT" />
+    <event load="STOREEVENT_ZOLTAN_MONK" />
+
+    <event load="STOREEVENT_ORCHID_STATION" />
+    <event load="STOREEVENT_ORCHID_FIRE" />
+
+    <event load="STOREEVENT_VAMPWEED_TERRAFORMER" />
+
+    <event load="STOREEVENT_CRYSTAL_COLLECTOR" />
+
+    <event load="STOREEVENT_FREEMANTIS_FREE" />
+
+    <event load="STOREEVENT_MANTIS_WHALE" />
+
+    <event load="STOREEVENT_ROCK_RACIST" />
+
+    <event load="STOREEVENT_PIRATE_REFUELING" />
+    <event load="STOREEVENT_PIRATE_SECURITY" />
+  </eventList>
+  
+<!--
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+					SPECIAL EVENTS
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+-->
+
+  <event name="RAD_MAIN_LAB">
+    
+  </event>
+  
+</FTL>

@@ -4,6 +4,78 @@
 	<mod-append:priorityEvent name="" min="1" max="1" priority="1" req="" lvl="1"/>
 </mod:findLike>-->
 
+<sectorDescription name="SECRET_RAD_SCIENCE" unique="true">
+  <nameList>
+    <name>Science Sector</name>
+  </nameList>
+  <trackList>
+    <track>cosmos</track>
+    <track>hacking</track>
+    <track>milkyway</track>
+    <track>galactic</track>
+    <track>civilian</track>
+    <track>lostship</track>
+  </trackList>
+  <rarityList>
+    <blueprint name="rad_scientist" rarity="1" />
+    <blueprint name="human" rarity="1" />
+    <blueprint name="human_medic" rarity="4" />
+    <blueprint name="human_engineer" rarity="0" />
+    <blueprint name="human_soldier" rarity="5" />
+    <blueprint name="engi" rarity="0" />
+    <blueprint name="engi_separatist" rarity="0" />
+    <blueprint name="zoltan" rarity="3" />
+    <blueprint name="zoltan_monk" rarity="0" />
+    <blueprint name="zoltan_devotee" rarity="0" />
+    <blueprint name="rock" rarity="0" />
+    <blueprint name="rock_outcast" rarity="1" />
+    <blueprint name="rock_commando" rarity="0" />
+    <blueprint name="mantis" rarity="0" />
+    <blueprint name="mantis_free" rarity="5" />
+    <blueprint name="slug" rarity="0" />
+    <blueprint name="slug_clansman" rarity="0" />
+    <blueprint name="shell" rarity="0" />
+    <blueprint name="shell_scientist" rarity="0" />
+    <blueprint name="shell_mechanic" rarity="0" />
+    <blueprint name="shell_guardian" rarity="0" />
+    <blueprint name="crystal" rarity="5" />
+    <blueprint name="crystal_liberator" rarity="0" />
+    <blueprint name="orchid" rarity="2" />
+    <blueprint name="orchid_vampweed" rarity="4" />
+    <blueprint name="leech" rarity="5" />
+    <blueprint name="lanius" rarity="0" />
+    <blueprint name="phantom" rarity="0" />
+    <blueprint name="phantom_goul" rarity="0" />
+    <blueprint name="phantom_mare" rarity="0" />
+    <blueprint name="phantom_wraith" rarity="0" />
+  </rarityList>
+  <startEvent>START_RAD_SCIENCE</startEvent>
+  <removeFirstBeaconNebula />
+  <exitBeacon event="FINISH_BEACON_RAD_SCIENCE" nebulaEvent="FINISH_BEACON_NEBULA" rebelEvent="FINISH_BEACON_FLEET_ELITE" />
+  <rebelBeacon event="FLEET_THREAT_LOW" nebulaEvent="FLEET_THREAT_LOW_NEBULA" />
+  <priorityEvent name="ANOMALY_SPAWNER" min="1" max="1" priority="1" req="ANOMALY_SPAWN_CHECK" lvl="1" />
+  <event name="MV_TRAVELER" min="1" max="1" />
+  <event name="SYLVAN_CHANCE" min="0" max="1" />
+
+  <!--event name="RAD_SCIENCE_QUEST_1" min="1" max="1" /><!FIXME-->
+
+  <event name="TRANSPORT_RAD_SCIENCE_LOOT" min="1" max="1" />
+  <event name="STORELIST_RAD_SCIENCE" min="2" max="3" /> <!--FIXME-->
+
+  <event name="ITEMS_RAD_SCIENCE" min="2" max="3" />
+  <event name="NEUTRAL_RAD_SCIENCE" min="4" max="5" />
+  <event name="DISTRESS_RAD_SCIENCE" min="1" max="2" />
+  <!--event name="QUESTS_RAD_SCIENCE" min="1" max="1" /-->
+
+  <event name="ENCOUNTER_RAD_SCIENCE_ELITE" min="2" max="2" /> 
+  <event name="HOSTILE_RAD_SCIENCE" min="3" max="5" />
+
+  <event name="NEMESIS_RAD" min="1" max="1" />
+  
+  <event name="PIRACY_LIST" min="0" max="2" />
+  <event name="FILLER_LIST" min="999" max="999" />
+</sectorDescription>
+
 <mod:findLike type="sectorDescription">
 	<mod-append:priorityEvent name="RAD_LAB_QUEST_START" min="1" max="1" priority="1" req="LABRATORY_SPAWN_CHECK" lvl="1"/>
 </mod:findLike>

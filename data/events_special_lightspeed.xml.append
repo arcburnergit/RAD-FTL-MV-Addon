@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+  <event name="ENTER_RAD_SCIENCE">
+    <text load="TEXT_LIGHTSPEED" />
+    <img back="BACKGROUND_LIGHTSPEED" planet="NONE" />
+    <choice hidden="true">
+      <text>Continue...</text>
+      <event load="LOAD_ATLAS_MARKER" />
+    </choice>
+  </event>
+  <event name="RAD_SCIENCE_WARP">
+    <text>Name: Scienctist Sector
+Type: Neutral
+Unique: True
+Dominant Faction: N/A
+Rebel Threat Level: Low
+Locations of Interest: R&amp;D Head Quarters
+
+INSERT LORE HERE
+</text>
+    <choice hidden="true">
+      <text>Exit hyperspeed.</text>
+      <event load="START_RAD_SCIENCE" />
+    </choice>
+    <choice hidden="true" req="COORDS" blue="false">
+      <text>Reroute.</text>
+      <event load="REROUTE_MENU" />
+    </choice>
+  </event>
+
+  <mod:findName type = "event" name = "REROUTE_MENU">
+    <mod-append:choice hidden="true" req="coords_rad_science" blue="false" max_group="620">
+      <text>Jump to the Science Sector.</text>
+      <event load="LIGHTSPEED_SECTOR_WARP_RAD_SCIENCE"/>
+    </mod-append:choice>
+  </mod:findName>
+
+  <mod:findName type = "event" name = "REROUTE_MENU_LASTSTAND">
+    <mod-append:choice hidden="true" req="coords_rad_science" blue="false" max_group="620">
+      <text>Jump to the Science Sector.</text>
+      <event load="LIGHTSPEED_SECTOR_WARP_RAD_SCIENCE"/>
+    </mod-append:choice>
+  </mod:findName>
+
+  <event name="LIGHTSPEED_SECTOR_WARP_RAD_SCIENCE">
+    <text>You are about to reroute. Below is the Atlas entry for this sector.
+Name: Scienctist Sector
+Type: Neutral
+Unique: True
+Dominant Faction: N/A
+Rebel Threat Level: Low
+Locations of Interest: R&amp;D Head Quarters
+
+INSERT LORE HERE
+[Warning: Rerouting means you will miss any quests that would have spawned in the next sector.]
+    </text>
+    <choice hidden="true">
+      <text>Continue with the jump.</text>
+      <event>
+        <text>You prepare to jump to the new co-ordinates, and change your flight path accordingly.</text>
+        <variable name="coords_rad_science" op="set" val="0"/>
+        <choice hidden="true">
+          <text>Continue...</text>
+          <event load="JUMP_TO_RAD_SCIENCE"/>
+        </choice>
+      </event>
+    </choice>
+    <choice hidden="true">
+      <text>Nevermind.</text>
+      <event>
+        <loadEvent>ATLAS_MENU_NOEQUIPMENT</loadEvent>
+      </event>
+    </choice>
+  </event>
+  <event name="JUMP_TO_RAD_SCIENCE">
+    <secretSector>SECRET_RAD_SCIENCE</secretSector>
+  </event>
+  
+  <event name="LIGHTSPEED_SECTOR_WARP_RAD_SCIENCE_BOSS">
+    <text>You are about to reroute. Below is the Atlas entry for this sector.
+Name: Scienctist Sector
+Type: Neutral
+Unique: True
+Dominant Faction: N/A
+Rebel Threat Level: Low
+Locations of Interest: R&amp;D Head Quarters
+
+INSERT LORE HERE
+[Warning: Rerouting means you will miss any quests that would have spawned in the next sector.]
+    </text>
+    <choice hidden="true">
+      <text>Continue with the jump.</text>
+      <event>
+        <text>You prepare to jump to the new co-ordinates, and change your flight path accordingly.</text>
+        <variable name="coords_rad_science" op="set" val="0" />
+        <variable name="loc_laststand" op="add" val="1" />
+        <choice hidden="true">
+          <text>Continue...</text>
+          <event load="JUMP_TO_RAD_SCIENCE" />
+        </choice>
+      </event>
+    </choice>
+    <choice hidden="true">
+      <text>Nevermind.</text>
+      <event>
+        <loadEvent>ATLAS_MENU_NOEQUIPMENT</loadEvent>
+      </event>
+    </choice>
+  </event>
+  
+</FTL>

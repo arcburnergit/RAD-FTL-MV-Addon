@@ -2981,5 +2981,793 @@ You'll need to avoid as much damage to your crew as possible, the meagre healing
     <aug name="RAD_BULLET_HELL" />
     <aug name="DRONE_RECOVERY" />
   </shipBlueprint>
+
+  <augBlueprint name="RAD_CREVERSAL">
+    <title>Exp. Cloaking System</title>
+    <desc>This experimental cloaking system trades losing half the duration of the cloak for the ability to repulse any enemy projectiles, retargeting them on the enemy ship.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_CBEAM">
+    <title>Cloaking Artillery System</title>
+    <desc>This experimental cloaking system trades losing half the duration of the cloak for the ability to fire a devastating beam drawing a line from the enemy shield system to the weapon system.
+
+The beam does 1 damage, and gains an additional half damage for each power in the weapons system.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_CHACK">
+    <title>Enhanced Cloaking System</title>
+    <desc>This experimental cloaking system hacks the enemy shield system when cloaked, however it disables your own weapons in the process.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_CORVETTE" layout="radp_corvette" img="radp_corvette">
+    <class>Science Corvette</class>
+    <name>The Dynamic</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_unlock"/>
+    <desc>This ship uses its cloaking system to not only dodge enemy projectiles, but sends them back at the enemy ship in response.</desc>
+    <systemList>
+      <battery power="1" room="19" start="false" img="room_battery_13" />
+      <cloaking power="2" room="20" start="true" img="room_cloaking_rad" />
+      <clonebay power="1" room="8" start="false">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="16" start="false" img="room_doors_9">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="1" room="15" max="8" start="false" img="room_drones_16" />
+      <engines power="2" room="5" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="7" start="false" img="room_hacking_7" />
+      <medbay power="1" room="8" start="true" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="18" start="false" img="room_mind_7" />
+      <oxygen power="1" room="6" start="true" img="room_oxygen_3" />
+      <pilot power="1" room="2" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="17" start="true" img="room_sensors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="1" room="9" max="8" start="true" img="room_shields_7">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="14" max="3" start="false" />
+      <weapons power="2" room="0" max="8" start="true" img="room_weapons">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="0" count="4">
+      <weapon name="MISSILES_FREE" />
+      <weapon name="MISSILES_FREE" />
+    </weaponList>
+    <droneList drones="8" count="2" />
+    <health amount="30" />
+    <maxPower amount="7" />
+    <crewCount amount="1" class="rad_scientist" />
+    <crewCount amount="1" class="human_medic" />
+    <crewCount amount="1" class="human" />
+    <aug name="RAD_CREVERSAL" />
+  </shipBlueprint>
+
+  <weaponBlueprint name="RAD_CLOAKBEAM">
+    <type>BEAM</type>
+    <title>Cloak beam</title>
+    <short>Cloak beam</short>
+    <desc>YOU SHOULD NEVER SEE THIS</desc>
+    <tooltip></tooltip>
+    <damage>1</damage>
+    <fireChance>2</fireChance>
+    <breachChance>3</breachChance>
+    <cooldown>20</cooldown>
+    <sp>0</sp>
+    <speed>8</speed>
+    <power>4</power>
+    <cost>100</cost>
+    <bp>2</bp>
+    <rarity>0</rarity>
+    <color>
+      <r>100</r>
+      <g>50</g>
+      <b>170</b>
+    </color>
+    <image>beam_contact</image>
+    <length>160</length>
+    <launchSounds>
+      <sound>beam2</sound>
+    </launchSounds>
+    <weaponArt>rad_jailerbeam</weaponArt>
+    <iconImage>beam</iconImage>
+  </weaponBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_CORVETTE_2" layout="radp_corvetteb" img="radp_corvetteb">
+    <class>Science Corvette</class>
+    <name>The Illusion</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_2_unlock"/>
+    <desc>TEXTTEXT</desc>
+    <systemList>
+      <battery power="1" room="15" start="false" img="room_battery_13" />
+      <cloaking power="2" room="20" start="true" img="room_cloaking_rad" />
+      <clonebay power="1" room="0" start="false">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="7" start="false" img="room_doors_9">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="1" room="9" max="8" start="false" img="room_drones_5" />
+      <engines power="2" room="5" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="10" start="false" img="room_hacking_6" />
+      <medbay power="1" room="0" start="true" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="16" start="false" img="room_mind_7" />
+      <oxygen power="1" room="3" start="true" img="room_oxygen_2" />
+      <pilot power="1" room="2" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="8" start="true" img="room_sensors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="1" room="14" max="8" start="true" img="room_shields_7">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="1" max="3" start="false" />
+      <temporal power="1" room="4" max="3" start="false" img="room_temporal_rad" />
+      <weapons power="1" room="13" max="8" start="true" img="room_weapons_4">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>3</weaponSlots>
+    <droneSlots>3</droneSlots>
+    <weaponList missiles="4" count="3">
+      <weapon name="ION_2" />
+    </weaponList>
+    <droneList drones="4" count="3" />
+    <health amount="30" />
+    <maxPower amount="8" />
+    <crewCount amount="1" class="rad_scientist" />
+    <crewCount amount="1" class="engi" />
+    <crewCount amount="1" class="human" />
+    <aug name="RAD_CBEAM" />
+  </shipBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_CORVETTE_3" layout="radp_corvettec" img="radp_corvettec">
+    <class>Science Corvette</class>
+    <name>The Illusion</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_3_unlock"/>
+    <desc>The cloaking system on this ship is able to cloak for 1.5 times longer than normal, but weapons become disabled when cloaked.&#xD;
+The cloaking system also has an auxillery hacking system that hacks the enemy shield system when cloaked.
+    </desc>
+    <systemList>
+      <battery power="1" room="3" start="false" img="room_battery_8" />
+      <cloaking power="2" room="20" start="true" img="room_cloaking_rad" />
+      <clonebay power="1" room="14" start="true">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="19" start="false" img="room_doors_9">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="2" room="13" max="8" start="true" img="room_drones_5" />
+      <engines power="2" room="5" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="9" start="false" img="room_hacking_8" />
+      <medbay power="1" room="14" start="false" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="10" start="false" img="room_mind_5" />
+      <oxygen power="1" room="6" start="true" img="room_oxygen_4" />
+      <pilot power="1" room="2" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="18" start="true" img="room_sensors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="1" room="11" max="8" start="true" img="room_shields_5">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="16" start="false" />
+      <weapons power="1" room="12" max="6" start="true" img="room_weapons_4">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>2</weaponSlots>
+    <droneSlots>4</droneSlots>
+    <weaponList missiles="0" count="2">
+      <weapon name="LASER_BURST_2" />
+    </weaponList>
+    <droneList drones="12" count="4">
+      <drone name="COMBAT_1_LASER" />
+    </droneList>
+    <health amount="30" />
+    <maxPower amount="8" />
+    <crewCount amount="1" class="slug" />
+    <crewCount amount="1" class="engi" />
+    <crewCount amount="1" class="human" />
+    <aug name="RAD_CHACK" />
+  </shipBlueprint>
+
+  <weaponBlueprint name="RAD_HACK1">
+    <type>BOMB</type>
+    <title>HACK</title>
+    <short>HACK</short>
+    <locked>1</locked>
+    <desc>NO</desc>
+    <tooltip></tooltip>
+    <damage>0</damage>
+    <hack duration="5" immuneAfterHack="7" />
+    <roomStatBoosts>
+      <statBoost name="trueHealAmount">
+        <boostType>FLAT</boostType>
+        <amount>0</amount>
+        <shipTarget>ALL</shipTarget>
+        <crewTarget>ALL</crewTarget>
+        <duration>12</duration>
+        <!--roomAnim renderLayer="3">
+          <anim animType="center">ra_effector_residual</anim>
+        </roomAnim-->
+      </statBoost>
+    </roomStatBoosts>
+    <accuracyMod>100</accuracyMod>
+    <missiles>0</missiles>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>1</cooldown>
+    <power>1</power>
+    <cost>0</cost>
+    <bp>2</bp>
+    <rarity>0</rarity>
+    <image>invisible</image>
+    <explosion>invisible</explosion>
+    <hitShipSounds>
+      <sound>hackStart</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hackStart</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>silence</sound>
+    </missSounds>
+    <weaponArt>rad_jailerbeam</weaponArt>
+  </weaponBlueprint>
   
+  <weaponBlueprint name="RAD_HACK2">
+    <type>BOMB</type>
+    <title>HACK</title>
+    <short>HACK</short>
+    <locked>1</locked>
+    <desc>NO</desc>
+    <tooltip></tooltip>
+    <damage>0</damage>
+    <hack duration="10" immuneAfterHack="7" />
+    <roomStatBoosts>
+      <statBoost name="trueHealAmount">
+        <boostType>FLAT</boostType>
+        <amount>0</amount>
+        <shipTarget>ALL</shipTarget>
+        <crewTarget>ALL</crewTarget>
+        <duration>17</duration>
+        <!--roomAnim renderLayer="3">
+          <anim animType="center">ra_effector_residual</anim>
+        </roomAnim-->
+      </statBoost>
+    </roomStatBoosts>
+    <accuracyMod>100</accuracyMod>
+    <missiles>0</missiles>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>1</cooldown>
+    <power>1</power>
+    <cost>0</cost>
+    <bp>2</bp>
+    <rarity>0</rarity>
+    <image>invisible</image>
+    <explosion>invisible</explosion>
+    <hitShipSounds>
+      <sound>hackStart</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hackStart</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>silence</sound>
+    </missSounds>
+    <weaponArt>rad_jailerbeam</weaponArt>
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_HACK3">
+    <type>BOMB</type>
+    <title>HACK</title>
+    <short>HACK</short>
+    <locked>1</locked>
+    <desc>NO</desc>
+    <tooltip></tooltip>
+    <damage>0</damage>
+    <hack duration="15" immuneAfterHack="7" />
+    <roomStatBoosts>
+      <statBoost name="trueHealAmount">
+        <boostType>FLAT</boostType>
+        <amount>0</amount>
+        <shipTarget>ALL</shipTarget>
+        <crewTarget>ALL</crewTarget>
+        <duration>22</duration>
+        <!--roomAnim renderLayer="3">
+          <anim animType="center">ra_effector_residual</anim>
+        </roomAnim-->
+      </statBoost>
+    </roomStatBoosts>
+    <accuracyMod>100</accuracyMod>
+    <missiles>0</missiles>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>1</cooldown>
+    <power>1</power>
+    <cost>0</cost>
+    <bp>2</bp>
+    <rarity>0</rarity>
+    <image>invisible</image>
+    <explosion>invisible</explosion>
+    <hitShipSounds>
+      <sound>hackStart</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hackStart</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>silence</sound>
+    </missSounds>
+    <weaponArt>rad_jailerbeam</weaponArt>
+  </weaponBlueprint>
+  
+  <shipBlueprint name="PLAYER_SHIP_RAD_CUTTER" layout="radp_cutter" img="radp_cutter">
+	  <class>Science Cutter</class>
+	  <name>Sputnik</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_unlock"/>
+	  <desc>On the smaller end of space craft, this machine is still a capable weapon with 6 weapon slots.&#xD;
+Due to the small size, the reactor is only powerful enough to provide for 1 power weapons, creatly limiting your options.</desc>
+	  <systemList>
+		  <battery power="1" room="10" start="false" img="room_battery" />
+		  <cloaking power="1" room="6" start="false" img="room_cloaking_rad" />
+		  <clonebay power="1" room="1" start="true">
+			  <slot>
+				  <number>-2</number>
+			  </slot>
+		  </clonebay>
+		  <doors power="1" room="11" start="false" img="room_doors_3">
+			  <slot>
+				  <direction>right</direction>
+				  <number>1</number>
+			  </slot>
+		  </doors>
+		  <engines power="1" room="4" start="true" img="room_engines_8">
+			  <slot>
+				  <direction>left</direction>
+				  <number>1</number>
+			  </slot>
+		  </engines>
+		  <hacking power="1" room="7" start="false" img="room_hacking" />
+		  <medbay power="1" room="1" start="true" img="room_medbay_6">
+			  <slot>
+				  <number>-2</number>
+			  </slot>
+		  </medbay>
+		  <mind power="1" room="8" start="false" img="room_mind_5" />
+		  <oxygen power="1" room="9" start="true" img="room_oxygen_20" />
+		  <pilot power="1" room="0" start="true" img="room_pilot">
+			  <slot>
+				  <direction>right</direction>
+				  <number>0</number>
+			  </slot>
+		  </pilot>
+		  <sensors power="1" room="12" start="false" img="room_sensors_2">
+			  <slot>
+				  <direction>up</direction>
+				  <number>0</number>
+			  </slot>
+		  </sensors>
+		  <shields power="2" room="2" max="8" start="true" img="room_shields_4">
+			  <slot>
+				  <direction>left</direction>
+				  <number>0</number>
+			  </slot>
+		  </shields>
+		  <teleporter power="1" room="5" start="false" />
+		  <weapons power="2" room="3" max="6" start="true" img="room_weapons_7">
+			  <slot>
+				  <direction>up</direction>
+				  <number>1</number>
+			  </slot>
+		  </weapons>
+	  </systemList>
+	  <weaponSlots>6</weaponSlots>
+	  <droneSlots>0</droneSlots>
+	  <weaponList missiles="8" count="6">
+		  <weapon name="LASER_BURST_1" />
+	  </weaponList>
+	  <droneList drones="0" count="0" />
+	  <health amount="21" />
+	  <maxPower amount="7" />
+	  <crewCount amount="1" class="human_engineer" />
+	  <crewCount amount="1" class="human_medic" />
+	  <aug name="RAD_LOW_WEAPON" />
+  </shipBlueprint>
+
+  <augBlueprint name="RAD_LOW_WEAPON">
+    <title>Low Power Weapons</title>
+    <desc>Due to the poor reactor on the ship, only single power weapons are capable of being fired, however these weapons will fire double the number of projectiles/beams.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_CUTTER_2" layout="radp_cutterb" img="radp_cutterb">
+    <class>Science Cutter</class>
+    <name>Breath Harder</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_2_unlock"/>
+    <desc>Due to the small size of this ship, the reactor is unable to power the oxygen system, in order to keep your crew alive you'll have to make use of oxygen generating crew.</desc>
+    <systemList>
+      <battery power="1" room="7" start="false" img="room_battery_19" />
+      <cloaking power="1" room="6" start="false" img="room_cloaking_rad" />
+      <clonebay power="1" room="1" start="true">
+        <slot>
+          <number>-2</number>
+        </slot>
+      </clonebay>
+      <drones power="1" room="9" max="8" start="false" img="room_drones_18" />
+      <engines power="1" room="4" start="true" img="room_engines_8">
+        <slot>
+          <direction>left</direction>
+          <number>1</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="10" start="false" img="room_hacking_11" />
+      <medbay power="1" room="1" start="true" img="room_medbay_6">
+        <slot>
+          <number>-2</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="8" start="false" img="room_mind_3" />
+      <oxygen power="1" room="11" start="true" img="room_oxygen_17" />
+      <pilot power="1" room="0" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="12" start="false" img="room_sensors_3">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="2" max="8" start="true" img="room_shields_4">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="5" start="false" />
+      <weapons power="2" room="3" max="8" start="true" img="room_weapons_7">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="14" count="4">
+      <weapon name="KERNEL_1" />
+      <weapon name="BEAM_2_PLAYER" />
+    </weaponList>
+    <droneList drones="0" count="2" />
+    <health amount="21" />
+    <maxPower amount="6" />
+    <crewCount amount="2" class="orchid" />
+    <crewCount amount="1" class="rad_scientist" />
+    <aug name="RAD_CUTTER_OXY" />
+  </shipBlueprint>
+
+  <augBlueprint name="RAD_CUTTER_OXY">
+    <title>Low Power Oxygen</title>
+    <desc>Due to the poor reactor on the ship, the oxygen system is unable to generate any oxygen, It's so bad that all anaerobic lose their suffocation immunity, and suffocation damage is doubled.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_CUTTER_3" layout="radp_cutterc" img="radp_cutterc">
+    <class>Science Cutter</class>
+    <name>Pandora's Box</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_3_unlock"/>
+    <desc>Every time you get into combat your weapons are replaced, you'll have to make careful use of jumping out of combat to re-shuffle your weapons.</desc>
+    <systemList>
+      <battery power="1" room="12" start="false" img="room_battery_17" />
+      <cloaking power="1" room="9" start="false" img="room_cloaking_rad" />
+      <clonebay power="1" room="1" start="true">
+        <slot>
+          <number>-2</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="10" start="true" img="room_doors_8">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </doors>
+      <drones power="1" room="13" max="8" start="false" img="room_drones_18" />
+      <engines power="1" room="4" start="true" img="room_engines_8">
+        <slot>
+          <direction>left</direction>
+          <number>1</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="6" start="false" img="room_hacking_7" />
+      <medbay power="1" room="1" start="true" img="room_medbay_6">
+        <slot>
+          <number>-2</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="7" start="false" img="room_mind_4" />
+      <oxygen power="1" room="11" start="true" img="room_oxygen_21" />
+      <pilot power="1" room="0" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="8" start="false" img="room_sensors_2">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="5" max="8" start="true" img="room_shields_11">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="3" start="false" />
+      <weapons power="3" room="2" max="10" start="true" img="room_weapons_7">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="10" count="4">
+    </weaponList>
+    <droneList drones="2" count="2" />
+    <health amount="21" />
+    <maxPower amount="7" />
+    <crewCount amount="1" class="human_soldier" />
+    <crewCount amount="1" class="human_engineer" />
+    <crewCount amount="1" class="human" />
+    <aug name="RAD_LOW_SHIELD" />
+  </shipBlueprint>
+  
+  <augBlueprint name="RAD_LOW_SHIELD">
+    <title>Weapon Scrambler</title>
+    <desc>Every combat all of your weapons are randomly replaced.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <crewBlueprint name="rad_scientist">
+    <desc>A scientifically trained unit, more effective against drones.
+    
+Inherited Human stats: minor suffocation resistance, learns skills faster
+    </desc>
+    <cost>50</cost>
+    <title>Human Scientist</title>
+    <short>Scientist</short>
+    <rarity>0</rarity>
+    <powerList>
+      <power>Hostile drones in the same room take 1.25x damage from all sources</power>
+      <power>1.20x repair speed</power>
+      <power>Takes 0.6x damage from fires</power>
+      <power>Learns repairs even faster</power>
+    </powerList>
+  </crewBlueprint>
+
+  <augBlueprint name="RAD_SHRAPNEL_SHIELD">
+    <title>Shrapnel Shields</title>
+    <desc>AAAAA.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_CORVETTE_ELITE" layout="radp_corvette_elite" img="radp_corvette_elite">
+    <class>Elite Science Corvette</class>
+    <name>The Negotiator</name>
+    <desc>This ship creates a shield of shrapnel around itself to protect from incoming projectiles and stray drones that get too close.</desc>
+    <systemList>
+      <artillery power="2" room="8" start="true" weapon="ARTILLERY_RAD_CORVETTE" img="room_artillery" />
+      <battery power="1" room="21" start="false" img="room_battery_2" />
+      <cloaking power="1" room="20" start="true" img="room_cloaking_11" />
+      <clonebay power="1" room="12" start="false">
+        <slot>
+          <number>-2</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="16" start="false" img="room_doors_9">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="1" room="15" max="8" start="false" img="room_drones_5" />
+      <engines power="2" room="5" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="7" start="false" img="room_hacking_9" />
+      <medbay power="1" room="12" start="true" img="room_medbay_6">
+        <slot>
+          <number>-2</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="22" start="false" img="room_mind_10" />
+      <oxygen power="1" room="19" start="true" img="room_oxygen_19" />
+      <pilot power="1" room="2" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="17" start="true" img="room_sensors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="9" max="2" start="false" img="room_shields_4">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="14" start="false" />
+      <weapons power="3" room="0" max="8" start="true" img="room_weapons">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="4" count="4">
+      <weapon name="SHOTGUN_2" />
+      <weapon name="SHOTGUN_1" />
+    </weaponList>
+    <droneList drones="6" count="2" />
+    <health amount="30" />
+    <maxPower amount="9" />
+    <crewCount amount="1" class="rad_scientist" />
+    <crewCount amount="1" class="human_medic" />
+    <crewCount amount="1" class="human" />
+    <aug name="EX_AUTO_COOLDOWN" />
+    <aug name="EX_CLOAK_FIRE" />
+  </shipBlueprint>
+
+  <weaponBlueprint name="ARTILLERY_RAD_CORVETTE">
+    <type>BURST</type>
+    <drone_targetable>1</drone_targetable>
+    <title>Chaff Cannon</title>
+    <short>Chaff Cannon</short>
+    <desc>[BASE COOLDOWN: 8] This cannon deploys a shield of shrapnel around the ship, each capable of blocking a projectile.</desc>
+    <tooltip>Chaff Cannon</tooltip>
+    <radius>50</radius>
+    <damage>1</damage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <spin>720</spin>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>8</cooldown>
+    <power>1</power>
+    <cost>80</cost>
+    <bp>4</bp>
+    <speed>8</speed>
+    <rarity>0</rarity>
+    <projectiles>
+      <projectile count="5" fake="false">debris_large</projectile>
+      <projectile count="3" fake="false">debris_med</projectile>
+      <projectile count="2" fake="false">debris_small</projectile>
+    </projectiles>
+    <weaponArt>shotgun_2</weaponArt>
+  </weaponBlueprint>
 </FTL>

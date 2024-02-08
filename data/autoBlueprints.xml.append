@@ -21,7 +21,10 @@
   <mod-append:name>RAD_LIGHTNING_3</mod-append:name>
   <mod-append:name>RAD_LIGHTNING_2</mod-append:name>
   <mod-append:name>RAD_LIGHTNING_1</mod-append:name>
+  <mod-append:name>RAD_LIGHTNING_ION</mod-append:name>
+  <mod-append:name>RAD_LIGHTNING_FIRE</mod-append:name>
   <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
+  <mod-append:name>RAD_SCIENCE_LOOT</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_WEAPONS_ALL_CRAPBUCKET">
 	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
@@ -47,13 +50,14 @@
   <mod-append:name>RAD_LIGHTNING_ION</mod-append:name>
   <mod-append:name>RAD_LIGHTNING_FIRE</mod-append:name>
   <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
+  <mod-append:name>RAD_SCIENCE_LOOT</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="LIST_DRONES_ALL">
-	<!--<mod-append:name>TRC_SCATTERSHOT</mod-append:name>-->
+	<mod-append:name>DEFENSE_FOCUS</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_DRONES_ALL_CRAPBUCKET">
-	<!--<mod-append:name>TRC_SCATTERSHOT</mod-append:name>-->
+  <mod-append:name>DEFENSE_FOCUS</mod-append:name>
 </mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_WEAPONS_HEAVY">
@@ -87,6 +91,10 @@
   
 <mod:findName type="blueprintList" name="BLUELIST_BEAMS_ALL">
   <mod-append:name>RAD_JAILERBEAM_PLAYER</mod-append:name>
+  <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
+</mod:findName>BLUELIST_AETHER
+
+<mod:findName type="blueprintList" name="BLUELIST_AETHER">
   <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
 </mod:findName>
 
@@ -1064,5 +1072,138 @@
     <crewCount amount="2" max="4" class="human_soldier" />
     <boardingAI>sabotage</boardingAI>
   </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_ENEMY_CORVETTE_1" layout="rad_science_enemy_corvette_1" img="rad_science_enemy_corvette_1">
+    <class>Scientist Corvette</class>
+    <systemList>
+      <cloaking power="2" max="2" room="9" start="true" />
+      <doors power="3" max="3" room="11" start="true" />
+      <engines power="1" max="2" room="2" start="true" />
+      <hacking power="1" max="2" room="10" start="true" />
+      <medbay power="1" max="2" room="8" start="true" />
+      <oxygen power="1" max="2" room="6" start="true" />
+      <pilot power="2" max="3" room="0" start="true" />
+      <shields power="4" max="10" room="5" start="true" />
+      <weapons power="4" max="10" room="17" start="true" />
+    </systemList>
+    <weaponSlots>6</weaponSlots>
+    <droneSlots>4</droneSlots>
+    <weaponList missiles="20" count="6" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="9" count="4" />
+    <health amount="20" />
+    <maxPower amount="30" />
+    <crewCount amount="3" max="6" class="rad_scientist" />
+    <crewCount amount="1" max="2" class="human_medic" />
+    <crewCount amount="2" max="4" class="human" />
+    <crewCount amount="4" max="8" class="human_soldier" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="RAD_CREVERSAL" />
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_ENEMY_CORVETTE_2" layout="rad_science_enemy_corvette_2" img="rad_science_enemy_corvette_2">
+    <class>Scientist Corvette</class>
+    <systemList>
+      <cloaking power="2" max="2" room="9" start="true" />
+      <doors power="3" max="3" room="11" start="true" />
+      <engines power="1" max="2" room="2" start="true" />
+      <medbay power="3" max="3" room="8" start="true" />
+      <oxygen power="1" max="2" room="6" start="true" />
+      <pilot power="2" max="3" room="0" start="true" />
+      <shields power="4" max="10" room="5" start="true" />
+      <teleporter power="3" max="3" room="4" start="true" />
+      <weapons power="4" max="10" room="17" start="true" />
+    </systemList>
+    <weaponSlots>5</weaponSlots>
+    <droneSlots>4</droneSlots>
+    <weaponList missiles="20" count="5" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="9" count="4" />
+    <health amount="20" />
+    <maxPower amount="30" />
+    <crewCount amount="2" max="3" class="rad_scientist" />
+    <crewCount amount="2" max="3" class="human_medic" />
+    <crewCount amount="1" max="2" class="human" />
+    <crewCount amount="4" max="6" class="human_soldier" />
+    <boardingAI>invasion</boardingAI>
+    <aug name="RAD_CREVERSAL" />
+    <aug name="EX_MIND_IMMUNITY" />
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_ENEMY_CORVETTE_3" layout="rad_science_enemy_corvette_3" img="rad_science_enemy_corvette_3">
+    <class>Scientist Corvette</class>
+    <systemList>
+      <battery power="1" max="1" room="14" start="true" />
+      <cloaking power="2" max="2" room="9" start="true" />
+      <doors power="2" max="3" room="11" start="true" />
+      <drones power="4" max="10" room="3" start="true" />
+      <engines power="1" max="2" room="2" start="true" />
+      <medbay power="1" max="2" room="8" start="true" />
+      <oxygen power="1" max="2" room="6" start="true" />
+      <pilot power="2" max="3" room="0" start="true" />
+      <shields power="4" max="10" room="5" start="true" />
+      <weapons power="4" max="10" room="7" start="true" />
+    </systemList>
+    <weaponSlots>5</weaponSlots>
+    <droneSlots>4</droneSlots>
+    <weaponList missiles="20" count="5" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="9" count="4" load="LIST_DRONES_AUTO" />
+    <health amount="30" />
+    <maxPower amount="30" />
+    <crewCount amount="3" max="3" class="rad_scientist" />
+    <crewCount amount="1" max="1" class="human_medic" />
+    <crewCount amount="2" max="2" class="human" />
+    <crewCount amount="4" max="4" class="human_soldier" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="RAD_CHACK" />
+    <aug name="EX_CLOAK_FIRE" />
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_MAIN_LAB_WALK" layout="rad_main_lab_walk" img="rad_main_lab_walk">
+    <class></class>
+    <systemList>
+      <clonebay power="1" max="1" room="4" start="true" />
+      <doors power="2" max="2" room="10" start="true" />
+      <engines power="1" max="1" room="5" start="true" />
+      <hacking power="1" max="1" room="7" start="true" />
+      <oxygen power="1" max="1" room="3" start="true" />
+      <pilot power="1" max="1" room="12" start="true" />
+      <shields power="1" max="1" room="6" start="true" />
+      <teleporter power="1" max="1" room="2" start="true" />
+      <weapons power="1" max="1" room="1" start="true" />
+    </systemList>
+    <weaponSlots>0</weaponSlots>
+    <droneSlots>0</droneSlots>
+    <weaponList missiles="0" count="0" />
+    <droneList drones="0" count="0" />
+    <health amount="50" />
+    <maxPower amount="50" />
+    <crewCount amount="1" max="1" class="engi" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+
+  <shipBlueprint name="SHIP_RAD_SCIENCE_PIRATEBOARD" layout="mu_union_transport" img="mu_union_transport">
+    <class>Union Transport</class>
+    <systemList>
+      <clonebay power="1" max="3" room="1" start="false" />
+      <doors power="1" max="3" room="7" start="true" />
+      <drones power="2" max="6" room="8" start="false" />
+      <engines power="1" max="2" room="3" start="true" />
+      <medbay power="1" max="3" room="1" start="false" />
+      <oxygen power="1" max="3" room="13" start="true" />
+      <pilot power="1" max="2" room="0" start="true" />
+      <shields power="2" max="8" room="2" start="true" />
+      <teleporter power="1" max="2" room="4" start="false" />
+      <weapons power="2" max="6" room="11" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="7" count="4" load="LIST_WEAPONS_UNION" />
+    <droneList drones="4" count="2" load="LIST_DRONES_ENEMY_STANDARD" />
+    <health amount="11" />
+    <maxPower amount="8" />
+    <crewCount amount="3" max="6" class="rebel" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="UNION_JACKETS" />
+  </shipBlueprint>
+
 
 </FTL>

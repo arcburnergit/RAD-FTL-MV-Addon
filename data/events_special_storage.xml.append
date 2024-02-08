@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FTL>
   <mod:findName type="event" name="COMBAT_CHECK_REAL">
-    <mod-append:triggeredEvent event="RAD_REPLACEMENT_WEAPONS" seeded="false" loops="4" thisFight="true" minTime="0.1" maxTime="0.1" />
+    <mod-append:triggeredEvent event="RAD_REPLACEMENT_WEAPONS" seeded="false" loops="4" minTime="0.1" maxTime="0.1" />
   </mod:findName>
 
   <mod:findName type="event" name="COMBAT_CHECK_FAIL_REAL">
-    <mod-append:triggeredEvent event="RAD_REPLACEMENT_WEAPONS" seeded="false" loops="4" thisFight="true" minTime="0.1" maxTime="0.1" />
+    <mod-append:triggeredEvent event="RAD_REPLACEMENT_WEAPONS" seeded="false" loops="4" minTime="0.1" maxTime="0.1" />
   </mod:findName>
 
   <event name="RAD_REPLACEMENT_WEAPONS">

@@ -356,6 +356,48 @@
 		</crew>
 		<autoShipForce>false</autoShipForce>
 	</mod-append:customShip>
+  <mod-append:customShip name="RAD_SCIENCE_ENEMY_CORVETTE_1">
+    <!--shipIcons>
+      <shipIcon>icon_lowthreat</shipIcon>
+    </shipIcons-->
+    <rooms>
+      <room id="9">
+        <roomAnim renderLayer="0">resist_2x2</roomAnim>
+        <roomAnim renderLayer="3">resist_icon</roomAnim>
+        <sysDamageResistChance>100</sysDamageResistChance>
+      </room>
+    </rooms>
+    <noJump/>
+    <autoShipForce>true</autoShipForce>
+  </mod-append:customShip>
+  <mod-append:customShip name="RAD_SCIENCE_ENEMY_CORVETTE_2">
+    <!--shipIcons>
+      <shipIcon>icon_lowthreat</shipIcon>
+    </shipIcons-->
+    <rooms>
+      <room id="9">
+        <roomAnim renderLayer="0">resist_2x2</roomAnim>
+        <roomAnim renderLayer="3">resist_icon</roomAnim>
+        <sysDamageResistChance>100</sysDamageResistChance>
+      </room>
+    </rooms>
+    <noJump/>
+    <autoShipForce>true</autoShipForce>
+  </mod-append:customShip>
+  <mod-append:customShip name="RAD_SCIENCE_ENEMY_CORVETTE_3">
+    <!--shipIcons>
+      <shipIcon>icon_lowthreat</shipIcon>
+    </shipIcons-->
+    <rooms>
+      <room id="9">
+        <roomAnim renderLayer="0">resist_2x2</roomAnim>
+        <roomAnim renderLayer="3">resist_icon</roomAnim>
+        <sysDamageResistChance>100</sysDamageResistChance>
+      </room>
+    </rooms>
+    <noJump/>
+    <autoShipForce>true</autoShipForce>
+  </mod-append:customShip>
 </mod:findLike>
 
 <augments>
@@ -764,6 +806,69 @@
 			<shipFriendlyFire>true</shipFriendlyFire>
 		</powerEffect>
 	</race>
+  <race name="rad_civilian">
+    <noSlot>true</noSlot>
+    <suffocationModifier>0.83</suffocationModifier>
+    <fireDamageMultiplier>0.83</fireDamageMultiplier>
+    <animBase>human</animBase>
+    <deathSounds>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>humanDeathSpecial</deathSound>
+    </deathSounds>
+    <skills>
+      <piloting req="13" />
+      <engines req="13" />
+      <shields req="50" />
+      <weapons req="58" />
+      <repair req="16" />
+      <combat req="7" />
+    </skills>
+  </race>
 	<race name="drone_repulsor">
 		<canFight>false</canFight>
 		<canRepair>false</canRepair>

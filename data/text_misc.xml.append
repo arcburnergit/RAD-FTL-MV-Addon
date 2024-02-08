@@ -16,6 +16,13 @@
 <text name="map_icon_rad_mirror2">MAIN BASE [!]</text>
 <text name="map_icon_rad_warped1">TRACKER [!]</text>
 <text name="map_icon_rad_warped2">QUEST [!]</text>
+<text name="map_icon_rad_main_lab">R&amp;D HEADQUARTERS</text>
+<text name="tip_rad_loot">SCIENCE LOOT
+-1 damage
++1 system damage
++1 shield pierce
+-2 power
+-10 second cooldown</text>
   
 <text name="tip_lightning">Lightning Weapons jump to an adjacent room, and deal the same damage again. They repeat this again after the first jump.</text>
 

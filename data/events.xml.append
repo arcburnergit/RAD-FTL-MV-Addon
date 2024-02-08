@@ -58,7 +58,7 @@
             <text>All quests complete.</text>
             <event load="OPTION_INVALID" />
           </choice-->
-          <choice hidden="true" req="rad_q9">
+          <choice hidden="true" req="rad_q10" lvl="5">
             <text>You'll help. [??? Quest]</text>
             <event load="RAD_WARPED_1"/>
           </choice>
@@ -443,6 +443,7 @@
 			<autoReward level="HIGH">standard</autoReward>
 			<weapon name="RAD_JAILERBEAM_PLAYER"/>
       <metaVariable name="rad_q1" op="set" val="1"/>
+      <metaVariable name="rad_q10" op="add" val="1"/>
 			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION</unlockCustomShip>
 			<!--Unlock Cruiser at some point here-->
 		</event>
@@ -677,6 +678,7 @@
 		<text>Hail them.</text>
 		<event>
       <metaVariable name="rad_q2" op="set" val="1"/>
+      <metaVariable name="rad_q10" op="add" val="1"/>
 			<text>A some what well armed scientist picks up, "Excellent job, Renegade. Transfer the entity over to me and we'll deliver your payment."
 			
 			The entity in question comes into the room. "Don't give me over to them! They did this to me! They turned me into this hot, flaming mess! It's torture!" the entity proclaims.</text>
@@ -736,6 +738,7 @@
 	<autoReward level="MED">standard</autoReward>
 	<drone name="RAD_REPULSOR"/>
   <metaVariable name="rad_q3" op="set" val="1"/>
+  <metaVariable name="rad_q10" op="add" val="1"/>
 	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION_2</unlockCustomShip>
 </event>
 
@@ -753,6 +756,7 @@
 			The ship drops off a weapon for you as payment.</text>
 			<weapon name="RAD_BEAM_BURST_3"/> <!-- Make this a beam burst 3 at some point-->
       <metaVariable name="rad_q3" op="set" val="1"/>
+      <metaVariable name="rad_q10" op="add" val="1"/>
 			<unlockCustomShip silent="false">PLAYER_SHIP_RAD_STATION_2</unlockCustomShip>
 		</event>
 	</choice>
@@ -1130,6 +1134,7 @@
 		<item type="scrap" min="53" max="67" />
 	</item_modify>
   <metaVariable name="rad_q4" op="set" val="1"/>
+  <metaVariable name="rad_q10" op="add" val="1"/>
 	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_FLESH</unlockCustomShip>
 </event>
   
@@ -1184,7 +1189,7 @@
         
         <choice>
           <text>Continue...</text>
-          <event load="NEUTRAL_DROPPOINT"/>
+          <event load="FILLER_LIST"/>
         </choice>
       </event>
     </choice>
@@ -1370,6 +1375,7 @@
     "Excellent job Renegade, we won't question why you came, we're just glad you were able to help.
     We've transfered some scrap up to you, additionally we've sent off our old training cruiser to the federation, it seems like it'll do them more good than it has done us."</text>
     <metaVariable name="rad_q6" op="set" val="1"/>
+    <metaVariable name="rad_q10" op="add" val="1"/>
     <item_modify>
       <item type="scrap" min="100" max="100" />
     </item_modify>
@@ -1387,6 +1393,7 @@
         </item_modify>
         <text>You download the blueprints to his old cruiser before scraping it.</text>
         <metaVariable name="rad_q5" op="set" val="1"/>
+        <metaVariable name="rad_q10" op="add" val="1"/>
         <unlockCustomShip silent="false">PLAYER_SHIP_RAD_RICH</unlockCustomShip>
       </event>
     </choice>
@@ -1398,6 +1405,7 @@
         </item_modify>
         <text>Reginald agrees, You download the blueprints to his old cruiser before scraping it.</text>
         <metaVariable name="rad_q5" op="set" val="1"/>
+        <metaVariable name="rad_q10" op="add" val="1"/>
         <unlockCustomShip silent="false">PLAYER_SHIP_RAD_RICH</unlockCustomShip>
       </event>
     </choice>
@@ -1589,6 +1597,7 @@ However next to the ship is another one of the zoltan manned engi ships, it look
     <weapon name="RAD_ZSGUN_3"/>
     <augment name="ENERGY_SHIELD"/>
     <metaVariable name="rad_q7" op="set" val="1"/>
+    <metaVariable name="rad_q10" op="add" val="1"/>
     <unlockCustomShip silent="false">PLAYER_SHIP_RAD_FLESH_2</unlockCustomShip>
   </event>
   
@@ -1660,6 +1669,7 @@ A few moments later the drone emerges from the debris and delivers you a augment
 You recieve a transmission. "We've taken the liberty of paying you with the super shield from the test ship, we've also sent along the design we made for the mercenaries to the federation, we have no use of it now."</text>
     <augment name="RAD_ZS_UNDER"/>
     <metaVariable name="rad_q8" op="set" val="1"/>
+    <metaVariable name="rad_q10" op="add" val="1"/>
     <unlockCustomShip silent="false">PLAYER_SHIP_RAD_EXPERIMENT_2</unlockCustomShip>
   </event>
 
@@ -1802,6 +1812,7 @@ You tell them what happened and they begin firing on the base.
 "We've sent of the blueprints for the ship you just fought to the federation, and we've recovered some of the tech, we'll deliver it to you as payment."</text>
     <augment name="RAD_SUPER_HULL"/>
     <metaVariable name="rad_q9" op="set" val="1"/>
+    <metaVariable name="rad_q10" op="add" val="1"/>
     <unlockCustomShip silent="false">PLAYER_SHIP_RAD_CRYSTAL</unlockCustomShip>
   </event>
   
@@ -1833,13 +1844,13 @@ You tell them what happened and they begin firing on the base.
   </ship>
 
   <event name="DESTROYED_RAD_CRYSTALENEMY2">
-    <text>You've destroyed the crystal ship. You send out a message to the scientists letting them know you've destroyed the ship.</text>
+    <text>You've destroyed the crystal ship, it appeares to be covered in some strange runes, however you're unable to translate them. You're able to recover some data on the ship and use it to determine where the ship jumped in from.</text>
     <autoReward level="MED">standard</autoReward>
     <quest event="RAD_WARPED_3" />
   </event>
 
   <event name="DEAD_CREW_RAD_CRYSTALENEMY2">
-    <text>You've killed the crew of the crystal ship. You're able to recover some data on the ship and you're able to determine where the ship jumped in from.</text>
+    <text>You've killed the crew of the crystal ship, it appeares to be covered in some strange runes, however you're unable to translate them. You're able to recover some data on the ship and use it to determine where the ship jumped in from.</text>
     <autoReward level="HIGH">standard</autoReward>
     <quest event="RAD_WARPED_3" />
   </event>

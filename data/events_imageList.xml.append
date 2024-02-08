@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL><!-- Copyright (c) 2012 by Subset Games. All rights reserved -->
+
+  <imageList name="BG_RAD_SCIENCE">
+    <img w="3200" h="1800">stars_special/bg_rad_science.png</img>
+  </imageList>
+</FTL>

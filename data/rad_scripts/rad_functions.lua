@@ -156,6 +156,29 @@ script.on_game_event("DEAD_CREW_RAD_REBELOUT", false, function()
     end
 end)
 
+script.on_game_event("RAD_MAIN_BOARD", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    local crewList = shipManager.vCrewList
+    local otherShip = Hyperspace.Global.GetInstance():GetShipManager(1)
+    crewList[0].extend:InitiateTeleport(1,0,0)
+    for crewmem in vter(otherShip.vCrewList) do
+        crewmem.extend:InitiateTeleport(1,11,0)
+    end
+end)
+
+script.on_game_event("RAD_MAIN_RETURN", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(1)
+    for crewmem in vter(shipManager.vCrewList) do
+        local teleTable = userdata_table(crewmem, "mods.tpbeam.time")
+        if teleTable.tpTime then
+            teleTable.tpTime = nil
+        end
+        if crewmem.iShipId == 0 then 
+            crewmem.extend:InitiateTeleport(0,0,0)
+        end
+    end
+end)
+
 mods.rad.aoeWeapons = {}
 local aoeWeapons = mods.rad.aoeWeapons
 aoeWeapons["RAD_CLUSTER_MISSILE"] = Hyperspace.Damage()
@@ -833,9 +856,9 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
             --local randNum = math.random(1, spaceDrones:Size())
             local drone = spaceDrones[0]
             local droneLoc = drone:GetWorldLocation()
-            log(droneLoc.x)
-            log(droneLoc.y)
-            log(drone.type)
+            --log(droneLoc.x)
+            --log(droneLoc.y)
+            --log(drone.type)
             if drone.type == 0 then
                 spaceManager:CreateBeam(
                     Hyperspace.Blueprints:GetWeaponBlueprint("RAD_LIGHTNING_BEAM"), 
@@ -1711,14 +1734,14 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManage
         local weaponList = {}
         local weaponCount = 0
         for weapon in vter(shipManager:GetWeaponList()) do
-            log(weapon.name)
+            --log(weapon.name)
             if not weapon:IsChargedGoal() then 
                 log("Add weapon")
                 table.insert(weaponList, weapon)
                 weaponCount = weaponCount + 1
             end
         end
-        log(weaponCount)
+        --log(weaponCount)
         if weaponCount > 0 then
             local randomNum = math.random(1, weaponCount)
             for k,v in pairs(weaponList) do 
@@ -1749,14 +1772,14 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
             local weaponList = {}
             local weaponCount = 0
             for weapon in vter(shipManager:GetWeaponList()) do
-                log(weapon.name)
+                --log(weapon.name)
                 if not weapon:IsChargedGoal() then 
                     log("Add weapon")
                     table.insert(weaponList, weapon)
                     weaponCount = weaponCount + 1
                 end
             end
-            log(weaponCount)
+            --log(weaponCount)
             if weaponCount > 0 then
                 local randomNum = math.random(1, weaponCount)
                 for k,v in pairs(weaponList) do 
@@ -2280,7 +2303,18 @@ script.on_game_event("COMBAT_CHECK_REAL", false, function()
     end
 end)
 
-
+script.on_game_event("COMBAT_CHECK_FAIL_REAL", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    if shipManager:HasAugmentation("RAD_LOW_SHIELD") > 0 then 
+        local weaponList = shipManager:GetWeaponList()
+        if not weaponList then return end
+        for weapon in vter(weaponList) do
+            if weapon and weapon.blueprint then
+                shipManager:RemoveItem(weapon.blueprint.name)
+            end
+        end
+    end
+end)
 
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
@@ -2327,11 +2361,128 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
     end
 end)
 
-script.on_game_event("RAD_UNDER_3", false, function()
+script.on_game_event("RAD_MAIN_RETURN2", false, function()
+    local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+    commandGui:RunCommand("EVENT RAD_MAIN_1")
+end)
+
+script.on_game_event("RAD_MAIN_2", false, function()
     local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+    local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+    commandGui:RunCommand("EVENT RAD_MAIN_2_SHIP")
+end)
+
+script.on_game_event("RAD_MAIN_3", false, function()
+    local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+    local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+    commandGui:RunCommand("EVENT RAD_MAIN_3_SHIP")
+
     --local EventGenerator = Hyperspace.Global.GetInstance():GetEventGenerator()
-    --worldManager:UpdateLocation(EventGenerator:CreateEvent("PIRATE",0,true))
+    --local shipEvent = EventGenerator:GetShipEvent("RAD_MAIN_3_SHIP")
+    --local locationEvent = EventGenerator:CreateEvent("PIRATE",worldManager.currentDifficulty,true)
+    --worldManager:CreateShip(shipEvent, false)
+    --worldManager:UpdateLocation(locationEvent)
     --Hyperspace.CommandGui:RunCommand("EVENT PIRATE")
     --Hyperspace.EventGenerator:CreateEvent("EVENT PIRATE",0,true)
-    Hyperspace.CommandConsole.GetInstance():RunCommand(Hyperspace.CommandGui,"EVENT PIRATE")
+    --Hyperspace.CommandConsole.GetInstance():RunCommand(commandGui,"EVENT RAD_MAIN_3_SHIP")
+end)
+
+local hasWeapon = true
+local hasShield = true
+local hasEngine = true
+local hasPilot = true
+local hasHack = true
+local hasClone = true
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager.iShipId == 1 then
+        local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+        local crewInTeleRoom = false
+        for crewmem in vter(shipManager.vCrewList) do
+            --log(crewmem.iRoomId)
+
+            if crewmem.iRoomId == 2 and crewmem.iShipId == 0 then
+                crewInTeleRoom = true
+            elseif crewmem.iRoomId == 1 and hasWeapon and crewmem.iShipId == 0 then 
+                hasWeapon = false
+                commandGui:RunCommand("LOADEVENT RAD_MAIN_WEAPON")
+            elseif crewmem.iRoomId == 6 and hasShield and crewmem.iShipId == 0 then 
+                hasShield = false
+                commandGui:RunCommand("LOADEVENT RAD_MAIN_SHIELD")
+            elseif crewmem.iRoomId == 5 and hasEngine and crewmem.iShipId == 0 then 
+                hasEngine = false
+                commandGui:RunCommand("LOADEVENT RAD_MAIN_ENGINE")
+            elseif crewmem.iRoomId == 4 and hasClone and crewmem.iShipId == 0 then 
+                hasClone = false
+                commandGui:RunCommand("LOADEVENT RAD_MAIN_CLONE")
+            elseif crewmem.iRoomId == 12 and hasPilot and (not hasHack) and crewmem.iShipId == 0 then 
+                hasPilot = false
+                commandGui:RunCommand("LOADEVENT RAD_MAIN_PILOT")
+            elseif crewmem.iRoomId == 7 and hasHack and crewmem.iShipId == 0 then 
+                hasHack = false
+                commandGui:RunCommand("LOADEVENT RAD_MAIN_HACK")
+            end
+        end
+        if crewInTeleRoom then
+            Hyperspace.playerVariables.loc_rad_board_charged = 1
+        else
+            Hyperspace.playerVariables.loc_rad_board_charged = 0
+        end
+    end
+end)
+
+
+--[[script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    print("PROJECTILE_FIRE")
+    print(projectile.extend.name)
+    print(weapon.name)
+    if modifiedWeaponCooldown[weapon.name] then
+        weapon:SetCooldownModifier(1 + (modifiedWeaponCooldown[weapon.name] * math.min((weapon.shotsFiredAtTarget/weapon.numShots), 5)))
+    end
+end)]]
+
+
+--[[script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("AUGNAME") then 
+        for weapon in vter(shipManager:GetWeaponList()) do
+            if weapon.blueprint.power > 0 then
+                weapon.requiredPower = math.max(1, weapon.blueprint.power - 1)
+            end
+        end
+    end
+end)]]--
+
+
+
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
+    if shipManager.iShipId == 0 then 
+        local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+        for crewmem in vter(shipManager.vCrewList) do
+            if crewmem.type == "rad_civilian" then 
+                crewmem:Kill(true)
+                commandGui:RunCommand("CREW human")
+            end
+        end
+    end
+end)
+
+
+script.on_game_event("COMBAT_CHECK_REAL", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    for crewmem in vter(shipManager.vCrewList) do
+        log(crewmem.type)
+        if crewmem.type == "rad_civilian" then 
+            crewmem.extend:InitiateTeleport(1,0,0)
+        end
+    end
+end)
+
+script.on_game_event("COMBAT_CHECK_FAIL_REAL", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    for crewmem in vter(shipManager.vCrewList) do
+        log(crewmem.type)
+        if crewmem.type == "rad_civilian" then 
+            crewmem.extend:InitiateTeleport(1,0,0)
+        end
+    end
 end)

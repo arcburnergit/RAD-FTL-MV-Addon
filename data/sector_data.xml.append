@@ -19,16 +19,16 @@
   <rarityList>
     <blueprint name="rad_scientist" rarity="1" />
     <blueprint name="human" rarity="1" />
-    <blueprint name="human_medic" rarity="4" />
-    <blueprint name="human_engineer" rarity="0" />
-    <blueprint name="human_soldier" rarity="5" />
+    <blueprint name="human_medic" rarity="1" />
+    <blueprint name="human_engineer" rarity="1" />
+    <blueprint name="human_soldier" rarity="2" />
     <blueprint name="engi" rarity="0" />
     <blueprint name="engi_separatist" rarity="0" />
     <blueprint name="zoltan" rarity="3" />
     <blueprint name="zoltan_monk" rarity="0" />
     <blueprint name="zoltan_devotee" rarity="0" />
     <blueprint name="rock" rarity="0" />
-    <blueprint name="rock_outcast" rarity="1" />
+    <blueprint name="rock_outcast" rarity="3" />
     <blueprint name="rock_commando" rarity="0" />
     <blueprint name="mantis" rarity="0" />
     <blueprint name="mantis_free" rarity="5" />
@@ -40,7 +40,7 @@
     <blueprint name="shell_guardian" rarity="0" />
     <blueprint name="crystal" rarity="5" />
     <blueprint name="crystal_liberator" rarity="0" />
-    <blueprint name="orchid" rarity="2" />
+    <blueprint name="orchid" rarity="3" />
     <blueprint name="orchid_vampweed" rarity="4" />
     <blueprint name="leech" rarity="5" />
     <blueprint name="lanius" rarity="0" />
@@ -48,6 +48,29 @@
     <blueprint name="phantom_goul" rarity="0" />
     <blueprint name="phantom_mare" rarity="0" />
     <blueprint name="phantom_wraith" rarity="0" />
+    <blueprint name="RAD_CLUSTER_MISSILE" rarity="2" />
+    <blueprint name="RAD_CLUSTER_MISSILE_2" rarity="2" />
+    <blueprint name="RAD_CLUSTER_MISSILE_3" rarity="3" />
+    <blueprint name="RAD_ABDUCTOR" rarity="2" />
+    <blueprint name="RAD_JAILERBEAM_PLAYER" rarity="3" />
+    <blueprint name="RAD_GATLING" rarity="3" />
+    <blueprint name="RAD_CHAINGUN_DAMAGE" rarity="2" />
+    <blueprint name="RAD_BEAM_BURST_1" rarity="2" />
+    <blueprint name="RAD_BEAM_BURST_2" rarity="1" />
+    <blueprint name="RAD_BEAM_BURST_3" rarity="3" />
+    <blueprint name="RAD_LIGHT_BEAM" rarity="2" />
+    <blueprint name="RAD_LASER_COMBINER" rarity="2" />
+    <blueprint name="RAD_LASER_SMART" rarity="3" />
+    <blueprint name="RAD_SDRAIN" rarity="3" />
+    <blueprint name="RAD_ZSGUN_1" rarity="3" />
+    <blueprint name="RAD_ZSGUN_2" rarity="3" />
+    <blueprint name="RAD_ZSGUN_3" rarity="3" />
+    <blueprint name="RAD_LIGHTNING_1" rarity="3" />
+    <blueprint name="RAD_LIGHTNING_2" rarity="2" />
+    <blueprint name="RAD_LIGHTNING_3" rarity="3" />
+    <blueprint name="RAD_LIGHTNING_ION" rarity="2" />
+    <blueprint name="RAD_LIGHTNING_FIRE" rarity="3" />
+    <blueprint name="RAD_TRASH_BEAM" rarity="3" />
   </rarityList>
   <startEvent>START_RAD_SCIENCE</startEvent>
   <removeFirstBeaconNebula />
@@ -57,14 +80,14 @@
   <event name="MV_TRAVELER" min="1" max="1" />
   <event name="SYLVAN_CHANCE" min="0" max="1" />
 
-  <!--event name="RAD_SCIENCE_QUEST_1" min="1" max="1" /><!FIXME-->
+  <event name="RAD_MAIN_LAB" min="1" max="1" />
 
   <event name="TRANSPORT_RAD_SCIENCE_LOOT" min="1" max="1" />
   <event name="STORELIST_RAD_SCIENCE" min="2" max="3" /> <!--FIXME-->
 
-  <event name="ITEMS_RAD_SCIENCE" min="2" max="3" />
-  <event name="NEUTRAL_RAD_SCIENCE" min="4" max="5" />
-  <event name="DISTRESS_RAD_SCIENCE" min="1" max="2" />
+  <event name="ITEMS_RAD_SCIENCE" min="1" max="2" />
+  <event name="NEUTRAL_RAD_SCIENCE" min="4" max="4" />
+  <event name="DISTRESS_RAD_SCIENCE" min="2" max="2" />
   <!--event name="QUESTS_RAD_SCIENCE" min="1" max="1" /-->
 
   <event name="ENCOUNTER_RAD_SCIENCE_ELITE" min="2" max="2" /> 

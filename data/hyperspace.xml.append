@@ -53,13 +53,12 @@
     <mod-append:ship>PLAYER_SHIP_RAD_RICH</mod-append:ship>
 		<!-- -->
     <mod-append:ship>PLAYER_SHIP_RAD_CRYSTAL</mod-append:ship>
-		<mod-append:empty/>
+    <mod-append:empty/>
     <mod-append:ship>PLAYER_SHIP_RAD_CUTTER</mod-append:ship>
     <mod-append:ship>PLAYER_SHIP_RAD_CORVETTE</mod-append:ship>
-    
-    <mod-append:ship>PLAYER_SHIP_RAD_CORVETTE_ELITE</mod-append:ship>
-		<mod-append:empty/>
 
+    <mod-append:ship>PLAYER_SHIP_RAD_FLAGSHIP</mod-append:ship>
+    <mod-append:ship>PLAYER_SHIP_RAD_CORVETTE_ELITE</mod-append:ship>
 	</mod:findLike>
 
 	<!--PLAYER SHIPS -->
@@ -192,7 +191,7 @@
       <shipReq>PLAYER_SHIP_RAD_CUTTER</shipReq>
     </unlock>
   </mod-append:ship>
-  <mod-append:ship name="PLAYER_SHIP_RAD_CORVETTE_ELITE" b="false" c="false">
+  <mod-append:ship name="PLAYER_SHIP_RAD_FLAGSHIP" b="true" c="false" >
     <unlock variant="a" silent="false">
       <type>3</type>
       <otherUnlocks>
@@ -201,18 +200,41 @@
         <ship>PLAYER_SHIP_RAD_EXPERIMENT</ship>
         <ship>PLAYER_SHIP_RAD_RICH</ship>
         <ship>PLAYER_SHIP_RAD_CRYSTAL</ship>
-        <ship>PLAYER_SHIP_RAD_CORVETTE</ship>
         <ship>PLAYER_SHIP_RAD_STATION_2</ship>
         <ship>PLAYER_SHIP_RAD_FLESH_2</ship>
         <ship>PLAYER_SHIP_RAD_EXPERIMENT_2</ship>
         <ship>PLAYER_SHIP_RAD_RICH_2</ship>
         <ship>PLAYER_SHIP_RAD_CRYSTAL_2</ship>
-        <ship>PLAYER_SHIP_RAD_CORVETTE_2</ship>
+      </otherUnlocks>
+    </unlock>
+    <unlock variant="b" silent="false">
+      <type>4</type>
+      <!--type>3</type>
+      <otherUnlocks>
+        <ship>PLAYER_SHIP_RAD_STATION</ship>
+        <ship>PLAYER_SHIP_RAD_FLESH</ship>
+        <ship>PLAYER_SHIP_RAD_EXPERIMENT</ship>
+        <ship>PLAYER_SHIP_RAD_RICH</ship>
+        <ship>PLAYER_SHIP_RAD_CRYSTAL</ship>
+        <ship>PLAYER_SHIP_RAD_STATION_2</ship>
+        <ship>PLAYER_SHIP_RAD_FLESH_2</ship>
+        <ship>PLAYER_SHIP_RAD_EXPERIMENT_2</ship>
+        <ship>PLAYER_SHIP_RAD_RICH_2</ship>
+        <ship>PLAYER_SHIP_RAD_CRYSTAL_2</ship>
         <ship>PLAYER_SHIP_RAD_STATION_3</ship>
         <ship>PLAYER_SHIP_RAD_FLESH_3</ship>
         <ship>PLAYER_SHIP_RAD_EXPERIMENT_3</ship>
         <ship>PLAYER_SHIP_RAD_RICH_3</ship>
         <ship>PLAYER_SHIP_RAD_CRYSTAL_3</ship>
+      </otherUnlocks-->
+    </unlock>
+  </mod-append:ship>
+  <mod-append:ship name="PLAYER_SHIP_RAD_CORVETTE_ELITE" b="false" c="false" >
+    <unlock variant="a" silent="false">
+      <type>3</type>
+      <otherUnlocks>
+        <ship>PLAYER_SHIP_RAD_CORVETTE</ship>
+        <ship>PLAYER_SHIP_RAD_CORVETTE_2</ship>
         <ship>PLAYER_SHIP_RAD_CORVETTE_3</ship>
         <ship>PLAYER_SHIP_RAD_CUTTER</ship>
         <ship>PLAYER_SHIP_RAD_CUTTER_2</ship>
@@ -220,6 +242,7 @@
       </otherUnlocks>
     </unlock>
   </mod-append:ship>
+  
 	
 	<mod-append:customShip name="PLAYER_SHIP_RAD_STATION">
 		<customReactor maxLevel="30" />
@@ -279,9 +302,6 @@
     <customReactor maxLevel="30" />
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>11</crewLimit>
-    <crew>
-      <slug_clansman room="0" name="Reginald" />
-    </crew>
     <systemLimit>10</systemLimit>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CRYSTAL">
@@ -297,7 +317,18 @@
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>6</crewLimit>
     <systemLimit>10</systemLimit>
+    <rooms>
+      <room id="8"> 
+				<roomAnim renderLayer="0">radread_2x2</roomAnim>
+			</room>
+    </rooms>
   </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_FLAGSHIP">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+  <!--mod-append:customShip name="PLAYER_SHIP_RAD_FLAGSHIP_2">
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip-->
   <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE">
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
@@ -517,7 +548,12 @@
 	<aug name="RAD_CREDIT">
 		<locked />
 	</aug>
+  <aug name="RAD_CREDIT_2">
+    <locked />
+  </aug>
   <aug name="RAD_WM_MULTISHOT">    
+  </aug>
+  <aug name="RAD_MOD_SUS">
   </aug>
   <aug name="RAD_WM_BIGSHOT">
     <function name="AUTO_COOLDOWN" value="-0.6" useForReqs="false" warning="false" />
@@ -560,6 +596,9 @@
   <aug name="RAD_SHRAPNEL_SHIELD">
     <locked />
   </aug>
+  <aug name="RAD_DOOR_LOCKS">
+    <locked />
+  </aug>
 </augments>
 
 <mod:findWithChildLike type="ships" child-type="ship" reverse="true" start="1" limit="1">
@@ -591,6 +630,7 @@
 
   <metaVariable name="rad_q1" op="set" val="0"/>
   <metaVariable name="rad_q2" op="set" val="0"/>
+  <metaVariable name="rad_q22" op="set" val="0"/>
   <metaVariable name="rad_q3" op="set" val="0"/>
   <metaVariable name="rad_q4" op="set" val="0"/>
   <metaVariable name="rad_q5" op="set" val="0"/>
@@ -606,12 +646,12 @@
       <name>rad_q1</name>
     </req>
     <req lvl="0" max_lvl="0">
-      <name>rad_q2</name>
+      <name>rad_q22</name>
     </req>
   </req>
   <req name="rad_3" type="all">
     <req lvl="1">
-      <name>rad_q2</name>
+      <name>rad_q22</name>
     </req>
     <req lvl="0" max_lvl="0">
       <name>rad_q3</name>
@@ -681,8 +721,10 @@
 	<variable name="rad_flesh_quest" op="set" val="1"/>
   
   <variable name="rad_money_searched" op="set" val="0"/>
-	
-	<req name="LABRATORY_SPAWN_CHECK" type="all">
+
+  <variable name="rad_tracking_fake" op="set" val="0"/>
+
+  <req name="LABRATORY_SPAWN_CHECK" type="all">
 		<req lvl="2" max_lvl="2">
 			<name>loc_sector_count</name>
 		</req>
@@ -762,11 +804,15 @@
     </category>
     <category type="AUGMENTS">
       <item>
-        <blueprint>LABRATORY_AUGMENTS</blueprint>
+        <blueprint>RAD_WM_BIGSHOT</blueprint>
         <price>-1</price>
       </item>
       <item>
-        <blueprint>LABRATORY_AUGMENTS</blueprint>
+        <blueprint>RAD_WM_MULTISHOT</blueprint>
+        <price>-1</price>
+      </item>
+      <item>
+        <blueprint>RAD_MOD_SUS</blueprint>
         <price>-1</price>
       </item>
     </category>
@@ -917,6 +963,173 @@
       </statBoost>
     </passiveStatBoosts>
     <animBase>human</animBase>
+    <deathSounds>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>humanDeathSpecial</deathSound>
+    </deathSounds>
+    <shootingSounds>
+      <shootingSound>detectiveShoot1</shootingSound>
+      <shootingSound>detectiveShoot2</shootingSound>
+      <shootingSound>detectiveShoot3</shootingSound>
+    </shootingSounds>
+    <skills>
+      <piloting req="13" />
+      <engines req="13" />
+      <shields req="50" />
+      <weapons req="58" />
+      <repair req="12" />
+      <combat req="7" />
+    </skills>
+  </race>
+  <race name="unique_rad_scientist_tele">
+    <noSlot>true</noSlot>
+    <damageMultiplier>1.2</damageMultiplier>
+    <damageTakenMultiplier>0.7</damageTakenMultiplier>
+    <fireDamageMultiplier>0.6</fireDamageMultiplier>
+    <suffocationModifier>0.83</suffocationModifier>
+    <rangedDamageMultiplier>0.45</rangedDamageMultiplier>
+    <doorDamageMultiplier>0.5</doorDamageMultiplier>
+    <maxHealth>175</maxHealth>
+    <passiveStatBoosts>
+      <statBoost name="allDamageTakenMultiplier">
+        <boostType>MULT</boostType>
+        <amount>2</amount>
+        <shipTarget>CURRENT_ROOM</shipTarget>
+        <crewTarget>ENEMIES</crewTarget>
+        <droneTarget>DRONES</droneTarget>
+        <affectsSelf>false</affectsSelf>
+        <priority>0</priority>
+      </statBoost>
+    </passiveStatBoosts>
+    <animBase>mantis</animBase>
+    <deathSounds>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>death1</deathSound>
+      <deathSound>death2</deathSound>
+      <deathSound>humanDeathSpecial</deathSound>
+    </deathSounds>
+    <shootingSounds>
+      <shootingSound>detectiveShoot1</shootingSound>
+      <shootingSound>detectiveShoot2</shootingSound>
+      <shootingSound>detectiveShoot3</shootingSound>
+    </shootingSounds>
+    <skills>
+      <piloting req="13" />
+      <engines req="13" />
+      <shields req="50" />
+      <weapons req="58" />
+      <repair req="12" />
+      <combat req="7" />
+    </skills>
+  </race>
+  <race name="unique_rad_scientist">
+    <damageMultiplier>1.2</damageMultiplier>
+    <damageTakenMultiplier>0.7</damageTakenMultiplier>
+    <fireDamageMultiplier>0.6</fireDamageMultiplier>
+    <suffocationModifier>0.83</suffocationModifier>
+    <rangedDamageMultiplier>0.45</rangedDamageMultiplier>
+    <maxHealth>175</maxHealth>
+    <doorDamageMultiplier>0.5</doorDamageMultiplier>
+    <passiveStatBoosts>
+      <statBoost name="allDamageTakenMultiplier">
+        <boostType>MULT</boostType>
+        <amount>2</amount>
+        <shipTarget>CURRENT_ROOM</shipTarget>
+        <crewTarget>ENEMIES</crewTarget>
+        <droneTarget>DRONES</droneTarget>
+        <affectsSelf>false</affectsSelf>
+        <priority>0</priority>
+      </statBoost>
+    </passiveStatBoosts>
+    <animBase>mantis</animBase>
     <deathSounds>
       <deathSound>death1</deathSound>
       <deathSound>death2</deathSound>

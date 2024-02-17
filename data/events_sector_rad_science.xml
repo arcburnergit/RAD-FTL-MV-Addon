@@ -46,7 +46,7 @@
       <color r="46" g="252" b="51" a="1" />
     </beaconType>
     <text>You have arrived in the sector belonging to the Scientists. The scientists keep to themselves, although there is a large civilian population who feel safe in their sector. The scientists in turn have started guarding their beacons against all who try to start trouble. We be fine if we keep out of the way.</text>
-    <ship load="SHIP_GUARD_RAD_SCIENCE" hostile="false" />
+    <ship load="SHIP_RAD_SCIENCE_GUARD" hostile="false" />
     <changeBackground>BACK_SECTOR_UNION</changeBackground>
     <choice hidden="true" req="rep_comb_union" lvl="2" max_lvl="999" max_group="0" blue="false">
       <text>Continue...</text>
@@ -73,7 +73,7 @@
       <event>
         <text>You hope this is enough to satisfy them...</text>
         <item_modify>
-          <item type="scrap" min="-65" max="-80" />
+          <item type="scrap" min="-80" max="-65" />
         </item_modify>
         <choice hidden="true">
           <text>Continue...</text>
@@ -352,10 +352,10 @@
 
 <ship name="SHIP_RAD_SCIENCE_PIRATE" auto_blueprint="RAD_SCIENCE_BOMBER_PIRATE">
 	<destroyed load="DESTROYED_RAD_SCIENCE" />
-	<deadCrew load="RAD_SCIENCE_PIRATE_CAPTURE" />
+	<deadCrew load="RAD_SCIENCE_PIRATE_DEADCREW" />
 </ship>
 
-<event name="RAD_SCIENCE_PIRATE_CAPTURE">
+<event name="RAD_SCIENCE_PIRATE_DEADCREW">
 	<text>You clear out the defense cruiser and tow it back to the station, You're thanked and recieve a large amount of scrap as a reward.
 
 One of the crew on the station offer to join your crew.</text>
@@ -709,9 +709,158 @@ One of the crew on the station offer to join your crew.</text>
 -->
 <eventList name="QUESTS_RAD_SCIENCE">
 	<event load="RAD_MAIN_QUEST" />
-</eventList> 
+</eventList>
 
+  <ship name="SHIP_RAD_SCIENCE_GHOST" auto_blueprint="RAD_SCIENCE_INTERCEPTOR_GHOST">
+    <surrender min="2" max="5" load="RAD_SCIENCE_GHOST_SUR" />
+    <destroyed load="DESTROYED_RAD_SCIENCE_GHOST" />
+    <deadCrew load="DEAD_CREW_RAD_SCIENCE_GHOST" />
+  </ship>
 
+  <event name="DESTROYED_RAD_SCIENCE_GHOST">
+    <text>You've destroyed what was left of that interceptor.</text>
+    <autoReward level="MED">standard</autoReward>
+    <choice req="unique_rad_scientist_tele" max_group="0" blue="false" hidden="true">
+      <text>Continue...</text>
+      <event load="RAD_MAIN_QUEST_SAVED" />
+    </choice>
+    <choice req="unique_rad_scientist_tele" lvl="0" max_lvl="0" max_group="0" blue="false">
+      <text>Continue...</text>
+      <event load="RAD_MAIN_QUEST_FAILED" />
+    </choice>
+  </event>
+  
+  <event name="DEAD_CREW_RAD_SCIENCE_GHOST">
+    <text>You've cleared out the wreck of ghosts.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice req="unique_rad_scientist_tele" max_group="0">
+      <text>Continue...</text>
+      <event load="RAD_MAIN_QUEST_SAVED" />
+    </choice>
+    <choice max_group="0">
+      <text>Continue...</text>
+      <event load="RAD_MAIN_QUEST_FAILED" />
+    </choice>
+  </event>
+
+  <event name="RAD_SCIENCE_GHOST_SUR">
+    <text>You last hit appears to have overloaded the enemy reactor.</text>
+  </event>
+
+  <event name="RAD_MAIN_QUEST">
+    <distressBeacon />
+    <preventQuest />
+    <text>You arrive at the beacon to find a destroyed Scientist interceptor. It appears that certain parts of the ship are still partially intact as there is still a distress beacon being put out.</text>
+    <ship load="SHIP_RAD_SCIENCE_GHOST" hostile="false" />
+    <status type="limit" target="enemy" system="engines" amount="0" />
+    <status type="limit" target="enemy" system="pilot" amount="0" />
+    <choice hidden="true">
+      <text>Investigate.</text>
+      <event>
+        <text>As you move closer to the wreck it powers on. You recieve a transmission.
+
+"Please help, We've been attacked by ghosts and my crew is dead. Either teleport me off this ship, or damage it enough that I can overload the reactor and teleport across via a personal teleporter."</text>
+        <crewMember amount="1" class="unique_rad_scientist_tele">Dr. C. Swartwout</crewMember>
+        <ship hostile="true" />
+        <choice hidden="true">
+				  <text>Continue...</text>
+				  <event load="COMBAT_CHECK" />
+			  </choice>
+      </event>
+    </choice>
+    <choice>
+      <text>Ignore the wreck.</text>
+      <event>
+        <text>It's not worth investigating.</text>
+        <choice>
+          <text>Do something onboard the ship.</text>
+          <event load="STORAGE_CHECK" />
+        </choice>
+        <choice>
+          <text>Do nothing.</text>
+          <event />
+        </choice>
+      </event>
+    </choice>
+  </event>
+
+  <event name="RAD_MAIN_QUEST_FAILED">
+    <text>Unfortunately you were unable to save that scientist, perhaps in an alternate universe you didn't fail.</text>
+  </event>
+
+  <event name="RAD_MAIN_QUEST_SAVED">
+    <text>"Good work out there captain, you arrived just in time, my name is Cornelius Swartwout. 
+I don't suppose you can help me any further, my crew and I were in transit to one of our project facilities for the testing of a new cruiser, it would be a great help to me if you could deliver me there."</text>
+    <!--removeCrew class="unique_rad_scientist_tele">
+      <clone>false</clone>
+      <text>The scientist introduces himself...</text>
+    </removeCrew>
+    <crewMember amount="1" class="unique_rad_scientist">Dr. C. Swartwout</crewMember-->
+    <transformRace class="unique_rad_scientist_tele">unique_rad_scientist</transformRace>
+    <quest event="RAD_MAIN_QUEST_FACILITY" />
+  </event>
+
+  <ship name="SHIP_RAD_SCIENCE_REBELAUTO" auto_blueprint="LIST_SHIPS_AUTO_HACK">
+    <destroyed load="DESTROYED_RAD_SCIENCE_REBELAUTO" />
+  </ship>
+  
+  <event name="RAD_MAIN_QUEST_FACILITY">
+    <preventQuest />
+    <beaconType id="map_icon_rad_main_quest" global="true">
+      <color r="146" g="232" b="228" a="1"/>
+    </beaconType>
+    <text>You've arrived at the testing facility, it appears the cruiser is just being rolled out for testing now.
+    
+Dr Swartwout joins you to watch the test, "All we're testing today is the capability for the cruiser to use it's weapons, we've brough over a rebel auto ship for the test."</text>
+    <choice>
+      <text>Continue...</text>
+      <event>
+        <text>Just as the test fire is about to begin, the rebel autoship comes online and launches a hacking drone at the cruiser. You hear muffled suprise over the comms as the other scientists in the area realise what's happening.
+        
+You move in to take out the drone before it does too much damage.</text>
+        <ship load="SHIP_RAD_SCIENCE_REBELAUTO" hostile="true" />
+        <choice hidden="true">
+          <text>Continue...</text>
+          <event load="COMBAT_CHECK" />
+        </choice>
+      </event>
+    </choice>
+  </event>
+
+  <event name="DESTROYED_RAD_SCIENCE_REBELAUTO">
+  </event>
+
+  <ship name="SHIP_RAD_SCIENCE_CUTTERENEMY" auto_blueprint="RAD_SCIENCE_CUTTER_ENEMY">
+    <destroyed load="DESTROYED_RAD_SCIENCE_CUTTERENEMY" />
+  </ship>
+
+  <event name="RAD_SCIENCE_QUEST_FIGHT_2">
+    <text>You've destroyed the rebel autoship, however it appears you were too slow, the science cruiser is back online, however this time it's under control of the rebels...</text>
+    <ship load="SHIP_RAD_SCIENCE_CUTTERENEMY" hostile="false" />
+    <triggeredEvent event="RAD_SCIENCE_QUEST_FIGHT_2_2" loops="1" minTime="15" maxTime="15">
+      <triggeredEventBox load="DEFAULT_TIMER">
+        <warning time="5.0" flash="true" />
+        <tooltip>The autocruiser will be close enough to engage you after this cooldown ends.</tooltip>
+      </triggeredEventBox>
+    </triggeredEvent>
+  </event>
+
+  <event name="RAD_SCIENCE_QUEST_FIGHT_2_2">
+    <text>You've run out of time, the science cruiser is almost on top of you.</text>
+    <ship hostile="true" />
+    <choice>
+      <text>Continue...</text>
+      <event load="COMBAT_CHECK" />
+    </choice>
+  </event>
+
+  <event name="DESTROYED_RAD_SCIENCE_CUTTERENEMY">
+    <text>"Wow, we're lucky you were here, it could have gone pretty badly otherwise, as a token of our appreciation we'll send the plans for the cruiser along to the federation, once we deal with these vulnerabilities you've highlighted."</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <weapon name="RAD_LASER_SMART" />
+    <unlockCustomShip silent="false">PLAYER_SHIP_RAD_CUTTER</unlockCustomShip>
+  </event>
+  
 <!--
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -832,15 +981,14 @@ One of the crew on the station offer to join your crew.</text>
     <autoReward level="HIGH">standard</autoReward>
   </event>
   
-<event name="ENCOUNTER_RAD_SCIENCE_ELITE">
-	<text>The vessels of the Elite R&amp;D Defense Force are some of the deadliest in the Scientist fleet, and for good reason. Boasting highly trained crew, these ships don't mess around in combat. Unfortunately for you, the ship here deems you a threat and attacks!</text>
-	<ship load="SHIP_RAD_SCIENCE_ELITE_FIGHT" hostile="true" />
-	<choice hidden="true">
-		<text>Continue...</text>
-		<event load="COMBAT_CHECK" />
-	</choice>
-</event>
-
+  <event name="ENCOUNTER_RAD_SCIENCE_ELITE">
+	  <text>The vessels of the Elite R&amp;D Defense Force are some of the deadliest in the Scientist fleet, and for good reason. Boasting highly trained crew, these ships don't mess around in combat. Unfortunately for you, the ship here deems you a threat and attacks!</text>
+	  <ship load="SHIP_RAD_SCIENCE_ELITE_FIGHT" hostile="true" />
+	  <choice hidden="true">
+		  <text>Continue...</text>
+		  <event load="COMBAT_CHECK" />
+	  </choice>
+  </event>
 
   <eventList name="STORELIST_RAD_SCIENCE">
     <event load="STOREEVENT_ALIENS" />
@@ -930,6 +1078,7 @@ One of the crew on the station offer to join your crew.</text>
 
   <event name="RAD_MAIN_BOARD">
     <status type="limit" target="player" system="teleporter" amount="0" />
+    <status type="limit" target="player" system="sensors" amount="0" />
     <variable name="loc_rad_board_charged" op="set" val="0"/>
     <eventButton name="UI_RAD_BOARD">
       <event load="RAD_MAIN_RETURN"/>
@@ -945,8 +1094,9 @@ One of the crew on the station offer to join your crew.</text>
   <event name="RAD_MAIN_RETURN">
     <status type="clear" target="enemy" system="door" amount="100" />
     <status type="clear" target="player" system="teleporter" amount="100" />
+    <status type="clear" target="player" system="sensors" amount="100" />
     <variable name="loc_rad_board_charged" op="set" val="0"/>
-    <!---->triggeredEvent event="RAD_MAIN_RETURN2" seeded="false" loops="1" thisFight="true" minTime="1.0" maxTime="1.0" /-->
+    <!--triggeredEvent event="RAD_MAIN_RETURN2" seeded="false" loops="1" thisFight="true" minTime="1.0" maxTime="1.0" /-->
     <triggeredEvent event="RAD_MAIN_RETURN2" loops="1" thisFight="false" minTime="1.0" maxTime="1.0" />
   </event>
 
@@ -987,9 +1137,20 @@ One of the crew on the station offer to join your crew.</text>
   <event name="RAD_MAIN_2_SHIP">
     <!--changeBackground>BG_RAD_SCIENCE</changeBackground-->
     <img back="BG_RAD_SCIENCE" planet="NONE" />
-    <text>A piece of the ship fragments off, however it looks like they're still fighting, and they're even powering on some more systems. You're able to patch a few holes with the scrap floating away.</text>
+    <text>A piece of the ship fragments off, however it looks like they're still fighting, and they're even powering on some more systems. You have a few moments to catch your breath.</text>
     <damage amount="-5" />
-    <ship load="SHIP_RAD_SCIENCE_MAIN_2" hostile="true" />
+    <ship load="RAD_MAIN_2_SHIP_2" hostile="false" />
+    <triggeredEvent event="SHIP_RAD_SCIENCE_MAIN_2_2" loops="1" minTime="20" maxTime="20">
+      <triggeredEventBox load="DEFAULT_TIMER">
+        <warning time="5.0" flash="true" />
+        <tooltip>The corvette will be up and running after this cooldown ends.</tooltip>
+      </triggeredEventBox>
+    </triggeredEvent>
+  </event>
+
+  <event name="RAD_MAIN_2_SHIP_2">
+    <text>The corvette is up and running again...</text>
+    <ship hostile="true" />
     <choice>
       <text>Continue...</text>
       <event load="COMBAT_CHECK" />
@@ -999,9 +1160,20 @@ One of the crew on the station offer to join your crew.</text>
   <event name="RAD_MAIN_3_SHIP">
     <!--changeBackground>BG_RAD_SCIENCE</changeBackground-->
     <img back="BG_RAD_SCIENCE" planet="NONE" />
-    <text>Another piece of the ship comes off, However the ship still isn't dead. You're able to patch a few holes with the scrap floating away.</text>
+    <text>Another piece of the ship comes off in a large explosion, However the ship still isn't dead. You have a few moments to catch your breath.</text>
     <damage amount="-5" />
-    <ship load="SHIP_RAD_SCIENCE_MAIN_3" hostile="true" />
+    <ship load="SHIP_RAD_SCIENCE_MAIN_3" hostile="false" />
+    <triggeredEvent event="RAD_MAIN_3_SHIP_2" loops="1" minTime="20" maxTime="20">
+      <triggeredEventBox load="DEFAULT_TIMER">
+        <warning time="5.0" flash="true" />
+        <tooltip>The corvette will be up and running after this cooldown ends.</tooltip>
+      </triggeredEventBox>
+    </triggeredEvent>
+  </event>
+
+  <event name="RAD_MAIN_3_SHIP_2">
+    <text>The corvette is up and running again...</text>
+    <ship hostile="true" />
     <choice>
       <text>Continue...</text>
       <event load="COMBAT_CHECK" />

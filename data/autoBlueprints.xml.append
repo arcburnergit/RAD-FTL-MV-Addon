@@ -53,7 +53,45 @@
   <mod-append:name>RAD_SCIENCE_LOOT</mod-append:name>
 </mod:findName>
 
-<mod:findName type="blueprintList" name="LIST_DRONES_ALL">
+  <blueprintList name="LIST_WEAPONS_RAD_SCIENCE">
+    <name>LASER_BURST_1</name>
+    <name>RAD_BEAM_BURST_2</name>
+    <name>LASER_BURST_3</name>
+    <name>LASER_BURST_5</name>
+    <name>LASER_HEAVY_1</name>
+    <name>LASER_HULL_1_ENEMY</name>
+    <name>LASER_HEAVY_2</name>
+    <name>LASER_HULL_2</name>
+    <name>RAD_LIGHT_BEAM</name>
+    <name>MISSILES_2_ENEMY</name>
+    <name>RAD_SDRAIN</name>
+    <name>BOMB_1_ENEMY</name>
+
+    <name>SHOTGUN_1_ENEMY</name>
+    <name>SHOTGUN_2</name>
+    <name>RAD_CHAINGUN_DAMAGE</name>
+    <name>LASER_CHARGEGUN_2</name>
+    <name>LASER_CHARGEGUN_3</name>
+    <name>RAD_LASER_COMBINER</name>
+
+    <name>LASER_PIERCE_ENEMY</name>
+    <name>RAD_LASER_SMART_ENEMY</name>
+    <name>RAD_CLUSTER_MISSILE</name>
+    <name>ENERGY_1</name>
+    <name>ENERGY_2</name>
+    <name>RAD_ZSGUN_3</name>
+
+    <name>LASER_CHAINGUN_DAMAGE</name>
+    <name>LASER_HEAVY_CHAINGUN</name>
+    <name>LASER_HULL_CHAINGUN</name>
+    <name>RAD_CLUSTER_MISSILE_2</name>
+    <name>RAD_LIGHTNING_ION</name>
+    <name>RAD_LIGHTNING_1</name>
+    <name>RAD_LIGHTNING_2</name>
+    <name>RAD_TRASH_BEAM</name>
+  </blueprintList>
+
+  <mod:findName type="blueprintList" name="LIST_DRONES_ALL">
 	<mod-append:name>DEFENSE_FOCUS</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_DRONES_ALL_CRAPBUCKET">
@@ -92,7 +130,7 @@
 <mod:findName type="blueprintList" name="BLUELIST_BEAMS_ALL">
   <mod-append:name>RAD_JAILERBEAM_PLAYER</mod-append:name>
   <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
-</mod:findName>BLUELIST_AETHER
+</mod:findName>
 
 <mod:findName type="blueprintList" name="BLUELIST_AETHER">
   <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
@@ -124,13 +162,16 @@
   <name>RAD_LIGHTNING_1</name>
   <name>RAD_LIGHTNING_ION</name>
   <name>RAD_LIGHTNING_FIRE</name>
+  <name>RAD_TRASH_BEAM</name>
 </blueprintList>
 
 <blueprintList name="LABRATORY_AUGMENTS">
   <name>RAD_WM_BIGSHOT</name>
   <name>RAD_WM_MULTISHOT</name>
-  <!--name>RAD_SUPER_HULL</name-->
+  <name>RAD_MOD_SUS</name>
 </blueprintList>
+
+  
 
 <!--STATION-->
 <shipBlueprint name="MU_CIVILIAN_LAB" layout="mu_civilian_lab" img="mu_civilian_lab">
@@ -147,7 +188,7 @@
 	</systemList>
 	<weaponSlots>4</weaponSlots>
 	<droneSlots>2</droneSlots>
-	<weaponList missiles="30" count="4" load="LIST_WEAPONS_LAB" />
+	<weaponList missiles="30" count="4" load="LIST_WEAPONS_RAD_SCIENCE" />
 	<droneList drones="10" count="0" load="LIST_DRONES_ENEMY_STANDARD" />
 	<health amount="32" />
 	<maxPower amount="18" />
@@ -274,7 +315,7 @@
 	<droneList drones="8" count="0" />
 	<health amount="15" />
 	<maxPower amount="35" />
-	<crewCount amount="1" max="2" class="human_medic" />
+	<crewCount amount="5" max="7" class="rad_scientist" />
 	<crewCount amount="2" max="4" class="human" />
 	<crewCount amount="2" max="4" class="human_engineer" />
 	<crewCount amount="3" max="6" class="human_soldier" />
@@ -314,7 +355,7 @@
 <shipBlueprint name="MU_SCIENCE_OPERATOR" layout="mu_radlab_operator" img="mu_radlab_operator">
 	<class>Science Operator</class>
 	<systemList>
-		<cloaking power="1" max="3" room="14" start="true" />
+		<cloaking power="1" max="1" room="14" start="true" />
 		<doors power="1" max="3" room="5" start="true" />
 		<drones power="10" max="10" room="15" start="true" />
 		<engines power="1" max="3" room="7" start="true" />
@@ -334,16 +375,13 @@
 		<weapon name="RAD_CLUSTER_MISSILE_2" />
 	</weaponList>
 	<droneList drones="30" count="4">
-		<drone name="DEFENSE_3_PLAYER_PLAYER" />
+		<drone name="DEFENSE_3" />
 		<drone name="GUARDIAN_2_DRONE" />
-		<drone name="RAD_REPULSOR" />
-		<drone name="RAD_REPULSOR" />
 	</droneList>
 	<health amount="15" />
 	<maxPower amount="35" />
 	<crewCount amount="5" max="10" class="human_engineer" />
 	<boardingAI>sabotage</boardingAI>
-	<aug name="UPG_SHIELDS_PERFORMANCE" />
 </shipBlueprint>
 
 <!--QUEST ROGUE EMPLOYEE-->
@@ -454,8 +492,8 @@
     <weaponSlots>4</weaponSlots>
     <droneSlots>2</droneSlots>
     <weaponList missiles="7" count="4">
-      <weapon name="ION_PIERCE_2" />
-      <weapon name="BEAM_PIERCE" />
+      <weapon name="BEAM_1" />
+      <weapon name="SHOTGUN_4" />
       <weapon name="LASER_BURST_2" />
       <weapon name="LASER_BURST_2" />
     </weaponList>
@@ -645,55 +683,20 @@
     <weaponList missiles="0" count="4">
       <weapon name="RAD_TRASH_BEAM" />
       <weapon name="CRYSTAL_HEAVY_1_RED" />
-      <weapon name="CRYSTAL_BURST_1_RED" />
-      <weapon name="CRYSTAL_CHARGEGUN_RED" />
+      <weapon name="LASER_BURST_3" />
+      <weapon name="SHOTGUN_2" />
     </weaponList>
     <droneList drones="0" count="2" />
     <health amount="18" />
     <maxPower amount="30" />
-    <crewCount amount="4" max="7" class="crystal_sentinel" />
+    <crewCount amount="4" max="7" class="human_soldier" />
     <boardingAI>sabotage</boardingAI>
     <aug name="RAD_WARPED_HULL" />
   </shipBlueprint>
 
   
   
-  <blueprintList name="LIST_WEAPONS_RAD_SCIENCE">
-    <name>LASER_BURST_1</name>
-    <name>LASER_BURST_2_ENEMY</name>
-    <name>LASER_BURST_3</name>
-    <name>LASER_BURST_5</name>
-    <name>LASER_HEAVY_1</name>
-    <name>LASER_HULL_1_ENEMY</name>
-    <name>LASER_HEAVY_2</name>
-    <name>LASER_HULL_2</name>
-    <name>MISSILES_1_ENEMY</name>
-    <name>MISSILES_2_ENEMY</name>
-    <name>MISSILES_3_ENEMY</name>
-    <name>BOMB_1_ENEMY</name>
-
-    <name>SHOTGUN_1_ENEMY</name>
-    <name>SHOTGUN_2</name>
-    <name>LASER_CHARGEGUN_ENEMY</name>
-    <name>LASER_CHARGEGUN_2</name>
-    <name>LASER_CHARGEGUN_3</name>
-    <name>LASER_CHAINGUN_ENEMY</name>
-
-    <name>LASER_PIERCE_ENEMY</name>
-    <name>LASER_PARTICLE</name>
-    <name>MISSILES_FIRE_ENEMY</name>
-    <name>ENERGY_1</name>
-    <name>ENERGY_2</name>
-    <name>ENERGY_HULL</name>
-
-    <name>LASER_CHAINGUN_DAMAGE</name>
-    <name>LASER_HEAVY_CHAINGUN</name>
-    <name>LASER_HULL_CHAINGUN</name>
-    <name>SHOTGUN_CHAIN</name>
-    <name>SHOTGUN_CHARGE</name>
-    <name>TRC_LASER_CHARGEGUN_HEAVY</name>
-    <name>TRC_SHOTGUN_TRIFECTA</name>
-  </blueprintList>
+ 
 
   <blueprintList name="LIST_SHIPS_RAD_SCIENCE_ALL">
     <name>RAD_SCIENCE_ASSUALT</name>
@@ -1205,5 +1208,56 @@
     <aug name="UNION_JACKETS" />
   </shipBlueprint>
 
+  <shipBlueprint name="RAD_SCIENCE_INTERCEPTOR_GHOST" layout="rad_science_interceptor_ghost" img="rad_science_interceptor_ghost">
+    <class>Haunted Interceptor</class>
+    <systemList>
+      <doors power="2" max="3" room="9" start="true" />
+      <engines power="1" max="1" room="2" start="true" />
+      <hacking power="1" max="2" room="12" start="true" />
+      <medbay power="2" max="2" room="7" start="true" />
+      <pilot power="1" max="1" room="1" start="true" />
+      <shields power="2" max="10" room="3" start="true" />
+      <teleporter power="1" max="2" room="0" start="true" />
+      <weapons power="4" max="8" room="6" start="true" />
+    </systemList>
+    <weaponSlots>3</weaponSlots>
+    <droneSlots>3</droneSlots>
+    <weaponList missiles="8" count="3" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="8" count="3" load="LIST_DRONES_AUTO" />
+    <health amount="18" />
+    <maxPower amount="25" />
+    <crewCount amount="6" max="8" class="phantom_goul" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="SHIP_GHOST" />
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCIENCE_CUTTER_ENEMY" layout="rad_science_cutter_enemy" img="rad_science_cutter_enemy">
+    <class>Scientist Autoship</class>
+    <systemList>
+      <doors power="2" max="3" room="6" start="true" />
+      <engines power="1" max="2" room="9" start="true" />
+      <hacking power="1" max="2" room="5" start="true" />
+      <pilot power="1" max="3" room="0" start="true" />
+      <shields power="2" max="8" room="2" start="true" />
+      <weapons power="2" max="8" room="1" start="true" />
+    </systemList>
+    <weaponSlots>8</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="4" count="8">
+      <weapon name="LASER_HEAVY_1" />
+      <weapon name="LASER_HEAVY_1" />
+      <weapon name="LASER_BURST_1" />
+      <weapon name="LASER_BURST_1" />
+      <weapon name="LASER_LIGHT" />
+      <weapon name="LASER_LIGHT" />
+      <weapon name="LASER_CHARGE_CHAIN" />
+      <weapon name="LASER_HULL_1" />
+    </weaponList>
+    <droneList drones="0" count="2" />
+    <health amount="15" />
+    <maxPower amount="30" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="RAD_LOW_WEAPON" />
+  </shipBlueprint>
 
 </FTL>

@@ -127,7 +127,7 @@
 	<breachChance>0</breachChance>
 	<cooldown>16</cooldown>
 	<power>3</power>
-	<cost>50</cost>
+	<cost>70</cost>
 	<bp>2</bp>
 	<rarity>5</rarity>
 	<image>missile_cluster</image>
@@ -186,7 +186,7 @@
 	<breachChance>0</breachChance>
 	<cooldown>14</cooldown>
 	<power>4</power>
-	<cost>50</cost>
+	<cost>90</cost>
 	<bp>2</bp>
 	<rarity>0</rarity>
 	<image>missile_cluster3</image>
@@ -620,8 +620,8 @@
     <desc>This beam makes more efficient use of power by firing a short low power beam that pops shields.</desc>
     <tooltip>Fires pulses of a beam quickly.</tooltip>
     <radius>10</radius> 
-    <damage>0</damage>
-	<sysDamage>1</sysDamage>
+    <damage>1</damage>
+	<sysDamage>-1</sysDamage>
     <shots>1</shots>
     <sp>0</sp>
     <fireChance>1</fireChance> 
@@ -786,16 +786,17 @@
     <tip>rad_tip_laser_smart</tip>
     <title>Smart Laser</title> 
     <short>Smart Laser</short>
-    <desc>This weapon has a built in AI that takes targetting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines.</desc>
+    <desc>This weapon has a built in AI that takes targetting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines, and finally after that it will target the designated room.</desc>
     <tooltip>Fires multiple lasers and automatically targets different systems.</tooltip> 
     <damage>1</damage>
-    <shots>3</shots>
+    <accuracyMod>25</accuracyMod>
+    <shots>4</shots>
 	<sp>0</sp>
-	<fireChance>1</fireChance>
-	<breachChance>0</breachChance>
+	<fireChance>3</fireChance>
+	<breachChance>2</breachChance>
 	<cooldown>14</cooldown>
 	<power>2</power>
-	<cost>80</cost>
+	<cost>70</cost>
 	<bp>4</bp>
 	<rarity>5</rarity>
 	<image>laser_burst</image>
@@ -820,6 +821,46 @@
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
 
+  <weaponBlueprint name="RAD_LASER_SMART_ENEMY">
+    <type>LASER</type>
+    <flavorType>Laser</flavorType>
+    <tip>rad_tip_laser_smart</tip>
+    <title>Smart Laser</title>
+    <short>Smart Laser</short>
+    <desc>This weapon has a built in AI that takes targetting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines, and finally after that it will target the designated room.</desc>
+    <tooltip>Fires multiple lasers and automatically targets different systems.</tooltip>
+    <damage>1</damage>
+    <shots>3</shots>
+    <sp>0</sp>
+    <fireChance>1</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>14</cooldown>
+    <power>2</power>
+    <cost>80</cost>
+    <bp>4</bp>
+    <rarity>0</rarity>
+    <image>laser_burst</image>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <sound>lightLaser2</sound>
+      <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>laser_rad_smart</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
+
 <shipBlueprint name="PLAYER_SHIP_RADLAB_1" layout="rdp_lab_a" img="rdp_lab_a">
 	<class>R&amp;D Laboratory</class>
 	<name>Station 37-A</name>
@@ -827,7 +868,7 @@
 	<systemList>
 		<battery power="1" room="27" start="false" img="room_battery_16" />
 		<cloaking power="1" room="11" start="false" img="radlab_cloaking" />
-		<clonebay power="1" room="7" start="false">
+		<clonebay power="1" max="3" room="7" start="false">
 			<slot>
 				<number>1</number>
 			</slot>
@@ -1006,7 +1047,7 @@
 	<systemList>
 		<battery power="1" room="5" start="false" img="room_battery_14" />
 		<cloaking power="1" room="3" start="false" img="room_cloaking" />
-		<clonebay power="1" room="4" start="false">
+		<clonebay power="1" max="3" room="4" start="false">
 			<slot>
 				<number>3</number>
 			</slot>
@@ -1082,7 +1123,7 @@
 	<desc>This station uses advanced drones to protect itself from projectiles to make up for the lack of engine power.</desc>
 	<systemList>
 		<cloaking power="1" room="14" start="false" img="room_cloaking_2" />
-		<clonebay power="1" room="15" start="false">
+		<clonebay power="1" max="3" room="15" start="false">
 			<slot>
 				<number>1</number>
 			</slot>
@@ -1162,7 +1203,7 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
 		<artillery power="1" max="4" room="1" start="true" weapon="ARTILLERY_FLESH" img="Sprite-0005" />
 		<battery power="1" room="8" start="false" img="room_battery_8" />
 		<cloaking power="1" room="6" start="false" img="room_cloaking_10" />
-		<clonebay power="1" room="4" start="true">
+		<clonebay power="1" max="3" room="4" start="true">
 			<slot>
 				<number>1</number>
 			</slot>
@@ -1552,6 +1593,14 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 	<rarity>0</rarity>
 	<stackable>false</stackable>
 </augBlueprint>
+  
+  <augBlueprint name="RAD_CREDIT_2">
+	  <title>Bank Vault</title>
+	  <desc>You start with 2000 scrap, you cannot gain any more.</desc>
+	  <cost>0</cost>
+	  <rarity>0</rarity>
+	  <stackable>false</stackable>
+  </augBlueprint>
 
   <augBlueprint name="RAD_SYSTEM_DUMB">
     <title>Low Skill Systems</title>
@@ -1791,7 +1840,7 @@ This is because the systems are designed for low skill crew members, and so high
     <class>Yacht Class Cruiser</class>
     <name>Expensive</name>
     <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
-    <desc>The ultimate ship for a rich person, it comes with a credit card, and has no requirement for thinking.</desc>
+    <desc>After a serious heist you've managed to secure alot of gold, however you still don't have anywhere to put your scrap.</desc>
     <systemList>
       <battery power="1" room="12" max="3" start="false" img="room_battery_13" />
       <cloaking power="1" room="10" start="false" img="room_cloaking" />
@@ -1856,11 +1905,10 @@ This is because the systems are designed for low skill crew members, and so high
     <droneList drones="3" count="2" />
     <health amount="30" />
     <maxPower amount="6" />
-    <crewCount amount="1" class="human" />
-    <crewCount amount="1" class="human" />
-    <crewCount amount="1" class="human" />
-    <aug name="RAD_SYSTEM_DUMB" />
-    <aug name="RAD_CREDIT" />
+    <crewCount amount="1" class="human_soldier" />
+    <crewCount amount="1" class="rock" />
+    <crewCount amount="1" class="slug" />
+    <aug name="RAD_CREDIT_2" />
     <mv-mapImage>map_icon_mup_hacker_a</mv-mapImage>
   </shipBlueprint>
 
@@ -2378,7 +2426,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <sp>0</sp>
     <fireChance>0</fireChance>
     <breachChance>0</breachChance>
-    <cooldown>20</cooldown>
+    <cooldown>15</cooldown>
     <power>2</power>
     <cost>50</cost>
     <bp>4</bp>
@@ -2415,7 +2463,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <sp>0</sp>
     <fireChance>0</fireChance>
     <breachChance>0</breachChance>
-    <cooldown>20</cooldown>
+    <cooldown>10</cooldown>
     <power>1</power>
     <cost>30</cost>
     <bp>4</bp>
@@ -2679,7 +2727,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <augBlueprint name="RAD_WM_MULTISHOT">
     <title>Multishot Weapons</title>
-    <desc>Halves the damage and status effects of every projectile or beam fired from your ship (If spliting an odd damage number, one projectile will have more damage than the other), However it spawns a duplicate projectile every time you fire.</desc>
+    <desc>Splits every projectile or beam you fire in two, however the hull damage, system damage, and ion damage are halved. In the case that the base value is odd, one projectile will have more damage than the other.</desc>
     <cost>60</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
@@ -2687,8 +2735,16 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <augBlueprint name="RAD_WM_BIGSHOT">
     <title>High Energy Weapons</title>
-    <desc>Doubles the damage of all projectiles or beams you fire, but reduces weapon recharge rate by 60%</desc>
+    <desc>Doubles the hull damage, system damage, and ion damage of all projectiles or beams you fire, but reduces weapon recharge rate by 60%, Incompatible with Multishot.</desc>
     <cost>60</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_MOD_SUS">
+    <title>Repair Sustainers</title>
+    <desc>When crew leave a room that is only partially repaired, the repair level is sustained and isn't lost due to the crewmember leaving the room.</desc>
+    <cost>40</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
   </augBlueprint>
@@ -3668,6 +3724,7 @@ Inherited Human stats: minor suffocation resistance, learns skills faster
   <shipBlueprint name="PLAYER_SHIP_RAD_CORVETTE_ELITE" layout="radp_corvette_elite" img="radp_corvette_elite">
     <class>Elite Science Corvette</class>
     <name>The Negotiator</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_ELITE_unlock"/>
     <desc>This ship creates a shield of shrapnel around itself to protect from incoming projectiles and stray drones that get too close.</desc>
     <systemList>
       <artillery power="2" room="8" start="true" weapon="ARTILLERY_RAD_CORVETTE" img="room_artillery" />
@@ -3836,4 +3893,199 @@ Inherited Human stats: minor suffocation resistance, learns skills faster
     <weaponArt>rad_science_loot</weaponArt>
     <iconImage>laser</iconImage>
   </weaponBlueprint>
+
+  <crewBlueprint name="unique_rad_scientist_tele">
+    <desc>One of the premier scientists in this universe, responsible for many important technologies.
+
+Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
+    <cost>70</cost>
+    <title>Human Scientist</title>
+    <short>Scientist</short>
+    <rarity>0</rarity>
+    <powerList>
+      <power>Inflicts 1.2x damage in crew combat</power>
+      <power>Takes 0.7x damage from crew combat and 0.6x from fires</power>
+      <power>Hostile drones in the same room take 2x damage from all sources</power>
+      <power>1.20x repair speed</power>
+      <power>Learns repairs even faster</power>
+    </powerList>
+  </crewBlueprint>
+  
+  <crewBlueprint name="unique_rad_scientist">
+	  <desc>One of the premier scientists in this universe, responsible for many important technologies.
+	
+Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
+	  <cost>70</cost>
+	  <title>Human Scientist</title>
+	  <short>Scientist</short>
+	  <rarity>0</rarity>
+	  <powerList>
+		  <power>Inflicts 1.2x damage in crew combat</power>
+		  <power>Takes 0.7x damage from crew combat and 0.6x from fires</power>
+      <power>Hostile drones in the same room take 2x damage from all sources</power>
+      <power>1.20x repair speed</power>
+      <power>Learns repairs even faster</power>
+	  </powerList>
+  </crewBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_FLAGSHIP" layout="radp_flagship_player" img="radp_flagship_player">
+    <class>ELite Weapon Cruiser</class>
+    <name>More Powa</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_FLAGSHIP_unlock"/>
+    <desc>This ship's weapon system has been beefed up to have a maximum system power of 12, however this extra power draw means you're unable to install any kind of medical system.</desc>
+    <systemList>
+      <battery power="1" room="8" start="false" img="room_battery_4" />
+      <!--cloaking power="1" room="12" start="false" img="room_cloaking_2" />
+      <clonebay power="1" room="11" start="true">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay-->
+      <doors power="2" room="9" start="true" img="room_doors_9">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="1" room="3" start="true" img="room_drones_6" />
+      <engines power="1" room="1" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="16" start="false" img="room_hacking_7" />
+      <!--medbay power="1" room="11" start="false" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay-->
+      <mind power="1" room="2" start="false" img="room_mind_6" />
+      <oxygen power="1" room="14" start="true" img="room_oxygen_13" />
+      <pilot power="1" room="0" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="10" start="false" img="room_sensors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="19" max="8" start="true" img="room_shields_4">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="7" start="false" />
+      <weapons power="4" room="6" max="12" start="true" img="room_weapons_13">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="12" count="4">
+      <weapon name="RAD_GATLING" />
+      <weapon name="RAD_LIGHT_BEAM" />
+    </weaponList>
+    <droneList drones="3" count="2">
+      <drone name="DOCTOR_DEFENSE" />
+    </droneList>
+    <health amount="30" />
+    <maxPower amount="8" />
+    <crewCount amount="1" class="rad_scientist" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="1" class="human_soldier" />
+  </shipBlueprint>
+
+  <augBlueprint name="RAD_DOOR_LOCKS">
+    <title>Powerful Weapons System</title>
+    <desc>The weapon system has been beefed up to have a maximum system power of 12, however this extra power draw means that your doors become locked while the weapons system is powered on.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_FLAGSHIP_2" layout="radp_flagship_player" img="radp_flagship_player">
+    <class>??? Cruiser</class>
+    <name>More Door</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_FLAGSHIP_2_HIDDEN_unlock"/>
+    <desc>???</desc>
+    <systemList>
+      <battery power="1" room="8" start="false" img="room_battery_4" />
+      <!--cloaking power="1" room="12" start="false" img="room_cloaking_2" />
+      <clonebay power="1" room="11" start="true">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay-->
+      <doors power="2" room="9" start="true" img="room_doors_9">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="1" room="3" start="true" img="room_drones_6" />
+      <engines power="1" room="1" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="16" start="false" img="room_hacking_7" />
+      <!--medbay power="1" room="11" start="false" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay-->
+      <mind power="1" room="2" start="false" img="room_mind_6" />
+      <oxygen power="1" room="14" start="true" img="room_oxygen_13" />
+      <pilot power="1" room="0" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="10" start="false" img="room_sensors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="19" max="8" start="true" img="room_shields_4">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="7" start="false" />
+      <weapons power="4" room="6" max="12" start="true" img="room_weapons_13">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="12" count="4">
+      <weapon name="RAD_GATLING" />
+      <weapon name="RAD_LIGHT_BEAM" />
+    </weaponList>
+    <droneList drones="3" count="2">
+      <drone name="DOCTOR_DEFENSE" />
+    </droneList>
+    <health amount="30" />
+    <maxPower amount="8" />
+    <crewCount amount="1" class="rad_scientist" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="1" class="human_soldier" />
+  </shipBlueprint>
+  
 </FTL>

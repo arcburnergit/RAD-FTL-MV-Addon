@@ -58,7 +58,7 @@
             <text>All quests complete.</text>
             <event load="OPTION_INVALID" />
           </choice-->
-          <choice hidden="true" req="rad_q10" lvl="5">
+          <choice hidden="true" req="rad_q10" lvl="3">
             <text>You'll help. [??? Quest]</text>
             <event load="RAD_WARPED_1"/>
           </choice>
@@ -333,6 +333,7 @@
 		<color r="242" g="50" b="29"/>
 	</beaconType>
 	<preventFleet/>
+  <variable name="rad_tracking_fake" op="set" val="0"/>
 	<text>You arrive at the beacon and pick up the damaged pirate ship on your scanners. However there's also a second, larger pirate enforcer nearby.
 	As you watch, the damaged ship jumps away.</text>
 	<choice hidden="true" req="RAD_JUMP_TRACER" blue="true">
@@ -421,11 +422,22 @@
 </event>
 
 <event name="RAD_PIRATE_TRACKING_4_FAKE" unique="true">
-	<text>There's no sign of the station. Looks like you've been lead to the wrong place.</text>
-	<choice hidden="true">
+	<text>You take a moment to survey the area.</text>
+	<choice hidden="true" req="rad_tracking_fake" lvl="0" max_lvl="0">
 		<text>Continue...</text>
-		<event load="PIRATE_CIVILIAN" />
+    <event>
+      <variable name="rad_tracking_fake" op="set" val="1"/>
+      <text>There's no sign of the station. Looks like you've been lead to the wrong place.</text>
+      <choice>
+        <text>Continue...</text>
+        <event load="PIRATE_CIVILIAN" />
+      </choice>
+    </event>
 	</choice>
+  <choice hidden="true" req="rad_tracking_fake" lvl="1">
+    <text>Continue...</text>
+    <event load="RAD_PIRATE_TRACKING_4_REAL" />
+  </choice>
 </event>
 
 <eventList name="RAD_PIRATE_TRACKING_3_LIST">
@@ -662,6 +674,8 @@
 <event name="DESTROYED_RAD_SCIENCE">
 	<text>You've taken care of the scientists, looks like you and your new crew member will be safe for now.</text>
 	<weapon name="RAD_GATLING"/>
+  <metaVariable name="rad_q22" op="set" val="1"/>
+  <metaVariable name="rad_q10" op="add" val="1"/>
 	<unlockCustomShip silent="false">PLAYER_SHIP_RAD_EXPERIMENT</unlockCustomShip>
 	<autoReward level="HIGH">standard</autoReward>
 </event>
@@ -677,8 +691,6 @@
 	<choice hidden="true">
 		<text>Hail them.</text>
 		<event>
-      <metaVariable name="rad_q2" op="set" val="1"/>
-      <metaVariable name="rad_q10" op="add" val="1"/>
 			<text>A some what well armed scientist picks up, "Excellent job, Renegade. Transfer the entity over to me and we'll deliver your payment."
 			
 			The entity in question comes into the room. "Don't give me over to them! They did this to me! They turned me into this hot, flaming mess! It's torture!" the entity proclaims.</text>
@@ -690,7 +702,7 @@
 							<text>Your crew cannot be cloned, as they are still alive.</text>
 					</removeCrew>
 					<text>You dock with the ship, and the scientists come aboard armed with some strange stun weapons which they use to take the entity aboard their own ship.</text>
-					<choice hidden="true">
+					<choice>
 						<text>Continue</text>
 						<event>
 							<text>The scientists transfer you some scrap and one of their weapons.</text>
@@ -701,7 +713,7 @@
 				</event>
 			</choice>
 			<choice hidden="true">
-				<text>Save it from certain imprisonment and torture.</text>
+				<text>Save it from certain imprisonment and torture. (The Good Option)</text>
 				<event>
 					<text>How could the scientists have done such scorching, cruel experiments? You're willing to take the heat so that they won't do any more to this ghost. You power up your weapons and the science fighter does the same.</text>
 					<ship hostile="true"/>
@@ -1844,15 +1856,29 @@ You tell them what happened and they begin firing on the base.
   </ship>
 
   <event name="DESTROYED_RAD_CRYSTALENEMY2">
-    <text>You've destroyed the crystal ship, it appeares to be covered in some strange runes, however you're unable to translate them. You're able to recover some data on the ship and use it to determine where the ship jumped in from.</text>
+    <text>You've destroyed the crystal ship, it appeares to be covered in some strange runes, however you're unable to translate the symbols.</text>
     <autoReward level="MED">standard</autoReward>
-    <quest event="RAD_WARPED_3" />
+    <choice hidden="true">
+      <text>Continue...</text>
+      <event>
+        <text>You're able to recover some data on the ship and use it to determine where the ship jumped in from, alongside it you find a strange weapon.</text>
+        <weapon name="ZENITH_1" />
+        <quest event="RAD_WARPED_3" />
+      </event>
+    </choice>
   </event>
 
   <event name="DEAD_CREW_RAD_CRYSTALENEMY2">
-    <text>You've killed the crew of the crystal ship, it appeares to be covered in some strange runes, however you're unable to translate them. You're able to recover some data on the ship and use it to determine where the ship jumped in from.</text>
+    <text>You've killed the crew of the crystal ship, it appeares to be covered in some strange runes, however you're unable to translate the symbols.</text>
     <autoReward level="HIGH">standard</autoReward>
-    <quest event="RAD_WARPED_3" />
+    <choice hidden="true">
+      <text>Continue...</text>
+      <event>
+        <text>You're able to recover some data on the ship and use it to determine where the ship jumped in from, alongside it you find a strange weapon.</text>
+        <weapon name="ZENITH_1" />
+        <quest event="RAD_WARPED_3" />
+      </event>
+    </choice>
   </event>
 
   <event name="RAD_WARPED_2">
@@ -1896,8 +1922,8 @@ You search the ship and find it empty of anything useful, however in one of the 
         <choice hidden="true" req="UPG_AETHER_TRANSLATOR" blue="true">
           <text>(Runic Translator) Translate the cooridinates.</text>
           <event>
-            <text>You're able decypher the cooridinates, looks like you'll be able to reroute there at the next exit beacon.</text>
-            <variable name="coords_rad_science" op="set" val="1"/>
+            <text>You're able decypher the cooridinates, looks like you'll be able to reroute there at the next exit beacon. (NOT AVAILABLE UNTIL V1.0.0)</text>
+            <!--variable name="coords_rad_science" op="set" val="1"/-->
             <choice>
               <text>Contact the scientists</text>
               <event load="RAD_WARPED_4" />
@@ -1910,7 +1936,6 @@ You search the ship and find it empty of anything useful, however in one of the 
             <text>The scientists arrive.
 
 "Excellent work Captain, we'll be sure to contact you again in the future if we have any work for you."</text>
-            <weapon name="RAD_TRASH_BEAM"/>
             <unlockCustomShip silent="false">PLAYER_SHIP_RAD_CRYSTAL</unlockCustomShip>
           </event>
         </choice>

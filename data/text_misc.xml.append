@@ -17,15 +17,19 @@
 <text name="map_icon_rad_warped1">TRACKER [!]</text>
 <text name="map_icon_rad_warped2">QUEST [!]</text>
 <text name="map_icon_rad_main_lab">R&amp;D HEADQUARTERS</text>
+<text name="map_icon_rad_main_quest">TESTING FACILITY</text>
+  
 <text name="tip_rad_loot">SCIENCE LOOT
 -1 damage
 +1 system damage
 +1 shield pierce
 -2 power
 -10 second cooldown</text>
-  
+
 <text name="tip_lightning">Lightning Weapons jump to an adjacent room, and deal the same damage again. They repeat this again after the first jump.</text>
 
+  <!--text name="tip_cascade">Cluster weapons only do damage to adjacent rooms, they do not do any damage to the room they hit.</text-->
+<text name="rad_tip_laser_smart">Smart weapons override your manual targetting based on some priority list.</text>
 <text name="rad_tip_focus_burst">Tip: Burst pinpoint beams trade the high damage of most pinpoints for a burst of multiple consecutive low power beams, allowing for a shorter charge time when compared with normal pinpoint beams.</text>
 
 </FTL>

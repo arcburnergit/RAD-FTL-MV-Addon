@@ -713,6 +713,17 @@
       <name>rad_q10</name>
     </req>
   </req>
+  <req name="rad_total" type="sum">
+    <name>rad_q1</name>
+    <name>rad_q2</name>
+    <name>rad_q3</name>
+    <name>rad_q4</name>
+    <name>rad_q5</name>
+    <name>rad_q6</name>
+    <name>rad_q7</name>
+    <name>rad_q8</name>
+    <name>rad_q9</name>
+  </req>
 
   <variable name="loc_rad_board_charged" op="set" val="1"/>
 

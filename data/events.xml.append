@@ -58,7 +58,7 @@
             <text>All quests complete.</text>
             <event load="OPTION_INVALID" />
           </choice-->
-          <choice hidden="true" req="rad_q10" lvl="3">
+          <choice hidden="true" req="rad_total" lvl="5">
             <text>You'll help. [??? Quest]</text>
             <event load="RAD_WARPED_1"/>
           </choice>

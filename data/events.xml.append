@@ -1708,6 +1708,7 @@ Once you're onboard, you'll need to kill the crew manning the station, and then 
                 <quest event="RAD_MIRROR_2"/>
                 <crewMember amount="1" class="human_medic"/>
                 <store>STORE_RADLAB</store>
+								<variable name="loc_rad_board_charged" op="set" val="1"/>
               </event>
             </choice>
           </event>
@@ -1743,7 +1744,6 @@ Once you're onboard, you'll need to kill the crew manning the station, and then 
 "Alright, when you're ready press that button over there and that'll warp all of your crew onto the outpost."</text>
     <ship load="MU_RAD_REBELOUT" hostile="false" />
     
-    <variable name="loc_rad_board_charged" op="set" val="1"/>
     <eventButton name="UI_RAD_BOARD">
       <event load="RAD_MIRROR_3"/>
       <image>statusUI/rad_board</image>

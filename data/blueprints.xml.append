@@ -3830,7 +3830,7 @@ Inherited Human stats: minor suffocation resistance, learns skills faster
     <desc id="crew_human_desc" />
     <cost>40</cost>
     <!--was 40-->
-    <bp>2</bp>
+    <bp>0</bp>
     <title>Civilian</title>
     <short>Civilian</short>
     <rarity>1</rarity>

@@ -318,7 +318,7 @@
     <crewLimit>6</crewLimit>
     <systemLimit>10</systemLimit>
     <rooms>
-      <room id="8"> 
+      <room id="4"> 
 				<roomAnim renderLayer="0">radread_2x2</roomAnim>
 			</room>
     </rooms>

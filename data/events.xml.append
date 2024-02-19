@@ -1756,7 +1756,7 @@ Once you're onboard, you'll need to kill the crew manning the station, and then 
   </event>
 
   <event name="RAD_MIRROR_3">
-    <variable name="loc_escort_teleport_charged" op="set" val="0"/>
+    <variable name="loc_rad_board_charged" op="set" val="0"/>
     <ship hostile="true" />
     <text>Your crew are warped aboard the rebel outpost.</text>
   </event>

@@ -2899,6 +2899,8 @@ It also provides 5 super hull points.
     <crewCount amount="1" class="crystal" />
     <crewCount amount="1" class="human" />
     <aug name="RAD_REFLECT_HULL" />
+    <shieldImage>mup_long2</shieldImage>
+    <mv-mapImage>map_icon_mup_mvcrystal_a</mv-mapImage>
   </shipBlueprint>
 
   <shipBlueprint name="PLAYER_SHIP_RAD_CRYSTAL_2" layout="radp_crystal_b" img="radp_crystal_b">
@@ -2975,6 +2977,8 @@ It also provides 5 super hull points.
     <crewCount amount="1" class="crystal" />
     <crewCount amount="1" class="orchid" />
     <aug name="RAD_TIME_HULL" />
+    <shieldImage>mup_long2</shieldImage>
+    <mv-mapImage>map_icon_mup_mvcrystal_a</mv-mapImage>
   </shipBlueprint>
 
   <shipBlueprint name="PLAYER_SHIP_RAD_CRYSTAL_3" layout="radp_crystal_c" img="radp_crystal_c">
@@ -3036,6 +3040,8 @@ You'll need to avoid as much damage to your crew as possible, the meagre healing
     <crewCount amount="1" class="mantis_free" />
     <aug name="RAD_BULLET_HELL" />
     <aug name="DRONE_RECOVERY" />
+    <shieldImage>mup_long2</shieldImage>
+    <mv-mapImage>map_icon_mup_mvcrystal_a</mv-mapImage>
   </shipBlueprint>
 
   <augBlueprint name="RAD_CREVERSAL">

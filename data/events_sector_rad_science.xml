@@ -615,10 +615,10 @@ One of the crew on the station offer to join your crew.</text>
 	<event load="DISTRESS_RAD_SCIENCE_CHOICE" />
 </eventList>
 
-  <ship name="SHIP_RAD_SCIENCE_PIRATEBOARD" auto_blueprint="SHIP_RAD_SCIENCE_PIRATEBOARD">
-    <destroyed load="DESTROYED_RAD_SCIENCE" />
-    <deadCrew load="DEAD_CREW_RAD_SCIENCE" />
-  </ship>
+<ship name="SHIP_RAD_SCIENCE_PIRATEBOARD" auto_blueprint="SHIP_RAD_SCIENCE_PIRATEBOARD">
+  <destroyed load="DESTROYED_RAD_SCIENCE" />
+  <deadCrew load="DEAD_CREW_RAD_SCIENCE" />
+</ship>
 
 <event name="DISTRESS_RAD_SCIENCE_REBELBOARD" unique="true">
 	<distressBeacon />

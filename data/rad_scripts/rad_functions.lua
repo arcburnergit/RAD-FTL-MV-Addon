@@ -1847,164 +1847,7 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
     end
 end, function() end)
 
-script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
-    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then 
 
-    end
-end)
-
-local function addWarning(projectile, warningData)
-    if projectile.damage.iIonDamage > 0 then 
-        table.insert(warningData.warnings, {projectile.target.x, projectile.target.y, true, 120})
-    else
-        table.insert(warningData.warnings, {projectile.target.x, projectile.target.y, false, 120})
-    end
-end
-
-script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
-    local weaponType = weaponBlueprint.typeName
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
-    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then 
-        if projectile.extend.name ~= "DRONE_LASER_DEFENSE" and projectile.extend.name ~= "DRONE_MISSILE_DEFENSE" and projectile.extend.name ~= "DRONE_ION_DEFENSE" and projectile.extend.name ~= "ANCIENT_DRONE_DEFENSE" and projectile.extend.name ~= "ROYAL_DRONE_DEFENSE" and projectile.extend.name ~= "DRONE_LASER_ENGI_DEFENSE_LOOT" then    
-            if weaponType == "BEAM" then
-                local damageNew = projectile.damage
-                damageNew.iPersDamage = 0
-                projectile:SetDamage(damageNew)
-            else
-                if projectile.currentSpace == projectile.destinationSpace then 
-                    projectile.speed_magnitude = (projectile.speed_magnitude / 8)
-                else
-                    projectile.speed_magnitude = (projectile.speed_magnitude / 4)
-                end
-
-                local damageNew = projectile.damage
-                damageNew.iPersDamage = math.min(projectile.damage.iPersDamage + 3,5)
-                projectile:SetDamage(damageNew)
-                if weaponType ~= "BEAM" and projectile.destinationSpace == 0 then 
-                    --log("ADD WARNING")
-                    local warningData = userdata_table(shipManager, "mods.rad.warnings")
-                    
-
-                    if warningData.warnings then 
-                        addWarning(projectile, warningData)
-                    else
-                        warningData.warnings = {}
-                        addWarning(projectile, warningData)
-                    end
-                end 
-            end
-        else
-            projectile.speed_magnitude = (projectile.speed_magnitude / 3)
-        end
-    end
-end)
-
- 
-
-script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship)
-    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame and ship.iShipId == 0 then
-        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
-        local warningData = userdata_table(shipManager, "mods.rad.warnings")
-        if warningData.warnings then
-
-            for k,v in pairs(warningData.warnings) do 
-                --log("RENDER WARNING")
-                local xPos = v[1]
-                local yPos = v[2]
-                local ion = v[3]
-                local timeLeft = v[4]
-                local warningImageRed = Hyperspace.Resources:CreateImagePrimitiveString(
-                    "statusUI/rad_warning.png",
-                    xPos-11,
-                    yPos-11,
-                    0,
-                    Graphics.GL_Color(1, 1, 1, 1),
-                    1.0,
-                    false)
-                local warningImageBlue = Hyperspace.Resources:CreateImagePrimitiveString(
-                    "statusUI/rad_warning2.png",
-                    xPos-11,
-                    yPos-11,
-                    0,
-                    Graphics.GL_Color(1, 1, 1, 1),
-                    1.0,
-                    false)
-                if ion then
-                    Graphics.CSurface.GL_RenderPrimitive(warningImageBlue)
-                else
-                    Graphics.CSurface.GL_RenderPrimitive(warningImageRed)
-                end
-                warningData.warnings[k][4] = math.max(0, timeLeft - Hyperspace.FPS.SpeedFactor/16)
-                if warningData.warnings[k][4] == 0 then
-                    table.remove(warningData.warnings, k)
-                end
-            end
-        end
-    end
-end, function() end)
-
-script.on_internal_event(Defines.InternalEvents.PROJECTILE_COLLISION, function(thisProjectile, otherProjectile, damage, response)
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
-    local warningData = userdata_table(shipManager, "mods.rad.warnings")
-    local x = thisProjectile.target.x
-    local y = thisProjectile.target.y 
-    if warningData.warnings then
-        for k,v in pairs(warningData.warnings) do 
-            local xPos = v[1]
-            local yPos = v[2]
-            if math.abs(xPos - x) < 3 and math.abs(yPos - y) < 3 then
-                table.remove(warningData.warnings, k)
-            end
-        end
-    end
-    return Defines.Chain.CONTINUE
-end)
-
-script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
-    local warningData = userdata_table(shipManager, "mods.rad.warnings")
-    if warningData.warnings then 
-        warningData.warnings = nil
-        warningData.warnings = {}
-    end
-end)
-
-script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, evasion, friendlyfire)
-    if shipManager.iShipId == 0 then 
-        local x = location.x
-        local y = location.y 
-        local warningData = userdata_table(shipManager, "mods.rad.warnings")
-        if warningData.warnings then
-            for k,v in pairs(warningData.warnings) do 
-                local xPos = v[1]
-                local yPos = v[2]
-                if math.abs(xPos - x) < 3 and math.abs(yPos - y) < 3 then
-                    table.remove(warningData.warnings, k)
-                end
-            end
-        end
-    end
-end)
-
-script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
-    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then
-        for system in vter(shipManager.vSystemList) do
-            if system:NeedsRepairing() then
-                system:PartialRepair(0,true)
-            end
-        end
-        shipManager.cloneSystem.fTimeToClone = shipManager.cloneSystem.fTimeGoal
-    end
-end)
-
-script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
-    if crewmem.iShipId == 0 and crewmem.intruder == false and shipManager:HasAugmentation("RAD_BULLET_HELL")>0 then 
-        if crewmem.bCloned then 
-            crewmem:Kill(true)
-        end
-    end
-end)
 
 --[[script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augName, augValue)
     if augName == "UPG_CLONEBAY_DNA" and shipManager:HasAugmentation("RAD_BULLET_HELL")>0 then
@@ -2490,7 +2333,7 @@ end)]]--
 
 
 
-script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
+--[[script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
     if shipManager.iShipId == 0 then 
         local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
         for crewmem in vter(shipManager.vCrewList) do
@@ -2501,10 +2344,10 @@ script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManage
             --[[if crewmem.type == "unique_rad_scientist_tele" then 
                 crewmem:Kill(true)
                 commandGui:RunCommand("CREW unique_rad_scientist")
-            end]]
+            end
         end
     end
-end)
+end)]]
 
 
 script.on_game_event("COMBAT_CHECK_REAL", false, function()
@@ -2557,3 +2400,224 @@ end)
         end
     end
 end)]]--
+
+local radProjectileWarnings = {}
+
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+    local currentProjectiles = {}
+
+    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then
+        log("ON_TICK") 
+        for projectile in vter(spaceManager.projectiles) do
+            log("PROJECTILEPRE VALID")
+            local weaponType = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name).typeName
+            if weaponType ~= "BEAM" and projectile.destinationSpace == 0 and projectile.extend.name ~= "DRONE_LASER_DEFENSE" and projectile.extend.name ~= "DRONE_MISSILE_DEFENSE" and projectile.extend.name ~= "DRONE_ION_DEFENSE" and projectile.extend.name ~= "ANCIENT_DRONE_DEFENSE" and projectile.extend.name ~= "ROYAL_DRONE_DEFENSE" and projectile.extend.name ~= "DRONE_LASER_ENGI_DEFENSE_LOOT" then    
+                log("PROJECTILE VALID")
+                currentProjectiles[projectile.selfId] = true
+                if not radProjectileWarnings[projectile.selfId] then
+                    if projectile.damage.iIonDamage > 0 then 
+                        radProjectileWarnings[projectile.selfId] = {projectile.target, true}
+                    else
+                        radProjectileWarnings[projectile.selfId] = {projectile.target, false}
+                    end
+                end
+            end
+        end
+
+
+        for projId in pairs(radProjectileWarnings) do
+            log("PROJECTILE")
+            if not currentProjectiles[projId] then
+                radProjectileWarnings[projId] = nil
+            end
+        end
+    end
+end)
+
+script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship)
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame and ship.iShipId == 0 then
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+        if radProjectileWarnings then
+
+            for k,v in pairs(radProjectileWarnings) do 
+                --log("RENDER WARNING")
+                local xPos = v[1].x
+                local yPos = v[1].y
+                local ion = v[2]
+                local warningImageRed = Hyperspace.Resources:CreateImagePrimitiveString(
+                    "statusUI/rad_warning.png",
+                    xPos-11,
+                    yPos-11,
+                    0,
+                    Graphics.GL_Color(1, 1, 1, 1),
+                    1.0,
+                    false)
+                local warningImageBlue = Hyperspace.Resources:CreateImagePrimitiveString(
+                    "statusUI/rad_warning2.png",
+                    xPos-11,
+                    yPos-11,
+                    0,
+                    Graphics.GL_Color(1, 1, 1, 1),
+                    1.0,
+                    false)
+                if ion then
+                    Graphics.CSurface.GL_RenderPrimitive(warningImageBlue)
+                else
+                    Graphics.CSurface.GL_RenderPrimitive(warningImageRed)
+                end
+            end
+        end
+    end
+end, function() end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_LEAVE, function(shipManager)
+    local warningData = userdata_table(shipManager, "mods.rad.warnings")
+    if warningData.warnings then 
+        warningData.warnings = nil
+        warningData.warnings = {}
+    end
+end)
+
+--[[
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then 
+
+    end
+end)
+
+local function addWarning(projectile, warningData)
+    if projectile.damage.iIonDamage > 0 then 
+        table.insert(warningData.warnings, {projectile.target.x, projectile.target.y, true, 120})
+    else
+        table.insert(warningData.warnings, {projectile.target.x, projectile.target.y, false, 120})
+    end
+end]]
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
+    local weaponType = weaponBlueprint.typeName
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then 
+        if projectile.extend.name ~= "DRONE_LASER_DEFENSE" and projectile.extend.name ~= "DRONE_MISSILE_DEFENSE" and projectile.extend.name ~= "DRONE_ION_DEFENSE" and projectile.extend.name ~= "ANCIENT_DRONE_DEFENSE" and projectile.extend.name ~= "ROYAL_DRONE_DEFENSE" and projectile.extend.name ~= "DRONE_LASER_ENGI_DEFENSE_LOOT" then    
+            if weaponType == "BEAM" then
+                local damageNew = projectile.damage
+                damageNew.iPersDamage = 0
+                projectile:SetDamage(damageNew)
+            else
+                if projectile.currentSpace == projectile.destinationSpace then 
+                    projectile.speed_magnitude = (projectile.speed_magnitude / 8)
+                else
+                    projectile.speed_magnitude = (projectile.speed_magnitude / 4)
+                end
+
+                local damageNew = projectile.damage
+                damageNew.iPersDamage = math.min(projectile.damage.iPersDamage + 3,5)
+                projectile:SetDamage(damageNew)
+            end
+        else
+            projectile.speed_magnitude = (projectile.speed_magnitude / 3)
+        end
+    end
+end)
+
+
+--[[
+script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship)
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame and ship.iShipId == 0 then
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+        local warningData = userdata_table(shipManager, "mods.rad.warnings")
+        if warningData.warnings then
+
+            for k,v in pairs(warningData.warnings) do 
+                --log("RENDER WARNING")
+                local xPos = v[1]
+                local yPos = v[2]
+                local ion = v[3]
+                local timeLeft = v[4]
+                local warningImageRed = Hyperspace.Resources:CreateImagePrimitiveString(
+                    "statusUI/rad_warning.png",
+                    xPos-11,
+                    yPos-11,
+                    0,
+                    Graphics.GL_Color(1, 1, 1, 1),
+                    1.0,
+                    false)
+                local warningImageBlue = Hyperspace.Resources:CreateImagePrimitiveString(
+                    "statusUI/rad_warning2.png",
+                    xPos-11,
+                    yPos-11,
+                    0,
+                    Graphics.GL_Color(1, 1, 1, 1),
+                    1.0,
+                    false)
+                if ion then
+                    Graphics.CSurface.GL_RenderPrimitive(warningImageBlue)
+                else
+                    Graphics.CSurface.GL_RenderPrimitive(warningImageRed)
+                end
+                warningData.warnings[k][4] = math.max(0, timeLeft - Hyperspace.FPS.SpeedFactor/16)
+                if warningData.warnings[k][4] == 0 then
+                    table.remove(warningData.warnings, k)
+                end
+            end
+        end
+    end
+end, function() end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_COLLISION, function(thisProjectile, otherProjectile, damage, response)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    local warningData = userdata_table(shipManager, "mods.rad.warnings")
+    local x = thisProjectile.target.x
+    local y = thisProjectile.target.y 
+    if warningData.warnings then
+        for k,v in pairs(warningData.warnings) do 
+            local xPos = v[1]
+            local yPos = v[2]
+            if math.abs(xPos - x) < 3 and math.abs(yPos - y) < 3 then
+                table.remove(warningData.warnings, k)
+            end
+        end
+    end
+    return Defines.Chain.CONTINUE
+end)
+
+
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, evasion, friendlyfire)
+    if shipManager.iShipId == 0 then 
+        local x = location.x
+        local y = location.y 
+        local warningData = userdata_table(shipManager, "mods.rad.warnings")
+        if warningData.warnings then
+            for k,v in pairs(warningData.warnings) do 
+                local xPos = v[1]
+                local yPos = v[2]
+                if math.abs(xPos - x) < 3 and math.abs(yPos - y) < 3 then
+                    table.remove(warningData.warnings, k)
+                end
+            end
+        end
+    end
+end)]]
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then
+        for system in vter(shipManager.vSystemList) do
+            if system:NeedsRepairing() then
+                system:PartialRepair(0,true)
+            end
+        end
+        shipManager.cloneSystem.fTimeToClone = shipManager.cloneSystem.fTimeGoal
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    if crewmem.iShipId == 0 and crewmem.intruder == false and shipManager:HasAugmentation("RAD_BULLET_HELL")>0 then 
+        if crewmem.bCloned then 
+            crewmem:Kill(true)
+        end
+    end
+end)

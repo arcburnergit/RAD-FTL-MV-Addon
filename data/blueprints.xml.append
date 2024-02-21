@@ -4093,5 +4093,182 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
     <crewCount amount="1" class="human" />
     <crewCount amount="1" class="human_soldier" />
   </shipBlueprint>
+
+  <augBlueprint name="RAD_LOW_SCRAP">
+    <title>Small Cargo Hold</title>
+    <desc>Once you reach 80 scrap in your cargo hold, you are unable to gain any more from combat or events, however you gain 50% more scrap .</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <weaponBlueprint name="RAD_DIFFUSE_1">
+    <type>BURST</type>
+    <title>Diffusion Cannon Mk1</title>
+    <short>Diffuse I</short>
+    <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.</desc>
+    <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
+    <damage>1</damage>
+    <sysDamage>0</sysDamage>
+    <shots>1</shots>
+    <radius>100</radius>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>9</cooldown>
+    <power>1</power>
+    <cost>50</cost>
+    <bp>2</bp>
+    <rarity>5</rarity>
+    <projectiles>
+      <projectile count="1" fake="false">rad_diff_shot</projectile>
+    </projectiles>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <sound>lightLaser2</sound>
+      <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_diffuse_1</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_DIFFUSE_2">
+    <type>BURST</type>
+    <title>Diffusion Cannon Mk1</title>
+    <short>Diffuse II</short>
+    <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.</desc>
+    <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
+    <damage>1</damage>
+    <sysDamage>0</sysDamage>
+    <shots>3</shots>
+    <radius>100</radius>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>14</cooldown>
+    <power>2</power>
+    <cost>60</cost>
+    <bp>2</bp>
+    <rarity>5</rarity>
+    <projectiles>
+      <projectile count="1" fake="false">rad_diff_shot</projectile>
+    </projectiles>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <sound>lightLaser2</sound>
+      <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_diffuse_2</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_DIFFUSE_3">
+    <type>BURST</type>
+    <title>Diffusion Cannon Mk3</title>
+    <short>Diffuse III</short>
+    <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.</desc>
+    <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
+    <damage>1</damage>
+    <sysDamage>0</sysDamage>
+    <shots>5</shots>
+    <radius>100</radius>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>17</cooldown>
+    <power>3</power>
+    <cost>70</cost>
+    <bp>2</bp>
+    <rarity>5</rarity>
+    <projectiles>
+      <projectile count="1" fake="false">rad_diff_shot</projectile>
+    </projectiles>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <sound>lightLaser2</sound>
+      <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_diffuse_3</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_DIFFUSE_ION">
+    <type>BURST</type>
+    <title>Diffusion Ion</title>
+    <short>Diffuse Ion</short>
+    <desc>Each projectile fired from this weapon impacts the shields, ioning them, before splitting into two more projectiles that each hit somewhere on the enemy ship.</desc>
+    <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
+    <damage>0</damage>
+    <sysDamage>0</sysDamage>
+    <ion>1</ion>
+    <radius>100</radius>
+    <shots>3</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>9</cooldown>
+    <power>21</power>
+    <cost>60</cost>
+    <bp>2</bp>
+    <rarity>5</rarity>
+    <projectiles>
+      <projectile count="1" fake="false">ion_4_shot</projectile>
+    </projectiles>
+    <launchSounds>
+      <sound>lightLaser1</sound>
+      <sound>lightLaser2</sound>
+      <sound>lightLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_diffuse_ion</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
   
 </FTL>

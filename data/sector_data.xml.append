@@ -71,6 +71,11 @@
     <blueprint name="RAD_LIGHTNING_ION" rarity="2" />
     <blueprint name="RAD_LIGHTNING_FIRE" rarity="3" />
     <blueprint name="RAD_TRASH_BEAM" rarity="3" />
+    <blueprint name="RAD_DIFFUSE_1" rarity="3" />
+    <blueprint name="RAD_DIFFUSE_2" rarity="2" />
+    <blueprint name="RAD_DIFFUSE_3" rarity="3" />
+    <blueprint name="RAD_DIFFUSE_ION" rarity="2" />
+    <blueprint name="DEFENSE_FOCUS" rarity="3" />
   </rarityList>
   <startEvent>START_RAD_SCIENCE</startEvent>
   <removeFirstBeaconNebula />
@@ -127,6 +132,12 @@
     <mod-append:blueprint name="RAD_LIGHTNING_3" rarity="0" />
     <mod-append:blueprint name="RAD_LIGHTNING_ION" rarity="0" />
     <mod-append:blueprint name="RAD_LIGHTNING_FIRE" rarity="0" />
+    <mod-append:blueprint name="RAD_TRASH_BEAM" rarity="0" />
+    <mod-append:blueprint name="RAD_DIFFUSE_1" rarity="0" />
+    <mod-append:blueprint name="RAD_DIFFUSE_2" rarity="0" />
+    <mod-append:blueprint name="RAD_DIFFUSE_3" rarity="0" />
+    <mod-append:blueprint name="RAD_DIFFUSE_ION" rarity="0" />
+    <mod-append:blueprint name="DEFENSE_FOCUS" rarity="0" />
 	</mod:findLike>
 </mod:findName>
 
@@ -154,6 +165,12 @@
     <mod-append:blueprint name="RAD_LIGHTNING_3" rarity="0" />
     <mod-append:blueprint name="RAD_LIGHTNING_ION" rarity="0" />
     <mod-append:blueprint name="RAD_LIGHTNING_FIRE" rarity="0" />
+    <mod-append:blueprint name="RAD_TRASH_BEAM" rarity="0" />
+    <mod-append:blueprint name="RAD_DIFFUSE_1" rarity="0" />
+    <mod-append:blueprint name="RAD_DIFFUSE_2" rarity="0" />
+    <mod-append:blueprint name="RAD_DIFFUSE_3" rarity="0" />
+    <mod-append:blueprint name="RAD_DIFFUSE_ION" rarity="0" />
+    <mod-append:blueprint name="DEFENSE_FOCUS" rarity="0" />
 	</mod:findLike>
 </mod:findName>
 </FTL>

@@ -25,6 +25,10 @@
   <mod-append:name>RAD_LIGHTNING_FIRE</mod-append:name>
   <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
   <mod-append:name>RAD_SCIENCE_LOOT</mod-append:name>
+  <mod-append:name>RAD_DIFFUSE_1</mod-append:name>
+  <mod-append:name>RAD_DIFFUSE_2</mod-append:name>
+  <mod-append:name>RAD_DIFFUSE_3</mod-append:name>
+  <mod-append:name>RAD_DIFFUSE_ION</mod-append:name>
 </mod:findName>
 <mod:findName type="blueprintList" name="LIST_WEAPONS_ALL_CRAPBUCKET">
 	<mod-append:name>RAD_CLUSTER_MISSILE</mod-append:name>
@@ -51,6 +55,10 @@
   <mod-append:name>RAD_LIGHTNING_FIRE</mod-append:name>
   <mod-append:name>RAD_TRASH_BEAM</mod-append:name>
   <mod-append:name>RAD_SCIENCE_LOOT</mod-append:name>
+  <mod-append:name>RAD_DIFFUSE_1</mod-append:name>
+  <mod-append:name>RAD_DIFFUSE_2</mod-append:name>
+  <mod-append:name>RAD_DIFFUSE_3</mod-append:name>
+  <mod-append:name>RAD_DIFFUSE_ION</mod-append:name>
 </mod:findName>
 
   <blueprintList name="LIST_WEAPONS_RAD_SCIENCE">
@@ -89,6 +97,9 @@
     <name>RAD_LIGHTNING_1</name>
     <name>RAD_LIGHTNING_2</name>
     <name>RAD_TRASH_BEAM</name>
+    <name>RAD_DIFFUSE_1</name>
+    <name>RAD_DIFFUSE_2</name>
+    <name>RAD_DIFFUSE_ION</name>
   </blueprintList>
 
   <mod:findName type="blueprintList" name="LIST_DRONES_ALL">
@@ -163,6 +174,10 @@
   <name>RAD_LIGHTNING_ION</name>
   <name>RAD_LIGHTNING_FIRE</name>
   <name>RAD_TRASH_BEAM</name>
+  <name>RAD_DIFFUSE_1</name>
+  <name>RAD_DIFFUSE_2</name>
+  <name>RAD_DIFFUSE_3</name>
+  <name>RAD_DIFFUSE_ION</name>
 </blueprintList>
 
 <blueprintList name="LABRATORY_AUGMENTS">

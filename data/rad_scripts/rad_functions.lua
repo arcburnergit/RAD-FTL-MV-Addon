@@ -11,6 +11,12 @@ local function userdata_table(userdata, tableName)
     return userdata.table[tableName]
 end
 
+local function get_random_point_in_radius(center, radius)
+    r = radius * math.sqrt(math.random())
+    theta = random() * 2 * math.pi
+    return Hyperspace.Pointf(center.x + r * math.cos(theta), center.y + r * math.sin(theta))
+end
+
 local function vter(cvec)
     local i = -1
     local n = cvec:size()
@@ -2236,20 +2242,31 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
 end)
 
 script.on_game_event("RAD_MAIN_RETURN2", false, function()
-    local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
-    commandGui:RunCommand("EVENT RAD_MAIN_1")
+    local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+    worldManager:ClearLocation()
+    Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_1",false,-1)
+
+
+    --[[local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+    commandGui:RunCommand("EVENT RAD_MAIN_1")]]--
 end)
 
 script.on_game_event("RAD_MAIN_2", false, function()
     local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
-    local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
-    commandGui:RunCommand("EVENT RAD_MAIN_2_SHIP")
+    worldManager:ClearLocation()
+    Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_2_SHIP",false,-1)
+
+    --local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+    --commandGui:RunCommand("EVENT RAD_MAIN_2_SHIP")
 end)
 
 script.on_game_event("RAD_MAIN_3", false, function()
     local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
-    local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
-    commandGui:RunCommand("EVENT RAD_MAIN_3_SHIP")
+    worldManager:ClearLocation()
+    Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_3_SHIP",false,-1)
+    
+    --local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+    --commandGui:RunCommand("EVENT RAD_MAIN_3_SHIP")
 
     --local EventGenerator = Hyperspace.Global.GetInstance():GetEventGenerator()
     --local shipEvent = EventGenerator:GetShipEvent("RAD_MAIN_3_SHIP")
@@ -2262,8 +2279,12 @@ script.on_game_event("RAD_MAIN_3", false, function()
 end)
 
 script.on_game_event("DESTROYED_RAD_SCIENCE_REBELAUTO", false, function()
-    local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
-    commandGui:RunCommand("EVENT RAD_SCIENCE_QUEST_FIGHT_2")
+    local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+    worldManager:ClearLocation()
+    Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_SCIENCE_QUEST_FIGHT_2",false,-1)
+
+    --local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+    --commandGui:RunCommand("EVENT RAD_SCIENCE_QUEST_FIGHT_2")
 end)
 
 local hasWeapon = true
@@ -2275,7 +2296,8 @@ local hasClone = true
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
     if shipManager.iShipId == 1 and shipManager.myBlueprint.blueprintName == "RAD_MAIN_LAB_WALK" then
-        local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+        local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+        --local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
         local crewInTeleRoom = false
         for crewmem in vter(shipManager.vCrewList) do
             --log(crewmem.iRoomId)
@@ -2284,22 +2306,28 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
                 crewInTeleRoom = true
             elseif crewmem.iRoomId == 1 and hasWeapon and crewmem.iShipId == 0 then 
                 hasWeapon = false
-                commandGui:RunCommand("LOADEVENT RAD_MAIN_WEAPON")
+                Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_WEAPON",false,-1)
+                --commandGui:RunCommand("LOADEVENT RAD_MAIN_WEAPON")
             elseif crewmem.iRoomId == 6 and hasShield and crewmem.iShipId == 0 then 
                 hasShield = false
-                commandGui:RunCommand("LOADEVENT RAD_MAIN_SHIELD")
+                Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_SHIELD",false,-1)
+                --commandGui:RunCommand("LOADEVENT RAD_MAIN_SHIELD")
             elseif crewmem.iRoomId == 5 and hasEngine and crewmem.iShipId == 0 then 
                 hasEngine = false
-                commandGui:RunCommand("LOADEVENT RAD_MAIN_ENGINE")
+                Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_ENGINE",false,-1)
+                --commandGui:RunCommand("LOADEVENT RAD_MAIN_ENGINE")
             elseif crewmem.iRoomId == 4 and hasClone and crewmem.iShipId == 0 then 
                 hasClone = false
-                commandGui:RunCommand("LOADEVENT RAD_MAIN_CLONE")
+                Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_CLONE",false,-1)
+                --commandGui:RunCommand("LOADEVENT RAD_MAIN_CLONE")
             elseif crewmem.iRoomId == 12 and hasPilot and (not hasHack) and crewmem.iShipId == 0 then 
                 hasPilot = false
-                commandGui:RunCommand("LOADEVENT RAD_MAIN_PILOT")
+                Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_PILOT",false,-1)
+                --commandGui:RunCommand("LOADEVENT RAD_MAIN_PILOT")
             elseif crewmem.iRoomId == 7 and hasHack and crewmem.iShipId == 0 then 
                 hasHack = false
-                commandGui:RunCommand("LOADEVENT RAD_MAIN_HACK")
+                Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_HACK",false,-1)
+                --commandGui:RunCommand("LOADEVENT RAD_MAIN_HACK")
             end
         end
         if crewInTeleRoom then
@@ -2619,5 +2647,38 @@ script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
         if crewmem.bCloned then 
             crewmem:Kill(true)
         end
+    end
+end)
+
+mods.rad.diffuseWeapons = {}
+local diffuseWeapons = mods.rad.diffuseWeapons
+diffuseWeapons["RAD_DIFFUSE_1"] = true
+diffuseWeapons["RAD_DIFFUSE_2"] = true
+diffuseWeapons["RAD_DIFFUSE_3"] = true
+diffuseWeapons["RAD_DIFFUSE_ION"] = true
+
+script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response) 
+    local diffData = nil
+    if pcall(function() diffData = diffuseWeapons[Hyperspace.Get_Projectile_Extend(projectile).name] end) and diffData then
+        local damage = projectile.damage
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+        local proj1 = spaceManager:CreateLaserBlast(
+            Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name),
+            projectile.position,
+            projectile.currentSpace,
+            projectile.ownerId,
+            get_random_point_in_radius(projectile.target, 50),
+            projectile.destinationSpace,
+            projectile.heading)
+        local proj2 = spaceManager:CreateLaserBlast(
+            Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name),
+            projectile.position,
+            projectile.currentSpace,
+            projectile.ownerId,
+            get_random_point_in_radius(projectile.target, 50),
+            projectile.destinationSpace,
+            projectile.heading)
+        proj1:SetDamage(damage)
+        proj2:SetDamage(damage)
     end
 end)

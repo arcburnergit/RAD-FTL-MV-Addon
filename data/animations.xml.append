@@ -1010,5 +1010,52 @@
     <desc length="1" x="0" y="0" />
     <time>1</time>
   </anim>
-  
+
+  <animSheet name="rad_diff_shot" w="256" h="32" fw="32" fh="32">weapons/rad_diff_shot_strip8.png</animSheet>
+  <anim name="rad_diff_shot">
+    <sheet>rad_diff_shot</sheet>
+    <desc length="8" x="0" y="0" />
+    <time>0.3</time>
+  </anim>
+
+  <animSheet name="rad_diffuse_1" w="112" h="38" fw="14" fh="38">weapon_laser/rad_diffuse_1.png</animSheet>
+  <weaponAnim name="rad_diffuse_1">
+    <sheet>rad_diffuse_1</sheet>
+    <desc length="8" x="0" y="0" />
+    <chargedFrame>4</chargedFrame>
+    <fireFrame>5</fireFrame>
+    <firePoint x="8" y="8" />
+    <mountPoint x="2" y="26" />
+  </weaponAnim>
+
+  <animSheet name="rad_diffuse_2" w="210" h="39" fw="21" fh="39">weapon_laser/rad_diffuse_2.png</animSheet>
+  <weaponAnim name="rad_diffuse_2">
+    <sheet>rad_diffuse_2</sheet>
+    <desc length="10" x="0" y="0" />
+    <chargedFrame>5</chargedFrame>
+    <fireFrame>6</fireFrame>
+    <firePoint x="12" y="12" />
+    <mountPoint x="3" y="27" />
+  </weaponAnim>
+
+  <animSheet name="rad_diffuse_3" w="297" h="59" fw="27" fh="59">weapon_laser/rad_diffuse_3.png</animSheet>
+  <weaponAnim name="rad_diffuse_3">
+    <sheet>rad_diffuse_3</sheet>
+    <desc length="11" x="0" y="0" />
+    <chargedFrame>7</chargedFrame>
+    <fireFrame>8</fireFrame>
+    <firePoint x="19" y="15" />
+    <mountPoint x="4" y="43" />
+  </weaponAnim>
+
+  <animSheet name="rad_diffuse_ion" w="168" h="33" fw="21" fh="33">weapon_laser/rad_diffuse_ion.png</animSheet>
+  <weaponAnim name="rad_diffuse_ion">
+    <sheet>rad_diffuse_ion</sheet>
+    <desc length="8" x="0" y="0" />
+    <chargedFrame>4</chargedFrame>
+    <fireFrame>5</fireFrame>
+    <firePoint x="15" y="8" />
+    <mountPoint x="3" y="20" />
+  </weaponAnim>
+
 </FTL>

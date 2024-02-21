@@ -1936,7 +1936,7 @@ You search the ship and find it empty of anything useful, however in one of the 
             <text>The scientists arrive.
 
 "Excellent work Captain, we'll be sure to contact you again in the future if we have any work for you."</text>
-            <unlockCustomShip silent="false">PLAYER_SHIP_RAD_CRYSTAL</unlockCustomShip>
+            <unlockCustomShip silent="false">PLAYER_SHIP_RAD_CRYSTAL_2</unlockCustomShip>
           </event>
         </choice>
       </event>

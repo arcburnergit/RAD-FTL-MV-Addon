@@ -4018,85 +4018,9 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
     <stackable>false</stackable>
   </augBlueprint>
 
-  <shipBlueprint name="PLAYER_SHIP_RAD_FLAGSHIP_2" layout="radp_flagship_player" img="radp_flagship_player">
-    <class>??? Cruiser</class>
-    <name>More Door</name>
-    <unlock id="ship_PLAYER_SHIP_RAD_FLAGSHIP_2_HIDDEN_unlock"/>
-    <desc>???</desc>
-    <systemList>
-      <battery power="1" room="8" start="false" img="room_battery_4" />
-      <!--cloaking power="1" room="12" start="false" img="room_cloaking_2" />
-      <clonebay power="1" room="11" start="true">
-        <slot>
-          <number>1</number>
-        </slot>
-      </clonebay-->
-      <doors power="2" room="9" start="true" img="room_doors_9">
-        <slot>
-          <direction>right</direction>
-          <number>1</number>
-        </slot>
-      </doors>
-      <drones power="1" room="3" start="true" img="room_drones_6" />
-      <engines power="1" room="1" start="true" img="room_engines_2">
-        <slot>
-          <direction>down</direction>
-          <number>2</number>
-        </slot>
-      </engines>
-      <hacking power="1" room="16" start="false" img="room_hacking_7" />
-      <!--medbay power="1" room="11" start="false" img="room_medbay">
-        <slot>
-          <number>1</number>
-        </slot>
-      </medbay-->
-      <mind power="1" room="2" start="false" img="room_mind_6" />
-      <oxygen power="1" room="14" start="true" img="room_oxygen_13" />
-      <pilot power="1" room="0" start="true" img="room_pilot">
-        <slot>
-          <direction>right</direction>
-          <number>0</number>
-        </slot>
-      </pilot>
-      <sensors power="1" room="10" start="false" img="room_sensors_3">
-        <slot>
-          <direction>right</direction>
-          <number>1</number>
-        </slot>
-      </sensors>
-      <shields power="2" room="19" max="8" start="true" img="room_shields_4">
-        <slot>
-          <direction>left</direction>
-          <number>0</number>
-        </slot>
-      </shields>
-      <teleporter power="1" room="7" start="false" />
-      <weapons power="4" room="6" max="12" start="true" img="room_weapons_13">
-        <slot>
-          <direction>up</direction>
-          <number>1</number>
-        </slot>
-      </weapons>
-    </systemList>
-    <weaponSlots>4</weaponSlots>
-    <droneSlots>2</droneSlots>
-    <weaponList missiles="12" count="4">
-      <weapon name="RAD_GATLING" />
-      <weapon name="RAD_LIGHT_BEAM" />
-    </weaponList>
-    <droneList drones="3" count="2">
-      <drone name="DOCTOR_DEFENSE" />
-    </droneList>
-    <health amount="30" />
-    <maxPower amount="8" />
-    <crewCount amount="1" class="rad_scientist" />
-    <crewCount amount="1" class="human" />
-    <crewCount amount="1" class="human_soldier" />
-  </shipBlueprint>
-
   <augBlueprint name="RAD_LOW_SCRAP">
     <title>Small Cargo Hold</title>
-    <desc>Once you reach 80 scrap in your cargo hold, you are unable to gain any more from combat or events, however you gain 50% more scrap.</desc>
+    <desc>Once you reach 75 scrap in your cargo hold, you are unable to gain any more from combat or events.</desc>
     <cost>0</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
@@ -4270,5 +4194,80 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
     <weaponArt>rad_diffuse_ion</weaponArt>
     <iconImage>laser</iconImage>
   </weaponBlueprint>
-  
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_FLAGSHIP_2" layout="mup_rad_flagship_b" img="mup_rad_flagship_b">
+    <class>Elite Reactor Cruiser</class>
+    <name>Compact Collector</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_FLAGSHIP_2_unlock"/>
+    <desc>A ship with a massive reactor, however this intrudes on the cargo bay, limiting the amount of scrap you can hold</desc>
+    <systemList>
+      <battery power="1" room="10" start="false" img="room_battery_13" />
+      <cloaking power="1" room="3" start="false" img="room_cloaking" />
+      <clonebay power="1" room="4" start="true">
+        <slot>
+          <number>3</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="14" start="false" img="room_doors_10">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="2" room="7" max="8" start="false" img="room_drones_17" />
+      <engines power="1" room="6" start="true" img="room_engines">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="8" start="false" img="room_hacking_8" />
+      <medbay power="1" room="4" start="false" img="room_medbay_3">
+        <slot>
+          <number>3</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="2" start="false" img="room_mind_6" />
+      <oxygen power="1" room="9" start="true" img="room_oxygen_6" />
+      <pilot power="2" room="0" start="true" img="room_pilot_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="12" start="true" img="room_sensors_8">
+        <slot>
+          <direction>down</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="13" max="8" start="true" img="room_shields_8">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="1" start="false" />
+      <weapons power="3" room="15" max="8" start="true" img="room_weapons_5">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="3" count="3">
+      <weapon name="RAD_LIGHTNING_ION" />
+      <weapon name="LASER_LIGHT_2" />
+    </weaponList>
+    <droneList drones="5" count="2" />
+    <health amount="30" />
+    <maxPower amount="50" />
+    <crewCount amount="1" class="rad_scientist" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="1" class="mantis_free" />
+    <aug name="RAD_LOW_SCRAP" />
+    <mv-mapImage>map_icon_mup_hacker_a</mv-mapImage>
+  </shipBlueprint>
 </FTL>

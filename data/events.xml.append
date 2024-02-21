@@ -712,7 +712,7 @@
 					</choice>
 				</event>
 			</choice>
-			<choice hidden="true">
+			<choice hidden="true" blue="true">
 				<text>Save it from certain imprisonment and torture. (The Good Option)</text>
 				<event>
 					<text>How could the scientists have done such scorching, cruel experiments? You're willing to take the heat so that they won't do any more to this ghost. You power up your weapons and the science fighter does the same.</text>

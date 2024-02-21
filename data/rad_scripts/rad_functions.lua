@@ -2682,3 +2682,10 @@ script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipM
         proj2:SetDamage(damage)
     end
 end)
+
+script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augName, augValue)
+    if augName == "SCRAP_COLLECTOR" and shipManager:HasAugmentation("RAD_LOW_SCRAP") > 0 and shipManager.currentScrap > 74 then
+        augValue=-1
+    end
+    return Defines.Chain.CONTINUE, augValue
+end, -100)

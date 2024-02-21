@@ -4096,7 +4096,7 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
 
   <augBlueprint name="RAD_LOW_SCRAP">
     <title>Small Cargo Hold</title>
-    <desc>Once you reach 80 scrap in your cargo hold, you are unable to gain any more from combat or events, however you gain 50% more scrap .</desc>
+    <desc>Once you reach 80 scrap in your cargo hold, you are unable to gain any more from combat or events, however you gain 50% more scrap.</desc>
     <cost>0</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>

@@ -3963,7 +3963,7 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
           <number>1</number>
         </slot>
       </doors>
-      <drones power="1" room="3" start="true" img="room_drones_6" />
+      <drones power="1" room="3" max="8" start="true" img="room_drones_6" />
       <engines power="1" room="1" start="true" img="room_engines_2">
         <slot>
           <direction>down</direction>

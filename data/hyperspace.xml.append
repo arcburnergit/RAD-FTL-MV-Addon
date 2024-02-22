@@ -554,6 +554,8 @@
   </aug>
   <aug name="RAD_WM_MULTISHOT">    
   </aug>
+  <aug name="RAD_WM_RAILGUN">
+  </aug>
   <aug name="RAD_MOD_SUS">
   </aug>
   <aug name="RAD_WM_BIGSHOT">
@@ -826,6 +828,12 @@
         <blueprint>RAD_WM_MULTISHOT</blueprint>
         <price>-1</price>
       </item>
+      <item>
+        <blueprint>RAD_WM_RAILGUN</blueprint>
+        <price>-1</price>
+      </item>
+    </category>
+    <category type="AUGMENTS">
       <item>
         <blueprint>RAD_MOD_SUS</blueprint>
         <price>-1</price>

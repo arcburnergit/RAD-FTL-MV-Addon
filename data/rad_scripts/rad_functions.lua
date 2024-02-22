@@ -13,7 +13,7 @@ end
 
 local function get_random_point_in_radius(center, radius)
     r = radius * math.sqrt(math.random())
-    theta = random() * 2 * math.pi
+    theta = math.random() * 2 * math.pi
     return Hyperspace.Pointf(center.x + r * math.cos(theta), center.y + r * math.sin(theta))
 end
 
@@ -2245,10 +2245,6 @@ script.on_game_event("RAD_MAIN_RETURN2", false, function()
     local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
     worldManager:ClearLocation()
     Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_1",false,-1)
-
-
-    --[[local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
-    commandGui:RunCommand("EVENT RAD_MAIN_1")]]--
 end)
 
 script.on_game_event("RAD_MAIN_2", false, function()
@@ -2652,30 +2648,35 @@ end)
 
 mods.rad.diffuseWeapons = {}
 local diffuseWeapons = mods.rad.diffuseWeapons
-diffuseWeapons["RAD_DIFFUSE_1"] = true
-diffuseWeapons["RAD_DIFFUSE_2"] = true
-diffuseWeapons["RAD_DIFFUSE_3"] = true
-diffuseWeapons["RAD_DIFFUSE_ION"] = true
+diffuseWeapons["RAD_DIFFUSE_1"] = "rad_diff_shot"
+diffuseWeapons["RAD_DIFFUSE_2"] = "rad_diff_shot"
+diffuseWeapons["RAD_DIFFUSE_3"] = "rad_diff_shot"
+diffuseWeapons["RAD_DIFFUSE_ION"] = "ion_4_shot"
 
 script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response) 
     local diffData = nil
-    if pcall(function() diffData = diffuseWeapons[Hyperspace.Get_Projectile_Extend(projectile).name] end) and diffData then
+    --local otherShip = Hyperspace.Global.GetInstance():GetShipManager()
+    if pcall(function() diffData = diffuseWeapons[Hyperspace.Get_Projectile_Extend(projectile).name] end) and diffData and shipManager.shieldSystem.shields.power.super.first <= 0 then
         local damage = projectile.damage
         local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
-        local proj1 = spaceManager:CreateLaserBlast(
+        local proj1 = spaceManager:CreateBurstProjectile(
             Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name),
+            diffData,
+            false,
             projectile.position,
             projectile.currentSpace,
             projectile.ownerId,
-            get_random_point_in_radius(projectile.target, 50),
+            get_random_point_in_radius(projectile.target, 10),
             projectile.destinationSpace,
             projectile.heading)
-        local proj2 = spaceManager:CreateLaserBlast(
+        local proj2 = spaceManager:CreateBurstProjectile(
             Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name),
+            diffData,
+            false,
             projectile.position,
             projectile.currentSpace,
             projectile.ownerId,
-            get_random_point_in_radius(projectile.target, 50),
+            get_random_point_in_radius(projectile.target, 10),
             projectile.destinationSpace,
             projectile.heading)
         proj1:SetDamage(damage)
@@ -2689,3 +2690,11 @@ script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function
     end
     return Defines.Chain.CONTINUE, augValue
 end, -100)
+
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+    if shipManager:HasAugmentation("RAD_WM_RAILGUN") > 0 then 
+        projectile.speed_magnitude = projectile.speed_magnitude*4
+    end
+end)

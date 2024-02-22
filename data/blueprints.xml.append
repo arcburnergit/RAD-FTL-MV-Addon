@@ -2662,20 +2662,22 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <cost>60</cost>
     <bp>2</bp>
     <rarity>5</rarity>
-    <image>laser_hull</image>
+    <image>ion_4_shot</image>
+    <explosion>explosion_small_ion</explosion>
     <launchSounds>
-      <sound>lightLaser1</sound>
-      <sound>lightLaser2</sound>
-      <sound>lightLaser3</sound>
+      <sound>ionShoot1</sound>
+      <sound>ionShoot2</sound>
+      <sound>ionShoot3</sound>
     </launchSounds>
     <hitShipSounds>
-      <sound>hitHull2</sound>
-      <sound>hitHull3</sound>
+      <sound>ionHit1</sound>
+      <sound>ionHit2</sound>
+      <sound>ionHit3</sound>
     </hitShipSounds>
     <hitShieldSounds>
-      <sound>hitShield1</sound>
-      <sound>hitShield2</sound>
-      <sound>hitShield3</sound>
+      <sound>ionShields1</sound>
+      <sound>ionShields2</sound>
+      <sound>ionShields3</sound>
     </hitShieldSounds>
     <missSounds>
       <sound>miss</sound>
@@ -2737,6 +2739,14 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <title>High Energy Weapons</title>
     <desc>Doubles the hull damage, system damage, and ion damage of all projectiles or beams you fire, but reduces weapon recharge rate by 60%, Incompatible with Multishot.</desc>
     <cost>60</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+  
+  <augBlueprint name="RAD_WM_RAILGUN">
+    <title>Rail Accelerated Weapons</title>
+    <desc>Multiplies the speed of all your projectiles and beams by 4. Railguns, hell yeah!</desc>
+    <cost>40</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
   </augBlueprint>
@@ -3935,7 +3945,7 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
   </crewBlueprint>
 
   <shipBlueprint name="PLAYER_SHIP_RAD_FLAGSHIP" layout="radp_flagship_player" img="radp_flagship_player">
-    <class>ELite Weapon Cruiser</class>
+    <class>Elite Weapon Cruiser</class>
     <name>More Powa</name>
     <unlock id="ship_PLAYER_SHIP_RAD_FLAGSHIP_unlock"/>
     <desc>This ship's weapon system has been beefed up to have a maximum system power of 12, however this extra power draw means you're unable to install any kind of medical system.</desc>
@@ -4030,12 +4040,13 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
     <type>BURST</type>
     <title>Diffusion Cannon Mk1</title>
     <short>Diffuse I</short>
-    <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.</desc>
+    <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.
+When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
     <sysDamage>0</sysDamage>
     <shots>1</shots>
-    <radius>100</radius>
+    <radius>40</radius>
     <sp>0</sp>
     <fireChance>0</fireChance>
     <breachChance>0</breachChance>
@@ -4072,12 +4083,13 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
     <type>BURST</type>
     <title>Diffusion Cannon Mk1</title>
     <short>Diffuse II</short>
-    <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.</desc>
+    <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.
+When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
     <sysDamage>0</sysDamage>
     <shots>3</shots>
-    <radius>100</radius>
+    <radius>40</radius>
     <sp>0</sp>
     <fireChance>0</fireChance>
     <breachChance>0</breachChance>
@@ -4114,12 +4126,13 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
     <type>BURST</type>
     <title>Diffusion Cannon Mk3</title>
     <short>Diffuse III</short>
-    <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.</desc>
+    <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.
+When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
     <sysDamage>0</sysDamage>
     <shots>5</shots>
-    <radius>100</radius>
+    <radius>40</radius>
     <sp>0</sp>
     <fireChance>0</fireChance>
     <breachChance>0</breachChance>
@@ -4156,37 +4169,40 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
     <type>BURST</type>
     <title>Diffusion Ion</title>
     <short>Diffuse Ion</short>
-    <desc>Each projectile fired from this weapon impacts the shields, ioning them, before splitting into two more projectiles that each hit somewhere on the enemy ship.</desc>
+    <desc>Each projectile fired from this weapon impacts the shields, ioning them, before splitting into two more projectiles that each hit somewhere on the enemy ship.
+When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>0</damage>
     <sysDamage>0</sysDamage>
     <ion>1</ion>
-    <radius>100</radius>
-    <shots>3</shots>
+    <radius>40</radius>
+    <shots>2</shots>
     <sp>0</sp>
     <fireChance>0</fireChance>
     <breachChance>0</breachChance>
     <cooldown>9</cooldown>
-    <power>21</power>
+    <power>2</power>
     <cost>60</cost>
     <bp>2</bp>
     <rarity>5</rarity>
     <projectiles>
       <projectile count="1" fake="false">ion_4_shot</projectile>
     </projectiles>
+    <explosion>explosion_small_ion</explosion>
     <launchSounds>
-      <sound>lightLaser1</sound>
-      <sound>lightLaser2</sound>
-      <sound>lightLaser3</sound>
+      <sound>ionShoot1</sound>
+      <sound>ionShoot2</sound>
+      <sound>ionShoot3</sound>
     </launchSounds>
     <hitShipSounds>
-      <sound>hitHull2</sound>
-      <sound>hitHull3</sound>
+      <sound>ionHit1</sound>
+      <sound>ionHit2</sound>
+      <sound>ionHit3</sound>
     </hitShipSounds>
     <hitShieldSounds>
-      <sound>hitShield1</sound>
-      <sound>hitShield2</sound>
-      <sound>hitShield3</sound>
+      <sound>ionShields1</sound>
+      <sound>ionShields2</sound>
+      <sound>ionShields3</sound>
     </hitShieldSounds>
     <missSounds>
       <sound>miss</sound>
@@ -4259,9 +4275,9 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
     <droneSlots>2</droneSlots>
     <weaponList missiles="3" count="3">
       <weapon name="RAD_LIGHTNING_ION" />
-      <weapon name="LASER_LIGHT_2" />
+      <weapon name="LASER_LIGHT" />
     </weaponList>
-    <droneList drones="5" count="2" />
+    <droneList drones="4" count="2" />
     <health amount="30" />
     <maxPower amount="50" />
     <crewCount amount="1" class="rad_scientist" />

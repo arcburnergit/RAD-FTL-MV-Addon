@@ -1115,7 +1115,6 @@
     <crewCount amount="2" max="4" class="human" />
     <crewCount amount="4" max="8" class="human_soldier" />
     <boardingAI>sabotage</boardingAI>
-    <aug name="RAD_CREVERSAL" />
   </shipBlueprint>
 
   <shipBlueprint name="RAD_SCIENCE_ENEMY_CORVETTE_2" layout="rad_science_enemy_corvette_2" img="rad_science_enemy_corvette_2">
@@ -1142,7 +1141,6 @@
     <crewCount amount="1" max="2" class="human" />
     <crewCount amount="4" max="6" class="human_soldier" />
     <boardingAI>invasion</boardingAI>
-    <aug name="RAD_CREVERSAL" />
     <aug name="EX_MIND_IMMUNITY" />
   </shipBlueprint>
 
@@ -1171,8 +1169,6 @@
     <crewCount amount="2" max="2" class="human" />
     <crewCount amount="4" max="4" class="human_soldier" />
     <boardingAI>sabotage</boardingAI>
-    <aug name="RAD_CHACK" />
-    <aug name="EX_CLOAK_FIRE" />
   </shipBlueprint>
 
   <shipBlueprint name="RAD_MAIN_LAB_WALK" layout="rad_main_lab_walk" img="rad_main_lab_walk">

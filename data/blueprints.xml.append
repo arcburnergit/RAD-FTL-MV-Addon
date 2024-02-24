@@ -955,7 +955,8 @@
 	<title>Flesh Hull Plating</title>
 	<desc>Through use of advanced bio-engineering, your hull is able to repair itself over time. However, it's quite unstable.
 	Whenever you fire a weapon, your hull takes 1 damage, or damage equal to the hull damage of the weapon, whichever is higher.
-	The flesh also gives you a 50% chance to take double damage when getting hit.</desc>
+  At the start of battle you'll heal 10 hull damage automatically
+</desc>
 	<cost>0</cost>
 	<rarity>0</rarity>
 	<stackable>false</stackable>
@@ -1200,7 +1201,7 @@
 	<desc>Someone really should have stopped this from coming into existence.&#xD;
 The meaty exterior isn't very strong, but repairs itself quickly. You'll have to pay attention in order to not overstress the flesh and destroy the hull.</desc>
 	<systemList>
-		<artillery power="1" max="4" room="1" start="true" weapon="ARTILLERY_FLESH" img="Sprite-0005" />
+		<artillery power="2" max="5" room="1" start="true" weapon="ARTILLERY_FLESH" img="Sprite-0005" />
 		<battery power="1" room="8" start="false" img="room_battery_8" />
 		<cloaking power="1" room="6" start="false" img="room_cloaking_10" />
 		<clonebay power="1" max="3" room="4" start="true">
@@ -1262,7 +1263,7 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
 	<droneList drones="5" count="2" />
 	<health amount="45" />
 	<maxPower amount="8" />
-	<crewCount amount="1" class="unique_coomer" />
+	<crewCount amount="1" class="rad_scientist" />
 	<crewCount amount="1" class="human_medic" />
 	<crewCount amount="1" class="human_medic" />
 	<aug name="FLESH_HULL" />

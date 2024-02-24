@@ -310,6 +310,13 @@
   <mod-append:customShip name="PLAYER_SHIP_RAD_CRYSTAL_2">
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <systemLimit>10</systemLimit>
+    <rooms>
+      <room id="0">
+        <roomAnim renderLayer="0">resist_2x2</roomAnim>
+        <roomAnim renderLayer="3">resist_icon</roomAnim>
+        <sysDamageResistChance>100</sysDamageResistChance>
+      </room>
+    </rooms>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CRYSTAL_3">
     <customReactor maxLevel="30" />
@@ -631,9 +638,20 @@
 	<!--<bossShip>MU_COLLECTOR</bossShip>
 	<bossShip>MU_CONTINUITY_BOSS</bossShip>
 	
+  
 	<variable name="addon_extraequipment_enabled" op="set" val="1"/-->
-	
 
+  <bossShip>SHIP_CIVILIAN_LAB</bossShip>
+  <bossShip>MU_RAD_SCIENCE_OPERATOR</bossShip>
+  <bossShip>MU_RAD_RICHSON</bossShip>
+  <bossShip>MU_RAD_REBELOUT</bossShip>
+  <bossShip>MU_RAD_CRYSTALENEMY</bossShip>
+  <bossShip>MU_RAD_CRYSTALENEMY2</bossShip>
+  <bossShip>RAD_SCIENCE_ENEMY_CORVETTE_1</bossShip>
+  <bossShip>RAD_SCIENCE_ENEMY_CORVETTE_2</bossShip>
+  <bossShip>RAD_SCIENCE_ENEMY_CORVETTE_3</bossShip>
+  <bossShip>SHIP_RAD_SCIENCE_CUTTERENEMY</bossShip>
+  
   <metaVariable name="rad_q1" op="set" val="0"/>
   <metaVariable name="rad_q2" op="set" val="0"/>
   <metaVariable name="rad_q22" op="set" val="0"/>

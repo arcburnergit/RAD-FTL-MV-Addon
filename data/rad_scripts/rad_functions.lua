@@ -669,7 +669,9 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
     if shipManager:HasAugmentation("FLESH_HULL") > 0 then
         local weaponDamage = weapon.blueprint.damage;
         local hulldamage = weaponDamage.iDamage
-        if weapon.blueprint.name == "ARTILLERY_FLESH" then
+        if weapon.blueprint.name == "BOMB_HEAL" then
+            shipManager:DamageHull(-1, true)
+        elseif weapon.blueprint.name == "ARTILLERY_FLESH" then
             shipManager:DamageHull(-1, true)
             projectile:Kill()
         elseif hulldamage > 1 then
@@ -743,6 +745,7 @@ script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function
     return Defines.Chain.CONTINUE, augValue
 end, -100)
 
+--[[
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
     --log("Damage Area Hit")
     if shipManager:HasAugmentation("FLESH_HULL") > 0 then
@@ -755,7 +758,7 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
             end
         end
     end
-end)
+end)]]
 
 --[[script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
     if shipManager:HasAugmentation("FLESH_HULL") > 0 then

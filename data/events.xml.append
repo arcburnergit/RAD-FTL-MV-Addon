@@ -1922,8 +1922,8 @@ You search the ship and find it empty of anything useful, however in one of the 
         <choice hidden="true" req="UPG_AETHER_TRANSLATOR" blue="true">
           <text>(Runic Translator) Translate the cooridinates.</text>
           <event>
-            <text>You're able decypher the cooridinates, looks like you'll be able to reroute there at the next exit beacon. (NOT AVAILABLE UNTIL V1.0.0)</text>
-            <!--variable name="coords_rad_science" op="set" val="1"/-->
+            <text>You're able decypher the cooridinates, looks like you'll be able to reroute there at the next exit beacon.</text>
+            <variable name="coords_rad_science" op="set" val="1"/>
             <choice>
               <text>Contact the scientists</text>
               <event load="RAD_WARPED_4" />

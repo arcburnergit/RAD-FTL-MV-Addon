@@ -17,4 +17,17 @@
       </event>
     </loadEventList>
   </event>
+
+  <mod:findName type="event" name="COMBAT_CHECK_REAL">
+    <mod-append:triggeredEvent event="RAD_FLESH_HEAL" seeded="false" loops="1" minTime="0.1" maxTime="0.1" />
+  </mod:findName>
+
+  <mod:findName type="event" name="COMBAT_CHECK_FAIL_REAL">
+    <mod-append:triggeredEvent event="RAD_FLESH_HEAL" seeded="false" loops="4" minTime="0.1" maxTime="0.1" />
+  </mod:findName>
+
+  <event name="RAD_FLESH_HEAL">
+    <damage amount="-10" />
+  </event>
+  
 </FTL>

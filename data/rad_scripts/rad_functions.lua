@@ -2277,11 +2277,25 @@ script.on_game_event("RAD_MAIN_3", false, function()
     --Hyperspace.CommandConsole.GetInstance():RunCommand(commandGui,"EVENT RAD_MAIN_3_SHIP")
 end)
 
-script.on_game_event("DESTROYED_RAD_SCIENCE_REBELAUTO", false, function()
+script.on_game_event("DESTROYED_RAD_SCIENCE_REBELAUTO_2", false, function()
     local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
     worldManager:ClearLocation()
     Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_SCIENCE_QUEST_FIGHT_2",false,-1)
-
+    local shipManager = Hyperspace.ships.enemy
+    print(shipManager.bDestroyed)
+    print(shipManager.bInvincible)
+    print(shipManager.bWasSafe)
+    print(shipManager.myBlueprint.blueprintName)
+    shipManager.bDestroyed = false
+    shipManager.bInvincible = false
+    shipManager.bWasSafe = false
+    local playerShipManager = Hyperspace.ships.player
+    print(playerShipManager.bDestroyed)
+    print(playerShipManager.bInvincible)
+    print(playerShipManager.bWasSafe)
+    playerShipManager.bDestroyed = false
+    playerShipManager.bInvincible = false
+    playerShipManager.bWasSafe = false
     --local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
     --commandGui:RunCommand("EVENT RAD_SCIENCE_QUEST_FIGHT_2")
 end)

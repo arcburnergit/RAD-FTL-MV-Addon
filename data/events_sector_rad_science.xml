@@ -828,6 +828,17 @@ You move in to take out the drone before it does too much damage.</text>
   </event>
 
   <event name="DESTROYED_RAD_SCIENCE_REBELAUTO">
+    <text>You've destroyed the rebel autoship, however it appears you were too slow, the science cruiser is back online, however this time it's under control of the rebels...</text>
+    <triggeredEvent event="RAD_SCIENCE_QUEST_FIGHT_2_2" loops="1" minTime="15" maxTime="15">
+      <triggeredEventBox load="DEFAULT_TIMER">
+        <warning time="5.0" flash="true" />
+        <tooltip>The autocruiser will be close enough to engage you after this cooldown ends.</tooltip>
+      </triggeredEventBox>
+    </triggeredEvent>
+    <choice>
+      <text>Continue...</text>
+      <event name="DESTROYED_RAD_SCIENCE_REBELAUTO_2" />
+    </choice>
   </event>
 
   <ship name="SHIP_RAD_SCIENCE_CUTTERENEMY" auto_blueprint="RAD_SCIENCE_CUTTER_ENEMY">
@@ -837,12 +848,6 @@ You move in to take out the drone before it does too much damage.</text>
   <event name="RAD_SCIENCE_QUEST_FIGHT_2">
     <text>You've destroyed the rebel autoship, however it appears you were too slow, the science cruiser is back online, however this time it's under control of the rebels...</text>
     <ship load="SHIP_RAD_SCIENCE_CUTTERENEMY" hostile="false" />
-    <triggeredEvent event="RAD_SCIENCE_QUEST_FIGHT_2_2" loops="1" minTime="15" maxTime="15">
-      <triggeredEventBox load="DEFAULT_TIMER">
-        <warning time="5.0" flash="true" />
-        <tooltip>The autocruiser will be close enough to engage you after this cooldown ends.</tooltip>
-      </triggeredEventBox>
-    </triggeredEvent>
   </event>
 
   <event name="RAD_SCIENCE_QUEST_FIGHT_2_2">

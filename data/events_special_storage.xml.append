@@ -27,7 +27,13 @@
   </mod:findName>
 
   <event name="RAD_FLESH_HEAL">
-    <damage amount="-10" />
+    <loadEventList seeded="false" first="true" generate="false">
+      <event req="FLESH_HULL" lvl="0" max_lvl="0">
+      </event>
+      <event req="FLESH_HULL" lvl="1" max_lvl="99999">
+        <damage amount="-10" />
+      </event>
+    </loadEventList>
   </event>
   
 </FTL>

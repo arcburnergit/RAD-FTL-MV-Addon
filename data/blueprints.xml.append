@@ -2922,7 +2922,7 @@ It also provides 5 super hull points.
     <systemList>
       <battery power="1" room="6" start="false" img="room_battery_3" />
       <cloaking power="1" room="11" start="false" img="room_cloaking_2" />
-      <clonebay power="1" max="3" room="8" start="false">
+      <clonebay power="1" max="4" room="8" start="false">
         <slot>
           <number>1</number>
         </slot>

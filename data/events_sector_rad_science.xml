@@ -48,7 +48,7 @@
     <text>You have arrived in the sector belonging to the Scientists. The scientists keep to themselves, although there is a large civilian population who feel safe in their sector. The scientists in turn have started guarding their beacons against all who try to start trouble. We be fine if we keep out of the way.</text>
     <ship load="SHIP_RAD_SCIENCE_GUARD" hostile="false" />
     <changeBackground>BACK_SECTOR_UNION</changeBackground>
-    <choice hidden="true" req="rep_comb_union" lvl="2" max_lvl="999" max_group="0" blue="false">
+    <choice hidden="true" blue="false">
       <text>Continue...</text>
       <event load="GUARD_RAD_SCIENCE" />
     </choice>

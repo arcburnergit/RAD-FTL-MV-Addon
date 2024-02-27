@@ -297,7 +297,29 @@
 
   <event name="DESTROYED_RAD_SCIENCE">
     <text load="TEXT_DESTROYED_RAD_SCIENCE" />
-    <autoReward level="LOW">standard</autoReward>
+    <autoReward level="MED">standard</autoReward>
+    <!--transformRace class="rad_civilian">human</transformRace-->
+    <choice req="rad_civilian" lvl="1">
+      <text>Continue...</text>
+      <event name="RAD_CIVILIAN_TRANSFORM">
+        <transformRace class="rad_civilian">human</transformRace>
+        <text>A civilian on your ship offer to join you crew.</text>
+        <choice req="rad_civilian" lvl="2">
+          <text>Continue...</text>
+          <event>
+            <loadEvent>RAD_CIVILIAN_TRANSFORM</loadEvent>
+          </event>
+        </choice>
+        <choice req="rad_civilian" max_lvl="2" lvl="0">
+          <text>Continue...</text>
+          <event />
+        </choice>
+      </event>
+    </choice>
+    <choice req="rad_civilian" max_lvl="0" lvl="0">
+      <text>Continue...</text>
+      <event />
+    </choice>
   </event>
   <textList name="TEXT_DESTROYED_RAD_SCIENCE">
     <text>As you harvest the remains of the Scientist's ship, it's clear their advanced technology isn't enough to save them from you.</text>
@@ -309,7 +331,28 @@
 
   <event name="DEAD_CREW_RAD_SCIENCE">
     <text load="TEXT_DEAD_CREW_RAD_SCIENCE" />
-    <autoReward level="MED">standard</autoReward>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice req="rad_civilian" lvl="1">
+      <text>Continue...</text>
+      <event name="RAD_CIVILIAN_TRANSFORM">
+        <transformRace class="rad_civilian">human</transformRace>
+        <text>A civilian on your ship offer to join you crew.</text>
+        <choice req="rad_civilian" lvl="2">
+          <text>Continue...</text>
+          <event>
+            <loadEvent>RAD_CIVILIAN_TRANSFORM</loadEvent>
+          </event>
+        </choice>
+        <choice req="rad_civilian" max_lvl="1" lvl="0">
+          <text>Continue...</text>
+          <event />
+        </choice>
+      </event>
+    </choice>
+    <choice req="rad_civilian" max_lvl="0" lvl="0">
+      <text>Continue...</text>
+      <event />
+    </choice>
   </event>
   <textList name="TEXT_DEAD_CREW_RAD_SCIENCE">
     <text>"Your bloodlust... will be your downfall someday, Renegade. You are only proof... the Federation... is no better than the Rebellion..."</text>
@@ -326,6 +369,27 @@
       <event name="SURRENDER_ACCEPT">
         <ship hostile="false" />
         <autoReward level="RANDOM">stuff</autoReward>
+        <choice req="rad_civilian" lvl="1">
+          <text>Continue...</text>
+          <event name="RAD_CIVILIAN_TRANSFORM">
+            <transformRace class="rad_civilian">human</transformRace>
+            <text>A civilian on your ship offer to join you crew.</text>
+            <choice req="rad_civilian" lvl="2">
+              <text>Continue...</text>
+              <event>
+                <loadEvent>RAD_CIVILIAN_TRANSFORM</loadEvent>
+              </event>
+            </choice>
+            <choice req="rad_civilian" max_lvl="1" lvl="0">
+              <text>Continue...</text>
+              <event />
+            </choice>
+          </event>
+        </choice>
+        <choice req="rad_civilian" max_lvl="0" lvl="0">
+          <text>Continue...</text>
+          <event />
+        </choice>
       </event>
     </choice>
     <choice>
@@ -628,7 +692,7 @@ One of the crew on the station offer to join your crew.</text>
 		<text>Save the civilians.</text>
 		<event>
 			<text>You power up the weapons and engage the pirate vessel, it looks like there's still 2 civilians alive on the ship, you might be able to rescue them if you clear out the rebels.</text>
-      <crewMember amount="2" class="rad_civilian">Civilian</crewMember>
+      <crewMember amount="2" class="rad_civilian" />
 			<ship hostile="true" />
 			<choice hidden="true">
 				<text>Continue...</text>
@@ -663,7 +727,7 @@ One of the crew on the station offer to join your crew.</text>
         <text>Rescue the civilians.</text>
         <event>
           <text>You power up the weapons and engage the scientist. The two civilians are still alive, and it looks like they aren't going down without a fight. You might be able to rescue them if you clear out the rebels.</text>
-          <crewMember amount="2" class="rad_civilian">Civilian</crewMember>
+          <crewMember amount="2" class="rad_civilian" />
           <ship load="SHIP_RAD_SCIENCE_GENERIC" hostile="true" />
           <choice hidden="true">
             <text>Continue...</text>
@@ -801,7 +865,7 @@ I don't suppose you can help me any further, my crew and I were in transit to on
   </event>
 
   <ship name="SHIP_RAD_SCIENCE_REBELAUTO" auto_blueprint="LIST_SHIPS_AUTO_HACK">
-    <destroyed load="DESTROYED_RAD_SCIENCE_REBELAUTO" />
+    <destroyed load="DESTROYED_RAD_SCIENCE_REBEL_AUTO" />
   </ship>
   
   <event name="RAD_MAIN_QUEST_FACILITY">
@@ -827,7 +891,7 @@ You move in to take out the drone before it does too much damage.</text>
     </choice>
   </event>
 
-  <event name="DESTROYED_RAD_SCIENCE_REBELAUTO">
+  <!--<event name="DESTROYED_RAD_SCIENCE_REBELAUTO">
     <text>You've destroyed the rebel autoship, however it appears you were too slow, the science cruiser is back online, however this time it's under control of the rebels...</text>
     <triggeredEvent event="RAD_SCIENCE_QUEST_FIGHT_2_2" loops="1" minTime="15" maxTime="15">
       <triggeredEventBox load="DEFAULT_TIMER">
@@ -839,8 +903,14 @@ You move in to take out the drone before it does too much damage.</text>
       <text>Continue...</text>
       <event name="DESTROYED_RAD_SCIENCE_REBELAUTO_2" />
     </choice>
+  </event>-->
+  <event name="DESTROYED_RAD_SCIENCE_REBEL_AUTO">
+    <text>You managed to destroy the rebel autoship, however it apperas you were too slow, the hacking drone the rebel ship deployed succeeded in taking control of the science vessel and it's jumped away.
+The scientists were able to trace where it jumped off too though, hopefully you'll be able to recover the vessel, or atleast stop it falling into rebel hands.</text>
+    <autoReward level="MED">standard</autoReward>
+    <quest event="RAD_SCIENCE_QUEST_SECOND"/>
   </event>
-
+  
   <ship name="SHIP_RAD_SCIENCE_CUTTERENEMY" auto_blueprint="RAD_SCIENCE_CUTTER_ENEMY">
     <destroyed load="DESTROYED_RAD_SCIENCE_CUTTERENEMY" />
   </ship>
@@ -854,6 +924,16 @@ You move in to take out the drone before it does too much damage.</text>
     <text>You've run out of time, the science cruiser is almost on top of you.</text>
     <ship hostile="true" />
     <choice>
+      <text>Continue...</text>
+      <event load="COMBAT_CHECK" />
+    </choice>
+  </event>
+
+  <event name="RAD_SCIENCE_QUEST_SECOND">
+    <text>You arrive at the beacon and find the scientist's autocruiser sitting in standby mode, looks like you beat the rebels to it.
+Just as you start moving towards the ship, it powers on it's weapons, looks like the rebels aren't going to just hand it over without a fight.</text>
+    <ship load="SHIP_RAD_SCIENCE_CUTTERENEMY" hostile="true" />
+    <choice hidden="true">
       <text>Continue...</text>
       <event load="COMBAT_CHECK" />
     </choice>
@@ -1106,6 +1186,7 @@ You move in to take out the drone before it does too much damage.</text>
   </event>
 
   <event name="RAD_MAIN_RETURN2">
+    <text>Well you certainly won't be able to blow up the station, but your covert infiltration mission went well.</text>
   </event>
     
   <ship name="RAD_MAIN_LAB_WALK" auto_blueprint="RAD_MAIN_LAB_WALK" />
@@ -1124,8 +1205,13 @@ You move in to take out the drone before it does too much damage.</text>
   
   <event name="RAD_MAIN_1">
     <!--changeBackground>BG_RAD_SCIENCE</changeBackground-->
-    <img back="BG_RAD_SCIENCE" planet="NONE" />
-    <text>Just as you're leaving the station another ship jumps in, it appears to be a finished version of the ship in the dockyard, it looks like you're in for a fight.</text>
+    <!--img back="BG_RAD_SCIENCE" planet="NONE" /-->
+    <preventQuest />
+    <beaconType id="map_icon_rad_corvette" global="true">
+      <color r="146" g="232" b="228" a="1"/>
+    </beaconType>
+    <preventFleet/>
+    <text>You arrive at the beacon and meet face to face with a massive scientist corvette. It appears to be a finished version of the ship in the dockyard, and it looks like you're in for a fight.</text>
     <ship load="SHIP_RAD_SCIENCE_MAIN_1" hostile="true" />
     <choice>
       <text>Continue...</text>
@@ -1134,18 +1220,29 @@ You move in to take out the drone before it does too much damage.</text>
   </event>
 
   <event name="RAD_MAIN_2">
+    <text>The corvette appears to explode, however it only sustains minor damage. The ship still needs repairs though and it jumps away.</text>
+    <autoReward level="LOW">standard</autoReward>
+    <quest event="RAD_MAIN_2_SHIP" />
   </event>
 
   <event name="RAD_MAIN_3">
+    <text>The corvette appears to explode, however it only sustains minor damage. The ship still needs repairs though and it jumps away.</text>
+    <autoReward level="LOW">standard</autoReward>
+    <quest event="RAD_MAIN_3_SHIP" />
   </event>
 
   <event name="RAD_MAIN_2_SHIP">
     <!--changeBackground>BG_RAD_SCIENCE</changeBackground-->
-    <img back="BG_RAD_SCIENCE" planet="NONE" />
-    <text>A piece of the ship fragments off, however it looks like they're still fighting, and they're even powering on some more systems. You have a few moments to catch your breath.</text>
+    <!--img back="BG_RAD_SCIENCE" planet="NONE" /-->
+    <preventQuest />
+    <beaconType id="map_icon_rad_corvette" global="true">
+      <color r="146" g="232" b="228" a="1"/>
+    </beaconType>
+    <preventFleet/>
+    <ship load="SHIP_RAD_SCIENCE_MAIN_2" hostile="false" />
+    <text>Even with a piece of the ship missing, they're still fighting and even powering on some more systems. You have a few moments to catch your breath before the ship is within combat range.</text>
     <damage amount="-5" />
-    <ship load="RAD_MAIN_2_SHIP_2" hostile="false" />
-    <triggeredEvent event="SHIP_RAD_SCIENCE_MAIN_2_2" loops="1" minTime="20" maxTime="20">
+    <triggeredEvent event="RAD_MAIN_2_SHIP_2" loops="1" minTime="5" maxTime="5">
       <triggeredEventBox load="DEFAULT_TIMER">
         <warning time="5.0" flash="true" />
         <tooltip>The corvette will be up and running after this cooldown ends.</tooltip>
@@ -1154,7 +1251,7 @@ You move in to take out the drone before it does too much damage.</text>
   </event>
 
   <event name="RAD_MAIN_2_SHIP_2">
-    <text>The corvette is up and running again...</text>
+    <text>The corvette is within firing distance...</text>
     <ship hostile="true" />
     <choice>
       <text>Continue...</text>
@@ -1164,11 +1261,16 @@ You move in to take out the drone before it does too much damage.</text>
 
   <event name="RAD_MAIN_3_SHIP">
     <!--changeBackground>BG_RAD_SCIENCE</changeBackground-->
-    <img back="BG_RAD_SCIENCE" planet="NONE" />
-    <text>Another piece of the ship comes off in a large explosion, However the ship still isn't dead. You have a few moments to catch your breath.</text>
+    <!--img back="BG_RAD_SCIENCE" planet="NONE" /-->
+    <preventQuest />
+    <beaconType id="map_icon_rad_corvette" global="true">
+      <color r="146" g="232" b="228" a="1"/>
+    </beaconType>
+    <preventFleet/>
+    <text>You've followed the science corvette, However the ship still isn't dead. You have a few moments before the enemy ship is able to attack you.</text>
     <damage amount="-5" />
     <ship load="SHIP_RAD_SCIENCE_MAIN_3" hostile="false" />
-    <triggeredEvent event="RAD_MAIN_3_SHIP_2" loops="1" minTime="20" maxTime="20">
+    <triggeredEvent event="RAD_MAIN_3_SHIP_2" loops="1" minTime="5" maxTime="5">
       <triggeredEventBox load="DEFAULT_TIMER">
         <warning time="5.0" flash="true" />
         <tooltip>The corvette will be up and running after this cooldown ends.</tooltip>
@@ -1177,7 +1279,7 @@ You move in to take out the drone before it does too much damage.</text>
   </event>
 
   <event name="RAD_MAIN_3_SHIP_2">
-    <text>The corvette is up and running again...</text>
+    <text>The corvette is within firing distance...</text>
     <ship hostile="true" />
     <choice>
       <text>Continue...</text>
@@ -1252,13 +1354,13 @@ You move in to take out the drone before it does too much damage.</text>
       <event>
         <text>You use the password downloaded from the data storage center to unlock the console.
         
-You're then able to download the plan for the ship being constructed and send them off to the federation, hopefully they'll have a use for them.</text>
-        <unlockCustomShip silent="false">PLAYER_SHIP_RAD_CORVETTE</unlockCustomShip>
+You're able to download the scientist data for a new type of cruiser they're building, it appears one is being tested in the field right now, you download the tracking data for the ship.</text>
+        <quest event="RAD_MAIN_1" />
       </event>
     </choice>
   </event>
   <event name="RAD_MAIN_HACK">
-    <text>You've entered the datastorage room. You're able to download an access code for the shipyard.</text>
+    <text>You've entered the datastorage room. You're able to download an access code for the shipyard control center (piloting room).</text>
   </event>
 
   <event name="RAD_MAIN_4">
@@ -1266,6 +1368,15 @@ You're then able to download the plan for the ship being constructed and send th
     <damage amount="-5" />
     <autoReward level="HIGH">standard</autoReward>
     <weapon name="LABRATORY_WEAPONS" />
+    <unlockCustomShip silent="false">PLAYER_SHIP_RAD_CORVETTE</unlockCustomShip>
+    <choice hidden="true">
+      <text>Continue...</text>
+      <event>
+        <text>You find a small storage crate filled with loot floating among the wreckage.</text>
+        <autoReward level="MED">standard</autoReward>
+        <weapon name="LABRATORY_WEAPONS" />
+      </event>
+    </choice>
   </event>
   
 </FTL>

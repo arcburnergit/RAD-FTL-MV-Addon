@@ -394,6 +394,11 @@ popWeapons["RAD_SDRAIN"] = {
     countSuper = 16,
     delete = true
 }
+popWeapons["RAD_LIGHTNING_FIRE"] = {
+    count = 1,
+    countSuper = 1,
+    delete = false
+}
 
 script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
     local shieldPower = shipManager.shieldSystem.shields.power
@@ -1343,7 +1348,7 @@ lightningWeapons["RAD_LIGHTNING_ION"].iShieldPiercing = 3
 lightningWeapons["RAD_LIGHTNING_FIRE"] = Hyperspace.Damage()
 --lightningWeapons["RAD_LIGHTNING_FIRE"].bLockdown = true
 lightningWeapons["RAD_LIGHTNING_FIRE"].fireChance = 5
-lightningWeapons["RAD_LIGHTNING_FIRE"].iShieldPiercing = 6
+lightningWeapons["RAD_LIGHTNING_FIRE"].iShieldPiercing = 3
 
 local lightningBeam = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_LIGHTNING_BEAM")
 --local lastLocation = nil
@@ -1441,35 +1446,37 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
         end
     end
 end)
-
-local multiExclusions = {
-    "RAD_CLUSTER_MISSILE",
-    "RAD_CLUSTER_MISSILE_2",
-    "RAD_CLUSTER_MISSILE_3",
-    "RAD_BEAM_BURST_1",
-    "RAD_BEAM_BURST_2",
-    "RAD_BEAM_BURST_3",
-    "RAD_LIGHT_BEAM",
-    "RAD_ZSGUN_1",
-    "RAD_ZSGUN_2",
-    "RAD_ZSGUN_3",
-    "RAD_LIGHTNING_1",
-    "RAD_LIGHTNING_2",
-    "RAD_LIGHTNING_3",
-    "RAD_LIGHTNING_ION",
-    "RAD_LIGHTNING_FIRE",
-    "RAD_TRASH_BEAM",
-    "DRONE_LASER_DEFENSE_INVIS",
-    "ARTILLERY_FLESH",
-    "ARTILLERY_RAD_ZS",
-    "ARTILLERY_RAD_SWTCH",
-    "ARTILLERY_FLESH_ENEMY",
-    "ARTILLERY_RAD_CORVETTE",
-}
+mods.rad.multiExclusions = {}
+local multiExclusions = mods.rad.multiExclusions
+multiExclusions["RAD_CLUSTER_MISSILE"] = true
+multiExclusions["RAD_CLUSTER_MISSILE_2"] = true
+multiExclusions["RAD_CLUSTER_MISSILE_3"] = true
+multiExclusions["RAD_BEAM_BURST_1"] = true
+multiExclusions["RAD_BEAM_BURST_2"] = true
+multiExclusions["RAD_BEAM_BURST_3"] = true
+multiExclusions["RAD_LIGHT_BEAM"] = true
+multiExclusions["RAD_ZSGUN_1"] = true
+multiExclusions["RAD_ZSGUN_2"] = true
+multiExclusions["RAD_ZSGUN_3"] = true
+multiExclusions["RAD_LIGHTNING_1"] = true
+multiExclusions["RAD_LIGHTNING_2"] = true
+multiExclusions["RAD_LIGHTNING_3"] = true
+multiExclusions["RAD_LIGHTNING_ION"] = true
+multiExclusions["RAD_LIGHTNING_FIRE"] = true
+multiExclusions["RAD_TRASH_BEAM"] = true
+multiExclusions["DRONE_LASER_DEFENSE_INVIS"] = true
+multiExclusions["ARTILLERY_FLESH"] = true
+multiExclusions["ARTILLERY_RAD_ZS"] = true
+multiExclusions["ARTILLERY_RAD_SWTCH"] = true
+multiExclusions["ARTILLERY_FLESH_ENEMY"] = true
+multiExclusions["ARTILLERY_RAD_CORVETTE"] = true
 
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
-    if shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0 and (not table.HasValue(multiExclusions, weapon.blueprint.name)) then
+    local weaponName = nil
+    pcall(function() weaponName = Hyperspace.Get_Projectile_Extend(projectile).name end)
+    local excludedWeapons = multiExclusions[weaponName]
+    if shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0 and (not excludedWeapons) then
         local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
         local weaponType = weapon.blueprint.typeName
         --log(weaponType)
@@ -2244,7 +2251,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
     end
 end)
 
-script.on_game_event("RAD_MAIN_RETURN2", false, function()
+--[[script.on_game_event("RAD_MAIN_RETURN2", false, function()
     local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
     worldManager:ClearLocation()
     Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_1",false,-1)
@@ -2298,7 +2305,7 @@ script.on_game_event("DESTROYED_RAD_SCIENCE_REBELAUTO_2", false, function()
     playerShipManager.bWasSafe = false
     --local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
     --commandGui:RunCommand("EVENT RAD_SCIENCE_QUEST_FIGHT_2")
-end)
+end)]]
 
 local hasWeapon = true
 local hasShield = true

@@ -2139,7 +2139,7 @@ The shield generator now generates Super Shield layers instead of normal shield 
     <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
     <desc>An advanced Teleportation system enables you to teleport your entire crew aboard the enemy ship, however an unfortunate side effect is that it also teleports the entire enemy crew onto your ship.</desc>
     <systemList>
-      <artillery power="1" room="6" start="true" weapon="ARTILLERY_RAD_SWTCH" img="room_artillery" />
+      <artillery power="3" room="6" start="true" weapon="ARTILLERY_RAD_SWTCH" img="room_artillery" />
       <cloaking power="1" room="1" start="false" img="room_cloaking_2" />
       <clonebay power="1" room="7" start="false">
         <slot>
@@ -2152,7 +2152,7 @@ The shield generator now generates Super Shield layers instead of normal shield 
           <number>0</number>
         </slot>
       </doors>
-      <drones power="2" room="4" start="true" img="room_drones_7" />
+      <drones power="2" room="4" max="8" start="true" img="room_drones_7" />
       <engines power="1" room="11" start="true" img="room_engines_8">
         <slot>
           <direction>left</direction>
@@ -2179,7 +2179,7 @@ The shield generator now generates Super Shield layers instead of normal shield 
           <number>0</number>
         </slot>
       </sensors>
-      <shields power="2" room="10" start="true" img="room_shields_4">
+      <shields power="2" room="10" max="10" start="true" img="room_shields_4">
         <slot>
           <direction>left</direction>
           <number>0</number>
@@ -2692,12 +2692,12 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <title>Re-Action Cannon</title>
     <short>Re-Action</short>
     <tip>tip_lightning</tip>
-    <desc>This lightning weapon chains to an adjacent room 6 times.</desc>
-    <tooltip>Starts fires in 7 adjacent rooms.</tooltip>
-    <damage>0 </damage>
-    <sysDamage>0</sysDamage>
+    <desc>This lightning weapon chains to an adjacent room 3 times. This weapon also pops shield layers</desc>
+    <tooltip>Starts fires in 4 adjacent rooms.</tooltip>
+    <damage>0</damage>
+    <sysDamage>1</sysDamage>
     <ion>0</ion>
-    <shots>1</shots>
+    <shots>3</shots>
     <sp>0</sp>
     <fireChance>5</fireChance>
     <breachChance>0</breachChance>
@@ -2922,7 +2922,7 @@ It also provides 5 super hull points.
     <systemList>
       <battery power="1" room="6" start="false" img="room_battery_3" />
       <cloaking power="1" room="11" start="false" img="room_cloaking_2" />
-      <clonebay power="1" max="4" room="8" start="false">
+      <clonebay power="1" max="3" room="8" start="false">
         <slot>
           <number>1</number>
         </slot>
@@ -3016,7 +3016,7 @@ You'll need to avoid as much damage to your crew as possible, the meagre healing
         </slot>
       </engines>
       <hacking power="1" room="10" start="false" img="room_hacking_7" />
-      <clonebay power="1" room="4" start="true">
+      <clonebay power="1" max="4" room="4" start="true">
         <slot>
           <number>1</number>
         </slot>

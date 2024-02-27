@@ -1094,7 +1094,7 @@
   <shipBlueprint name="RAD_SCIENCE_ENEMY_CORVETTE_1" layout="rad_science_enemy_corvette_1" img="rad_science_enemy_corvette_1">
     <class>Scientist Corvette</class>
     <systemList>
-      <cloaking power="2" max="2" room="9" start="true" />
+      <cloaking power="1" max="1" room="9" start="true" />
       <doors power="3" max="3" room="11" start="true" />
       <engines power="1" max="2" room="2" start="true" />
       <hacking power="1" max="2" room="10" start="true" />
@@ -1120,14 +1120,14 @@
   <shipBlueprint name="RAD_SCIENCE_ENEMY_CORVETTE_2" layout="rad_science_enemy_corvette_2" img="rad_science_enemy_corvette_2">
     <class>Scientist Corvette</class>
     <systemList>
-      <cloaking power="2" max="2" room="9" start="true" />
+      <cloaking power="1" max="1" room="9" start="true" />
       <doors power="3" max="3" room="11" start="true" />
       <engines power="1" max="2" room="2" start="true" />
       <medbay power="3" max="3" room="8" start="true" />
       <oxygen power="1" max="2" room="6" start="true" />
       <pilot power="2" max="3" room="0" start="true" />
       <shields power="4" max="10" room="5" start="true" />
-      <teleporter power="3" max="3" room="4" start="true" />
+      <teleporter power="2" max="2" room="4" start="true" />
       <weapons power="4" max="10" room="17" start="true" />
     </systemList>
     <weaponSlots>5</weaponSlots>
@@ -1148,7 +1148,7 @@
     <class>Scientist Corvette</class>
     <systemList>
       <battery power="1" max="1" room="14" start="true" />
-      <cloaking power="2" max="2" room="9" start="true" />
+      <cloaking power="1" max="1" room="9" start="true" />
       <doors power="2" max="3" room="11" start="true" />
       <drones power="4" max="10" room="3" start="true" />
       <engines power="1" max="2" room="2" start="true" />
@@ -1268,7 +1268,6 @@
     <health amount="15" />
     <maxPower amount="30" />
     <boardingAI>sabotage</boardingAI>
-    <aug name="RAD_LOW_WEAPON" />
   </shipBlueprint>
 
 </FTL>

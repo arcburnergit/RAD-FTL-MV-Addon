@@ -245,45 +245,55 @@
 	
 	<mod-append:customShip name="PLAYER_SHIP_RAD_STATION">
 		<customReactor maxLevel="30" />
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
 		<systemLimit>7</systemLimit>
 	</mod-append:customShip>
 	<mod-append:customShip name="PLAYER_SHIP_RAD_STATION_2">
 		<customReactor maxLevel="30" />
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 		<crewLimit>11</crewLimit>
 		<systemLimit>7</systemLimit>
 	</mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_STATION_3">
     <customReactor maxLevel="30" />
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>3</crewLimit>
   </mod-append:customShip>
 	
 	<mod-append:customShip name="PLAYER_SHIP_RAD_FLESH">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 	</mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_FLESH_2">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_FLESH_3">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
 	
 	<mod-append:customShip name="PLAYER_SHIP_RAD_EXPERIMENT">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
 		<hiddenAug>FOR_MULTIVERSE</hiddenAug>
 	</mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_EXPERIMENT_2">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_EXPERIMENT_3">
     <crewLimit>12</crewLimit>
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
 
   <mod-append:customShip name="PLAYER_SHIP_RAD_RICH">
     <customReactor maxLevel="30" />
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>11</crewLimit>
     <crew>
@@ -293,25 +303,30 @@
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_RICH_2">
     <customReactor maxLevel="30" />
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>11</crewLimit>
     <systemLimit>10</systemLimit>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_RICH_3">
     <customReactor maxLevel="30" />
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>11</crewLimit>
     <systemLimit>10</systemLimit>
   </mod-append:customShip>
+  
   <mod-append:customShip name="PLAYER_SHIP_RAD_CRYSTAL">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <systemLimit>10</systemLimit>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CRYSTAL_2">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <systemLimit>10</systemLimit>
     <rooms>
-      <room id="0">
+      <room id="5">
         <roomAnim renderLayer="0">resist_2x2</roomAnim>
         <roomAnim renderLayer="3">resist_icon</roomAnim>
         <sysDamageResistChance>100</sysDamageResistChance>
@@ -320,6 +335,7 @@
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CRYSTAL_3">
     <customReactor maxLevel="30" />
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>6</crewLimit>
     <systemLimit>10</systemLimit>
@@ -329,35 +345,47 @@
 			</room>
     </rooms>
   </mod-append:customShip>
+  
   <mod-append:customShip name="PLAYER_SHIP_RAD_FLAGSHIP">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_FLAGSHIP_2">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <customReactor maxLevel="60" />
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <systemLimit>10</systemLimit>
   </mod-append:customShip>
+  
   <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE_2">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE_3">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
+  
   <mod-append:customShip name="PLAYER_SHIP_RAD_CUTTER">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>6</crewLimit>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CUTTER_2">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CUTTER_3">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>6</crewLimit>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE_ELITE">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
 
@@ -406,7 +434,6 @@
         <sysDamageResistChance>100</sysDamageResistChance>
       </room>
     </rooms>
-    <noJump/>
     <autoShipForce>true</autoShipForce>
   </mod-append:customShip>
   <mod-append:customShip name="RAD_SCIENCE_ENEMY_CORVETTE_2">
@@ -420,7 +447,6 @@
         <sysDamageResistChance>100</sysDamageResistChance>
       </room>
     </rooms>
-    <noJump/>
     <autoShipForce>true</autoShipForce>
   </mod-append:customShip>
   <mod-append:customShip name="RAD_SCIENCE_ENEMY_CORVETTE_3">
@@ -434,7 +460,6 @@
         <sysDamageResistChance>100</sysDamageResistChance>
       </room>
     </rooms>
-    <noJump/>
     <autoShipForce>true</autoShipForce>
   </mod-append:customShip>
 </mod:findLike>

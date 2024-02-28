@@ -684,11 +684,11 @@
 </event>
 
 <ship name="RAD_SCIENCE_FIGHTER" auto_blueprint="MU_RADLAB_FIGHTER">
-	<destroyed load="DESTROYED_RAD_SCIENCE"/>
-	<deadCrew load="DESTROYED_RAD_SCIENCE"/>
+	<destroyed load="DESTROYED_RAD_SCIENCE_FIGHTER"/>
+	<deadCrew load="DESTROYED_RAD_SCIENCE_FIGHTER"/>
 </ship>
 
-<event name="DESTROYED_RAD_SCIENCE">
+<event name="DESTROYED_RAD_SCIENCE_FIGHTER">
 	<text>You've taken care of the scientists, looks like you and your new crew member will be safe for now.</text>
 	<weapon name="RAD_GATLING"/>
   <metaVariable name="rad_q22" op="set" val="1"/>

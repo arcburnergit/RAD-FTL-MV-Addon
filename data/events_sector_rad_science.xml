@@ -299,24 +299,24 @@
     <text load="TEXT_DESTROYED_RAD_SCIENCE" />
     <autoReward level="MED">standard</autoReward>
     <!--transformRace class="rad_civilian">human</transformRace-->
-    <choice req="rad_civilian" lvl="1">
+    <choice req="rad_civilian" lvl="1" blue="false">
       <text>Continue...</text>
       <event name="RAD_CIVILIAN_TRANSFORM">
         <transformRace class="rad_civilian">human</transformRace>
         <text>A civilian on your ship offer to join you crew.</text>
-        <choice req="rad_civilian" lvl="2">
+        <choice req="rad_civilian" lvl="2" blue="false">
           <text>Continue...</text>
           <event>
             <loadEvent>RAD_CIVILIAN_TRANSFORM</loadEvent>
           </event>
         </choice>
-        <choice req="rad_civilian" max_lvl="2" lvl="0">
+        <choice req="rad_civilian" max_lvl="2" lvl="0" blue="false">
           <text>Continue...</text>
           <event />
         </choice>
       </event>
     </choice>
-    <choice req="rad_civilian" max_lvl="0" lvl="0">
+    <choice req="rad_civilian" max_lvl="0" lvl="0" blue="false">
       <text>Continue...</text>
       <event />
     </choice>
@@ -332,24 +332,24 @@
   <event name="DEAD_CREW_RAD_SCIENCE">
     <text load="TEXT_DEAD_CREW_RAD_SCIENCE" />
     <autoReward level="HIGH">standard</autoReward>
-    <choice req="rad_civilian" lvl="1">
+    <choice req="rad_civilian" lvl="1" blue="false">
       <text>Continue...</text>
       <event name="RAD_CIVILIAN_TRANSFORM">
         <transformRace class="rad_civilian">human</transformRace>
         <text>A civilian on your ship offer to join you crew.</text>
-        <choice req="rad_civilian" lvl="2">
+        <choice req="rad_civilian" lvl="2" blue="false">
           <text>Continue...</text>
           <event>
             <loadEvent>RAD_CIVILIAN_TRANSFORM</loadEvent>
           </event>
         </choice>
-        <choice req="rad_civilian" max_lvl="1" lvl="0">
+        <choice req="rad_civilian" max_lvl="1" lvl="0" blue="false">
           <text>Continue...</text>
           <event />
         </choice>
       </event>
     </choice>
-    <choice req="rad_civilian" max_lvl="0" lvl="0">
+    <choice req="rad_civilian" max_lvl="0" lvl="0" blue="false">
       <text>Continue...</text>
       <event />
     </choice>
@@ -369,24 +369,24 @@
       <event name="SURRENDER_ACCEPT">
         <ship hostile="false" />
         <autoReward level="RANDOM">stuff</autoReward>
-        <choice req="rad_civilian" lvl="1">
+        <choice req="rad_civilian" lvl="1" blue="false">
           <text>Continue...</text>
           <event name="RAD_CIVILIAN_TRANSFORM">
             <transformRace class="rad_civilian">human</transformRace>
             <text>A civilian on your ship offer to join you crew.</text>
-            <choice req="rad_civilian" lvl="2">
+            <choice req="rad_civilian" lvl="2" blue="false">
               <text>Continue...</text>
               <event>
                 <loadEvent>RAD_CIVILIAN_TRANSFORM</loadEvent>
               </event>
             </choice>
-            <choice req="rad_civilian" max_lvl="1" lvl="0">
+            <choice req="rad_civilian" max_lvl="1" lvl="0" blue="false">
               <text>Continue...</text>
               <event />
             </choice>
           </event>
         </choice>
-        <choice req="rad_civilian" max_lvl="0" lvl="0">
+        <choice req="rad_civilian" max_lvl="0" lvl="0" blue="false">
           <text>Continue...</text>
           <event />
         </choice>

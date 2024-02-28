@@ -797,11 +797,11 @@ One of the crew on the station offer to join your crew.</text>
   <event name="DEAD_CREW_RAD_SCIENCE_GHOST">
     <text>You've cleared out the wreck of ghosts.</text>
     <autoReward level="HIGH">standard</autoReward>
-    <choice req="unique_rad_scientist_tele" max_group="0">
+    <choice req="unique_rad_scientist_tele" max_group="0" blue="false" hidden="true">
       <text>Continue...</text>
       <event load="RAD_MAIN_QUEST_SAVED" />
     </choice>
-    <choice max_group="0">
+    <choice req="unique_rad_scientist_tele" lvl="0" max_lvl="0" max_group="0" blue="false">
       <text>Continue...</text>
       <event load="RAD_MAIN_QUEST_FAILED" />
     </choice>

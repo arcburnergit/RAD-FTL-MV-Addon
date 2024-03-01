@@ -62,29 +62,37 @@
             <text>You'll help. [??? Quest]</text>
             <event load="RAD_WARPED_1"/>
           </choice>
+          <choice hidden="true" req="rad_11">
+            <text>You'll help. [Uncompleted Quest 11]</text>
+            <event load="RAD_SCRAP_1"/>
+          </choice>
           <choice hidden="true" req="rad_9">
-            <text>You'll help. [Uncompleted Quest 9]</text>
+            <text>You'll help. [Uncompleted Quest 10]</text>
             <event load="RAD_MIRROR_1"/>
           </choice>
           <choice hidden="true" req="rad_8">
-            <text>You'll help. [Uncompleted Quest 8]</text>
+            <text>You'll help. [Uncompleted Quest 9]</text>
             <event load="RAD_UNDER_1"/>
           </choice>
           <choice hidden="true" req="rad_7">
-            <text>You'll help. [Uncompleted Quest 7]</text>
+            <text>You'll help. [Uncompleted Quest 8]</text>
             <event load="RAD_SUPERGUN_1"/>
           </choice>
           <choice hidden="true" req="rad_6">
-            <text>You'll help. [Uncompleted Quest 6]</text>
+            <text>You'll help. [Uncompleted Quest 7]</text>
             <event load="RAD_MONEY_1"/>
           </choice>
           <choice hidden="true" req="rad_5">
-            <text>You'll help. [Uncompleted Quest 5]</text>
+            <text>You'll help. [Uncompleted Quest 6]</text>
             <event load="RAD_MONEY_1" />
           </choice>
           <choice hidden="true" req="rad_4">
-            <text>You'll help. [Uncompleted Quest 4]</text>
+            <text>You'll help. [Uncompleted Quest 5]</text>
             <event load="RAD_LAB_FLESH_1" />
+          </choice>
+          <choice hidden="true" req="rad_23">
+            <text>You'll help. [Uncompleted Quest 4]</text>
+            <event load="RAD_LAB_GHOST_1" />
           </choice>
           <choice hidden="true" req="rad_3">
             <text>You'll help. [Uncompleted Quest 3]</text>
@@ -697,6 +705,19 @@
 	<autoReward level="HIGH">standard</autoReward>
 </event>
 
+  <ship name="RAD_EXPERIMENT_ENEMY" auto_blueprint="RAD_EXPERIMENT_ENEMY">
+    <destroyed load="DESTROYED_EXPERIMENT" />
+    <deadCrew load="DESTROYED_EXPERIMENT" />
+  </ship>
+
+  <event name="DESTROYED_EXPERIMENT">
+    <text>With the ghost ship dealt with, the scientists transfer you some scrap and one of their weapons as payment, even though you didn't manage to secure the experiment.</text>
+    <weapon name="RAD_CHAINGUN_DAMAGE"/>
+    <autoReward level="HIGH">standard</autoReward>
+    <unlockCustomShip silent="false">PLAYER_SHIP_RAD_MANTIS</unlockCustomShip>
+    <metaVariable name="rad_q23" op="set" val="1"/>
+  </event>
+  
 <event name="RAD_GHOST_5">
   <preventQuest />
   <preventFleet />
@@ -704,7 +725,6 @@
 		<color r="242" g="50" b="29"/>
 	</beaconType>
 	<text>Finally you arrive at the rendezvous point, and there's a strange ship nearby. It must be the scientists.</text>
-	<ship load="RAD_SCIENCE_FIGHTER" hostile="false"/>
 	<choice hidden="true">
 		<text>Hail them.</text>
 		<event>
@@ -712,28 +732,26 @@
 			
 			The entity in question comes into the room. "Don't give me over to them! They did this to me! They turned me into this hot, flaming mess! It's torture!" the entity proclaims.</text>
 			<choice hidden="true">
-				<text>Give them the experiment.</text>
+				<text>Give them the experiment. SIDE WITH THE SCIENTISTS</text>
 				<event>
 					<removeCrew class="phantom_experiment_alpha">
 						<clone>false</clone>
 							<text>Your crew cannot be cloned, as they are still alive.</text>
 					</removeCrew>
-					<text>You dock with the ship, and the scientists come aboard armed with some strange stun weapons which they use to take the entity aboard their own ship.</text>
-					<choice>
-						<text>Continue</text>
-						<event>
-							<text>The scientists transfer you some scrap and one of their weapons.</text>
-							<weapon name="RAD_CHAINGUN_DAMAGE"/>
-							<autoReward level="HIGH">standard</autoReward>
-						</event>
-					</choice>
+          <ship load="RAD_EXPERIMENT_ENEMY" hostile="true" />
+					<text>Just as you move to dock with the scientists, another large vessel jumps in, it imedietly fires some kinda of large net weapon at the scientist vessel, flinging them away, before turning to engage you.</text>
+          <boarders min="1" max="1" class="phantom_experiment_alpha" />
+          <choice>
+            <text>Continue...</text>
+            <event load="COMBAT_CHECK"/>
+          </choice>
 				</event>
 			</choice>
 			<choice hidden="true" blue="true">
-				<text>Save it from certain imprisonment and torture. (The Good Option)</text>
+				<text>Refuse to turn it over. SIDE WITH THE EXPERIMENT</text>
 				<event>
+          <ship load="RAD_SCIENCE_FIGHTER" hostile="true"/>
 					<text>How could the scientists have done such scorching, cruel experiments? You're willing to take the heat so that they won't do any more to this ghost. You power up your weapons and the science fighter does the same.</text>
-					<ship hostile="true"/>
 					<choice>
 						<text>Continue...</text>
 						<event load="COMBAT_CHECK"/>
@@ -1831,6 +1849,10 @@ Once you're onboard, you'll need to kill the crew manning the station, and then 
 You're imidietly noticed, looks like they've got a cruiser ready to defend the base, and they're using the tech stolen from the crystals.
 Prepare to fight.</text>
     <ship load="MU_RAD_CRYSTALENEMY" hostile="true" />
+    <choice>
+      <text>Continue...</text>
+      <event load="COMBAT_CHECK" />
+    </choice>
   </event>
 
   <event name="RAD_MIRROR_5">
@@ -1919,6 +1941,10 @@ Luckily one of your crew was smart enough to have the weapons charged up just in
 
 Unfortunately this doesn't seem to damage the ship much, and instead the ship is able to harness the impact and instantly charges up one of its weapons and responds with a volley of its own, which luckily misses.</text>
         <ship load="MU_RAD_CRYSTALENEMY2" hostile="true" />
+        <choice>
+          <text>Continue...</text>
+          <event load="COMBAT_CHECK" />
+        </choice>
       </event>
     </choice>
   </event>
@@ -1955,6 +1981,94 @@ You search the ship and find it empty of anything useful, however in one of the 
 "Excellent work Captain, we'll be sure to contact you again in the future if we have any work for you."</text>
             <unlockCustomShip silent="false">PLAYER_SHIP_RAD_CRYSTAL_2</unlockCustomShip>
           </event>
+        </choice>
+      </event>
+    </choice>
+  </event>
+  
+  <!--Scrap Cruiser-->
+
+  <event name="RAD_SCRAP_1">
+    <text>"Well, we've had a problem with our transports being robbed, but strangely only when they're carrying scrap, we need you to work out who's robbing us, and we need you to stop them.</text>
+    <choice>
+      <text>"Simple enough."</text>
+      <event>
+        <text>"Anyway, here's the coordinates to one of the transports they robbed, feel free to browse our commercial goods aswell."</text>
+        <quest event="RAD_SCRAP_2"/>
+        <store>STORE_RADLAB</store>
+      </event>
+    </choice>
+  </event>
+
+  <ship name="RAD_SCRAP_LANIUS1" auto_blueprint="RAD_SCIENCE_INTERCEPTOR_LANIUS">
+    <destroyed load="DESTROYED_RAD_SCRAP_LANIUS1"/>
+    <deadCrew load="DESTROYED_RAD_SCRAP_LANIUS1"/>
+  </ship>
+
+  <event name="DESTROYED_RAD_SCRAP_LANIUS1">
+    <text>You've cleared off the lanius, you take the scrap for yourself before searching for clues on the lanius ship...</text>
+    <autoReward level="MED">standard</autoReward>
+    <choice hidden="true">
+      <text>Continue...</text>
+      <event>
+        <text>You don't find much, but you're able to find the cooridinates to another beacon onboard, perhaps this will lead you to the center of the crime ring.</text>
+        <quest event="RAD_SCRAP_3" />
+      </event>
+    </choice>
+  </event>
+
+  <event name="RAD_SCRAP_2">
+    <preventQuest />
+    <preventFleet />
+    <beaconType id="map_icon_rad_scrap1" global="true">
+      <color r="255" g="223" b="0"/>
+    </beaconType>
+    <ship load="RAD_SCRAP_LANIUS1" hostile ="false" />
+    <text>You've arrived at the beacon, the wreck of one of the scientist ships lies nearby. You notice a small but strange lanius vessel nearby, but it appears abandoned.</text>
+    <choice>
+      <text>Investigate...</text>
+      <event>
+        <text>Just as you begin to approach the two ships, the wreck of the science cruiser powers on, looks like you interrupted the lanius in the middle of their looting.</text>
+        <ship hostile="true" />
+        <choice>
+          <text>Continue...</text>
+          <event load="COMBAT_CHECK" />
+        </choice>
+      </event>
+    </choice>
+  </event>
+
+  <ship name="RAD_SCRAP_LANIUS2" auto_blueprint="RAD_SCRAPER_ENEMY">
+    <destroyed load="DESTROYED_RAD_SCRAP_LANIUS2"/>
+    <deadCrew load="DESTROYED_RAD_SCRAP_LANIUS2"/>
+  </ship>
+
+  <event name="DESTROYED_RAD_SCRAP_LANIUS2">
+    <text>With the massive cruiser dealt with the other lanius in the area scatter, looks like you've saved the day, for now atleast...</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <weapon name="RAD_COINGUN" />
+    <unlockCustomShip silent="false">PLAYER_SHIP_RAD_MANTIS_2</unlockCustomShip>
+    <metaVariable name="rad_q11" op="set" val="1"/>
+  </event>
+  
+  <event name="RAD_SCRAP_3">
+    <preventQuest />
+    <preventFleet />
+    <beaconType id="map_icon_rad_quest" global="true">
+      <color r="255" g="223" b="0"/>
+    </beaconType>
+    <img back="BG_RAD_SCRAPYARD" planet="NONE" />
+    <text>You've arrived at the beacon to discover a massive scrapyard, you spot several small lanius vessels darting about, moving between pieces of scrap.</text>
+    <choice>
+      <text>Continue...</text>
+      <event>
+        <text>A moment later a massive vessel appears from amongst the scrap, it looks like this must be the vessel terrorizing the area.
+
+The ship powers on it's weapons, looks like they don't like intruders in their space...</text>
+        <ship load="RAD_SCRAP_LANIUS2" hostile ="true" />
+        <choice>
+          <text>Continue...</text>
+          <event load="COMBAT_CHECK" />
         </choice>
       </event>
     </choice>

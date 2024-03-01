@@ -700,8 +700,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
     if weapon.blueprint.name == "ARTILLERY_RAD_SWTCH" then
         local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2)
         for crewmem in vter(shipManager.vCrewList) do
-            if crewmem.intruder == false and not crewmem:IsDrone() then
-                userdata_table(crewmem, "mods.tpbeam.time").tpTime = 10
+            if not crewmem:IsDrone() then
                 --local systemList = otherShip.vSystemList
                 --local randomRoom = systemList[math.random(0, systemList:Size()-1)].roomId
                 local roomCount = Hyperspace.ShipGraph.GetShipInfo(otherShip.iShipId):RoomCount()
@@ -710,8 +709,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
             end
         end
         for crewmem in vter(otherShip.vCrewList) do
-            if crewmem.intruder == false and not crewmem:IsDrone() then
-                userdata_table(crewmem, "mods.tpbeam.time").tpTime = 10
+            if not crewmem:IsDrone() then
                 --local systemList = shipManager.vSystemList
                 --local randomRoom = systemList[math.random(0, systemList:Size()-1)].roomId
                 local roomCount = Hyperspace.ShipGraph.GetShipInfo(shipManager.iShipId):RoomCount()
@@ -720,6 +718,27 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
             end
         end
     end
+end)
+
+local lastInCombat = false
+
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+    local inCombat = Hyperspace.ships.enemy._targetable.hostile
+
+    for artillery in vter(Hyperspace.ships.player.artillerySystems) do 
+        if artillery.projectileFactory.blueprint.name == "ARTILLERY_RAD_SWTCH" and inCombat == false and lastInCombat == true then 
+            for crewmem in vter(Hyperspace.ships.enemy.vCrewList) do
+                local teleTable = userdata_table(crewmem, "mods.tpbeam.time")
+                if teleTable.tpTime then
+                    teleTable.tpTime = nil
+                end
+                if crewmem.iShipId == 0 then 
+                    crewmem.extend:InitiateTeleport(0,0,0)
+                end
+            end
+        end
+    end
+    lastInCombat = inCombat
 end)
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
@@ -1072,8 +1091,8 @@ end, -100)
 script.on_game_event("ATLAS_MENU", false, function()
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
     if shipManager:HasAugmentation("RAD_CREDIT") > 0 then
-        disableScrap = false
-        shipManager:ModifyScrapCount(200,true)
+        --disableScrap = false
+        shipManager:ModifyScrapCount(200,false)
         --log("add 200 scrap")
     end
 end)
@@ -1083,13 +1102,18 @@ script.on_game_event("START_BEACON_PREP", false, function()
     --richScrap = 200
     if shipManager:HasAugmentation("RAD_CREDIT") > 0 then
         --log("add 200 scrap")
-        disableScrap = false
-        shipManager:ModifyScrapCount(100,true)
+        --disableScrap = false
+        shipManager:ModifyScrapCount(100,false)
     end
     if shipManager:HasAugmentation("RAD_CREDIT_2") > 0 then
         --log("add 200 scrap")
-        disableScrap = false
-        shipManager:ModifyScrapCount(2000,true)
+        --disableScrap = false
+        shipManager:ModifyScrapCount(2000,false)
+    end
+    if shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 then
+        --log("add 200 scrap")
+        --disableScrap = false
+        shipManager:ModifyScrapCount(100,false)
     end
 end)
 
@@ -1948,7 +1972,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
             end
             local beam = spaceManager:CreateBeam(
                 Hyperspace.Blueprints:GetWeaponBlueprint("RAD_CLOAKBEAM"),
-                Hyperspace.Pointf(600,348),
+                Hyperspace.Pointf(426,174),
                 shipManager.iShipId,
                 shipManager.iShipId,
                 otherShip:GetRoomCenter(shieldRoom),
@@ -2720,5 +2744,123 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
     if shipManager:HasAugmentation("RAD_WM_RAILGUN") > 0 then 
         projectile.speed_magnitude = projectile.speed_magnitude*4
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+    if weapon.blueprint.name == "RAD_COINGUN" then 
+        shipManager:ModifyScrapCount(-2,false)
+    end
+end)
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
+    local otherShip = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+    if projectile.extend.name == "RAD_COINGUN" then 
+        otherShip:ModifyScrapCount(2,false)
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
+    if shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 then 
+        local hullDamage = damage.iDamage
+        local scrap = shipManager.currentScrap
+        local scrapLoss = (-1) * math.max(math.floor(0.1 * scrap), 10)
+        shipManager:ModifyScrapCount(scrapLoss,false)
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
+    if shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 and beamHitType == Defines.BeamHit.NEW_ROOM then 
+        local hullDamage = damage.iDamage
+        local scrap = shipManager.currentScrap
+        local scrapLoss = (-1) * math.max(math.floor(0.1 * scrap), 10)
+        shipManager:ModifyScrapCount(scrapLoss,false)
+    end
+    return Defines.Chain.CONTINUE, beamHitType
+end)
+
+local scrapEnabled = false
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 and shipManager.currentScrap <= 0 and scrapEnabled then
+        shipManager:DamageHull(100,true)
+    elseif shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 then
+        shipManager:DamageHull(-1,true)
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+    if not Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then 
+        scrapEnabled = false
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
+    scrapEnabled = true
+end)
+
+--[[script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augName, augValue)
+    if augName == "RAD_DOOR_OFF" and shipManager:HasAugmentation("RAD_NO_DOOR") > 0 and shipManager.weaponSystem.powerState.first >= 1 then
+        augValue=1
+    end
+    return Defines.Chain.CONTINUE, augValue
+end, -100)]]
+local def = Hyperspace.StatBoostDefinition()
+def.stat = Hyperspace.CrewStat.TELEPORT_MOVE
+def.value = false
+def.boostType = Hyperspace.StatBoostDefinition.BoostType.SET
+def.boostSource = Hyperspace.StatBoostDefinition.BoostSource.AUGMENT
+def.shipTarget = Hyperspace.StatBoostDefinition.ShipTarget.ALL
+def.crewTarget = Hyperspace.StatBoostDefinition.CrewTarget.ALLIES
+def.duration = 2
+def.priority = 100
+def.cloneClear = false
+def.realBoostId = Hyperspace.StatBoostDefinition.statBoostDefs:size()
+Hyperspace.StatBoostDefinition.statBoostDefs:push_back(def)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    local doorDisableTable = userdata_table(shipManager, "mods.rad.disableTeleporters")
+    if doorDisableTable.statTime then
+        doorDisableTable.statTime = math.max(doorDisableTable.statTime - Hyperspace.FPS.SpeedFactor/16, 0)
+        if doorDisableTable.statTime == 0 then
+            
+            local crewList = shipManager.vCrewList
+            if shipManager:HasAugmentation("RAD_NO_DOOR") > 0 then
+                if shipManager.weaponSystem.powerState.first >= 1 then 
+                    def.value = false
+                else
+                    def.value = true 
+                end
+                for i = 0, crewList:size() - 1 do
+                    local crew = crewList[i]
+                    Hyperspace.StatBoostManager.GetInstance():CreateTimedAugmentBoost(Hyperspace.StatBoost(def), crew)
+                end
+            end
+            doorDisableTable.statTime = 1
+        end
+    elseif shipManager:HasAugmentation("RAD_NO_DOOR") then
+        doorDisableTable.statTime = 1
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.GET_AUGMENTATION_VALUE, function(shipManager, augName, augValue)
+    if augName == "TELEPORT_HEAL" and shipManager:HasAugmentation("RAD_DOCKING_DRILL") > 0 and Hyperspace.playerVariables.rad_docking_drilled == 1 then
+        --print("TELEPORT HEAL BLOCKED")
+        augValue=0
+    end
+    return Defines.Chain.CONTINUE, augValue
+end, -101)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if Hyperspace.playerVariables.rad_docking_drilled == 1 then
+        --log("UN-ION")
+        shipManager.teleportSystem:LockSystem(0)
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, evasion, friendlyfire) 
+    playerShip = Hyperspace.ships.player
+    if playerShip:HasAugmentation("RAD_DOCKING_DRILL") > 0 and Hyperspace.playerVariables.rad_docking_drilled == 1 then
+        --print("FORCE HIT DOCK")
+        return Defines.Chain.CONTINUE, Defines.Evasion.HIT
     end
 end)

@@ -2,11 +2,37 @@
 <FTL>
   <mod:findName type="event" name="COMBAT_CHECK_REAL">
     <mod-append:triggeredEvent event="RAD_REPLACEMENT_WEAPONS" seeded="false" loops="4" minTime="0.1" maxTime="0.1" />
+    <mod-append:variable name="rad_docking_drilled" op="set" val="0"/>
+    <mod-append:choice req="RAD_DOCKING_DRILL">
+      <text>(Docking Drill) Drill into the ship.</text>
+      <event name="RAD_DOCKING_RAM">
+        <status type="limit" target="enemy" system="engines" amount="0" />
+        <variable name="rad_docking_drilled" op="set" val="1"/>
+        <playSound>breach</playSound>
+        <playSound>airLoss</playSound>
+        <playSound>explosion1</playSound>
+        <triggeredEvent event="RAD_ENABLE_ENEMY_ENGINES" seeded="false" loops="1" minTime="120" maxTime="120">
+          <triggeredEventBox load="DEFAULT_TIMER">
+          <warning time="5.0" flash="true" />
+          <tooltip>The enemy's engines will be up and running in this time.</tooltip>
+          </triggeredEventBox>
+        </triggeredEvent>
+      </event>
+    </mod-append:choice>
   </mod:findName>
 
   <mod:findName type="event" name="COMBAT_CHECK_FAIL_REAL">
     <mod-append:triggeredEvent event="RAD_REPLACEMENT_WEAPONS" seeded="false" loops="4" minTime="0.1" maxTime="0.1" />
+    <mod-append:variable name="rad_docking_drilled" op="set" val="0"/>
+    <mod-append:choice req="RAD_DOCKING_DRILL">
+      <text>(Docking Drill) Drill into the ship.</text>
+      <event load="RAD_DOCKING_RAM" />
+    </mod-append:choice>
   </mod:findName>
+
+  <event name="RAD_ENABLE_ENEMY_ENGINES">
+    <status type="clear" target="enemy" system="engines" amount="100" />
+  </event>
 
   <event name="RAD_REPLACEMENT_WEAPONS">
     <loadEventList seeded="false" first="true" generate="false">

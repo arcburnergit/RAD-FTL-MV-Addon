@@ -1058,4 +1058,21 @@
     <mountPoint x="3" y="20" />
   </weaponAnim>
 
+  <animSheet name="rad_coin" w="44" h="11" fw="11" fh="11">weapon/rad_coin.png</animSheet>
+  <anim name="rad_coin">
+    <sheet>rad_coin</sheet>
+    <desc length="4" x="0" y="0" />
+    <time>0.25</time>
+  </anim>
+
+  <animSheet name="rad_coingun" w="270" h="53" fw="27" fh="53">weapon/rad_coingun.png</animSheet>
+  <weaponAnim name="rad_coingun">
+    <sheet>rad_coingun</sheet>
+    <desc length="10" x="0" y="0" />
+    <chargedFrame>7</chargedFrame>
+    <fireFrame>9</fireFrame>
+    <firePoint x="16" y="6" />
+    <mountPoint x="3" y="34" />
+  </weaponAnim>
+  
 </FTL>

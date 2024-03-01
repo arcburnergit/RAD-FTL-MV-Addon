@@ -1174,6 +1174,11 @@ Just as you start moving towards the ship, it powers on it's weapons, looks like
       <req>loc_rad_board_charged</req>
       <jumpClear>true</jumpClear>
     </eventButton>
+    <triggeredEvent event="RAD_MAIN_DISABLE_DOORS" loop="1" thisFight="false" minTime="30" maxTime="30" />
+  </event>
+
+  <event name="RAD_MAIN_DISABLE_DOORS">
+    <status type="limit" target="enemy" system="doors" amount="0" />
   </event>
 
   <event name="RAD_MAIN_RETURN">

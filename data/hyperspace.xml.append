@@ -53,7 +53,7 @@
     <mod-append:ship>PLAYER_SHIP_RAD_RICH</mod-append:ship>
 		<!-- -->
     <mod-append:ship>PLAYER_SHIP_RAD_CRYSTAL</mod-append:ship>
-    <mod-append:empty/>
+    <mod-append:ship>PLAYER_SHIP_RAD_MANTIS</mod-append:ship>
     <mod-append:ship>PLAYER_SHIP_RAD_CUTTER</mod-append:ship>
     <mod-append:ship>PLAYER_SHIP_RAD_CORVETTE</mod-append:ship>
 
@@ -150,6 +150,24 @@
     <unlock variant="c" silent="false">
       <type>1</type>
       <shipReq>PLAYER_SHIP_RAD_CRYSTAL_2</shipReq>
+      <value>5</value>
+    </unlock>
+  </mod-append:ship>
+  <mod-append:ship name="PLAYER_SHIP_RAD_MANTIS" b="true" c="true" >
+    <unlock variant="a" silent="false">
+      <type>4</type>
+    </unlock>
+    <unlock variant="b" silent="false">
+      <type>4</type>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_MANTIS</shipReq>
+      <value>5</value>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_MANTIS_2</shipReq>
       <value>5</value>
     </unlock>
   </mod-append:ship>
@@ -345,6 +363,20 @@
 			</room>
     </rooms>
   </mod-append:customShip>
+
+  <mod-append:customShip name="PLAYER_SHIP_RAD_MANTIS">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_MANTIS_2">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_MANTIS_3">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <crewLimit>11</crewLimit>
+  </mod-append:customShip>
   
   <mod-append:customShip name="PLAYER_SHIP_RAD_FLAGSHIP">
     <hiddenAug>SHIP_KESTREL</hiddenAug>
@@ -424,9 +456,10 @@
 		<autoShipForce>false</autoShipForce>
 	</mod-append:customShip>
   <mod-append:customShip name="RAD_SCIENCE_ENEMY_CORVETTE_1">
-    <!--shipIcons>
-      <shipIcon>icon_lowthreat</shipIcon>
-    </shipIcons-->
+    <shipIcons>
+      <shipIcon>icon_threat</shipIcon>
+      <shipIcon>icon_auto</shipIcon>
+    </shipIcons>
     <rooms>
       <room id="9">
         <roomAnim renderLayer="0">resist_2x2</roomAnim>
@@ -437,9 +470,10 @@
     <autoShipForce>true</autoShipForce>
   </mod-append:customShip>
   <mod-append:customShip name="RAD_SCIENCE_ENEMY_CORVETTE_2">
-    <!--shipIcons>
-      <shipIcon>icon_lowthreat</shipIcon>
-    </shipIcons-->
+    <shipIcons>
+      <shipIcon>icon_threat</shipIcon>
+      <shipIcon>icon_auto</shipIcon>
+    </shipIcons>
     <rooms>
       <room id="9">
         <roomAnim renderLayer="0">resist_2x2</roomAnim>
@@ -450,9 +484,10 @@
     <autoShipForce>true</autoShipForce>
   </mod-append:customShip>
   <mod-append:customShip name="RAD_SCIENCE_ENEMY_CORVETTE_3">
-    <!--shipIcons>
-      <shipIcon>icon_lowthreat</shipIcon>
-    </shipIcons-->
+    <shipIcons>
+      <shipIcon>icon_threat</shipIcon>
+      <shipIcon>icon_auto</shipIcon>
+    </shipIcons>
     <rooms>
       <room id="9">
         <roomAnim renderLayer="0">resist_2x2</roomAnim>
@@ -461,6 +496,11 @@
       </room>
     </rooms>
     <autoShipForce>true</autoShipForce>
+  </mod-append:customShip>
+  <mod-append:customShip name="RAD_SCRAPER_ENEMY">
+    <shipIcons>
+      <shipIcon>icon_threat</shipIcon>
+    </shipIcons>
   </mod-append:customShip>
 </mod:findLike>
 
@@ -636,6 +676,34 @@
   </aug>
   <aug name="RAD_LOW_SCRAP">
     <locked />
+    <function name="SCRAP_COLLECTOR" value="0.25" useForReqs="true" />
+  </aug>
+  <aug name="RAD_NO_DOOR">
+    <locked />
+  </aug>
+  <aug name="RAD_DOCKING_DRILL">
+    <locked />
+  </aug>
+  <aug name="RAD_DOOR_OFF">
+    <statBoosts>
+      <statBoost name="canPhaseThroughDoors">
+        <boostType>SET</boostType>
+        <value>false</value>
+        <shipTarget>ORIGINAL_SHIP</shipTarget>
+        <crewTarget>ALLIES</crewTarget>
+        <priority>999</priority>
+      </statBoost>
+      <statBoost name="teleportMove">
+        <boostType>SET</boostType>
+        <value>false</value>
+        <shipTarget>ORIGINAL_SHIP</shipTarget>
+        <crewTarget>ALLIES</crewTarget>
+        <priority>999</priority>
+      </statBoost>
+    </statBoosts>
+  </aug>
+  <aug name="RAD_SCRAP_HULL">
+    <locked />
   </aug>
 </augments>
 
@@ -676,10 +744,12 @@
   <bossShip>RAD_SCIENCE_ENEMY_CORVETTE_2</bossShip>
   <bossShip>RAD_SCIENCE_ENEMY_CORVETTE_3</bossShip>
   <bossShip>SHIP_RAD_SCIENCE_CUTTERENEMY</bossShip>
+  <bossShip>RAD_SCRAPER_ENEMY</bossShip>
   
   <metaVariable name="rad_q1" op="set" val="0"/>
   <metaVariable name="rad_q2" op="set" val="0"/>
   <metaVariable name="rad_q22" op="set" val="0"/>
+  <metaVariable name="rad_q23" op="set" val="0"/>
   <metaVariable name="rad_q3" op="set" val="0"/>
   <metaVariable name="rad_q4" op="set" val="0"/>
   <metaVariable name="rad_q5" op="set" val="0"/>
@@ -688,6 +758,7 @@
   <metaVariable name="rad_q8" op="set" val="0"/>
   <metaVariable name="rad_q9" op="set" val="0"/>
   <metaVariable name="rad_q10" op="set" val="0"/>
+  <metaVariable name="rad_q11" op="set" val="0"/>
   
 
   <req name="rad_2" type="all">
@@ -706,9 +777,17 @@
       <name>rad_q3</name>
     </req>
   </req>
-  <req name="rad_4" type="all">
+  <req name="rad_23" type="all">
     <req lvl="1">
       <name>rad_q3</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q23</name>
+    </req>
+  </req>
+  <req name="rad_4" type="all">
+    <req lvl="1">
+      <name>rad_q23</name>
     </req>
     <req lvl="0" max_lvl="0">
       <name>rad_q4</name>
@@ -762,9 +841,18 @@
       <name>rad_q10</name>
     </req>
   </req>
+  <req name="rad_11" type="all">
+    <req lvl="1">
+      <name>rad_q9</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q11</name>
+    </req>
+  </req>
   <req name="rad_total" type="sum">
     <name>rad_q1</name>
     <name>rad_q2</name>
+    <name>rad_q23</name>
     <name>rad_q3</name>
     <name>rad_q4</name>
     <name>rad_q5</name>
@@ -772,6 +860,7 @@
     <name>rad_q7</name>
     <name>rad_q8</name>
     <name>rad_q9</name>
+    <name>rad_q11</name>
   </req>
 
   <variable name="loc_rad_board_charged" op="set" val="1"/>

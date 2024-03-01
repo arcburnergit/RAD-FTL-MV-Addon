@@ -57,7 +57,7 @@
 		Shield Piercing: 10
 		Adjacent System Damage: 2
 		
-		Buy/Sell Price: 50~/25~
+		Default Price: 50~ - Selling Price:25~
 	</descriptionOverride>
 	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
@@ -115,7 +115,7 @@
 		Adjacent System Damage: 2
 
 		
-		Buy/Sell Price: 70~/35~
+		Default Price: 70~ - Selling Price:35~
 	</descriptionOverride>
 	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
@@ -174,7 +174,7 @@
 		
 		Applies lockdown effect to adjacent rooms.
 		
-		Buy/Sell Price: 90~/45~
+		Default Price: 90~ - Selling Price:45~
 	</descriptionOverride>
 	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
@@ -229,7 +229,7 @@
 	
 	Breach Chance: 30% (Adjusted: 30%)
 	
-	Buy/Sell Price: 80~/40~
+	Default Price: 80~ - Selling Price:40~
 	</descriptionOverride>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>0</damage>
@@ -338,7 +338,7 @@
 		Fire Chance: 60%
 		Breach Chance: 60% (Adjusted 24%)
 		
-		Buy/Sell Price: 100~/50~
+		Default Price: 100~ - Selling Price:50~
 	</descriptionOverride>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>1</damage>
@@ -1315,7 +1315,7 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
     <title>Switch Drive</title>
     <short>Switch Drive</short>
     <desc>
-[BASE COOLDOWN: 25] Teleports all of your crew on your ship onto the enemies ship, and the enemies crew onto your ship for 10 seconds.
+[BASE COOLDOWN: 25] Each time it fires all the crew on each ship are teleported across to the other ship, regardless of which ship they originate from.
     </desc>
     <tooltip>Creates a Super Shield.</tooltip>
     <damage>0</damage>
@@ -2017,7 +2017,7 @@ Shots Per Charge: 1
 Base Hull Damage: 0
 Total System Damage: 0
 
-Buy/Sell Price: 80~/40~
+Default Price: 80~ - Selling Price:40~
     </descriptionOverride>
     <tooltip>Abducts enemy crew into your weapons room.</tooltip>
     <damage>0</damage>
@@ -2140,6 +2140,7 @@ The shield generator now generates Super Shield layers instead of normal shield 
     <desc>An advanced Teleportation system enables you to teleport your entire crew aboard the enemy ship, however an unfortunate side effect is that it also teleports the entire enemy crew onto your ship.</desc>
     <systemList>
       <artillery power="3" room="6" start="true" weapon="ARTILLERY_RAD_SWTCH" img="room_artillery" />
+      <teleporter power="1" room="0" start="false" />
       <cloaking power="1" room="1" start="false" img="room_cloaking_2" />
       <clonebay power="1" room="7" start="false">
         <slot>
@@ -3190,7 +3191,7 @@ The beam does 1 damage, and gains an additional half damage for each power in th
     <class>Science Corvette</class>
     <name>The Illusion</name>
     <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_2_unlock"/>
-    <desc>TEXTTEXT</desc>
+    <desc>This ship's cloaking system is specifically outfitted to generate a large beam of energy capable of damaging the enemy ship.</desc>
     <systemList>
       <battery power="1" room="15" start="false" img="room_battery_13" />
       <cloaking power="2" room="20" start="true" img="room_cloaking_rad" />
@@ -4287,4 +4288,367 @@ When the projectile splits each new projectile will deviate from the impact poin
     <aug name="RAD_LOW_SCRAP" />
     <mv-mapImage>map_icon_mup_hacker_a</mv-mapImage>
   </shipBlueprint>
+  
+  <weaponBlueprint name="ARTILLERY_RAD_HEKTAR">
+    <type>LASER</type>
+    <title>Hektar Modular Laser Artillery</title>
+    <short>Hektar Modular Laser Artillery</short>
+    <desc>
+      [BASE COOLDOWN: 15] Fires 3 lasers by defualt, can install an infinite number of modular components.
+    </desc>
+    <tooltip>Modular Laser.</tooltip>
+    <damage>1</damage>
+    <shots>3</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>15</cooldown>
+    <power>1</power>
+    <cost>80</cost>
+    <bp>4</bp>
+    <rarity>0</rarity>
+  </weaponBlueprint>
+
+  <augBlueprint name="RAD_NO_DOOR">
+    <title>Personal Teleporters</title>
+    <desc>Allows your crew to teleport around the ship, however it only works when your weapon system is unpowered.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_DOCKING_DRILL">
+    <title>Docking Drill</title>
+    <desc>Enables you to attach yourself to the side of the enemy ship.
+When you do so your teleporter cooldown becomes instantanous, however this will also apply to the enemy.
+This will also disable the heal on teleportation effect if you choose to dock with the enemy.
+Additionally this will make projectiles undodgeable for both you and your enemy (excluding when cloaked).
+The enemy will be unable to run away for 2 minutes if you dock with them.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_DOOR_OFF">
+    <title>DOORSOFF</title>
+    <desc>YOU SHOULD NEVER SEE THIS.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_SCRAP_HULL">
+    <title>Scrap Hull</title>
+    <desc>Instead of having hull health your ship dies if you reach 0 scrap.
+Each time you get hit you lose 10% of your scrap, if you were to lose less than 10 scrap, lose 10 scrap instead.
+
+Increases scrap gain by 25%</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <weaponBlueprint name="RAD_COINGUN">
+    <type>LASER</type>
+    <title>Coin Cannon Mk1</title>
+    <short>Coin Gun I</short>
+    <desc>This weapon fires coins, each projectile removes 2 scrap from the ship, however if it successfully hits the ship it will return the scrap, doesn't return the scrap when hitting shields or drones.</desc>
+    <tooltip>Uses 2 scrap when firing each projectile, each projectile that hits the enemy ship returns 2 scrap.</tooltip>
+    <damage>1</damage>
+    <shots>3</shots>
+    <sp>1</sp>
+    <fireChance>1</fireChance>
+    <breachChance>1</breachChance>
+    <cooldown>10</cooldown>
+    <power>2</power>
+    <cost>60</cost>
+    <bp>2</bp>
+    <rarity>0</rarity>
+    <image>rad_coin</image>
+    <launchSounds>
+      <sound>coinLaunch</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_coingun</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
+
+  <weaponBlueprint name="RAD_COINGUN_ENEMY">
+    <type>LASER</type>
+    <title>Coin Cannon Mk1</title>
+    <short>Coin Gun I</short>
+    <desc>This weapon fires coins, each projectile removes 2 scrap from the ship, however if it successfully hits the ship it will return the scrap, doesn't return the scrap when hitting shields or drones.</desc>
+    <tooltip>Uses 2 scrap when firing each projectile, each projectile that hits the enemy ship returns 2 scrap.</tooltip>
+    <damage>1</damage>
+    <shots>3</shots>
+    <sp>0</sp>
+    <fireChance>1</fireChance>
+    <breachChance>1</breachChance>
+    <cooldown>10</cooldown>
+    <power>2</power>
+    <cost>60</cost>
+    <bp>2</bp>
+    <rarity>0</rarity>
+    <image>rad_coin</image>
+    <launchSounds>
+      <sound>coinLaunch</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_coingun</weaponArt>
+    <iconImage>laser</iconImage>
+  </weaponBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_MANTIS" layout="radp_mantisa" img="radp_mantisa">
+    <class>Lockdown Cruiser</class>
+    <name>The Adoorable</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_MANTIS_unlock"/>
+    <desc>This ship makes use of small personal teleporters to move crew around the ship, however they don't work while the weapons are powered.</desc>
+    <systemList>
+      <battery power="1" room="1" start="false" img="room_battery_4" />
+      <cloaking power="1" room="8" start="false" img="room_cloaking" />
+      <clonebay power="1" room="6" start="true">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="11" start="true" img="room_doors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="2" room="9" max="8" start="false" img="room_drones_5" />
+      <engines power="1" room="0" start="true" img="room_engines">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="12" start="false" img="room_hacking_9" />
+      <medbay power="1" room="6" start="false" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="14" start="false" img="room_mind" />
+      <oxygen power="1" room="5" start="true" img="room_oxygen_11" />
+      <pilot power="1" room="2" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="10" start="true" img="room_sensors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="4" max="8" start="true" img="room_shields">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="7" start="false" />
+      <weapons power="2" room="3" max="8" start="true" img="room_weapons">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="2" count="4">
+      <weapon name="RAD_DIFFUSE_2" />
+    </weaponList>
+    <droneList drones="5" count="2" />
+    <health amount="30" />
+    <maxPower amount="7" />
+    <crewCount amount="1" class="rad_scientist" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="1" class="mantis_free" />
+    <aug name="RAD_NO_DOOR" />
+    <shieldImage>mup_disk</shieldImage>
+    <mv-mapImage>map_icon_mup_bishop_a</mv-mapImage>
+  </shipBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_MANTIS_2" layout="radp_mantisb" img="radp_mantisb">
+    <class>Scrap Cruiser</class>
+    <name>The Scrapyard</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_MANTIS_2_unlock"/>
+    <desc>This ship makes use of small personal teleporters to move crew around the ship, however they don't work while the weapons are powered.</desc>
+    <systemList>
+      <battery power="1" room="12" start="false" img="room_battery_17" />
+      <cloaking power="1" room="6" start="false" img="room_cloaking" />
+      <clonebay power="1" room="5" start="false">
+        <slot>
+          <number>3</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="3" start="true" img="room_doors_9">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="2" room="8" max="8" start="false" img="room_drones_13" />
+      <engines power="1" room="9" start="true" img="room_engines_2">
+        <slot>
+          <direction>down</direction>
+          <number>3</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="10" start="false" img="room_hacking_9" />
+      <medbay power="1" room="5" start="true" img="room_medbay_3">
+        <slot>
+          <number>3</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="15" start="false" img="room_mind" />
+      <oxygen power="1" room="14" start="true" img="room_oxygen_22" />
+      <pilot power="1" room="0" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="2" start="true" img="room_sensors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="4" max="8" start="true" img="room_shields_4">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="7" start="false" />
+      <weapons power="2" room="1" max="8" start="true" img="room_weapons_13">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="2" count="4">
+      <weapon name="RAD_COINGUN" />
+    </weaponList>
+    <droneList drones="5" count="2" />
+    <health amount="30" />
+    <maxPower amount="7" />
+    <crewCount amount="1" class="rad_scientist" />
+    <crewCount amount="1" class="lanius" />
+    <crewCount amount="1" class="lanius" />
+    <aug name="RAD_SCRAP_HULL" />
+    <shieldImage>mup_disk</shieldImage>
+    <mv-mapImage>map_icon_mup_bishop_a</mv-mapImage>
+  </shipBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_MANTIS_3" layout="radp_mantisc" img="radp_mantisc">
+    <class>Invasion Cruiser</class>
+    <name>Docking Speed!</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
+    <desc>This ship makes use if a docking drill to enable your crew to get into and out of the enemy ship instantly.</desc>
+    <systemList>
+      <battery power="1" room="1" start="false" img="room_battery_6" />
+      <cloaking power="1" room="8" start="false" img="room_cloaking" />
+      <clonebay power="1" room="6" start="true">
+        <slot>
+          <number>1</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="11" start="false" img="room_doors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <drones power="2" room="9" start="false" img="room_drones_5" />
+      <engines power="1" room="0" start="true" img="room_engines">
+        <slot>
+          <direction>down</direction>
+          <number>2</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="12" start="false" img="room_hacking_9" />
+      <medbay power="1" room="6" start="false" img="room_medbay">
+        <slot>
+          <number>1</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="14" start="false" img="room_mind" />
+      <oxygen power="1" room="5" start="true" img="room_oxygen_11" />
+      <pilot power="1" room="2" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="10" start="true" img="room_sensors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="4" max="8" start="true" img="room_shields">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" max="3" room="7" start="true" />
+      <weapons power="2" room="3" max="8" start="true" img="room_weapons">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>3</weaponSlots>
+    <droneSlots>3</droneSlots>
+    <weaponList missiles="8" count="4">
+      <weapon name="RAD_DIFFUSE_1" />
+      <weapon name="BOMB_BIO" />
+    </weaponList>
+    <droneList drones="2" count="2" />
+    <health amount="30" />
+    <maxPower amount="7" />
+    <crewCount amount="1" class="engi" />
+    <crewCount amount="1" class="mantis" />
+    <crewCount amount="1" class="mantis" />
+    <crewCount amount="1" class="mantis" />
+    <aug name="RAD_DOCKING_DRILL" />
+    <shieldImage>mup_disk</shieldImage>
+    <mv-mapImage>map_icon_mup_bishop_a</mv-mapImage>
+  </shipBlueprint>
+
+
 </FTL>

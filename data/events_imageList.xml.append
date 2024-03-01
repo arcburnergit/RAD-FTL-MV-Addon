@@ -4,4 +4,7 @@
   <imageList name="BG_RAD_SCIENCE">
     <img w="1280" h="720">stars_special/bg_rad_science.png</img>
   </imageList>
+  <imageList name="BG_RAD_SCRAPYARD">
+    <img w="1280" h="720">stars_special/bg_rad_scrapyard.png</img>
+  </imageList>
 </FTL>

@@ -1242,6 +1242,29 @@
     <aug name="SHIP_GHOST" />
   </shipBlueprint>
 
+  <shipBlueprint name="RAD_SCIENCE_INTERCEPTOR_LANIUS" layout="rad_science_interceptor_ghost" img="rad_science_interceptor_ghost">
+    <class>Scrapped Interceptor</class>
+    <systemList>
+      <doors power="2" max="3" room="9" start="true" />
+      <engines power="1" max="1" room="2" start="true" />
+      <hacking power="1" max="2" room="12" start="true" />
+      <medbay power="2" max="2" room="7" start="true" />
+      <pilot power="1" max="1" room="1" start="true" />
+      <shields power="2" max="10" room="3" start="true" />
+      <teleporter power="1" max="2" room="0" start="true" />
+      <weapons power="4" max="8" room="6" start="true" />
+    </systemList>
+    <weaponSlots>3</weaponSlots>
+    <droneSlots>3</droneSlots>
+    <weaponList missiles="8" count="3" load="LIST_WEAPONS_RAD_SCIENCE" />
+    <droneList drones="8" count="3" load="LIST_DRONES_AUTO" />
+    <health amount="18" />
+    <maxPower amount="25" />
+    <crewCount amount="6" max="8" class="lanius" />
+    <boardingAI>sabotage</boardingAI>
+    <aug name="SHIP_GHOST" />
+  </shipBlueprint>
+
   <shipBlueprint name="RAD_SCIENCE_CUTTER_ENEMY" layout="rad_science_cutter_enemy" img="rad_science_cutter_enemy">
     <class>Scientist Autoship</class>
     <systemList>
@@ -1270,4 +1293,55 @@
     <boardingAI>sabotage</boardingAI>
   </shipBlueprint>
 
+  <shipBlueprint name="RAD_EXPERIMENT_ENEMY" layout="rad_experiment_enemy" img="rad_experiment_enemy">
+    <class>Ghost Flagship</class>
+    <systemList>
+      <clonebay power="2" max="2" room="12" start="true" />
+      <doors power="2" max="3" room="10" start="true" />
+      <drones power="2" max="6" room="6" start="false" />
+      <engines power="1" max="2" room="2" start="true" />
+      <mind power="1" max="2" room="9" start="false" />
+      <pilot power="1" max="1" room="0" start="true" />
+      <shields power="2" max="8" room="5" start="true" />
+      <teleporter power="2" max="2" room="1" start="true" />
+      <weapons power="2" max="8" room="7" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>3</droneSlots>
+    <weaponList missiles="8" count="4" load="LIST_WEAPONS_GHOST" />
+    <droneList drones="8" count="3" load="DRONES_CIRCLE" />
+    <health amount="24" />
+    <maxPower amount="30" />
+    <crewCount amount="8" max="12" class="phantom" />
+    <boardingAI>invasion</boardingAI>
+    <aug name="EX_BACKUP_DNA" />
+  </shipBlueprint>
+
+  <shipBlueprint name="RAD_SCRAPER_ENEMY" layout="rad_scraper_enemy" img="rad_scraper_enemy">
+    <class>???</class>
+    <systemList>
+      <doors power="1" max="2" room="6" start="true" />
+      <engines power="1" max="2" room="0" start="true" />
+      <hacking power="1" max="1" room="5" start="true" />
+      <medbay power="1" max="2" room="8" start="true" />
+      <pilot power="1" max="1" room="10" start="true" />
+      <shields power="3" max="11" room="9" start="true" />
+      <teleporter power="1" max="2" room="1" start="true" />
+      <weapons power="4" max="8" room="7" start="true" />
+    </systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>0</droneSlots>
+    <weaponList missiles="7" count="4">
+      <weapon name="RAD_COINGUN_ENEMY" />
+      <weapon name="RAD_COINGUN_ENEMY" />
+      <weapon name="SHOTGUN_1_ENEMY" />
+      <weapon name="SHOTGUN_2" />
+    </weaponList>
+    <droneList drones="0" count="0" />
+    <health amount="15" />
+    <maxPower amount="30" />
+    <crewCount amount="6" max="9" class="lanius" />
+    <boardingAI>sabotage</boardingAI>
+  </shipBlueprint>
+  
 </FTL>

@@ -3,6 +3,7 @@
 <FTL>
 
 <text name="map_icon_rad_lab">R&amp;D LAB</text>
+<text name="map_icon_rad_quest">QUEST [!]</text>
 <text name="map_icon_rad_pirate">PIRATE [!]</text>
 <text name="map_icon_rad_pirate_d">DAMAGED PIRATE [!]</text>
 <text name="map_icon_rad_pirate_e">PIRATE ENFORCER [!]</text>
@@ -16,6 +17,7 @@
 <text name="map_icon_rad_mirror2">MAIN BASE [!]</text>
 <text name="map_icon_rad_warped1">TRACKER [!]</text>
 <text name="map_icon_rad_warped2">QUEST [!]</text>
+<text name="map_icon_rad_scrap1">TRANSPORT [!]</text>
 <text name="map_icon_rad_main_lab">R&amp;D HEADQUARTERS</text>
 <text name="map_icon_rad_main_quest">TESTING FACILITY</text>
 <text name="map_icon_rad_corvette">CORVETTE [!]</text>

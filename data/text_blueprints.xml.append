@@ -5,13 +5,15 @@
 <text name="ship_PLAYER_SHIP_RAD_STATION_3_unlock">Get to sector 5 with either the A or B varient of this ship.</text>
 <text name="ship_PLAYER_SHIP_RAD_FLESH_unlock">Recover a prototype cruiser.</text>
 <text name="ship_PLAYER_SHIP_RAD_FLESH_2_unlock">Recover a joint project with the engi.</text>
-<text name="ship_PLAYER_SHIP_RAD_GHOST_unlock">Retrieve and save a tortured phantom.</text>
+<text name="ship_PLAYER_SHIP_RAD_GHOST_unlock">Retrieve and side with a tortured phantom.</text>
 <text name="ship_PLAYER_SHIP_RAD_GHOST_2_unlock">Deal with some poor customers.</text>
 <text name="ship_PLAYER_SHIP_RAD_RICH_unlock">Side with the son of a rich tycoon.</text>
 <text name="ship_PLAYER_SHIP_RAD_POOR_unlock">Side Against the son of a rich tycoon.</text>
 <text name="ship_PLAYER_SHIP_RAD_HUGE_unlock">Unlock every other ship on this page.</text>
 <text name="ship_PLAYER_SHIP_RAD_CRYSTAL_unlock">Deal with some crystalin rebels.</text>
 <text name="ship_PLAYER_SHIP_RAD_CRYSTAL_2_unlock">Find out what happened to the missing station.</text>
+<text name="ship_PLAYER_SHIP_RAD_MANTIS_unlock">Side with the scientists and betray a certain experiment.</text>
+<text name="ship_PLAYER_SHIP_RAD_MANTIS_2_unlock">Deal with some highwayaliens.</text>
 
 <text name="ship_PLAYER_SHIP_RAD_FLAGSHIP_unlock">Complete all of the quests from the R&amp;D Lab.</text>
 <text name="ship_PLAYER_SHIP_RAD_FLAGSHIP_2_unlock">Complete all the quests from the R&amp;D Lab, and unlock the type C for each of the quest cruisers.</text>

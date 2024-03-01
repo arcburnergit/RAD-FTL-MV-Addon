@@ -223,6 +223,8 @@
         <ship>PLAYER_SHIP_RAD_EXPERIMENT_2</ship>
         <ship>PLAYER_SHIP_RAD_RICH_2</ship>
         <ship>PLAYER_SHIP_RAD_CRYSTAL_2</ship>
+        <ship>PLAYER_SHIP_RAD_MANTIS</ship>
+        <ship>PLAYER_SHIP_RAD_MANTIS_2</ship>
       </otherUnlocks>
     </unlock>
     <unlock variant="b" silent="false">
@@ -243,6 +245,9 @@
         <ship>PLAYER_SHIP_RAD_EXPERIMENT_3</ship>
         <ship>PLAYER_SHIP_RAD_RICH_3</ship>
         <ship>PLAYER_SHIP_RAD_CRYSTAL_3</ship>
+        <ship>PLAYER_SHIP_RAD_MANTIS</ship>
+        <ship>PLAYER_SHIP_RAD_MANTIS_2</ship>
+        <ship>PLAYER_SHIP_RAD_MANTIS_3</ship>
       </otherUnlocks>
     </unlock>
   </mod-append:ship>

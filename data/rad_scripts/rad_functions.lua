@@ -739,7 +739,7 @@ end)
 local lastInCombat = false
 
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
-    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then 
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame and Hyperspace.ships.enemy then 
         local inCombat = Hyperspace.ships.enemy._targetable.hostile
 
         for artillery in vter(Hyperspace.ships.player.artillerySystems) do 
@@ -2839,8 +2839,7 @@ Hyperspace.StatBoostDefinition.statBoostDefs:push_back(def)
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
     local doorDisableTable = userdata_table(shipManager, "mods.rad.disableTeleporters")
-    if doorDisableTable.statTime then
-        log("stattime")
+    if doorDisableTable.statTime and shipManager:HasAugmentation("RAD_NO_DOOR") then
         doorDisableTable.statTime = math.max(doorDisableTable.statTime - Hyperspace.FPS.SpeedFactor/16, 0)
         if doorDisableTable.statTime == 0 then
             

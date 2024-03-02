@@ -3551,7 +3551,7 @@ Due to the small size, the reactor is only powerful enough to provide for 1 powe
 
   <augBlueprint name="RAD_LOW_WEAPON">
     <title>Low Power Weapons</title>
-    <desc>Due to the poor reactor on the ship, only single power weapons are capable of being fired, however these weapons will fire double the number of projectiles/beams.</desc>
+    <desc>Due to the poor reactor on the ship, only one power and less weapons are capable of being fired, however these weapons will fire double the number of projectiles/beams.</desc>
     <cost>0</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>

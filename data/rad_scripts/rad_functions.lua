@@ -17,6 +17,16 @@ local function get_random_point_in_radius(center, radius)
     return Hyperspace.Pointf(center.x + r * math.cos(theta), center.y + r * math.sin(theta))
 end
 
+local function get_point_local_offset(original, target, offsetForwards, offsetRight)
+    local alpha = math.atan((original.y-target.y), (original.x-target.x))
+    --print(alpha)
+    local newX = original.x - (offsetForwards * math.cos(alpha)) - (offsetRight * math.cos(alpha+math.rad(90)))
+    --print(newX)
+    local newY = original.y - (offsetForwards * math.sin(alpha)) - (offsetRight * math.sin(alpha+math.rad(90)))
+    --print(newY)
+    return Hyperspace.Pointf(newX, newY)
+end
+
 local function vter(cvec)
     local i = -1
     local n = cvec:size()
@@ -296,10 +306,13 @@ script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
         if crewmem.bDead then
             teleTable.tpTime = nil
         else
-            teleTable.tpTime = math.max(teleTable.tpTime - Hyperspace.FPS.SpeedFactor/16, 0)
-            if teleTable.tpTime == 0 then
-                crewmem.extend:InitiateTeleport(crewmem.iShipId,0,0)
-                teleTable.tpTime = nil
+            local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+            if not commandGui.bPaused then 
+                teleTable.tpTime = math.max(teleTable.tpTime - Hyperspace.FPS.SpeedFactor/16, 0)
+                if teleTable.tpTime == 0 then
+                    crewmem.extend:InitiateTeleport(crewmem.iShipId,0,0)
+                    teleTable.tpTime = nil
+                end
             end
         end
     end
@@ -361,11 +374,14 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
         if weaponData then
             local oHTable = userdata_table(weapon, "mods.overheatweapons.shots")
             if oHTable.oHCDown then
-                oHTable.oHCDown = math.max(oHTable.oHCDown - Hyperspace.FPS.SpeedFactor/16, 0)
-                if oHTable.oHCDown == 0 then
-                    oHTable.oHCDown = nil
-                    weapon.requiredPower = weaponData.power
-                    weapon.powered = true
+                local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+                if not commandGui.bPaused then 
+                    oHTable.oHCDown = math.max(oHTable.oHCDown - Hyperspace.FPS.SpeedFactor/16, 0)
+                    if oHTable.oHCDown == 0 then
+                        oHTable.oHCDown = nil
+                        weapon.requiredPower = weaponData.power
+                        weapon.powered = true
+                    end
                 end
             end
         end
@@ -523,7 +539,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_PRE, function(project
         --log(tostring(projectile.currentSpace))
         --log(tostring(projectile.destinationSpace))
         local chTable = userdata_table(projectile, "mods.radsmartlaser.comhead")
-        if projectile.currentSpace == 1.0 and chTable.notComputed then 
+        if projectile.currentSpace == projectile.destinationSpace and chTable.notComputed then 
             chTable.notComputed = nil
             projectile:ComputeHeading()
         end
@@ -723,22 +739,24 @@ end)
 local lastInCombat = false
 
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
-    local inCombat = Hyperspace.ships.enemy._targetable.hostile
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then 
+        local inCombat = Hyperspace.ships.enemy._targetable.hostile
 
-    for artillery in vter(Hyperspace.ships.player.artillerySystems) do 
-        if artillery.projectileFactory.blueprint.name == "ARTILLERY_RAD_SWTCH" and inCombat == false and lastInCombat == true then 
-            for crewmem in vter(Hyperspace.ships.enemy.vCrewList) do
-                local teleTable = userdata_table(crewmem, "mods.tpbeam.time")
-                if teleTable.tpTime then
-                    teleTable.tpTime = nil
-                end
-                if crewmem.iShipId == 0 then 
-                    crewmem.extend:InitiateTeleport(0,0,0)
+        for artillery in vter(Hyperspace.ships.player.artillerySystems) do 
+            if artillery.projectileFactory.blueprint.name == "ARTILLERY_RAD_SWTCH" and inCombat == false and lastInCombat == true then 
+                for crewmem in vter(Hyperspace.ships.enemy.vCrewList) do
+                    local teleTable = userdata_table(crewmem, "mods.tpbeam.time")
+                    if teleTable.tpTime then
+                        teleTable.tpTime = nil
+                    end
+                    if crewmem.iShipId == 0 then 
+                        crewmem.extend:InitiateTeleport(0,0,0)
+                    end
                 end
             end
         end
+        lastInCombat = inCombat
     end
-    lastInCombat = inCombat
 end)
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
@@ -1254,7 +1272,8 @@ end)
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
     if shipManager:HasAugmentation("RAD_SCRAM") > 0 then
         local teleTable = userdata_table(shipManager, "mods.scrambler.time")
-        if teleTable.tpTime then 
+        local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+        if teleTable.tpTime and (not commandGui.bPaused) then 
             teleTable.tpTime = math.max(teleTable.tpTime - Hyperspace.FPS.SpeedFactor/16, 0)
             if teleTable.tpTime == 0 then
                  for crewmem in vter(shipManager.vCrewList) do
@@ -2479,30 +2498,31 @@ script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
     local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
     local currentProjectiles = {}
-
-    if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then
-        log("ON_TICK") 
-        for projectile in vter(spaceManager.projectiles) do
-            log("PROJECTILEPRE VALID")
-            local weaponType = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name).typeName
-            if weaponType ~= "BEAM" and projectile.destinationSpace == 0 and projectile.extend.name ~= "DRONE_LASER_DEFENSE" and projectile.extend.name ~= "DRONE_MISSILE_DEFENSE" and projectile.extend.name ~= "DRONE_ION_DEFENSE" and projectile.extend.name ~= "ANCIENT_DRONE_DEFENSE" and projectile.extend.name ~= "ROYAL_DRONE_DEFENSE" and projectile.extend.name ~= "DRONE_LASER_ENGI_DEFENSE_LOOT" then    
-                log("PROJECTILE VALID")
-                currentProjectiles[projectile.selfId] = true
-                if not radProjectileWarnings[projectile.selfId] then
-                    if projectile.damage.iIonDamage > 0 then 
-                        radProjectileWarnings[projectile.selfId] = {projectile.target, true}
-                    else
-                        radProjectileWarnings[projectile.selfId] = {projectile.target, false}
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then
+        if shipManager:HasAugmentation("RAD_BULLET_HELL") > 0 then
+            log("ON_TICK") 
+            for projectile in vter(spaceManager.projectiles) do
+                log("PROJECTILEPRE VALID")
+                local weaponType = Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name).typeName
+                if weaponType ~= "BEAM" and projectile.destinationSpace == 0 and projectile.extend.name ~= "DRONE_LASER_DEFENSE" and projectile.extend.name ~= "DRONE_MISSILE_DEFENSE" and projectile.extend.name ~= "DRONE_ION_DEFENSE" and projectile.extend.name ~= "ANCIENT_DRONE_DEFENSE" and projectile.extend.name ~= "ROYAL_DRONE_DEFENSE" and projectile.extend.name ~= "DRONE_LASER_ENGI_DEFENSE_LOOT" then    
+                    log("PROJECTILE VALID")
+                    currentProjectiles[projectile.selfId] = true
+                    if not radProjectileWarnings[projectile.selfId] then
+                        if projectile.damage.iIonDamage > 0 then 
+                            radProjectileWarnings[projectile.selfId] = {projectile.target, true}
+                        else
+                            radProjectileWarnings[projectile.selfId] = {projectile.target, false}
+                        end
                     end
                 end
             end
-        end
 
 
-        for projId in pairs(radProjectileWarnings) do
-            log("PROJECTILE")
-            if not currentProjectiles[projId] then
-                radProjectileWarnings[projId] = nil
+            for projId in pairs(radProjectileWarnings) do
+                log("PROJECTILE")
+                if not currentProjectiles[projId] then
+                    radProjectileWarnings[projId] = nil
+                end
             end
         end
     end
@@ -2789,7 +2809,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 end)
 
 script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
-    if not Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then 
+    if not Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame and scrapEnabled then 
         scrapEnabled = false
     end
 end)
@@ -2820,6 +2840,7 @@ Hyperspace.StatBoostDefinition.statBoostDefs:push_back(def)
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
     local doorDisableTable = userdata_table(shipManager, "mods.rad.disableTeleporters")
     if doorDisableTable.statTime then
+        log("stattime")
         doorDisableTable.statTime = math.max(doorDisableTable.statTime - Hyperspace.FPS.SpeedFactor/16, 0)
         if doorDisableTable.statTime == 0 then
             
@@ -2858,9 +2879,144 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 end)
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, evasion, friendlyfire) 
-    playerShip = Hyperspace.ships.player
+    local playerShip = Hyperspace.ships.player
     if playerShip:HasAugmentation("RAD_DOCKING_DRILL") > 0 and Hyperspace.playerVariables.rad_docking_drilled == 1 then
         --print("FORCE HIT DOCK")
         return Defines.Chain.CONTINUE, Defines.Evasion.HIT
+    end
+end)
+
+
+--[[script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+    local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+    print(commandGui.bPaused)
+end)
+mods.rad.popUpTooltips = {}
+local tooltips = mods.rad.popUpTooltips
+tooltips[""]
+script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
+end)]]
+
+
+script.on_internal_event(Defines.InternalEvents.DRONE_FIRE, function(projectile, drone)
+    if drone.weaponBlueprint.name == "RAD_DRONE_BEAM_COMBAT" then 
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+
+        local missilePoint = get_point_local_offset(projectile.position,projectile.target1, 20, 0)
+        local beamPoint = get_point_local_offset(projectile.position,projectile.target1, 0, 19)
+        local ionPoint = get_point_local_offset(projectile.position,projectile.target1, 5, -12)
+        local laserPoint = get_point_local_offset(projectile.position,projectile.target1, -20, -19)
+
+        local beamBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint("DRONE_BEAM_COMBAT")
+        local ionBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint("DRONE_ION")
+        local laserBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint("DRONE_LASER") 
+        local missileBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint("MISSILES_1")
+
+        --projectile.position = beamPoint
+        --projectile:ComputeHeading()
+
+        local missile = spaceManager:CreateMissile(
+            missileBlueprint,
+            missilePoint,
+            projectile.currentSpace,
+            projectile.ownerId,
+            projectile.target1,
+            projectile.destinationSpace,
+            projectile.heading)
+        missile:ComputeHeading()
+
+        local ion = spaceManager:CreateLaserBlast(
+            ionBlueprint,
+            ionPoint,
+            projectile.currentSpace,
+            projectile.ownerId,
+            projectile.target1,
+            projectile.destinationSpace,
+            projectile.heading)
+        ion:ComputeHeading()
+        ion.speed_magnitude = ion.speed_magnitude*2
+
+        local laser = spaceManager:CreateLaserBlast(
+            laserBlueprint,
+            laserPoint,
+            projectile.currentSpace,
+            projectile.ownerId,
+            projectile.target1,
+            projectile.destinationSpace,
+            projectile.heading)
+        laser:ComputeHeading()
+        laser.speed_magnitude = math.ceil(laser.speed_magnitude/2)
+
+        local beam = spaceManager:CreateBeam(
+            beamBlueprint,
+            beamPoint,
+            projectile.currentSpace,
+            projectile.ownerId,
+            projectile.target1,
+            projectile.target2,
+            projectile.destinationSpace,
+            projectile.length,
+            projectile.heading)
+        beam:ComputeHeading()
+
+        projectile:Kill()
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.DRONE_FIRE, function(projectile, drone)
+    if drone.weaponBlueprint.name == "RAD_DRONE_BEAM_COMBAT2" then 
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+
+        local target1 = get_point_local_offset(projectile.target1,projectile.target2, 0, 0)
+        local target2 = get_point_local_offset(projectile.target1,projectile.target2, 50, 0)
+        local target3 = get_point_local_offset(projectile.target1,projectile.target2, 100, 0)
+        local target4 = get_point_local_offset(projectile.target1,projectile.target2, 150, 0)
+
+        local laserBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint("DRONE_LASER") 
+
+        local laser1 = spaceManager:CreateLaserBlast(
+            laserBlueprint,
+            projectile.position,
+            projectile.currentSpace,
+            projectile.ownerId,
+            target1,
+            projectile.destinationSpace,
+            projectile.heading)
+        laser1:ComputeHeading()
+
+        local laser2 = spaceManager:CreateLaserBlast(
+            laserBlueprint,
+            projectile.position,
+            projectile.currentSpace,
+            projectile.ownerId,
+            target2,
+            projectile.destinationSpace,
+            projectile.heading)
+        laser2:ComputeHeading()
+        laser2.speed_magnitude = laser2.speed_magnitude-2
+
+        local laser3 = spaceManager:CreateLaserBlast(
+            laserBlueprint,
+            projectile.position,
+            projectile.currentSpace,
+            projectile.ownerId,
+            target3,
+            projectile.destinationSpace,
+            projectile.heading)
+        laser3:ComputeHeading()
+        laser3.speed_magnitude = laser3.speed_magnitude-4
+
+        local laser4 = spaceManager:CreateLaserBlast(
+            laserBlueprint,
+            projectile.position,
+            projectile.currentSpace,
+            projectile.ownerId,
+            target4,
+            projectile.destinationSpace,
+            projectile.heading)
+        laser4:ComputeHeading()
+        laser4.speed_magnitude = laser4.speed_magnitude-6
+
+        --projectile:Kill()
     end
 end)

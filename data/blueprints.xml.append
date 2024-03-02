@@ -39,8 +39,8 @@
 <weaponBlueprint name="RAD_CLUSTER_MISSILE"> 
 	<type>MISSILES</type>
 	<tip>tip_cascade</tip>
-	<title>Cluster Missile Mk1</title>
-	<short>Cluster 1</short>
+	<title>Cluster Missile MK I</title>
+	<short>Cluster II</short>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<descriptionOverride>In an attempt to create more widespread destruction, this missile houses several smaller warheads that are spun out to hit adjacent rooms. Unfortunately, this left no room in the main missile for any explosives.
 
@@ -95,8 +95,8 @@
 <weaponBlueprint name="RAD_CLUSTER_MISSILE_2"> 
 	<type>MISSILES</type>
 	<tip>tip_cascade</tip>
-	<title>Cluster Missile Mk2</title>
-	<short>Cluster 2</short>
+	<title>Cluster Missile MK II</title>
+	<short>Cluster II</short>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<descriptionOverride>In an attempt to create more widespread destruction, this missile uses a belt to load many smaller warheads into the missile, which are then spun out to hit adjacent rooms just before impact. Unfortunately, this left no room in the main missile for any explosives.
 
@@ -1484,7 +1484,7 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 
 <weaponBlueprint name="BEAM_RAD_ZAPPER">
 	<type>LASER</type>
-	<title>Drone Zapper Mk3</title>
+	<title>Drone Zapper MK III</title>
 	<short>Zapper III</short>
 	<desc>This weapon won't do much to an enemy ship, but it will automatically target and fire apon both enemy combat, and defence drones.</desc>
 	<tooltip>Fires multiple lasers and automatically targets different systems.</tooltip> 
@@ -2383,7 +2383,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <weaponBlueprint name="RAD_ZSGUN_3">
     <type>LASER</type>
-    <title>Super Shield Mk3</title>
+    <title>Super Shield MK III</title>
     <short>Shield III</short>
     <desc>This weapon won't do much to an enemy ship, but it will recharge 3 energy shield layers every time it charges and fires. </desc>
     <tooltip>Generates 3 Zoltan Shield Layers.</tooltip>
@@ -2419,7 +2419,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <weaponBlueprint name="RAD_ZSGUN_2">
     <type>LASER</type>
-    <title>Super Shield Mk2</title>
+    <title>Super Shield MK II</title>
     <short>Shield II</short>
     <desc>This weapon won't do much to an enemy ship, but it will recharge 2 energy shield layers every time it charges and fires. </desc>
     <tooltip>Generates 2 Zoltan Shield Layers.</tooltip>
@@ -2456,7 +2456,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
   
   <weaponBlueprint name="RAD_ZSGUN_1">
     <type>LASER</type>
-    <title>Super Shield Mk1</title>
+    <title>Super Shield MK I</title>
     <short>Shield I</short>
     <desc>This weapon won't do much to an enemy ship, but it will recharge an energy shield layer every time it charges and fires. </desc>
     <tooltip>Generates a Zoltan Shield Layer.</tooltip>
@@ -2526,7 +2526,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <weaponBlueprint name="RAD_LIGHTNING_1">
     <type>LASER</type>
-    <title>Tesla Cannon Mk1</title>
+    <title>Tesla Cannon MK I</title>
     <short>Tesla I</short>
     <tip>tip_lightning</tip>
     <desc>This lightning weapon chains to an adjacent room 5 times.</desc>
@@ -2566,7 +2566,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
   
   <weaponBlueprint name="RAD_LIGHTNING_2">
     <type>LASER</type>
-    <title>Tesla Cannon Mk2</title>
+    <title>Tesla Cannon MK II</title>
     <short>Tesla II</short>
     <tip>tip_lightning</tip>
     <desc>This lightning weapon chains to an adjacent room 4 times.</desc>
@@ -2606,7 +2606,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <weaponBlueprint name="RAD_LIGHTNING_3">
     <type>LASER</type>
-    <title>Tesla Cannon Mk3</title>
+    <title>Tesla Cannon MK III</title>
     <short>Tesla III</short>
     <tip>tip_lightning</tip>
     <desc>This lightning weapon chains to an adjacent room 2 times.</desc>
@@ -4040,7 +4040,7 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
 
   <weaponBlueprint name="RAD_DIFFUSE_1">
     <type>BURST</type>
-    <title>Diffusion Cannon Mk1</title>
+    <title>Diffusion Cannon MK I</title>
     <short>Diffuse I</short>
     <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
@@ -4083,7 +4083,7 @@ When the projectile splits each new projectile will deviate from the impact poin
 
   <weaponBlueprint name="RAD_DIFFUSE_2">
     <type>BURST</type>
-    <title>Diffusion Cannon Mk1</title>
+    <title>Diffusion Cannon MK II</title>
     <short>Diffuse II</short>
     <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
@@ -4126,7 +4126,7 @@ When the projectile splits each new projectile will deviate from the impact poin
 
   <weaponBlueprint name="RAD_DIFFUSE_3">
     <type>BURST</type>
-    <title>Diffusion Cannon Mk3</title>
+    <title>Diffusion Cannon MK III</title>
     <short>Diffuse III</short>
     <desc>Each projectile fired from this weapon impacts the shields, taking down one shield layer them, before splitting into two more projectiles that each hit somewhere on the enemy ship.
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
@@ -4350,7 +4350,7 @@ Increases scrap gain by 25%</desc>
 
   <weaponBlueprint name="RAD_COINGUN">
     <type>LASER</type>
-    <title>Coin Cannon Mk1</title>
+    <title>Coin Cannon MK I</title>
     <short>Coin Gun I</short>
     <desc>This weapon fires coins, each projectile removes 2 scrap from the ship, however if it successfully hits the ship it will return the scrap, doesn't return the scrap when hitting shields or drones.</desc>
     <tooltip>Uses 2 scrap when firing each projectile, each projectile that hits the enemy ship returns 2 scrap.</tooltip>
@@ -4386,7 +4386,7 @@ Increases scrap gain by 25%</desc>
 
   <weaponBlueprint name="RAD_COINGUN_ENEMY">
     <type>LASER</type>
-    <title>Coin Cannon Mk1</title>
+    <title>Coin Cannon MK I</title>
     <short>Coin Gun I</short>
     <desc>This weapon fires coins, each projectile removes 2 scrap from the ship, however if it successfully hits the ship it will return the scrap, doesn't return the scrap when hitting shields or drones.</desc>
     <tooltip>Uses 2 scrap when firing each projectile, each projectile that hits the enemy ship returns 2 scrap.</tooltip>
@@ -4650,5 +4650,76 @@ Increases scrap gain by 25%</desc>
     <mv-mapImage>map_icon_mup_bishop_a</mv-mapImage>
   </shipBlueprint>
 
+  <droneBlueprint name="RAD_WONDERDRONE">
+    <type>COMBAT</type>
+    <tip>tip_combat</tip>
+    <title>The WonderDrone+ (tm)</title>
+    <short>WonderDrone+</short>
+    <desc>An upgraded varient of the wonderdrone, capable of powering all 4 weapons at once, those being a missile, an ion, a beam, and a laser.</desc>
+    <power>3</power>
+    <cooldown>1000</cooldown>
+    <dodge>0</dodge>
+    <speed>16</speed>
+    <cost>60</cost>
+    <bp>8</bp>
+    <droneImage>drone_random</droneImage>
+    <weaponBlueprint>RAD_DRONE_BEAM_COMBAT</weaponBlueprint>
+    <rarity>0</rarity>
+  </droneBlueprint>
+
+  <weaponBlueprint name="RAD_DRONE_BEAM_COMBAT">
+    <type>BEAM</type>
+    <tip>tip_beams</tip>
+    <title>Drone Beam</title>
+    <damage>0</damage>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <speed>10</speed>
+    <rarity>0</rarity>
+    <image>beam_contact</image>
+    <length>45</length>
+    <launchSounds>
+      <sound>beam1</sound>
+      <sound>beam1_2</sound>
+    </launchSounds>
+    <weaponArt>beam_1</weaponArt>
+  </weaponBlueprint>
+
+  <droneBlueprint name="RAD_BURSTDRONE">
+    <type>COMBAT</type>
+    <tip>tip_combat</tip>
+    <title>Burst Drone MK I</title>
+    <short>Burst Drone I</short>
+    <desc>An upgraded varient of the wonderdrone, capable of powering all 4 weapons at once, those being a missile, an ion, a beam, and a laser.</desc>
+    <power>3</power>
+    <cooldown>1000</cooldown>
+    <dodge>0</dodge>
+    <speed>16</speed>
+    <cost>60</cost>
+    <bp>8</bp>
+    <droneImage>drone_random</droneImage>
+    <weaponBlueprint>RAD_DRONE_BEAM_COMBAT2</weaponBlueprint>
+    <rarity>0</rarity>
+  </droneBlueprint>
+
+  <weaponBlueprint name="RAD_DRONE_BEAM_COMBAT2">
+    <type>BEAM</type>
+    <tip>tip_beams</tip>
+    <title>Drone Beam</title>
+    <damage>0</damage>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <speed>10</speed>
+    <rarity>0</rarity>
+    <image>beam_contact</image>
+    <length>200</length>
+    <launchSounds>
+      <sound>beam1</sound>
+      <sound>beam1_2</sound>
+    </launchSounds>
+    <weaponArt>beam_1</weaponArt>
+  </weaponBlueprint>
 
 </FTL>

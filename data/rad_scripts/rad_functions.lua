@@ -2706,10 +2706,12 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
 end)
 
 script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
-    if crewmem.iShipId == 0 and crewmem.intruder == false and shipManager:HasAugmentation("RAD_BULLET_HELL")>0 then 
-        if crewmem.bCloned then 
-            crewmem:Kill(true)
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+        if crewmem.iShipId == 0 and crewmem.intruder == false and shipManager:HasAugmentation("RAD_BULLET_HELL")>0 then 
+            if crewmem.bCloned then 
+                crewmem:Kill(true)
+            end
         end
     end
 end)

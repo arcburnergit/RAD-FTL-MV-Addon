@@ -22,6 +22,14 @@
 <text name="map_icon_rad_main_quest">TESTING FACILITY</text>
 <text name="map_icon_rad_corvette">CORVETTE [!]</text>
   
+  
+
+<text name="addon_hover_rad2">R&amp;D
+Currently Enabled.
+Click to see more info.</text>
+<text name="addon_hover_rad">R&amp;D
+Currently Enabled.
+Click to see more info.</text>
 <text name="tip_rad_loot">SCIENCE LOOT
 -1 damage
 +1 system damage

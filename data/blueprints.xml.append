@@ -3708,7 +3708,7 @@ Due to the small size, the reactor is only powerful enough to provide for 1 powe
   
   <augBlueprint name="RAD_LOW_SHIELD">
     <title>Weapon Scrambler</title>
-    <desc>Every combat all of your weapons are randomly replaced.</desc>
+    <desc>Every combat all of your weapons are randomly replaced. Does not apply to the flagship fight, what ever weapons you have before the fight are the ones you'll keep</desc>
     <cost>0</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
@@ -4288,6 +4288,83 @@ When the projectile splits each new projectile will deviate from the impact poin
     <aug name="RAD_LOW_SCRAP" />
     <mv-mapImage>map_icon_mup_hacker_a</mv-mapImage>
   </shipBlueprint>
+
+  <shipBlueprint name="PLAYER_SHIP_RAD_FLAGSHIP_3" layout="radp_flagshipc" img="radp_flagshipc">
+    <class>Elite Artillery Cruiser</class>
+    <name>The Accelerator</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_FLAGSHIP_3_unlock"/>
+    <desc>This ship has a specially designed artillery that can gain power when it delivers the finishing hit to an enemy ship, this power can then be used to upgrade the artillery's stats.</desc>
+    <systemList>
+		<artillery power="2" room="0" start="true" weapon="ARTILLERY_LASER" img="room_artillery" />
+		<battery power="1" room="13" start="false" img="room_battery_10" />
+		<cloaking power="1" room="10" start="false" img="room_cloaking" />
+		<clonebay power="1" room="4" start="false">
+			<slot>
+				<number>1</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="16" start="true" img="room_doors_8">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" room="9" max="8" start="false" img="room_drones_9" />
+		<engines power="1" room="8" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="11" start="false" img="room_hacking_5" />
+		<medbay power="1" room="4" start="true" img="room_medbay">
+			<slot>
+				<number>1</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="12" start="false" img="room_mind_4" />
+		<oxygen power="1" room="15" start="true" img="room_oxygen_7" />
+		<pilot power="1" room="1" start="true" img="room_pilot_2">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="2" start="true" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" room="3" max="8" start="true" img="room_cloaking">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="7" start="false" />
+		<weapons power="2" room="14" max="8" start="true" img="room_weapons">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>2</droneSlots>
+    <weaponList missiles="2" count="4">
+      <weapon name="ION_1" />
+      <weapon name="RAD_BEAM_BURST_1" />
+    </weaponList>
+    <droneList drones="5" count="2" />
+    <health amount="30" />
+    <maxPower amount="7" />
+    <crewCount amount="1" class="rad_scientist" />
+    <crewCount amount="1" class="human" />
+    <crewCount amount="1" class="mantis_free" />
+    <shieldImage>mup_disk</shieldImage>
+    <mv-mapImage>map_icon_mup_bishop_a</mv-mapImage>
+  </shipBlueprint>
   
   <weaponBlueprint name="ARTILLERY_RAD_HEKTAR">
     <type>LASER</type>
@@ -4329,8 +4406,8 @@ The enemy will be unable to run away for 2 minutes if you dock with them.</desc>
     <stackable>false</stackable>
   </augBlueprint>
 
-  <augBlueprint name="RAD_DOOR_OFF">
-    <title>DOORSOFF</title>
+  <augBlueprint name="RAD_UP_ARTI">
+    <title>Upgraded Artillery</title>
     <desc>YOU SHOULD NEVER SEE THIS.</desc>
     <cost>0</cost>
     <rarity>0</rarity>
@@ -4500,7 +4577,7 @@ Increases scrap gain by 25%</desc>
     <class>Scrap Cruiser</class>
     <name>The Scrapyard</name>
     <unlock id="ship_PLAYER_SHIP_RAD_MANTIS_2_unlock"/>
-    <desc>This ship makes use of small personal teleporters to move crew around the ship, however they don't work while the weapons are powered.</desc>
+    <desc>This ship's hull is almost entirely made up of scrap, making it very easy to repair, however it comes apart quite easily and as such you can lose your scrap quickly.</desc>
     <systemList>
       <battery power="1" room="12" start="false" img="room_battery_17" />
       <cloaking power="1" room="6" start="false" img="room_cloaking" />
@@ -4721,5 +4798,6 @@ Increases scrap gain by 25%</desc>
     </launchSounds>
     <weaponArt>beam_1</weaponArt>
   </weaponBlueprint>
-
+  
+  
 </FTL>

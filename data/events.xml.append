@@ -3,6 +3,16 @@
 <!--<status type="limit" target="enemy" system="teleporter" amount="0" />-->
 <!-- QUEST START LOCATION -->
 
+  <event name="ADDON_RAD_INFO">
+    <text>R&amp;D
+Developed by: Arc
+Currently Enabled.
+
+An addon designed around the use of Lua to create fun and unique gimmicks, this includes a variety of ships, weapons, crew, drones, and quests, although not entirely balanced they all try to introduce and focus on a unique gimmick you wouldn't find in MV otherwise.
+    </text>
+  </event>
+  
+
 <ship name="SHIP_NEMESIS_RAD" auto_blueprint="MU_BEAM_MASTER_RAD">
 	<destroyed load="DEFEAT_NEMESIS" />
 	<deadCrew load="DEFEAT_NEMESIS" />

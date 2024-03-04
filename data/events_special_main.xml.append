@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FTL>
+  <mod:findName type="event" name="START_BEACON_REAL" limit="1">
+    <mod-append:eventButton name="ADDON_RAD">
+      <event load="ADDON_RAD_INFO" />
+      <image border="0">addons/rad</image>
+      <customLocation x="355" y="7" />
+      <tooltip id="addon_hover_rad2" />
+      <jumpClear>false</jumpClear>
+      <noDanger>false</noDanger>
+    </mod-append:eventButton>
+    <mod:findLike type="eventButton" start="1">
+      <mod:selector name="ADDON_RAD"/>
+      <mod:removeTag/>
+    </mod:findLike>
+    <mod-append:triggeredEvent event="RAD_ARTILLERY_TARGET" seeded="false" loops="1" minTime="0.1" maxTime="0.1" />
+  </mod:findName>
+
+  <event name="RAD_ARTILLERY_TARGET">
+    <loadEventList seeded="false" first="true" generate="false">
+      <event req="RAD_UP_ARTI" lvl="0" max_lvl="0">
+      </event>
+      <event req="RAD_UP_ARTI" lvl="1" max_lvl="99999">
+        <eventButton name="BUTTON_RAD_ARTI">
+          <event load="RAD_ARTI_FIRE"/>
+          <image>statusUI/rad_arti</image>
+          <customLocation x="988" y="666"/>
+          <tooltip>Target and fire the artillery weapon.</tooltip>
+          <inactiveTooltip>Target and fire the artillery weapon.</inactiveTooltip>
+          <jumpClear>false</jumpClear>
+          <req>rad_arti_targetting</req>
+        </eventButton>
+      </event>
+    </loadEventList>
+  </event>
+
+  <event name="RAD_ARTI_FIRE">
+    <variable name="rad_arti_targetting" op="set" val="0"/>
+    <variable name="rad_arti_targeted" op="set" val="0"/>
+  </event>
+  
+</FTL>

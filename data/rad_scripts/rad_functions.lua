@@ -706,7 +706,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         projectile:Kill()
     end
     if weapon.blueprint.name == "ARTILLERY_RAD_ZS" then
-        local shieldPower = shipManager:GetShieldPower()
+        --local shieldPower = shipManager:GetShieldPower()
         --log("ShieldSuper Power")
         --log(tostring(shieldPower.super.first))
         --log(tostring(shieldPower.super.second))
@@ -1292,7 +1292,7 @@ end)
 local lastSuperUp0 = 0
 local lastSuperUp1 = 0
 script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
-    if shipManager:HasAugmentation("RAD_ZS_UNDER") > 0 then
+    if shipManager:HasAugmentation("RAD_ZS_UNDER") > 0 and shipManager:HasSystem(0) then
         local lastSuperUp = 0
         if shipManager.iShipId == 0 then 
             lastSuperUp = lastSuperUp0
@@ -2775,9 +2775,11 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         shipManager:ModifyScrapCount(-2,false)
     end
 end)
+
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
+    local weaponName = nil
     local otherShip = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
-    if projectile.extend.name == "RAD_COINGUN" then 
+    if pcall(function() weaponName = projectile.extend.name end) and weaponName == "RAD_COINGUN" then 
         otherShip:ModifyScrapCount(2,false)
     end
 end)
@@ -3021,3 +3023,82 @@ script.on_internal_event(Defines.InternalEvents.DRONE_FIRE, function(projectile,
         --projectile:Kill()
     end
 end)
+local holdingLMB = true
+local roomAtMouse = nil
+script.on_internal_event(Defines.InternalEvents.ON_MOUSE_MOVE, function(x, y, xdiff, ydiff, holdinglmb, holdingrmb, holdingmmb)
+    --local shipManager = Hyperspace.ships.player
+--[[
+    local mousePos = Hyperspace.Pointf(x,y)
+    local mousePosLocal = Hyperspace.ShipGraph.GetShipInfo(1):ConvertToLocalPosition(mousePos,true)
+    print("--")
+    print(x)
+    print(y)
+    print(mousePosLocal.x)
+    print(mousePosLocal.y)
+    print("--")
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame and Hyperspace.playerVariables.rad_arti_targetting == 0 then 
+        roomAtMouse = get_room_at_location(Hyperspace.ships.enemy, mousePosLocal, true)
+        if roomAtMouse == -1 then 
+            roomAtMouse = nil
+        end
+    else
+        roomAtMouse = nil
+    end
+    --[[print(roomAtMouse)
+    print(Hyperspace.ShipGraph.GetShipInfo(1).worldPosition.x)
+    print(Hyperspace.ShipGraph.GetShipInfo(1).worldPosition.y)
+    print("--")
+    return Defines.Chain.CONTINUE]]
+end)
+
+script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function() end, function(ship)
+    if roomAtMouse and ship.iShipId == 1 then
+        local roomLoc = ship:GetRoomCenter(roomAtMouse)
+        local shipTargetImage = Hyperspace.Resources:CreateImagePrimitiveString(
+            "misc/crosshairs_placed_yellow.png",
+            roomLoc.x-20,
+            roomLoc.y-20,
+            0,
+            Graphics.GL_Color(1, 1, 1, 1),
+            1.0,
+            false)
+        Graphics.CSurface.GL_RenderPrimitive(shipTargetImage)
+    end
+end)
+
+
+--[[script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship)
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame and ship.iShipId == 0 then
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+        if radProjectileWarnings then
+
+            for k,v in pairs(radProjectileWarnings) do 
+                --log("RENDER WARNING")
+                local xPos = v[1].x
+                local yPos = v[1].y
+                local ion = v[2]
+                local warningImageRed = Hyperspace.Resources:CreateImagePrimitiveString(
+                    "statusUI/rad_warning.png",
+                    xPos-11,
+                    yPos-11,
+                    0,
+                    Graphics.GL_Color(1, 1, 1, 1),
+                    1.0,
+                    false)
+                local warningImageBlue = Hyperspace.Resources:CreateImagePrimitiveString(
+                    "statusUI/rad_warning2.png",
+                    xPos-11,
+                    yPos-11,
+                    0,
+                    Graphics.GL_Color(1, 1, 1, 1),
+                    1.0,
+                    false)
+                if ion then
+                    Graphics.CSurface.GL_RenderPrimitive(warningImageBlue)
+                else
+                    Graphics.CSurface.GL_RenderPrimitive(warningImageRed)
+                end
+            end
+        end
+    end
+end, function() end)]]

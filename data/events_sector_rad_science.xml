@@ -231,7 +231,7 @@
   </ship>
 
   <event name="GUARD_RAD_SCIENCE_DESTROY">
-    <text>You have defeated the Militia guard. Whatever might have been in their cargo has for certain been destroyed, but you can at least salvage some supplies from the ship.</text>
+    <text>You have defeated the Scientist guard. Whatever might have been in their cargo has for certain been destroyed, but you can at least salvage some supplies from the ship.</text>
     <autoReward level="MED">standard</autoReward>
     <choice hidden="true">
       <text>Continue...</text>
@@ -239,7 +239,7 @@
     </choice>
   </event>
   <event name="GUARD_RAD_SCIENCE_DEADCREW">
-    <text>You have defeated the Militia guard. Without crew on-board to stop you, you can investigate their cargo. You find a weapon to bring back to the ship, and move on to scrap their hull.</text>
+    <text>You have defeated the Scientist guard. Without crew on-board to stop you, you can investigate their cargo. You find a weapon to bring back to the ship, and move on to scrap their hull.</text>
     <autoReward level="MED">standard</autoReward>
     <weapon name="LABRATORY_WEAPONS" />
     <choice hidden="true">
@@ -251,7 +251,7 @@
     <noQuestText />
     <removeHazards />
     <clearCustomFleet />
-    <text>By killing the Science Guard you've definently pissed someone off, lets just hope word doesn't travel fast.</text>
+    <text>By killing the Scientist Guard you've definently pissed someone off, lets just hope word doesn't travel fast.</text>
     <choice>
       <text>Do something onboard the ship.</text>
       <event load="STORAGE_CHECK" />
@@ -1168,7 +1168,7 @@ Just as you start moving towards the ship, it powers on it's weapons, looks like
     <eventButton name="UI_RAD_BOARD">
       <event load="RAD_MAIN_RETURN"/>
       <image>statusUI/rad_board</image>
-      <customLocation x="979" y="613"/>
+      <customLocation x="979" y="513"/>
       <tooltip>Leave the station (You cannot come back).</tooltip>
       <inactiveTooltip>Your crew need to be in the teleporter room to leave.</inactiveTooltip>
       <req>loc_rad_board_charged</req>

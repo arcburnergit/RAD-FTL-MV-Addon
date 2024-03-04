@@ -209,7 +209,7 @@
       <shipReq>PLAYER_SHIP_RAD_CUTTER</shipReq>
     </unlock>
   </mod-append:ship>
-  <mod-append:ship name="PLAYER_SHIP_RAD_FLAGSHIP" b="true" c="false" >
+  <mod-append:ship name="PLAYER_SHIP_RAD_FLAGSHIP" b="true" c="true" >
     <unlock variant="a" silent="false">
       <type>3</type>
       <otherUnlocks>
@@ -249,6 +249,9 @@
         <ship>PLAYER_SHIP_RAD_MANTIS_2</ship>
         <ship>PLAYER_SHIP_RAD_MANTIS_3</ship>
       </otherUnlocks>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>4</type>
     </unlock>
   </mod-append:ship>
   <mod-append:ship name="PLAYER_SHIP_RAD_CORVETTE_ELITE" b="false" c="false" >
@@ -392,6 +395,11 @@
     <customReactor maxLevel="60" />
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <systemLimit>10</systemLimit>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_FLAGSHIP_3">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <hiddenAug>RAD_UP_ARTI</hiddenAug>
   </mod-append:customShip>
   
   <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE">
@@ -875,6 +883,9 @@
 	<variable name="rad_flesh_quest" op="set" val="1"/>
   
   <variable name="rad_money_searched" op="set" val="0"/>
+
+  <variable name="rad_arti_targetting" op="set" val="1"/>
+  <variable name="rad_arti_targeted" op="set" val="0"/>
 
   <variable name="rad_tracking_fake" op="set" val="0"/>
 

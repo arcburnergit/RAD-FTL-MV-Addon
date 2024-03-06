@@ -86,7 +86,7 @@
         </choice>
       </event>
     </choice>
-    <choice req="RAD_WM_MULTISHOT" max_group="1" blue="true" hidden="false">
+    <choice req="RAD_WM_MULTISHOT" max_group="2" blue="true" hidden="false">
       <text>Install Multishot Weapons internally.</text>
       <event>
         <text>You install the upgrade.</text>
@@ -100,7 +100,7 @@
         </choice>
       </event>
     </choice>
-    <choice req="RAD_WM_RAILGUN" max_group="1" blue="true" hidden="false">
+    <choice req="RAD_WM_RAILGUN" max_group="3" blue="true" hidden="false">
       <text>Install Rail Accelerated Weapons internally.</text>
       <event>
         <text>You install the upgrade.</text>
@@ -114,7 +114,7 @@
         </choice>
       </event>
     </choice>
-    <choice req="RAD_MOD_SUS" max_group="1" blue="true" hidden="false">
+    <choice req="RAD_MOD_SUS" max_group="4" blue="true" hidden="false">
       <text>Install Repair Sustainers internally.</text>
       <event>
         <item_modify>

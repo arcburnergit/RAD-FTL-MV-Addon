@@ -39,7 +39,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 	<beaconType id="map_icon_rad_lab" global="true">
 		<color r="146" g="232" b="228" a="1"/>
 	</beaconType>
-	<preventFleet />
+	<preventQuest />
 	<quest>
 		<nextSector>true</nextSector>
 		<aggressive>2</aggressive>

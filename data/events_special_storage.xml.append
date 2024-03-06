@@ -11,7 +11,7 @@
         <playSound>breach</playSound>
         <playSound>airLoss</playSound>
         <playSound>explosion1</playSound>
-        <triggeredEvent event="RAD_ENABLE_ENEMY_ENGINES" seeded="false" loops="1" minTime="120" maxTime="120">
+        <triggeredEvent event="RAD_ENABLE_ENEMY_ENGINES" thisFight="true" seeded="false" loops="1" minTime="120" maxTime="120">
           <triggeredEventBox load="DEFAULT_TIMER">
           <warning time="5.0" flash="true" />
           <tooltip>The enemy's engines will be up and running in this time.</tooltip>
@@ -60,6 +60,102 @@
         <damage amount="-10" />
       </event>
     </loadEventList>
+  </event>
+
+  <mod:findName type="event" name="STORAGE_CHECK_SYSTEM">
+    <mod-append:choice req="BLUELIST_RAD_INAUGS" hidden="true">
+      <text>Science Tech.</text>
+      <event load="RAD_STORAGE_INAUG" />
+    </mod-append:choice>
+  </mod:findName>
+
+
+  <event name="RAD_STORAGE_INAUG">
+    <text>Choose an augment to install internally.</text>
+    <choice req="RAD_WM_BIGSHOT" max_group="1" blue="true" hidden="false">
+      <text>Install High Energy Weapons internally.</text>
+      <event>
+        <text>You install the upgrade.</text>
+        <item_modify>
+          <item type="scrap" min="-20" max="-20" />
+        </item_modify>
+        <remove name="RAD_WM_BIGSHOT" />
+        <choice hidden="true">
+          <text>Continue...1</text>
+          <event load="RAD_STORAGE_INSTALL_BIGSHOT" />
+        </choice>
+      </event>
+    </choice>
+    <choice req="RAD_WM_MULTISHOT" max_group="1" blue="true" hidden="false">
+      <text>Install Multishot Weapons internally.</text>
+      <event>
+        <text>You install the upgrade.</text>
+        <item_modify>
+          <item type="scrap" min="-20" max="-20" />
+        </item_modify>
+        <remove name="RAD_WM_MULTISHOT" />
+        <choice hidden="true">
+          <text>Continue...1</text>
+          <event load="RAD_STORAGE_INSTALL_MULTISHOT" />
+        </choice>
+      </event>
+    </choice>
+    <choice req="RAD_WM_RAILGUN" max_group="1" blue="true" hidden="false">
+      <text>Install Rail Accelerated Weapons internally.</text>
+      <event>
+        <text>You install the upgrade.</text>
+        <item_modify>
+          <item type="scrap" min="-10" max="-10" />
+        </item_modify>
+        <remove name="RAD_WM_RAILGUN" />
+        <choice hidden="true">
+          <text>Continue...1</text>
+          <event load="RAD_STORAGE_INSTALL_RAILGUN" />
+        </choice>
+      </event>
+    </choice>
+    <choice req="RAD_MOD_SUS" max_group="1" blue="true" hidden="false">
+      <text>Install Repair Sustainers internally.</text>
+      <event>
+        <item_modify>
+          <item type="scrap" min="-10" max="-10" />
+        </item_modify>
+        <text>You install the upgrade.</text>
+        <remove name="RAD_MOD_SUS" />
+        <choice hidden="true">
+          <text>Continue...1</text>
+          <event load="RAD_STORAGE_INSTALL_REPSUS" />
+        </choice>
+      </event>
+    </choice>
+    <choice>
+      <text>Nevermind.</text>
+      <event load="STORAGE_CHECK_SYSTEM_LOAD" />
+    </choice>
+  </event>
+
+  <event name="RAD_STORAGE_INSTALL_BIGSHOT">
+    <variable name="loc_internal_upgrades" op="add" val="1" />
+    <hiddenAug>IN_RAD_WM_BIGSHOT</hiddenAug>
+    <event load="STORAGE_CHECK_SYSTEM_LOAD" />
+  </event>
+
+  <event name="RAD_STORAGE_INSTALL_MULTISHOT">
+    <variable name="loc_internal_upgrades" op="add" val="1" />
+    <hiddenAug>IN_RAD_WM_MULTISHOT</hiddenAug>
+    <event load="STORAGE_CHECK_SYSTEM_LOAD" />
+  </event>
+
+  <event name="RAD_STORAGE_INSTALL_RAILGUN">
+    <variable name="loc_internal_upgrades" op="add" val="1" />
+    <hiddenAug>IN_RAD_WM_RAILGUN</hiddenAug>
+    <event load="STORAGE_CHECK_SYSTEM_LOAD" />
+  </event>
+
+  <event name="RAD_STORAGE_INSTALL_REPSUS">
+    <variable name="loc_internal_upgrades" op="add" val="1" />
+    <hiddenAug>IN_RAD_MOD_SUS</hiddenAug>
+    <event load="STORAGE_CHECK_SYSTEM_LOAD" />
   </event>
   
 </FTL>

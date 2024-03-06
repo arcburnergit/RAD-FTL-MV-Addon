@@ -2356,7 +2356,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <health amount="30" />
     <maxPower amount="10" />
     <crewCount amount="1" class="human" />
-    <crewCount amount="3" class="engi" />
+    <crewCount amount="5" class="engi" />
     <aug name="RAD_SCRAM" />
     <aug name="EX_FIRE_EXTINGUISHERS" />
     <mv-mapImage>map_icon_mup_mfk_a</mv-mapImage>
@@ -2731,7 +2731,8 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <augBlueprint name="RAD_WM_MULTISHOT">
     <title>Multishot Weapons</title>
-    <desc>Splits every projectile or beam you fire in two, however the hull damage, system damage, and ion damage are halved. In the case that the base value is odd, one projectile will have more damage than the other.</desc>
+    <desc>Splits every projectile or beam you fire in two, however the hull damage, system damage, and ion damage are halved. In the case that the base value is odd, one projectile will have more damage than the other.
+Can be installed internally for 20 scrap in the storage menu.</desc>
     <cost>60</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
@@ -2739,7 +2740,8 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <augBlueprint name="RAD_WM_BIGSHOT">
     <title>High Energy Weapons</title>
-    <desc>Doubles the hull damage, system damage, and ion damage of all projectiles or beams you fire, but reduces weapon recharge rate by 60%, Incompatible with Multishot.</desc>
+    <desc>Doubles the hull damage, system damage, and ion damage of all projectiles or beams you fire, but reduces weapon recharge rate by 60%, Incompatible with Multishot.
+Can be installed internally for 20 scrap in the storage menu, does not stack.</desc>
     <cost>60</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
@@ -2747,7 +2749,8 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
   
   <augBlueprint name="RAD_WM_RAILGUN">
     <title>Rail Accelerated Weapons</title>
-    <desc>Multiplies the speed of all your projectiles and beams by 4. Railguns, hell yeah!</desc>
+    <desc>Multiplies the speed of all your projectiles and beams by 4. Railguns, hell yeah!
+Can be installed internally for 10 scrap in the storage menu, does not stack.</desc>
     <cost>40</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
@@ -2755,7 +2758,52 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <augBlueprint name="RAD_MOD_SUS">
     <title>Repair Sustainers</title>
-    <desc>When crew leave a room that is only partially repaired, the repair level is sustained and isn't lost due to the crewmember leaving the room.</desc>
+    <desc>When crew leave a room that is only partially repaired, the repair level is sustained and isn't lost due to the crewmember leaving the room.
+Can be installed internally for 10 scrap in the storage menu, does not stack.</desc>
+    <cost>40</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+
+  <augBlueprint name="IN_RAD_WM_MULTISHOT">
+    <title>Multishot Weapons</title>
+    <desc>
+      Splits every projectile or beam you fire in two, however the hull damage, system damage, and ion damage are halved. In the case that the base value is odd, one projectile will have more damage than the other.
+      Can be installed internally for 20 scrap in the storage menu.
+    </desc>
+    <cost>60</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="IN_RAD_WM_BIGSHOT">
+    <title>High Energy Weapons</title>
+    <desc>
+      Doubles the hull damage, system damage, and ion damage of all projectiles or beams you fire, but reduces weapon recharge rate by 60%, Incompatible with Multishot.
+      Can be installed internally for 20 scrap in the storage menu.
+    </desc>
+    <cost>60</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="IN_RAD_WM_RAILGUN">
+    <title>Rail Accelerated Weapons</title>
+    <desc>
+      Multiplies the speed of all your projectiles and beams by 4. Railguns, hell yeah!
+      Can be installed internally for 10 scrap in the storage menu.
+    </desc>
+    <cost>40</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="IN_RAD_MOD_SUS">
+    <title>Repair Sustainers</title>
+    <desc>When crew leave a room that is only partially repaired, the repair level is sustained and isn't lost due to the crewmember leaving the room.
+Can be installed internally for 10 scrap in the storage menu.
+    </desc>
     <cost>40</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
@@ -3009,7 +3057,7 @@ You'll need to avoid as much damage to your crew as possible, the meagre healing
           <number>1</number>
         </slot>
       </doors>
-      <drones power="5" room="0" max="12" start="true" img="room_drones_8" />
+      <drones power="4" room="0" max="12" start="true" img="room_drones_8" />
       <engines power="2" room="5" max="4" start="true" img="room_engines_2">
         <slot>
           <direction>down</direction>
@@ -3042,8 +3090,7 @@ You'll need to avoid as much damage to your crew as possible, the meagre healing
     <droneSlots>6</droneSlots>
     <weaponList missiles="0" count="0" />
     <droneList drones="12" count="6">
-      <drone name="ION_1_AMP2" />
-      <drone name="COMBAT_2_BEAM" />
+      <drone name="RAD_WONDERDRONE" />
     </droneList>
     <health amount="30" />
     <maxPower amount="9" />
@@ -3561,7 +3608,7 @@ Due to the small size, the reactor is only powerful enough to provide for 1 powe
     <class>Science Cutter</class>
     <name>Breath Harder</name>
     <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_2_unlock"/>
-    <desc>Due to the small size of this ship, the reactor is unable to power the oxygen system, in order to keep your crew alive you'll have to make use of oxygen generating crew.</desc>
+    <desc>Due to the small size of this ship, the reactor is unable to power the oxygen system, in order to keep your crew alive you'll have to make use of oxygen generating crew. WILL BE REWORKED IN THE FUTURE.</desc>
     <systemList>
       <battery power="1" room="7" start="false" img="room_battery_19" />
       <cloaking power="1" room="6" start="false" img="room_cloaking_rad" />
@@ -4032,7 +4079,8 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
 
   <augBlueprint name="RAD_LOW_SCRAP">
     <title>Small Cargo Hold</title>
-    <desc>Once you reach 75 scrap in your cargo hold, you are unable to gain any more from combat or events.</desc>
+    <desc>Once you reach 75 scrap in your cargo hold, you are unable to gain any more from combat or events.
++20% scrap gain.</desc>
     <cost>0</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
@@ -4657,7 +4705,7 @@ Increases scrap gain by 25%</desc>
     <systemList>
       <battery power="1" room="1" start="false" img="room_battery_6" />
       <cloaking power="1" room="8" start="false" img="room_cloaking" />
-      <clonebay power="1" room="6" start="true">
+      <clonebay power="1" room="6" start="false">
         <slot>
           <number>1</number>
         </slot>
@@ -4676,7 +4724,7 @@ Increases scrap gain by 25%</desc>
         </slot>
       </engines>
       <hacking power="1" room="12" start="false" img="room_hacking_9" />
-      <medbay power="1" room="6" start="false" img="room_medbay">
+      <medbay power="1" room="6" start="true" img="room_medbay">
         <slot>
           <number>1</number>
         </slot>

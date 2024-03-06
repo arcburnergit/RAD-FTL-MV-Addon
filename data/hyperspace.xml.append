@@ -646,6 +646,15 @@
   <aug name="RAD_WM_BIGSHOT">
     <function name="AUTO_COOLDOWN" value="-0.6" useForReqs="false" warning="false" />
   </aug>
+  <aug name="IN_RAD_WM_MULTISHOT">
+  </aug>
+  <aug name="IN_RAD_WM_RAILGUN">
+  </aug>
+  <aug name="IN_RAD_MOD_SUS">
+  </aug>
+  <aug name="IN_RAD_WM_BIGSHOT">
+    <function name="AUTO_COOLDOWN" value="-0.6" useForReqs="false" warning="false" />
+  </aug>
   <aug name="RAD_CREVERSAL">
     <locked />
   </aug>
@@ -689,7 +698,7 @@
   </aug>
   <aug name="RAD_LOW_SCRAP">
     <locked />
-    <function name="SCRAP_COLLECTOR" value="0.25" useForReqs="true" />
+    <function name="SCRAP_COLLECTOR" value="0.20" useForReqs="true" />
   </aug>
   <aug name="RAD_NO_DOOR">
     <locked />
@@ -717,6 +726,7 @@
   </aug>
   <aug name="RAD_SCRAP_HULL">
     <locked />
+    <function name="SCRAP_COLLECTOR" value="0.25" useForReqs="true" />
   </aug>
 </augments>
 

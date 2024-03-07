@@ -3171,3 +3171,17 @@ end)]]
         end
     end
 end, function() end)]]
+
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RAD_HIGH_WEAPON") > 0 then 
+        for weapon in vter(shipManager:GetWeaponList()) do 
+            if weapon.blueprint.power => 4 then 
+                weapon.requiredPower = 2
+            end
+            if weapon.blueprint.power < 4 then 
+                weapon:SetCooldownModifier(-1)
+            end
+        end 
+    end
+end)

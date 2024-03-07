@@ -4882,4 +4882,86 @@ Increases scrap gain by 25%</desc>
     <weaponArt>rad_big_arti</weaponArt>
   </weaponBlueprint>
 
+  <shipBlueprint name="PLAYER_SHIP_RAD_CORVETTE_ELITE_2" layout="radp_cutter" img="radp_cutter">
+    <class>Science Cutter</class>
+    <name>Sputnik</name>
+    <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_ELITE_2_unlock"/>
+    <desc>On the smaller end of space craft, this machine is still a capable weapon with 6 weapon slots.&#xD;
+Due to the small size, the reactor is only powerful enough to provide for 1 power weapons, creatly limiting your options.
+    </desc>
+    <systemList>
+      <battery power="1" room="10" start="false" img="room_battery" />
+      <cloaking power="1" room="6" start="false" img="room_cloaking_rad" />
+      <clonebay power="1" room="1" start="true">
+        <slot>
+          <number>-2</number>
+        </slot>
+      </clonebay>
+      <doors power="1" room="11" start="false" img="room_doors_3">
+        <slot>
+          <direction>right</direction>
+          <number>1</number>
+        </slot>
+      </doors>
+      <engines power="1" room="4" start="true" img="room_engines_8">
+        <slot>
+          <direction>left</direction>
+          <number>1</number>
+        </slot>
+      </engines>
+      <hacking power="1" room="7" start="false" img="room_hacking" />
+      <medbay power="1" room="1" start="true" img="room_medbay_6">
+        <slot>
+          <number>-2</number>
+        </slot>
+      </medbay>
+      <mind power="1" room="8" start="false" img="room_mind_5" />
+      <oxygen power="1" room="9" start="true" img="room_oxygen_20" />
+      <pilot power="1" room="0" start="true" img="room_pilot">
+        <slot>
+          <direction>right</direction>
+          <number>0</number>
+        </slot>
+      </pilot>
+      <sensors power="1" room="12" start="false" img="room_sensors_2">
+        <slot>
+          <direction>up</direction>
+          <number>0</number>
+        </slot>
+      </sensors>
+      <shields power="2" room="2" max="8" start="true" img="room_shields_4">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </shields>
+      <teleporter power="1" room="5" start="false" />
+      <weapons power="2" room="3" max="6" start="true" img="room_weapons_7">
+        <slot>
+          <direction>up</direction>
+          <number>1</number>
+        </slot>
+      </weapons>
+    </systemList>
+    <weaponSlots>6</weaponSlots>
+    <droneSlots>0</droneSlots>
+    <weaponList missiles="8" count="6">
+      <weapon name="LASER_BURST_8" />
+    </weaponList>
+    <droneList drones="0" count="0" />
+    <health amount="21" />
+    <maxPower amount="7" />
+    <crewCount amount="1" class="human_engineer" />
+    <crewCount amount="1" class="human_medic" />
+    <aug name="RAD_HIGH_WEAPON" />
+  </shipBlueprint>
+
+  <augBlueprint name="RAD_HIGH_WEAPON">
+    <title>High Power Weapons</title>
+    <desc>The weapon mounts on this ship are specifically designed for weapons that use 4 or more power, these weapons are reduced to only require 2 power.
+Weapons that use less than 4 power won't work with these weapon slots.</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
 </FTL>

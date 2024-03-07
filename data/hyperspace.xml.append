@@ -667,6 +667,9 @@
   <aug name="RAD_LOW_WEAPON">
     <locked />
   </aug>
+  <aug name="RAD_HIGH_WEAPON">
+    <locked />
+  </aug>
   <aug name="RAD_CUTTER_OXY">
     <locked />
     <statBoosts>

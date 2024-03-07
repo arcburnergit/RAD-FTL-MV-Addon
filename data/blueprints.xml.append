@@ -4343,7 +4343,7 @@ When the projectile splits each new projectile will deviate from the impact poin
     <unlock id="ship_PLAYER_SHIP_RAD_FLAGSHIP_3_unlock"/>
     <desc>This ship has a specially designed artillery that can gain power when it delivers the finishing hit to an enemy ship, this power can then be used to upgrade the artillery's stats.</desc>
     <systemList>
-		<artillery power="2" room="0" start="true" weapon="ARTILLERY_LASER" img="room_artillery" />
+		<artillery power="2" room="0" start="true" weapon="RAD_BIG_ARTI" img="room_artillery" />
 		<battery power="1" room="13" start="false" img="room_battery_10" />
 		<cloaking power="1" room="10" start="false" img="room_cloaking" />
 		<clonebay power="1" room="4" start="false">
@@ -4846,6 +4846,40 @@ Increases scrap gain by 25%</desc>
     </launchSounds>
     <weaponArt>beam_1</weaponArt>
   </weaponBlueprint>
-  
-  
+
+  <weaponBlueprint name="RAD_BIG_ARTI">
+    <type>LASER</type>
+    <flavorType>Artillery</flavorType>
+    <title>Dynamic Artillery</title>
+    <short>Artillery</short>
+    <desc>[Base cooldown: 20] By default fires a 2 Lasers that do 1 damage each.</desc>
+    <tooltip>Default: Fires a powerful barrage of 2 lasers that do 1 damage each.</tooltip>
+    <damage>1</damage>
+    <shots>2</shots>
+    <sp>0</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>20</cooldown>
+    <rarity>0</rarity>
+    <image>laser_heavy</image>
+    <launchSounds>
+      <sound>heavyLaser1</sound>
+      <sound>heavyLaser2</sound>
+      <sound>heavyLaser3</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>hitHull2</sound>
+      <sound>hitHull3</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>rad_big_arti</weaponArt>
+  </weaponBlueprint>
+
 </FTL>

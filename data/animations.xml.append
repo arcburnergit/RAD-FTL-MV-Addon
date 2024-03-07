@@ -1074,5 +1074,15 @@
     <firePoint x="16" y="6" />
     <mountPoint x="3" y="34" />
   </weaponAnim>
+
+  <animSheet name="rad_big_arti" w="377" h="141" fw="29" fh="141">weapon_laser/rad_big_arti.png</animSheet>
+  <weaponAnim name="rad_big_arti">
+    <sheet>rad_big_arti</sheet>
+    <desc length="13" x="0" y="0" />
+    <chargedFrame>7</chargedFrame>
+    <fireFrame>11</fireFrame>
+    <firePoint x="19" y="16" />
+    <mountPoint x="5" y="107" />
+  </weaponAnim>
   
 </FTL>

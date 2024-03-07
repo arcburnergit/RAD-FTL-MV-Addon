@@ -67,6 +67,17 @@ local function get_ship_crew_room(shipManager, roomId)
     return radCrewList
 end
 
+-- written by kokoro
+local function convertMousePositionToEnemyShipPosition(mousePosition)
+    local cApp = Hyperspace.Global.GetInstance():GetCApp()
+    local combatControl = cApp.gui.combatControl
+    local position = 0--combatControl.position -- not exposed yet
+    local targetPosition = combatControl.targetPosition
+    local enemyShipOriginX = position.x + targetPosition.x
+    local enemyShipOriginY = position.y + targetPosition.y
+    return Hyperspace.Point(mousePosition.x - enemyShipOriginX, mousePosition.y - enemyShipOriginY)
+end
+
 -- Returns a table where the indices are the IDs of all rooms adjacent to the given room
 -- and the values are the rooms' coordinates
 local function get_adjacent_rooms(shipId, roomId, diagonals)
@@ -174,11 +185,24 @@ end)
 
 script.on_game_event("RAD_MAIN_BOARD", false, function()
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
-    local crewList = shipManager.vCrewList
+    --local crewList = shipManager.vCrewList
     local otherShip = Hyperspace.Global.GetInstance():GetShipManager(1)
-    crewList[0].extend:InitiateTeleport(1,0,0)
+    --crewList[0].extend:InitiateTeleport(1,0,0)
+    for crewmem in vter(shipManager.vCrewList) do
+        crewmem.extend:InitiateTeleport(1,0,0)
+    end
     for crewmem in vter(otherShip.vCrewList) do
         crewmem.extend:InitiateTeleport(1,11,0)
+    end
+end)
+
+script.on_game_event("RAD_MAIN_DISABLE_DOORS", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    --local crewList = shipManager.vCrewList
+    local otherShip = Hyperspace.Global.GetInstance():GetShipManager(1)
+    --crewList[0].extend:InitiateTeleport(1,0,0)
+    for crewmem in vter(shipManager.vCrewList) do
+        crewmem.extend:InitiateTeleport(1,0,0)
     end
 end)
 
@@ -1637,7 +1661,7 @@ int iStun;]]--
 
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
-    if (shipManager:HasAugmentation("RAD_WM_BIGSHOT") > 0 or shipManager:HasAugmentation("IN_RAD_WM_BIGSHOT") > 0) > 0 and (not (shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0 or shipManager:HasAugmentation("IN_RAD_WM_MULTISHOT") > 0)) then
+    if (shipManager:HasAugmentation("RAD_WM_BIGSHOT") > 0 or shipManager:HasAugmentation("IN_RAD_WM_BIGSHOT") > 0) and (not (shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0 or shipManager:HasAugmentation("IN_RAD_WM_MULTISHOT") > 0)) then
         local damage = projectile.damage
         local newDamage = Hyperspace.Damage()
         newDamage.iDamage = (damage.iDamage*2)
@@ -2784,8 +2808,8 @@ end)
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
     local weaponName = nil
-    local otherShip = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
     if pcall(function() weaponName = projectile.extend.name end) and weaponName == "RAD_COINGUN" then 
+        local otherShip = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
         otherShip:ModifyScrapCount(2,false)
     end
 end)
@@ -3029,39 +3053,71 @@ script.on_internal_event(Defines.InternalEvents.DRONE_FIRE, function(projectile,
         --projectile:Kill()
     end
 end)
-local holdingLMB = true
-local roomAtMouse = nil
-script.on_internal_event(Defines.InternalEvents.ON_MOUSE_MOVE, function(x, y, xdiff, ydiff, holdinglmb, holdingrmb, holdingmmb)
-    --local shipManager = Hyperspace.ships.player
---[[
-    local mousePos = Hyperspace.Pointf(x,y)
-    local mousePosLocal = Hyperspace.ShipGraph.GetShipInfo(1):ConvertToLocalPosition(mousePos,true)
-    print("--")
-    print(x)
-    print(y)
-    print(mousePosLocal.x)
-    print(mousePosLocal.y)
-    print("--")
+--[[local roomAtMouse = nil
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
     if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame and Hyperspace.playerVariables.rad_arti_targetting == 0 then 
+        --print(holdinglmb)
+        local shipManager = Hyperspace.ships.player
+        local mousePos = Hyperspace.Mouse.position
+        --print(x)
+        --print(y)
+        local mousePosLocal = convertMousePositionToEnemyShipPosition(mousePos)
+        --print(mousePosLocal.x)
+        --print(mousePosLocal.y)
         roomAtMouse = get_room_at_location(Hyperspace.ships.enemy, mousePosLocal, true)
         if roomAtMouse == -1 then 
             roomAtMouse = nil
         end
-    else
-        roomAtMouse = nil
     end
-    --[[print(roomAtMouse)
-    print(Hyperspace.ShipGraph.GetShipInfo(1).worldPosition.x)
-    print(Hyperspace.ShipGraph.GetShipInfo(1).worldPosition.y)
-    print("--")
-    return Defines.Chain.CONTINUE]]
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_MOUSE_L_BUTTON_DOWN, function(x,y) 
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame and Hyperspace.playerVariables.rad_arti_targetting == 0 then 
+        local shipManager = Hyperspace.ships.player
+        local mousePos = Hyperspace.Mouse.position
+        local mousePosLocal = convertMousePositionToEnemyShipPosition(mousePos)
+        roomAtMouse = get_room_at_location(Hyperspace.ships.enemy, mousePosLocal, true)
+        if roomAtMouse == -1 then 
+            roomAtMouse = nil
+        end
+        Hyperspace.playerVariables.rad_arti_targetting = 1
+        if roomAtMouse then 
+            Hyperspace.playerVariables.rad_arti_targeted = 1
+        else 
+            Hyperspace.playerVariables.rad_arti_targeted = 0
+        end 
+    end
+    return Defines.Chain.CONTINUE
+end)
+
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then 
+        local shipManager = Hyperspace.ships.player
+        if shipManager:HasAugmentation("RAD_UP_ARTI") then
+            for artillery in vter(Hyperspace.ships.player.artillerySystems) do 
+                local cApp = Hyperspace.Global.GetInstance():GetCApp()
+                --local weaponControl = cApp.gui.combatControl.weapControl
+                if Hyperspace.playerVariables.rad_arti_targeted == 0 then
+                    --print(artillery.projectileFactory.cooldown.first)
+                    --print(artillery.projectileFactory.cooldown.second)
+                    if artillery.projectileFactory.cooldown.first >= artillery.projectileFactory.cooldown.second - 0.25 then
+                        artillery.projectileFactory.cooldown.first = artillery.projectileFactory.cooldown.second - 0.25
+
+                    end
+                elseif artillery.projectileFactory.cooldown.first <= 0.25 and not weaponControl.autoFiring then
+                    roomAtMouse = nil 
+                    Hyperspace.playerVariables.rad_arti_targeted = 0
+                end
+            end
+        end
+    end
 end)
 
 script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function() end, function(ship)
     if roomAtMouse and ship.iShipId == 1 then
         local roomLoc = ship:GetRoomCenter(roomAtMouse)
         local shipTargetImage = Hyperspace.Resources:CreateImagePrimitiveString(
-            "misc/crosshairs_placed_yellow.png",
+            "misc/crosshairs_placed_rad_arti.png",
             roomLoc.x-20,
             roomLoc.y-20,
             0,
@@ -3071,6 +3127,13 @@ script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function() end, functio
         Graphics.CSurface.GL_RenderPrimitive(shipTargetImage)
     end
 end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint) 
+    if weaponBlueprint.name == "RAD_BIG_ARTI" and roomAtMouse then 
+        projectile.target = Hyperspace.ships.enemy:GetRoomCenter(roomAtMouse)
+        --projectile:ComputeHeading()
+    end
+end)]]
 
 
 --[[script.on_render_event(Defines.RenderEvents.SHIP_SPARKS, function(ship)

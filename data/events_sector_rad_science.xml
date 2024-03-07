@@ -235,7 +235,7 @@
     <autoReward level="MED">standard</autoReward>
     <choice hidden="true">
       <text>Continue...</text>
-      <event load="GUARD_UNION_FOLLOWUP" />
+      <event load="GUARD_RAD_SCIENCE_FOLLOWUP" />
     </choice>
   </event>
   <event name="GUARD_RAD_SCIENCE_DEADCREW">
@@ -1168,7 +1168,7 @@ Just as you start moving towards the ship, it powers on it's weapons, looks like
     <eventButton name="UI_RAD_BOARD">
       <event load="RAD_MAIN_RETURN"/>
       <image>statusUI/rad_board</image>
-      <customLocation x="979" y="513"/>
+      <customLocation x="829" y="513"/>
       <tooltip>Leave the station (You cannot come back).</tooltip>
       <inactiveTooltip>Your crew need to be in the teleporter room to leave.</inactiveTooltip>
       <req>loc_rad_board_charged</req>

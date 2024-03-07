@@ -385,7 +385,7 @@
 		<pilot power="1" max="3" room="0" start="true" />
 		<shields power="2" max="6" room="8" start="true" />
 		<teleporter power="1" max="2" room="1" start="true" />
-		<weapons power="10" max="10" room="9" start="true" />
+		<weapons power="4" max="10" room="9" start="true" />
 	</systemList>
 	<weaponSlots>4</weaponSlots>
 	<droneSlots>4</droneSlots>
@@ -417,7 +417,7 @@
 		<medbay power="1" max="3" room="8" start="false" />
 		<mind power="1" max="3" room="3" start="false" />
 		<oxygen power="1" max="3" room="4" start="true" />
-		<shields power="3" max="10" room="7" start="true" />
+		<shields power="2" max="10" room="7" start="true" />
 		<weapons power="2" max="8" room="0" start="true" />
 	</systemList>
 	<weaponSlots>4</weaponSlots>
@@ -1302,21 +1302,21 @@
   <shipBlueprint name="RAD_EXPERIMENT_ENEMY" layout="rad_experiment_enemy" img="rad_experiment_enemy">
     <class>Ghost Flagship</class>
     <systemList>
-      <clonebay power="2" max="2" room="12" start="true" />
+      <clonebay power="1" max="1" room="12" start="true" />
       <doors power="2" max="3" room="10" start="true" />
       <drones power="2" max="6" room="6" start="false" />
       <engines power="1" max="2" room="2" start="true" />
       <mind power="1" max="2" room="9" start="false" />
       <pilot power="1" max="1" room="0" start="true" />
-      <shields power="2" max="8" room="5" start="true" />
-      <teleporter power="2" max="2" room="1" start="true" />
+      <shields power="2" max="2" room="5" start="true" />
+      <teleporter power="1" max="1" room="1" start="true" />
       <weapons power="2" max="8" room="7" start="true" />
     </systemList>
     <weaponSlots>4</weaponSlots>
     <droneSlots>3</droneSlots>
     <weaponList missiles="8" count="4" load="LIST_WEAPONS_GHOST" />
     <droneList drones="8" count="3" load="DRONES_CIRCLE" />
-    <health amount="24" />
+    <health amount="16" />
     <maxPower amount="30" />
     <crewCount amount="8" max="12" class="phantom" />
     <boardingAI>invasion</boardingAI>
@@ -1331,7 +1331,7 @@
       <hacking power="1" max="1" room="5" start="true" />
       <medbay power="1" max="2" room="8" start="true" />
       <pilot power="1" max="1" room="10" start="true" />
-      <shields power="3" max="11" room="9" start="true" />
+      <shields power="2" max="11" room="9" start="true" />
       <teleporter power="1" max="2" room="1" start="true" />
       <weapons power="4" max="8" room="7" start="true" />
     </systemList>

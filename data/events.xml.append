@@ -1537,7 +1537,7 @@ However the ship in question has gone missing, we suspect it's the work of the s
                 <choice>
                   <text>We'll be on our way...</text>
                   <event>
-                    <text>Just as you're leaving a ship jumps into the beacon, and imidietly opens fire on any engi ships in the area.
+                    <text>Just as you're leaving a ship jumps into the beacon, and immediately opens fire on any engi ships in the area.
 
 It appears to be an engi ship, but it has been painted weird colours.
                     </text>
@@ -1634,7 +1634,7 @@ You could attack the ship, they might have something to do with the missing ship
   <event name="RAD_SUPERGUN_7">
     <preventQuest />
     <preventFleet />
-    <text>You arrive at the beacon, and imidietly notice an odd looking engi ship. You scan it and discover it's the stolen ship, the ship appears to be offline, you can see drones working on it.
+    <text>You arrive at the beacon, and immediately notice an odd looking engi ship. You scan it and discover it's the stolen ship, the ship appears to be offline, you can see drones working on it.
 However next to the ship is another one of the zoltan manned engi ships, it looks like you're going to have to take it out in order to recover the ship.
     </text>
     <ship load="MU_RAD_ENGIZOLTON" hostile="true" />
@@ -1785,7 +1785,7 @@ Once you're onboard, you'll need to kill the crew manning the station, and then 
     <status type="limit" target="player" system="teleporter" amount="0" />
     <status type="limit" target="player" system="artillery" amount="0" />
     <status type="limit" target="player" system="reactor" amount="1" />
-    <text>You arrive at the beacon and a science ship imidietly directs you to their FOB.
+    <text>You arrive at the beacon and a science ship immediately directs you to their FOB.
 "Alright, when you're ready press that button over there and that'll warp all of your crew onto the outpost."</text>
     <ship load="MU_RAD_REBELOUT" hostile="false" />
     
@@ -1856,7 +1856,7 @@ Once you're onboard, you'll need to kill the crew manning the station, and then 
     </beaconType>
     <text>You've arrived at the main base of the crystal rebels.
     
-You're imidietly noticed, looks like they've got a cruiser ready to defend the base, and they're using the tech stolen from the crystals.
+You're immediately noticed, looks like they've got a cruiser ready to defend the base, and they're using the tech stolen from the crystals.
 Prepare to fight.</text>
     <ship load="MU_RAD_CRYSTALENEMY" hostile="true" />
     <choice>
@@ -1945,7 +1945,7 @@ You tell them what happened and they begin firing on the base.
       <text>Do nothing.</text>
       <event name="RAD_WARPED_2_2">
         <text>Just as you're about to give up, a strange looking ship jumps into the beacon.
-The ship imidietly powers up its weapons.
+The ship immediately powers up its weapons.
 
 Luckily one of your crew was smart enough to have the weapons charged up just in case, you fire off a volley which break through the shields and impact the hull.
 
@@ -1965,7 +1965,7 @@ Unfortunately this doesn't seem to damage the ship much, and instead the ship is
     <beaconType id="map_icon_rad_warped2" global="true">
       <color r="112" g="112" b="112"/>
     </beaconType>
-    <text>You arrive and imidietly notice the station, it appears that the ship you destroyed somehow moved the station here.</text>
+    <text>You arrive and immediately notice the station, it appears that the ship you destroyed somehow moved the station here.</text>
     <ship load="SHIP_CIVILIAN_LAB" hostile="false" />
     <choice>
       <text>Continue...</text>

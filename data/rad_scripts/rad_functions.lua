@@ -197,12 +197,27 @@ script.on_game_event("RAD_MAIN_BOARD", false, function()
 end)
 
 script.on_game_event("RAD_MAIN_DISABLE_DOORS", false, function()
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
-    --local crewList = shipManager.vCrewList
-    local otherShip = Hyperspace.Global.GetInstance():GetShipManager(1)
-    --crewList[0].extend:InitiateTeleport(1,0,0)
+    if Hyperspace.ships.enemy.myBlueprint.blueprintName == "RAD_MAIN_LAB_WALK" then 
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+        --local crewList = shipManager.vCrewList
+        local otherShip = Hyperspace.Global.GetInstance():GetShipManager(1)
+        --crewList[0].extend:InitiateTeleport(1,0,0)
+        for crewmem in vter(shipManager.vCrewList) do
+            crewmem.extend:InitiateTeleport(1,0,0)
+        end
+    end
+end)
+
+script.on_game_event("RAD_CIVILIAN_TRANSFORM", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(1)
     for crewmem in vter(shipManager.vCrewList) do
-        crewmem.extend:InitiateTeleport(1,0,0)
+        local teleTable = userdata_table(crewmem, "mods.tpbeam.time")
+        if teleTable.tpTime then
+            teleTable.tpTime = nil
+        end
+        if crewmem.iShipId == 0 then 
+            crewmem.extend:InitiateTeleport(0,0,0)
+        end
     end
 end)
 
@@ -1336,9 +1351,11 @@ script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipM
             if pType == "BEAM" and damageReal > 0 then 
                 local expectedDamage = damageReal - (math.max(0,shieldPower.first-damage.iShieldPiercing))
                 sRecover = damageReal - expectedDamage
-            elseif pType == "LASER" or pType == "BURST" then
+            elseif (pType == "LASER" or pType == "BURST") then
                 if damage.iShieldPiercing < shieldPower.first then
-                    shieldPower.first = math.max(0, shieldPower.first - 1)
+                    if damage.iDamage > 0 then
+                        shieldPower.first = math.max(0, shieldPower.first - 1)
+                    end
                     sRecover = superD
                 end
             end
@@ -1349,10 +1366,10 @@ script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipM
                 end
             end
             if damage.iIonDamage > 0 then 
-                local ionDamage = Hyperspace.Damage()
-                ionDamage.iIonDamage = damage.iIonDamage
+                --local ionDamage = Hyperspace.Damage()
+                --ionDamage.iIonDamage = damage.iIonDamage
                 local roomPos = shipManager.shieldSystem.roomId
-                shipManager:DamageArea(shipManager:GetRoomCenter(roomPos), ionDamage, true)
+                shipManager:DamageArea(shipManager:GetRoomCenter(roomPos), damage, true)
             end
         end
         if shipManager.iShipId == 0 then 
@@ -2383,7 +2400,7 @@ end)]]
 local hasWeapon = true
 local hasShield = true
 local hasEngine = true
-local hasPilot = true
+--local hasPilot = true
 local hasHack = true
 local hasClone = true
 
@@ -2413,8 +2430,7 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
                 hasClone = false
                 Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_CLONE",false,-1)
                 --commandGui:RunCommand("LOADEVENT RAD_MAIN_CLONE")
-            elseif crewmem.iRoomId == 12 and hasPilot and (not hasHack) and crewmem.iShipId == 0 then 
-                hasPilot = false
+            elseif crewmem.iRoomId == 12 and Hyperspace.playerVariables.loc_rad_board_pilot == 0 and (not hasHack) and crewmem.iShipId == 0 then 
                 Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MAIN_PILOT",false,-1)
                 --commandGui:RunCommand("LOADEVENT RAD_MAIN_PILOT")
             elseif crewmem.iRoomId == 7 and hasHack and crewmem.iShipId == 0 then 
@@ -3176,7 +3192,7 @@ end, function() end)]]
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
     if shipManager:HasAugmentation("RAD_HIGH_WEAPON") > 0 then 
         for weapon in vter(shipManager:GetWeaponList()) do 
-            if weapon.blueprint.power => 4 then 
+            if weapon.blueprint.power >= 4 then 
                 weapon.requiredPower = 2
             end
             if weapon.blueprint.power < 4 then 

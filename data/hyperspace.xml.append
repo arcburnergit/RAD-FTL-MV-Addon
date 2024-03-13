@@ -549,7 +549,7 @@
   </aug>
   <aug name="RAD_ZS_UNDER">
     <superShield>
-      <add>7</add>
+      <add>4</add>
       <color r="240" g="125" b="55" a="0.8" />
       <shieldImage>ship/enemy_shields_white.png</shieldImage>
     </superShield>
@@ -890,6 +890,7 @@
   </req>
 
   <variable name="loc_rad_board_charged" op="set" val="1"/>
+  <variable name="loc_rad_board_pilot" op="set" val="0"/>
 
   <variable name="rad_flesh_rescue" op="set" val="1"/>
 	

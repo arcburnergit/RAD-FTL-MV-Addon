@@ -334,20 +334,7 @@
     <autoReward level="HIGH">standard</autoReward>
     <choice req="rad_civilian" lvl="1" blue="false">
       <text>Continue...</text>
-      <event name="RAD_CIVILIAN_TRANSFORM">
-        <transformRace class="rad_civilian">human</transformRace>
-        <text>A civilian on your ship offer to join you crew.</text>
-        <choice req="rad_civilian" lvl="2" blue="false">
-          <text>Continue...</text>
-          <event>
-            <loadEvent>RAD_CIVILIAN_TRANSFORM</loadEvent>
-          </event>
-        </choice>
-        <choice req="rad_civilian" max_lvl="1" lvl="0" blue="false">
-          <text>Continue...</text>
-          <event />
-        </choice>
-      </event>
+      <event load="RAD_CIVILIAN_TRANSFORM" />
     </choice>
     <choice req="rad_civilian" max_lvl="0" lvl="0" blue="false">
       <text>Continue...</text>
@@ -371,20 +358,7 @@
         <autoReward level="RANDOM">stuff</autoReward>
         <choice req="rad_civilian" lvl="1" blue="false">
           <text>Continue...</text>
-          <event name="RAD_CIVILIAN_TRANSFORM">
-            <transformRace class="rad_civilian">human</transformRace>
-            <text>A civilian on your ship offer to join you crew.</text>
-            <choice req="rad_civilian" lvl="2" blue="false">
-              <text>Continue...</text>
-              <event>
-                <loadEvent>RAD_CIVILIAN_TRANSFORM</loadEvent>
-              </event>
-            </choice>
-            <choice req="rad_civilian" max_lvl="1" lvl="0" blue="false">
-              <text>Continue...</text>
-              <event />
-            </choice>
-          </event>
+          <event load="RAD_CIVILIAN_TRANSFORM" />
         </choice>
         <choice req="rad_civilian" max_lvl="0" lvl="0" blue="false">
           <text>Continue...</text>
@@ -1165,6 +1139,7 @@ Just as you start moving towards the ship, it powers on it's weapons, looks like
     <status type="limit" target="player" system="teleporter" amount="0" />
     <status type="limit" target="player" system="sensors" amount="0" />
     <variable name="loc_rad_board_charged" op="set" val="0"/>
+    <variable name="loc_rad_board_pilot" op="set" val="0"/>
     <eventButton name="UI_RAD_BOARD">
       <event load="RAD_MAIN_RETURN"/>
       <image>statusUI/rad_board</image>
@@ -1359,6 +1334,7 @@ Just as you start moving towards the ship, it powers on it's weapons, looks like
   </event>
   <event name="RAD_MAIN_PILOT">
     <text>You've entered the shipyard control room. The console connected to it is locked down.</text>
+    <variable name="loc_rad_board_pilot" op="set" val="1"/>
     <choice blue="true">
       <text>Unlock the console.</text>
       <event>

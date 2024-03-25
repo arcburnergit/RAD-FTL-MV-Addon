@@ -252,9 +252,23 @@
     </unlock>
     <unlock variant="c" silent="false">
       <type>4</type>
+      <!--otherUnlocks>
+        <ship>PLAYER_SHIP_RAD_STATION</ship>
+        <ship>PLAYER_SHIP_RAD_FLESH</ship>
+        <ship>PLAYER_SHIP_RAD_EXPERIMENT</ship>
+        <ship>PLAYER_SHIP_RAD_RICH</ship>
+        <ship>PLAYER_SHIP_RAD_CRYSTAL</ship>
+        <ship>PLAYER_SHIP_RAD_STATION_2</ship>
+        <ship>PLAYER_SHIP_RAD_FLESH_2</ship>
+        <ship>PLAYER_SHIP_RAD_EXPERIMENT_2</ship>
+        <ship>PLAYER_SHIP_RAD_RICH_2</ship>
+        <ship>PLAYER_SHIP_RAD_CRYSTAL_2</ship>
+        <ship>PLAYER_SHIP_RAD_MANTIS</ship>
+        <ship>PLAYER_SHIP_RAD_MANTIS_2</ship>
+      </otherUnlocks-->
     </unlock>
   </mod-append:ship>
-  <mod-append:ship name="PLAYER_SHIP_RAD_CORVETTE_ELITE" b="false" c="false" >
+  <mod-append:ship name="PLAYER_SHIP_RAD_CORVETTE_ELITE" b="true" c="false" >
     <unlock variant="a" silent="false">
       <type>3</type>
       <otherUnlocks>
@@ -265,6 +279,17 @@
         <ship>PLAYER_SHIP_RAD_CUTTER_2</ship>
         <ship>PLAYER_SHIP_RAD_CUTTER_3</ship>
       </otherUnlocks>
+    </unlock>
+    <unlock variant="a" silent="false">
+      <type>4</type>
+      <!--otherUnlocks>
+        <ship>PLAYER_SHIP_RAD_CORVETTE</ship>
+        <ship>PLAYER_SHIP_RAD_CORVETTE_2</ship>
+        <ship>PLAYER_SHIP_RAD_CORVETTE_3</ship>
+        <ship>PLAYER_SHIP_RAD_CUTTER</ship>
+        <ship>PLAYER_SHIP_RAD_CUTTER_2</ship>
+        <ship>PLAYER_SHIP_RAD_CUTTER_3</ship>
+      </otherUnlocks-->
     </unlock>
   </mod-append:ship>
   
@@ -423,6 +448,7 @@
   <mod-append:customShip name="PLAYER_SHIP_RAD_CUTTER_2">
     <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <crewLimit>6</crewLimit>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CUTTER_3">
     <hiddenAug>SHIP_KESTREL</hiddenAug>
@@ -430,6 +456,10 @@
     <crewLimit>6</crewLimit>
   </mod-append:customShip>
   <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE_ELITE">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE_ELITE_2">
     <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
   </mod-append:customShip>
@@ -786,7 +816,17 @@
   <metaVariable name="rad_q10" op="set" val="0"/>
   <metaVariable name="rad_q11" op="set" val="0"/>
   
+  <variable name="rad_n_replace" op="set" val="0"/>
 
+  <req name="rad_replace_weapons" type="all">
+    <req lvl="1">
+      <name>rad_n_replace</name>
+    </req>
+    <req>
+      <name>RAD_LOW_SHIELD</name>
+    </req>
+  </req>
+  
   <req name="rad_2" type="all">
     <req lvl="1">
       <name>rad_q1</name>

@@ -30,16 +30,26 @@
     </mod-append:choice>
   </mod:findName>
 
+  <event name="RAD_DISABLE_PWEAPONS">
+    <triggeredEvent event="RAD_ENABLE_PWEAPONS" seeded="false" loops="1" minTime="0.1" maxTime="0.1" />
+    <status type="limit" target="player" system="weapons" amount="0" />
+  </event>
+
+  <event name="RAD_ENABLE_PWEAPONS">
+    <status type="clear" target="player" system="weapons" amount="100" />
+  </event>
+  
   <event name="RAD_ENABLE_ENEMY_ENGINES">
     <status type="clear" target="enemy" system="engines" amount="100" />
   </event>
 
   <event name="RAD_REPLACEMENT_WEAPONS">
     <loadEventList seeded="false" first="true" generate="false">
-      <event req="RAD_LOW_SHIELD" lvl="0" max_lvl="0">
+      <event req="rad_replace_weapons" lvl="0" max_lvl="0">
       </event>
-      <event req="RAD_LOW_SHIELD" lvl="1" max_lvl="99999">
+      <event req="rad_replace_weapons" lvl="1" max_lvl="99999">
         <weapon name="LIST_WEAPONS_ALL_CRAPBUCKET" />
+        <variable name="rad_n_replace" op="add" val="-1" />
       </event>
     </loadEventList>
   </event>

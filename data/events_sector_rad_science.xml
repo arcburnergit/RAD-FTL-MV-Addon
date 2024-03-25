@@ -303,6 +303,7 @@
       <text>Continue...</text>
       <event name="RAD_CIVILIAN_TRANSFORM">
         <transformRace class="rad_civilian">human</transformRace>
+        <checkCargo />
         <text>A civilian on your ship offer to join you crew.</text>
         <choice req="rad_civilian" lvl="2" blue="false">
           <text>Continue...</text>
@@ -310,7 +311,7 @@
             <loadEvent>RAD_CIVILIAN_TRANSFORM</loadEvent>
           </event>
         </choice>
-        <choice req="rad_civilian" max_lvl="2" lvl="0" blue="false">
+        <choice req="rad_civilian" max_lvl="1" lvl="0" blue="false">
           <text>Continue...</text>
           <event />
         </choice>

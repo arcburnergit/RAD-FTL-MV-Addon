@@ -1154,7 +1154,7 @@ script.on_game_event("ATLAS_MENU", false, function()
     end
 end)
 
-script.on_game_event("START_BEACON_PREP", false, function()
+script.on_game_event("START_BEACON_EXPLAIN", false, function()
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
     --richScrap = 200
     if shipManager:HasAugmentation("RAD_CREDIT") > 0 then
@@ -1366,10 +1366,10 @@ script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipM
                 end
             end
             if damage.iIonDamage > 0 then 
-                --local ionDamage = Hyperspace.Damage()
-                --ionDamage.iIonDamage = damage.iIonDamage
+                local ionDamage = damage
+                ionDamage.iDamage = 0
                 local roomPos = shipManager.shieldSystem.roomId
-                shipManager:DamageArea(shipManager:GetRoomCenter(roomPos), damage, true)
+                shipManager:DamageArea(shipManager:GetRoomCenter(roomPos), ionDamage, true)
             end
         end
         if shipManager.iShipId == 0 then 
@@ -2270,11 +2270,13 @@ end)
 script.on_game_event("COMBAT_CHECK_REAL", false, function()
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
     if shipManager:HasAugmentation("RAD_LOW_SHIELD") > 0 then 
+        Hyperspace.playerVariables.rad_n_replace = 0
         local weaponList = shipManager:GetWeaponList()
         if not weaponList then return end
         for weapon in vter(weaponList) do
             if weapon and weapon.blueprint then
                 shipManager:RemoveItem(weapon.blueprint.name)
+                Hyperspace.playerVariables.rad_n_replace = Hyperspace.playerVariables.rad_n_replace + 1
             end
         end
     end
@@ -2283,6 +2285,15 @@ end)
 script.on_game_event("COMBAT_CHECK_FAIL_REAL", false, function()
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
     if shipManager:HasAugmentation("RAD_LOW_SHIELD") > 0 then 
+        local weaponList = shipManager:GetWeaponList()
+        if not weaponList then return end
+        for weapon in vter(weaponList) do
+            if weapon and weapon.blueprint then
+                shipManager:RemoveItem(weapon.blueprint.name)
+            end
+        end
+    end
+    if shipManager:HasAugmentation("RAD_SUPER_RANDOM") > 0 then
         local weaponList = shipManager:GetWeaponList()
         if not weaponList then return end
         for weapon in vter(weaponList) do
@@ -3190,12 +3201,17 @@ end, function() end)]]
 
 
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
-    if shipManager:HasAugmentation("RAD_HIGH_WEAPON") > 0 then 
+    if shipManager:HasAugmentation("RAD_HIGH_WEAPON") > 0 and Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then 
         for weapon in vter(shipManager:GetWeaponList()) do 
-            if weapon.blueprint.power >= 4 then 
+            if weapon.blueprint.power >= 4 then
+                if weapon.requiredPower == weapon.blueprint.power and weapon.powered then 
+                    --shipManager.weaponSystem:LockSystem(8)
+                    local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+                    Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_DISABLE_PWEAPONS",false,-1)
+                end
                 weapon.requiredPower = 2
             end
-            if weapon.blueprint.power < 4 then 
+            if weapon.blueprint.power < 3 then 
                 weapon:SetCooldownModifier(-1)
             end
         end 

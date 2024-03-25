@@ -1792,7 +1792,7 @@ Once you're onboard, you'll need to kill the crew manning the station, and then 
     <eventButton name="UI_RAD_BOARD">
       <event load="RAD_MIRROR_3"/>
       <image>statusUI/rad_board</image>
-      <customLocation x="979" y="613"/>
+      <customLocation x="829" y="513"/>
       <tooltip>Board the outpost.</tooltip>
       <inactiveTooltip>You cannot board the outpost.</inactiveTooltip>
       <req>loc_rad_board_charged</req>

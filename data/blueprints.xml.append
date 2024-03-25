@@ -3606,17 +3606,23 @@ Due to the small size, the reactor is only powerful enough to provide for 1 powe
 
   <shipBlueprint name="PLAYER_SHIP_RAD_CUTTER_2" layout="radp_cutterb" img="radp_cutterb">
     <class>Science Cutter</class>
-    <name>Breath Harder</name>
+    <name>Gun Harder</name>
     <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_2_unlock"/>
-    <desc>Due to the small size of this ship, the reactor is unable to power the oxygen system, in order to keep your crew alive you'll have to make use of oxygen generating crew. WILL BE REWORKED IN THE FUTURE.</desc>
+    <desc>Due to specialised weapon mounts this ship is able to effectively mount 4 power and above weapons with a discounter power cost, however it is unable to mount weapons that cost 2 power or less.</desc>
     <systemList>
-      <battery power="1" room="7" start="false" img="room_battery_19" />
+      <battery power="1" room="13" start="false" img="room_battery_2" />
       <cloaking power="1" room="6" start="false" img="room_cloaking_rad" />
       <clonebay power="1" room="1" start="true">
         <slot>
           <number>-2</number>
         </slot>
       </clonebay>
+      <doors power="1" room="7" start="true" img="room_doors_8">
+        <slot>
+          <direction>left</direction>
+          <number>0</number>
+        </slot>
+      </doors>
       <drones power="1" room="9" max="8" start="false" img="room_drones_18" />
       <engines power="1" room="4" start="true" img="room_engines_8">
         <slot>
@@ -3661,15 +3667,14 @@ Due to the small size, the reactor is only powerful enough to provide for 1 powe
     <weaponSlots>4</weaponSlots>
     <droneSlots>2</droneSlots>
     <weaponList missiles="14" count="4">
-      <weapon name="KERNEL_1" />
-      <weapon name="BEAM_2_PLAYER" />
+      <weapon name="LASER_BURST_8" />
     </weaponList>
     <droneList drones="0" count="2" />
     <health amount="21" />
     <maxPower amount="6" />
     <crewCount amount="2" class="orchid" />
     <crewCount amount="1" class="rad_scientist" />
-    <aug name="RAD_CUTTER_OXY" />
+    <aug name="RAD_HIGH_WEAPON" />
   </shipBlueprint>
 
   <augBlueprint name="RAD_CUTTER_OXY">
@@ -3695,7 +3700,7 @@ Due to the small size, the reactor is only powerful enough to provide for 1 powe
       </clonebay>
       <doors power="1" room="10" start="true" img="room_doors_8">
         <slot>
-          <direction>up</direction>
+          <direction>left</direction>
           <number>0</number>
         </slot>
       </doors>
@@ -3743,6 +3748,10 @@ Due to the small size, the reactor is only powerful enough to provide for 1 powe
     <weaponSlots>4</weaponSlots>
     <droneSlots>2</droneSlots>
     <weaponList missiles="10" count="4">
+      <weapon name="LASER_BURST_1" />
+      <weapon name="LASER_BURST_1" />
+      <weapon name="LASER_BURST_1" />
+      <weapon name="LASER_BURST_1" />
     </weaponList>
     <droneList drones="2" count="2" />
     <health amount="21" />
@@ -3755,7 +3764,7 @@ Due to the small size, the reactor is only powerful enough to provide for 1 powe
   
   <augBlueprint name="RAD_LOW_SHIELD">
     <title>Weapon Scrambler</title>
-    <desc>Every combat all of your weapons are randomly replaced. Does not apply to the flagship fight, what ever weapons you have before the fight are the ones you'll keep</desc>
+    <desc>Every combat all of your weapons are randomly replaced, if you have 3 weapons, it will only replace those 3. Does not apply to the flagship fight, what ever weapons you have before the fight are the ones you'll keep</desc>
     <cost>0</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
@@ -4953,13 +4962,24 @@ Due to the small size, the reactor is only powerful enough to provide for 1 powe
     <maxPower amount="7" />
     <crewCount amount="1" class="human_engineer" />
     <crewCount amount="1" class="human_medic" />
-    <aug name="RAD_HIGH_WEAPON" />
+    <aug name="RAD_SUPER_RANDOM" />
   </shipBlueprint>
 
   <augBlueprint name="RAD_HIGH_WEAPON">
     <title>High Power Weapons</title>
     <desc>The weapon mounts on this ship are specifically designed for weapons that use 4 or more power, these weapons are reduced to only require 2 power.
-Weapons that use less than 4 power won't work with these weapon slots.</desc>
+Weapons that use 2 power or less won't work with these weapon slots. 3 power weapons work normally</desc>
+    <cost>0</cost>
+    <rarity>0</rarity>
+    <stackable>false</stackable>
+  </augBlueprint>
+
+  <augBlueprint name="RAD_SUPER_RANDOM">
+    <title>High Power Weapons</title>
+    <desc>
+      The weapon mounts on this ship are specifically designed for weapons that use 4 or more power, these weapons are reduced to only require 2 power.
+      Weapons that use less than 4 power won't work with these weapon slots.
+    </desc>
     <cost>0</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>

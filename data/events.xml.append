@@ -1784,7 +1784,7 @@ Once you're onboard, you'll need to kill the crew manning the station, and then 
     <status type="limit" target="player" system="temporal" amount="0" />
     <status type="limit" target="player" system="teleporter" amount="0" />
     <status type="limit" target="player" system="artillery" amount="0" />
-    <status type="limit" target="player" system="reactor" amount="1" />
+    <status type="limit" target="player" system="reactor" amount="2" />
     <text>You arrive at the beacon and a science ship immediately directs you to their FOB.
 "Alright, when you're ready press that button over there and that'll warp all of your crew onto the outpost."</text>
     <ship load="MU_RAD_REBELOUT" hostile="false" />
@@ -1792,7 +1792,7 @@ Once you're onboard, you'll need to kill the crew manning the station, and then 
     <eventButton name="UI_RAD_BOARD">
       <event load="RAD_MIRROR_3"/>
       <image>statusUI/rad_board</image>
-      <customLocation x="829" y="513"/>
+      <customLocation x="700" y="513"/>
       <tooltip>Board the outpost.</tooltip>
       <inactiveTooltip>You cannot board the outpost.</inactiveTooltip>
       <req>loc_rad_board_charged</req>

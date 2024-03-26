@@ -801,7 +801,8 @@
   <bossShip>RAD_SCIENCE_ENEMY_CORVETTE_3</bossShip>
   <bossShip>SHIP_RAD_SCIENCE_CUTTERENEMY</bossShip>
   <bossShip>RAD_SCRAPER_ENEMY</bossShip>
-  
+  <bossShip>MU_RADLAB_STATION</bossShip>
+
   <metaVariable name="rad_q1" op="set" val="0"/>
   <metaVariable name="rad_q2" op="set" val="0"/>
   <metaVariable name="rad_q22" op="set" val="0"/>

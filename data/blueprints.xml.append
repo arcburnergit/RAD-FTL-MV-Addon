@@ -1288,6 +1288,8 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
 	<cost>80</cost>
 	<bp>4</bp>
 	<rarity>0</rarity>
+  <image>invisible</image>
+  <weaponArt>invisible_gun</weaponArt>
 </weaponBlueprint>
 
   <weaponBlueprint name="ARTILLERY_RAD_ZS">
@@ -1308,6 +1310,8 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
     <cost>80</cost>
     <bp>4</bp>
     <rarity>0</rarity>
+    <image>invisible</image>
+    <weaponArt>invisible_gun</weaponArt>
   </weaponBlueprint>
   
   <weaponBlueprint name="ARTILLERY_RAD_SWTCH">
@@ -1328,6 +1332,8 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
     <cost>80</cost>
     <bp>4</bp>
     <rarity>0</rarity>
+    <image>invisible</image>
+    <weaponArt>invisible_gun</weaponArt>
   </weaponBlueprint>
 
 <weaponBlueprint name="ARTILLERY_FLESH_ENEMY">
@@ -1346,6 +1352,8 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
 	<cost>80</cost>
 	<bp>4</bp>
 	<rarity>0</rarity>
+  <image>invisible</image>
+  <weaponArt>invisible_gun</weaponArt>
 </weaponBlueprint>
 
 <shipBlueprint name="PLAYER_SHIP_RAD_EXPERIMENT" layout="radp_ghost_player" img="radp_ghost_player">
@@ -2366,7 +2374,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <title>Zoltan Under-Shield</title>
     <desc>Like a Zoltan overshield, but it goes under the normal shield bubble.
     </desc>
-    <cost>0</cost>
+    <cost>50</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
   </augBlueprint>
@@ -3657,7 +3665,7 @@ Due to the small size, the reactor is only powerful enough to provide for 1 powe
         </slot>
       </shields>
       <teleporter power="1" room="5" start="false" />
-      <weapons power="2" room="3" max="8" start="true" img="room_weapons_7">
+      <weapons power="3" room="3" max="8" start="true" img="room_weapons_7">
         <slot>
           <direction>up</direction>
           <number>1</number>
@@ -4891,77 +4899,80 @@ Increases scrap gain by 25%</desc>
     <weaponArt>rad_big_arti</weaponArt>
   </weaponBlueprint>
 
-  <shipBlueprint name="PLAYER_SHIP_RAD_CORVETTE_ELITE_2" layout="radp_cutter" img="radp_cutter">
-    <class>Science Cutter</class>
-    <name>Sputnik</name>
+  <shipBlueprint name="PLAYER_SHIP_RAD_CORVETTE_ELITE_2" layout="radp_elite_cutter" img="radp_elite_cutter">
+    <class>Elite Science Cutter</class>
+    <name>The ISS</name>
     <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_ELITE_2_unlock"/>
-    <desc>On the smaller end of space craft, this machine is still a capable weapon with 6 weapon slots.&#xD;
-Due to the small size, the reactor is only powerful enough to provide for 1 power weapons, creatly limiting your options.
+    <desc>
     </desc>
     <systemList>
-      <battery power="1" room="10" start="false" img="room_battery" />
-      <cloaking power="1" room="6" start="false" img="room_cloaking_rad" />
-      <clonebay power="1" room="1" start="true">
+      <battery power="1" room="5" start="false" img="room_battery_2" />
+      <cloaking power="1" room="7" start="false" img="room_cloaking_rad" />
+      <clonebay power="1" room="1" start="false">
         <slot>
           <number>-2</number>
         </slot>
       </clonebay>
-      <doors power="1" room="11" start="false" img="room_doors_3">
+      <doors power="1" room="13" start="false" img="room_doors_4">
         <slot>
           <direction>right</direction>
-          <number>1</number>
+          <number>0</number>
         </slot>
       </doors>
-      <engines power="1" room="4" start="true" img="room_engines_8">
+      <drones power="3" room="6" start="true" img="room_drones_7" />
+      <engines power="1" room="2" start="true" img="room_engines_8">
         <slot>
           <direction>left</direction>
           <number>1</number>
         </slot>
       </engines>
-      <hacking power="1" room="7" start="false" img="room_hacking" />
-      <medbay power="1" room="1" start="true" img="room_medbay_6">
+      <hacking power="1" room="4" start="false" img="room_hacking_3" />
+      <medbay power="1" room="1" start="false" img="room_medbay_6">
         <slot>
           <number>-2</number>
         </slot>
       </medbay>
-      <mind power="1" room="8" start="false" img="room_mind_5" />
-      <oxygen power="1" room="9" start="true" img="room_oxygen_20" />
+      <mind power="1" room="10" start="false" img="room_mind_9" />
+      <oxygen power="1" room="8" start="true" img="room_oxygen_6" />
       <pilot power="1" room="0" start="true" img="room_pilot">
         <slot>
           <direction>right</direction>
           <number>0</number>
         </slot>
       </pilot>
-      <sensors power="1" room="12" start="false" img="room_sensors_2">
+      <sensors power="1" room="12" start="false" img="room_sensors_6">
         <slot>
-          <direction>up</direction>
-          <number>0</number>
+          <direction>right</direction>
+          <number>1</number>
         </slot>
       </sensors>
-      <shields power="2" room="2" max="8" start="true" img="room_shields_4">
+      <shields power="2" room="9" start="true" img="room_shields_2">
         <slot>
           <direction>left</direction>
           <number>0</number>
         </slot>
       </shields>
-      <teleporter power="1" room="5" start="false" />
-      <weapons power="2" room="3" max="6" start="true" img="room_weapons_7">
+      <teleporter power="1" room="11" start="false" />
+      <weapons power="3" room="3" start="true" img="room_weapons">
         <slot>
           <direction>up</direction>
           <number>1</number>
         </slot>
       </weapons>
     </systemList>
-    <weaponSlots>6</weaponSlots>
-    <droneSlots>0</droneSlots>
-    <weaponList missiles="8" count="6">
-      <weapon name="LASER_BURST_8" />
+    <weaponSlots>4</weaponSlots>
+    <droneSlots>4</droneSlots>
+    <weaponList missiles="10" count="4">
+      <weapon name="LASER_BURST_1" />
+      <weapon name="LASER_BURST_1" />
     </weaponList>
-    <droneList drones="0" count="0" />
+    <droneList drones="10" count="4">
+      <drone name="COMBAT_1_LASER" />
+      <drone name="COMBAT_1_LASER" />
+    </droneList>
     <health amount="21" />
     <maxPower amount="7" />
-    <crewCount amount="1" class="human_engineer" />
-    <crewCount amount="1" class="human_medic" />
+    <crewCount amount="3" class="human" />
     <aug name="RAD_SUPER_RANDOM" />
   </shipBlueprint>
 
@@ -4975,13 +4986,464 @@ Weapons that use 2 power or less won't work with these weapon slots. 3 power wea
   </augBlueprint>
 
   <augBlueprint name="RAD_SUPER_RANDOM">
-    <title>High Power Weapons</title>
-    <desc>
-      The weapon mounts on this ship are specifically designed for weapons that use 4 or more power, these weapons are reduced to only require 2 power.
-      Weapons that use less than 4 power won't work with these weapon slots.
-    </desc>
+    <title>Super Scrambler</title>
+    <desc>Replaces all your weapons, crew, and drones every combat.</desc>
     <cost>0</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
   </augBlueprint>
+
+  <weaponBlueprint name="RAD_BOMB_CREW_GUN">
+    <type>BOMB</type>
+    <title>Time Bomb Deployer</title>
+    <short>Bomb Deployer</short>
+    <desc>Every time it charges it will construct another time bomb.
+    </desc>
+    <tooltip>Creates a new time bomb each time it charges.</tooltip>
+    <damage>0</damage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>1</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>20</cooldown>
+    <power>1</power>
+    <cost>80</cost>
+    <bp>4</bp>
+    <rarity>0</rarity>
+    <image>invisible</image>
+    <weaponArt>invisible_gun</weaponArt>
+  </weaponBlueprint>
+  <weaponBlueprint name="RAD_BOMB_CREW_GUN"> <!-- 1power 2damage-->
+	  <type>BOMB</type>
+	  <tip>tip_bombs</tip>
+    <title>Time Bomb Deployer</title>
+    <short>Bomb Deployer</short>
+    <desc>Every time it charges it will construct another time bomb.
+    </desc>
+	  <tooltip id="weapon_BOMB_1_tooltip" />
+	  <!--<desc>Power Req: 2     Self-teleporting explosive that deals 2 damage to systems and subsystems without causing hull damage.</desc>-->
+	  <damage>0</damage>
+	  <sysDamage>0</sysDamage>
+	  <persDamage>0</persDamage>
+	  <missiles>1</missiles>
+	  <shots>1</shots>
+	  <sp>0</sp>
+	  <fireChance>0</fireChance>
+	  <breachChance>3</breachChance>
+	  <cooldown>13</cooldown>
+	  <power>1</power>
+	  <cost>45</cost> <!--was 55-->
+	  <bp>4</bp>
+	  <rarity>0</rarity>
+	  <image>bomb1</image>
+	  <explosion>explosion_random</explosion>
+	  <launchSounds>
+		  <sound>bombTeleport</sound>
+	  </launchSounds>
+	  <hitShipSounds>
+		  <sound>smallExplosion</sound>
+	  </hitShipSounds>
+	  <weaponArt>bomb_1</weaponArt>
+	  <iconImage>bomb</iconImage>
+  </weaponBlueprint>
+  
+  <weaponBlueprint name="ARTILLERY_RAD_DD">
+    <type>LASER</type>
+    <title>Time Bomb Factory</title>
+    <short>Time Bomb Factory</short>
+    <desc>[BASE COOLDOWN: 20] 
+Every time it charges it will construct another time bomb.
+    </desc>
+    <tooltip>Creates a new time bomb each time it charges.</tooltip>
+    <damage>0</damage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>1</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>20</cooldown>
+    <power>1</power>
+    <cost>80</cost>
+    <bp>4</bp>
+    <rarity>0</rarity>
+    <image>invisible</image>
+    <weaponArt>invisible_gun</weaponArt>
+  </weaponBlueprint>
+  
+  <weaponBlueprint name="ARTILLERY_RAD_DD_2">
+    <type>LASER</type>
+    <title>Secondary Bomb Factory</title>
+    <short>Secondary Bomb Factory</short>
+    <desc>[BASE COOLDOWN: 20] 
+Every time it charges it will construct another time bomb.
+    </desc>
+    <tooltip>Creates a new time bomb each time it charges.</tooltip>
+    <damage>0</damage>
+    <shots>1</shots>
+    <sp>0</sp>
+    <fireChance>1</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>20</cooldown>
+    <power>1</power>
+    <cost>80</cost>
+    <bp>4</bp>
+    <rarity>0</rarity>
+    <image>invisible</image>
+    <weaponArt>invisible_gun</weaponArt>
+  </weaponBlueprint>
+  
+  <crewBlueprint name="drone_rad_missile">
+    <title>Walking Time Bomb</title>
+    <short>Walking Time Bomb</short>
+    <desc>When this bomb explodes it will do 1 hull damage, 1 system damage, and 30 crew damage with a 50% breach chance.</desc>
+    <cost>0</cost>
+    <powerList>
+      <power>0.5x combat damage</power>
+      <power>0.5x move speed.</power>
+      <power>Immune to suffocation, takes 0.2x damage from fires.</power>
+      <power>Will explode after 10 seconds.</power>
+      <power>Explosion will do 1 hull damager, 1 system damage, and 30 crew damage with a 50% breach chance.</power>
+    </powerList>
+    <rarity>0</rarity>
+  </crewBlueprint>
+    
+  <crewBlueprint name="drone_rad_bomb">
+    <title>Walking Time Bomb</title>
+    <short>Walking Time Bomb</short>
+    <desc>When this bomb explodes it will do 2 hull damage, 2 system damage, and 60 crew damage with a 100% breach chance.</desc>
+    <cost>0</cost>
+    <powerList>
+      <power>0.5x combat damage</power>
+      <power>0.5x move speed.</power>
+      <power>Immune to suffocation, takes 0.2x damage from fires.</power>
+      <power>Takes 1 damage per second when outside of the factory room.</power>
+      <power>Heals for 1 damage per second while in the factory room.</power>
+      <power>Will explode 10 seconds after leaving the factory room, explosion cancelled by death.</power>
+      <power>Explosion will do 2 hull damager, 2 system damage, and 60 crew damage with a 100% breach chance.</power>
+    </powerList>
+    <rarity>0</rarity>
+  </crewBlueprint>
+  
+  <crewBlueprint name="drone_rad_bomb_2">
+    <title>Walking Time Bomb</title>
+    <short>Walking Time Bomb</short>
+    <desc>When this bomb explodes it will do 2 hull damage, 1 system damage, and 30 crew damage with a 50% breach chance.</desc>
+    <cost>0</cost>
+    <powerList>
+      <power>0.5x combat damage</power>
+      <power>0.5x move speed.</power>
+      <power>Immune to suffocation, takes 0.2x damage from fires.</power>
+      <power>Takes 1 damage per second when outside of the factory room.</power>
+      <power>Heals for 1 damage per second while in the factory room.</power>
+      <power>Will explode on command, and on death.</power>
+      <power>Explosion will do 2 hull damager, 1 system damage, and 30 crew damage with a 50% breach chance.</power>
+    </powerList>
+    <rarity>0</rarity>
+  </crewBlueprint>
+  
+  <crewBlueprint name="drone_rad_bomb_3">
+    <title>Walking Time Bomb</title>
+    <short>Walking Time Bomb</short>
+    <desc>When this bomb explodes it will do 1 system damage, and 15 crew damage with a 100% fire chance.</desc>
+    <cost>0</cost>
+    <powerList>
+      <power>0.5x combat damage</power>
+      <power>Immune to suffocation and fire.</power>
+      <power>Takes 1 damage per second when outside of the factory room.</power>
+      <power>Heals for 1 damage per second while in the factory room.</power>
+      <power>Will explode 10 seconds after leaving the factory room, explosion cancelled by death.</power>
+      <power>Explosion will do 1 system damage, and 15 crew damage with a 100% fire chance.</power>
+    </powerList>
+    <rarity>0</rarity>
+  </crewBlueprint>
+  
+<shipBlueprint name="PLAYER_SHIP_RAD_MINE" layout="radp_minelayer" img="radp_minelayer">
+	<class>Minelayer Cruiser</class>
+	<name>The Mine Field</name>
+	<desc>It is said that this ship was requisition by a pirate who got bored of waiting for people to wander into the minefield...</desc>
+  <unlock id="ship_PLAYER_SHIP_RAD_MINE_unlock"/>
+	<systemList>
+		<artillery power="2" room="18" start="true" weapon="ARTILLERY_RAD_DD" img="room_artillery" />
+		<battery power="1" room="9" start="false" img="room_battery_14" />
+		<cloaking power="1" room="10" start="false" img="room_cloaking_rad" />
+		<clonebay power="1" room="3" start="false">
+			<slot>
+				<number>-2</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="4" start="true" img="room_doors_9">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="1" max="8" room="19" start="true" img="room_drones" />
+		<engines power="1" room="17" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="15" start="false" img="room_hacking_7" />
+		<medbay power="1" room="3" start="true" img="room_medbay_8">
+			<slot>
+				<number>-2</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="11" start="false" img="room_mind_3" />
+		<oxygen power="1" room="14" start="true" img="room_oxygen" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="5" start="true" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="8" start="true" img="room_shields">
+			<slot>
+				<direction>left</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="16" start="true" />
+		<weapons power="1" max="8" room="12" start="false" img="room_weapons">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>2</weaponSlots>
+	<droneSlots>3</droneSlots>
+	<weaponList missiles="4" count="3">
+		<weapon name="MINELAUNCHER_FREE" />
+	</weaponList>
+	<droneList drones="7" count="3">
+		<drone name="REPAIR" />
+	</droneList>
+	<health amount="30" />
+	<maxPower amount="8" />
+</shipBlueprint>
+  
+<augBlueprint name="RAD_DRONE_FACTORY">
+  <title>DRONE FACTORY HIDDEN</title>
+  <desc>YOU SHOULD NEVER SEE THIS.</desc>
+  <cost>0</cost>
+  <rarity>0</rarity>
+  <stackable>false</stackable>
+</augBlueprint>
+  
+  <augBlueprint name="RAD_DRONE_FACTORY_2">
+  <title>DRONE FACTORY HIDDEN</title>
+  <desc>YOU SHOULD NEVER SEE THIS.</desc>
+  <cost>0</cost>
+  <rarity>0</rarity>
+  <stackable>false</stackable>
+</augBlueprint>
+  
+<augBlueprint name="RAD_MISSILE_BOMBS">
+  <title>Secondary Payloads</title>
+  <desc>We removed some of that useless electronic junk and shoved one of these walking time bombs in there, now all your missiles and bombs will spawn a time bomb that does 1 hull damage, 1 system damage, and 30 crew damage after 10 seconds.</desc>
+  <cost>50</cost>
+  <rarity>0</rarity>
+  <stackable>false</stackable>
+</augBlueprint>
+  
+<shipBlueprint name="PLAYER_SHIP_RAD_MINE_2" layout="radp_minelayer_b" img="radp_minelayer_b">
+	<class>Payload Cruiser</class>
+	<name>The Howitzer</name>
+	<desc>A missile heavy cruiser designed wreck havok amonst the enemy crew with secondary payloads of walking bombs installed in every missile.</desc>
+  <unlock id="ship_PLAYER_SHIP_RAD_MINE_2_unlock"/>
+	<systemList>
+		<battery power="1" room="7" start="false" img="room_battery_3" />
+		<cloaking power="1" room="9" start="false" img="room_cloaking" />
+		<clonebay power="1" room="6" start="false">
+			<slot>
+				<number>3</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="1" start="true" img="room_doors">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="2" max="8" room="18" start="false" img="room_drones_17" />
+		<engines power="2" room="14" start="true" img="room_engines">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="13" start="false" img="room_hacking_8" />
+		<medbay power="1" room="6" start="true" img="room_medbay_3">
+			<slot>
+				<number>3</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="12" start="false" img="room_mind_5" />
+		<oxygen power="1" room="8" start="false" img="room_oxygen_17" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="4" start="true" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="5" start="true" img="room_shields_5">
+			<slot>
+				<direction>up</direction>
+				<number>0</number>
+			</slot>
+		</shields>
+		<teleporter power="1" room="17" start="false" />
+		<weapons power="2" max="8" room="3" start="true" img="room_weapons">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</weapons>
+	</systemList>
+	<weaponSlots>4</weaponSlots>
+	<droneSlots>2</droneSlots>
+	<weaponList missiles="12" count="4">
+		<weapon name="MISSILES_STUN" />
+	</weaponList>
+	<droneList drones="3" count="2" />
+	<health amount="30" />
+	<maxPower amount="7" />
+	<crewCount amount="1" class="engi_separatist_nano" />
+	<crewCount amount="1" class="phantom" />
+	<crewCount amount="1" class="lanius" />
+	<aug name="RAD_MISSILE_BOMBS" />
+	<aug name="EX_EXPLOSIVE_REPLICATOR" />
+</shipBlueprint>
+  
+<shipBlueprint name="PLAYER_SHIP_RAD_MINE_3" layout="radp_minelayer_c" img="radp_minelayer_c">
+	<class>Minelayer Cruiser</class>
+	<name>The Mine Flayer</name>
+	<desc>Able to sustain almost unparalled levels of destruction. This ship is unable to mount weapons, however it doesn't really need them when the twin drone factories can supply so many mines.</desc>
+  <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
+	<systemList>
+		<artillery power="1" room="22" start="true" weapon="ARTILLERY_RAD_DD" img="room_artillery" />
+		<artillery power="1" room="23" start="true" weapon="ARTILLERY_RAD_DD_2" img="room_artillery" />
+		<battery power="1" room="12" start="false" img="room_battery_3" />
+		<cloaking power="1" room="8" start="false" img="room_cloaking_12" />
+		<clonebay power="1" room="3" start="false">
+			<slot>
+				<number>-2</number>
+			</slot>
+		</clonebay>
+		<doors power="1" room="6" start="true" img="room_doors_9">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</doors>
+		<drones power="1" max="8" room="21" start="true" img="room_drones_14" />
+		<engines power="1" room="13" start="true" img="room_engines_2">
+			<slot>
+				<direction>down</direction>
+				<number>2</number>
+			</slot>
+		</engines>
+		<hacking power="1" room="16" start="false" img="room_hacking_7" />
+		<medbay power="1" room="3" start="true" img="room_medbay_8">
+			<slot>
+				<number>-2</number>
+			</slot>
+		</medbay>
+		<mind power="1" room="17" start="false" img="room_mind_4" />
+		<oxygen power="1" room="9" start="true" img="room_oxygen_20" />
+		<pilot power="1" room="0" start="true" img="room_pilot">
+			<slot>
+				<direction>right</direction>
+				<number>0</number>
+			</slot>
+		</pilot>
+		<sensors power="1" room="5" start="true" img="room_sensors_3">
+			<slot>
+				<direction>right</direction>
+				<number>1</number>
+			</slot>
+		</sensors>
+		<shields power="2" max="8" room="7" start="true" img="room_shields_7">
+			<slot>
+				<direction>up</direction>
+				<number>1</number>
+			</slot>
+		</shields>
+		<teleporter power="1" max="4" room="20" start="true" />
+	</systemList>
+	<weaponSlots>0</weaponSlots>
+	<droneSlots>4</droneSlots>
+	<weaponList missiles="4" count="0" />
+	<droneList drones="7" count="4">
+		<drone name="REPAIR" />
+	</droneList>
+	<health amount="30" />
+	<maxPower amount="8" />
+</shipBlueprint>
+  
+<weaponBlueprint name="RAD_MINELAYER">
+	<type>BURST</type>
+	<tip>tip_mine</tip>
+	<title>Experimental Minelayer</title>
+	<short>Exp. Mine</short>
+	<desc>Mine Launchers charge quickly and fire a burst of slow moving projectiles, however these projectiles are specifically designed to deploy walking mines capable of traversing the enemy ship for ultimate destruction. Also serves as an efficient way to lay traps for the fleet.
+	
+	Provides 2 fleet delay for 13 missiles at empty beacons.</desc>
+	<tooltip>Fires 1 missile; does 1 damage; pierces all shields.</tooltip>
+	<drone_targetable>1</drone_targetable>
+	<radius>55</radius>
+	<damage>0</damage>
+	<noSysDamage>true</noSysDamage>
+	<missiles>1</missiles>
+	<shots>1</shots>
+	<sp>10</sp>
+	<fireChance>0</fireChance>
+	<breachChance>2</breachChance>
+	<cooldown>11</cooldown>
+	<power>2</power>
+	<speed>15</speed>
+	<cost>50</cost>
+	<bp>2</bp>
+	<rarity>0</rarity>
+	<projectiles>
+		<projectile count="3" fake="false">mine_large</projectile>
+	</projectiles>
+	<launchSounds>
+		<sound>smallMissile1</sound>
+		<sound>smallMissile2</sound>
+	</launchSounds>
+	<hitShipSounds>
+		<sound>smallExplosion</sound>
+	</hitShipSounds>
+	<hitShieldSounds>
+		<sound>hitShield1</sound>
+		<sound>hitShield2</sound>
+		<sound>hitShield3</sound>
+	</hitShieldSounds>
+	<missSounds>
+		<sound>miss</sound>
+	</missSounds>
+	<weaponArt>rad_minelayer</weaponArt>
+	<iconImage>missile</iconImage>
+  <spawnCrew>
+		<number>1</number>
+		<race>drone_rad_missile</race>
+		<lifetime>20</lifetime>
+	</spawnCrew>
+	<crewSpawnChance>10</crewSpawnChance>
+</weaponBlueprint>
+
 </FTL>

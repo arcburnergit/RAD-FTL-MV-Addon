@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <FTL>
   <mod:findName type="event" name="COMBAT_CHECK_REAL">
-    <mod-append:triggeredEvent event="RAD_REPLACEMENT_WEAPONS" seeded="false" loops="4" minTime="0.1" maxTime="0.1" />
+    <mod-append:triggeredEvent event="RAD_POWER_ROLL" seeded="false" loops="1" minTime="0.05" maxTime="0.05" />
+    <mod-append:triggeredEvent event="RAD_REPLACEMENT_WEAPONS" seeded="false" loops="4" minTime="0.01" maxTime="0.01" />
+    <mod-append:triggeredEvent event="RAD_REPLACEMENT_DRONES" seeded="false" loops="4" minTime="0.01" maxTime="0.01" />
+    <mod-append:triggeredEvent event="RAD_REPLACEMENT_CREW" seeded="false" loops="10" minTime="0.1" maxTime="0.1" />
     <mod-append:variable name="rad_docking_drilled" op="set" val="0"/>
     <mod-append:choice req="RAD_DOCKING_DRILL">
       <text>(Docking Drill) Drill into the ship.</text>
@@ -22,13 +25,20 @@
   </mod:findName>
 
   <mod:findName type="event" name="COMBAT_CHECK_FAIL_REAL">
-    <mod-append:triggeredEvent event="RAD_REPLACEMENT_WEAPONS" seeded="false" loops="4" minTime="0.1" maxTime="0.1" />
+    <mod-append:triggeredEvent event="RAD_POWER_ROLL" seeded="false" loops="1" minTime="0.05" maxTime="0.05" />
+    <mod-append:triggeredEvent event="RAD_REPLACEMENT_WEAPONS" seeded="false" loops="4" minTime="0.01" maxTime="0.01" />
+    <mod-append:triggeredEvent event="RAD_REPLACEMENT_DRONES" seeded="false" loops="4" minTime="0.01" maxTime="0.01" />
+    <mod-append:triggeredEvent event="RAD_REPLACEMENT_CREW" seeded="false" loops="10" minTime="0.1" maxTime="0.1" />
     <mod-append:variable name="rad_docking_drilled" op="set" val="0"/>
     <mod-append:choice req="RAD_DOCKING_DRILL">
       <text>(Docking Drill) Drill into the ship.</text>
       <event load="RAD_DOCKING_RAM" />
     </mod-append:choice>
   </mod:findName>
+
+  <event name="RAD_POWER_ROLL">
+    
+  </event>
 
   <event name="RAD_DISABLE_PWEAPONS">
     <triggeredEvent event="RAD_ENABLE_PWEAPONS" seeded="false" loops="1" minTime="0.1" maxTime="0.1" />
@@ -52,6 +62,44 @@
         <variable name="rad_n_replace" op="add" val="-1" />
       </event>
     </loadEventList>
+  </event>
+
+  <event name="RAD_REPLACEMENT_DRONES">
+    <loadEventList seeded="false" first="true" generate="false">
+      <event req="rad_replace_drones" lvl="0" max_lvl="0">
+      </event>
+      <event req="rad_replace_drones" lvl="1" max_lvl="99999">
+        <drone name="LIST_DRONES_ALL_CRAPBUCKET" />
+        <variable name="rad_n_replace_d" op="add" val="-1" />
+      </event>
+    </loadEventList>
+  </event>
+
+  <event name="RAD_REPLACEMENT_CREW">
+    <loadEventList seeded="false" first="true" generate="false">
+      <event req="rad_replace_crew" lvl="0" max_lvl="0">
+      </event>
+      <event req="rad_replace_crew" lvl="1" max_lvl="99999">
+        <crewMember amount="1" class="LIST_CREW_ALL_CRAPBUCKET" />
+        <variable name="rad_n_replace_c" op="add" val="-1" />
+      </event>
+    </loadEventList>
+  </event>
+
+  <event name="RAD_SPAWN_BOMB_MISSILE">
+    <crewMember amount="1" class="drone_rad_missile">Bomb</crewMember>
+    <triggeredEvent event="RAD_SPAWN_BOMB_MISSILE_DELAY" seeded="false" loops="1" minTime="0.05" maxTime="0.05" />
+  </event>
+  <event name="RAD_SPAWN_BOMB_MISSILE_DELAY">
+  </event>
+  <event name="RAD_SPAWN_BOMB_1">
+    <crewMember amount="1" class="drone_rad_bomb">Generic Bomb</crewMember>
+  </event>
+  <event name="RAD_SPAWN_BOMB_2">
+    <crewMember amount="1" class="drone_rad_bomb_2">Control Bomb</crewMember>
+  </event>
+  <event name="RAD_SPAWN_BOMB_3">
+    <crewMember amount="1" class="drone_rad_bomb_3">Fire Bomb</crewMember>
   </event>
 
   <mod:findName type="event" name="COMBAT_CHECK_REAL">
@@ -79,7 +127,71 @@
     </mod-append:choice>
   </mod:findName>
 
-
+  <mod:findName type="event" name="STORAGE_CHECK_BUTTON">
+    <mod-append:choice hidden="true" req="RAD_DRONE_FACTORY" lvl="1" blue="true">
+      <text>Configure Drone Factory.</text>
+      <event>
+        <text>Which Drone should the factory construct.</text>
+        <choice hidden="true">
+          <text>Construct Generic Drones - 2 hull, 2 system, 60 crew, 100% breach, no explosion control.</text>
+          <event>
+            <variable name="rad_time_bomb" op="set" val="1" />
+            <event load="STORAGE_CHECK" />
+          </event>
+        </choice>
+        <choice hidden="true">
+          <text>Construct Control Drones - 2 hull, 1 system, 30 crew, 50% breach, full explosion control.</text>
+          <event>
+            <variable name="rad_time_bomb" op="set" val="2" />
+            <event load="STORAGE_CHECK" />
+          </event>
+        </choice>
+        <choice hidden="true">
+          <text>Construct Fire Drones - 0 hull, 1 system, 15 crew, 100% fire, no explosion control.</text>
+          <event>
+            <variable name="rad_time_bomb" op="set" val="3" />
+            <event load="STORAGE_CHECK" />
+          </event>
+        </choice>
+        <choice>
+          <text>Nevermind.</text>
+          <event load="STORAGE_CHECK" />
+        </choice>
+      </event>
+    </mod-append:choice>
+    <mod-append:choice hidden="true" req="RAD_DRONE_FACTORY_2" lvl="1" blue="true">
+      <text>Configure Secondary Drone Factory.</text>
+      <event>
+        <text>Which Drone should the factory construct.</text>
+        <choice hidden="true">
+          <text>Construct Generic Drones - 2 hull, 2 system, 60 crew, 100% breach, no explosion control.</text>
+          <event>
+            <variable name="rad_time_bomb_2" op="set" val="1" />
+            <event load="STORAGE_CHECK" />
+          </event>
+        </choice>
+        <choice hidden="true">
+          <text>Construct Control Drones - 2 hull, 1 system, 30 crew, 50% breach, full explosion control.</text>
+          <event>
+            <variable name="rad_time_bomb_2" op="set" val="2" />
+            <event load="STORAGE_CHECK" />
+          </event>
+        </choice>
+        <choice hidden="true">
+          <text>Construct Fire Drones - 0 hull, 1 system, 15 crew, 100% fire, no explosion control.</text>
+          <event>
+            <variable name="rad_time_bomb_2" op="set" val="3" />
+            <event load="STORAGE_CHECK" />
+          </event>
+        </choice>
+        <choice>
+          <text>Nevermind.</text>
+          <event load="STORAGE_CHECK" />
+        </choice>
+      </event>
+    </mod-append:choice>
+  </mod:findName>
+  
   <event name="RAD_STORAGE_INAUG">
     <text>Choose an augment to install internally.</text>
     <choice req="RAD_WM_BIGSHOT" max_group="1" blue="true" hidden="false">

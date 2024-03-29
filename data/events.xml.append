@@ -72,6 +72,14 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
             <text>You'll help. [??? Quest]</text>
             <event load="RAD_WARPED_1"/>
           </choice>
+          <choice hidden="true" req="rad_13">
+            <text>You'll help. [Uncompleted Quest 13]</text>
+            <event load="RAD_MINES_1"/>
+          </choice>
+          <choice hidden="true" req="rad_12">
+            <text>You'll help. [Uncompleted Quest 12]</text>
+            <event load="RAD_MINES_1"/>
+          </choice>
           <choice hidden="true" req="rad_11">
             <text>You'll help. [Uncompleted Quest 11]</text>
             <event load="RAD_SCRAP_1"/>
@@ -146,10 +154,10 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 	<event load="RAD_LAB_ROGUE_1"/>
 	<event load="RAD_LAB_FLESH_1"/>
   <event load="RAD_MONEY_1" />
-  <event load="RAD_MONEY_1" />
   <event load="RAD_SUPERGUN_1"/>
   <event load="RAD_UNDER_1" />
   <event load="RAD_MIRROR_1" />
+  <event load="RAD_MINES_1" />
 </eventList>
 
 <!-- QUEST PIRATE TRACKING -->
@@ -2081,6 +2089,384 @@ The ship powers on it's weapons, looks like they don't like intruders in their s
           <event load="COMBAT_CHECK" />
         </choice>
       </event>
+    </choice>
+  </event>
+  
+  <!-- MineLayer Quest -->
+  <event name="RAD_MINES_1">
+    <text>"For once we don't actually need you to hunt anyone down, this time we require you to test a prototype weapon, specifically a minelauncher."</text>
+    <weapon name="RAD_MINELAYER" />
+    <choice>
+      <text>Continue...</text>
+      <event>
+        <variable name="rad_minelayer_fire" op="set" val="0"/>
+        <variable name="rad_minelayer_check" op="set" val="1"/>
+        <text>"All we need you to do is fire the weapon 10 times, ideally against live targets. We'll reach out to you once that's done, Good Luck."</text>
+        <store>STORE_RADLAB</store>
+      </event>
+    </choice>
+  </event>
+
+  <event name="RAD_MINES_2">
+    <text>You've completed the tests for the scientists, they've transmitted a rendezvous location.</text>
+    <quest event="RAD_MINES_3"/>
+  </event>
+
+  <event name="RAD_MINES_3">
+    <preventQuest />
+    <preventFleet />
+    <beaconType id="map_icon_rad_science_meet" global="true">
+      <color r="255" g="255" b="255"/>
+    </beaconType>
+    <text>Just as you arrive you recieve another transmission from the scientists, it appears they've been waylaid enroute to the rendezvous location, they've uploaded a new location to meet up.</text>
+    <quest event="RAD_MINES_5"/>
+    <jumpEvent>RAD_MINES_4</jumpEvent>
+  </event>
+
+  <ship name="RAD_PIRATE_B_RIGGER" auto_blueprint="RAD_PIRATE_B_RIGGER">
+    <destroyed load="RAD_B_PIRATE_RIGGER_DESTROYED"/>
+    <deadCrew load="RAD_B_PIRATE_RIGGER_DEADCREW"/>
+  </ship>
+
+  <event name="RAD_MINES_4">
+    <!--VAR UPDATE-->
+    <variable name="rad_mine_4_hostile" op="set" val="0"/>
+    <ship load="RAD_PIRATE_B_RIGGER" hostile="false"/>
+    <text>Just as you're moving to leave a pirate ship arrives at the beacon.
+"Oi, where'd you get that gun there mister."</text>
+    <choice>
+      <text>Tell them it's confidential.</text>
+      <event>
+        <text>"Well that there weapon belongs to the boss, so you better tell me where you got it, or we're going to have some problems."</text>
+        <choice>
+          <text>Explain where you got the weapon from.</text>
+          <event load="RAD_MINES_4_FRIENDLY"/>
+        </choice>
+        <choice>
+          <text>Screw these guys.</text>
+          <event name="RAD_MINES_4_HOSTILE">
+            <!--VAR UPDATE-->
+            <variable name="rad_mine_4_hostile" op="set" val="1"/>
+            <text>The enemy ship powers up their weapons, looks like you're in for a fight.</text>
+            <ship hostile="true" />
+            <choice>
+              <text>Continue...</text>
+              <event load="COMBAT_CHECK" />
+            </choice>
+          </event>
+        </choice>
+      </event>
+    </choice>
+    <choice>
+      <text>Explain that some scientists tasked you with testing the weapon.</text>
+      <event name="RAD_MINES_4_FRIENDLY">
+        <text>"I find that hard to beleef. Me thinks yous a thief considering that us hired those scientists to build that weapon for ourselfs."
+        
+The pirate cuts off communications and powers up his weapons, However, It might not look good for the scientists if you go around killing their customers.</text>
+        <ship hostile="true" />
+        <choice>
+          <text>Continue...</text>
+          <event load="COMBAT_CHECK" />
+        </choice>
+      </event>
+    </choice>
+    <choice>
+      <text>Ignore them and try to jump away.</text>
+      <event load="RAD_MINES_4_HOSTILE"/>
+    </choice>
+  </event>
+
+  <event name="RAD_B_PIRATE_RIGGER_DESTROYED">
+    <text>You've destroyed the pirates and any hope of peace with their boss, atleast you got their loot.</text>
+    <autoReward level="MED">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_B_PIRATE_RIGGER_DEAD"/>
+    </choice>
+  </event>
+
+  <event name="RAD_B_PIRATE_RIGGER_DEADCREW">
+    <text>You've scraped the rest of the pirates out of their ship, allowing you to pick it clean of supplies.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_B_PIRATE_RIGGER_DEAD"/>
+    </choice>
+  </event>
+  
+  <event name="RAD_B_PIRATE_RIGGER_DEAD">
+    <!--VAR UPDATE-->
+    <variable name="rad_mine_4_hostile" op="set" val="1"/>
+    <text>You hope killing these guys off doesn't come back to bite you in the ass...</text>
+  </event>
+
+  <ship name="RAD_B_MSHIP_PIRATE" auto_blueprint="RAD_B_MSHIP_PIRATE">
+    <destroyed load="RAD_B_PIRATE_MSHIP_DESTROYED"/>
+    <deadCrew load="RAD_B_PIRATE_MSHIP_DEADCREW"/>
+  </ship>
+
+  <event name="RAD_MINES_5">
+    <preventQuest />
+    <preventFleet />
+    <beaconType id="map_icon_rad_science_meet" global="true">
+      <color r="255" g="255" b="255"/>
+    </beaconType>
+    <text>You arrive at the beacon to find the scientist ship's actually shown up this time.</text>
+    <choice hidden="true" req="rad_mine_4_hostile" lvl="1" blue="false">
+      <text>Continue...</text>
+      <!--HOSTILE QUEST -> Fight Scientist -> Hunt down pirate leader -> Profit?-->
+      <event>
+        <text>"Hello Renegade, unfortunately we can't let you live, it wouldn't be good for buisness if we just let you go around killing our customers, prepare to die."</text>
+        <ship load="RAD_H_SCIENCE_PIRATE" hostile="true"/>
+        <choice>
+          <text>Continue...</text>
+          <event load="COMBAT_CHECK" />
+        </choice>
+      </event>
+    </choice>
+    <choice hidden="true" req="rad_mine_4_hostile" lvl="0" max_lvl="0" blue="false">
+      <text>Continue...</text>
+      <!--PEACE QUEST -> Meet Scientist -> Hold off pirates for 1 minute while scientists convince them -> complete mission for pirates -> Profit? slotb -->
+      <event>
+        <text>"We heard about your run in with those pirates, boy are we glad you didn't decide to kill them, would have put us in a world of trouble."
+        
+"We're not out of the woods yet, the boss of the pirates you ran into is on his way here now, he says he just wants to talk, but that could mean anything."</text>
+        <choice>
+          <text>Continue...</text>
+          <event>
+            <text>A moment later a large pirate ship arrives at the beacon, however it immediately powers on it's weapons.
+The scientists contact you "Listen, if you can buy us some time we'll be able to talk them down, just hold them off while we talk."</text>
+            <triggeredEvent event="RAD_MINES_PEACE_SUCCEED" thisFight="true" seeded="false" loops="1" minTime="60" maxTime="80">
+              <triggeredEventBox load="DEFAULT_TIMER">
+                <warning time="5.0" flash="true" />
+                <tooltip>Buy time for the scientists to reach a deal with the pirates.</tooltip>
+              </triggeredEventBox>
+            </triggeredEvent>
+            <ship load="RAD_B_MSHIP_PIRATE" hostile="true"/>
+            <choice>
+              <text>Continue...</text>
+              <event load="COMBAT_CHECK" />
+            </choice>
+          </event>
+        </choice>
+      </event>
+    </choice>
+  </event>
+
+  <event name="RAD_B_PIRATE_MSHIP_DESTROYED">
+    <text>After destroying the ship, you loot their remains for anything usable.</text>
+    <autoReward level="MED">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_B_PIRATE_RIGGER_DEAD"/>
+    </choice>
+  </event>
+
+  <event name="RAD_B_PIRATE_MSHIP_DEADCREW">
+    <text>You've cleared all the pirates out of the ship, allowing you to collect eveything not tied down.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_B_PIRATE_RIGGER_DEAD"/>
+    </choice>
+  </event>
+
+  <event name="RAD_B_PIRATE_MSHIP_DEAD">
+    <!--VAR UPDATE-->
+    <variable name="rad_mine_4_hostile" op="set" val="1"/>
+    <text>You hope killing these guys off doesn't come back to bite you in the ass...
+    
+It appears that while you were fighting the pirates, the scientists gave up trying to help and left.
+Before leaving however they did transmit where they were going incase you survived.</text>
+    <quest event="RAD_MINES_PEACE_FAIL"/>
+  </event>
+
+  <event name="RAD_MINES_PEACE_SUCCEED">
+    <ship hostile="false"/>
+    <text>Suddenly the pirate ship deactivates their weapons, and the scientists tell you to hold your fire, it appears they were successful in convincing the pirates to hold off.
+    
+"Well, we appreciate you not killing our men earlier, however you'ff still done a serious bit of damage to our shipss, and fur that you'f got to pay."
+"The Scientists have kindly volenteered your help with a problem of ours, specifically we need you to go deal with a federation cruiser that has been causin problems for us.</text>
+    <choice>
+      <text>Continue...</text>
+      <event>
+        <text>The scientists contact you as you're leaving. "Do this task are we're all even, we'll even throw in some extra rewards for you once you complete the task."</text>
+        <quest event="RAD_MINES_PEACE_QUEST"/>
+      </event>
+    </choice>
+  </event>
+
+  <event name="RAD_MINES_PEACE_FAIL">
+    <preventQuest />
+    <preventFleet />
+    <beaconType id="map_icon_rad_science_meet" global="true">
+      <color r="255" g="255" b="255"/>
+    </beaconType>
+    <text>You arrive at the beacon and immediately notice your engines have been remotely disabled.
+    
+"Hello Renegade, unfortunately we can't let you live, it wouldn't be good for buisness if we just let you go around killing our customers, prepare to die."</text>
+    <status type="limit" target="player" system="engines" amount="0" />
+    <ship load="RAD_B_SCIENCE_PIRATE" hostile="true"/>
+    <choice>
+      <text>Continue...</text>
+      <event load="COMBAT_CHECK" />
+    </choice>
+  </event>
+
+  <!--PEACE QUEST FAIL FIGHT-->
+  <ship name="RAD_B_SCIENCE_PIRATE" auto_blueprint="LIST_SHIPS_RAD_SCIENCE_FIGHT">
+    <destroyed load="RAD_B_PIRATE_SCIENCE_DESTROYED"/>
+    <deadCrew load="RAD_B_PIRATE_SCIENCE_DEADCREW"/>
+  </ship>
+
+  <event name="RAD_B_PIRATE_SCIENCE_DESTROYED">
+    <text load="TEXT_DESTROYED_RAD_SCIENCE" />
+    <autoReward level="MED">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_B_PIRATE_SCIENCE_DEAD"/>
+    </choice>
+  </event>
+
+  <event name="RAD_B_PIRATE_SCIENCE_DEADCREW">
+    <text load="TEXT_DEAD_CREW_RAD_SCIENCE" />
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_B_PIRATE_SCIENCE_DEAD"/>
+    </choice>
+  </event>
+
+  <event name="RAD_B_PIRATE_SCIENCE_DEAD">
+    <status type="clear" target="player" system="engines" amount="100" />
+    <text>As you search through the remains you find the blueprint for an advanced ship, it appears to be what the pirates had hired the scientists to make.</text>
+    <unlockCustomShip silent="false">PLAYER_SHIP_RAD_MINE</unlockCustomShip>
+    <metaVariable name="rad_q12" op="set" val="1"/>
+  </event>
+  
+  <!--PEACE QUEST WIN FIGHT-->
+
+  <event name="RAD_MINES_PEACE_QUEST">
+    <preventQuest />
+    <preventFleet />
+    <beaconType id="map_icon_rad_mines_p" global="true">
+      <color r="255" g="55" b="55"/>
+    </beaconType>
+    <text>You arrive at the beacon, and sure enough you see the federation cruiser, waiting at a small outpost for their next mission.</text>
+    <ship load="RAD_B_FED_PIRATE" hostile="false"/>
+    <choice hidden="true">
+      <text>Engage the federation cruiser.</text>
+      <event>
+        <ship hostile="true"/>
+        <choice>
+          <text>Continue...</text>
+          <event load="COMBAT_CHECK" />
+        </choice>
+      </event>
+    </choice>
+    <choice hidden="true">
+      <text>You aren't going to kill a fellow federation officer on the whims of a pirate, leave.</text>
+      <event>
+      </event>
+    </choice>
+  </event>
+  
+  <ship name="RAD_B_FED_PIRATE" auto_blueprint="LIST_SHIPS_FED_ELITE_FIGHT">
+    <destroyed load="RAD_B_PIRATE_FED_DESTROYED"/>
+    <deadCrew load="RAD_B_PIRATE_FED_DEADCREW"/>
+  </ship>
+
+  <event name="RAD_B_PIRATE_FED_DESTROYED">
+    <text load="TEXT_DESTROYED_FEDERATION" />
+    <autoReward level="MED">standard</autoReward>
+    <choice hidden="true">
+      <text>Continue...</text>
+      <event load="RAD_B_PIRATE_FED_DEAD"/>
+    </choice>
+  </event>
+
+  <event name="RAD_B_PIRATE_FED_DEADCREW">
+    <text load="TEXT_DEAD_CREW_FEDERATION" />
+    <autoReward level="HIGH">standard</autoReward>
+    <choice hidden="true">
+      <text>Continue...</text>
+      <event load="RAD_B_PIRATE_FED_DEAD"/>
+    </choice>
+  </event>
+
+  <event name="RAD_B_PIRATE_FED_DEAD">
+    <text>You report your success back to the scientists and they deliver a large amount of scrap, and the blueprints to a new ship they've designed.</text>
+    <item_modify>
+      <item type="scrap" min="90" max="110" />
+    </item_modify>
+    <unlockCustomShip silent="false">PLAYER_SHIP_RAD_MINE_2</unlockCustomShip>
+    <metaVariable name="rad_q13" op="set" val="1"/>
+  </event>
+  
+  <!--HOSTILE QUEST-->
+
+  <ship name="RAD_H_SCIENCE_PIRATE" auto_blueprint="LIST_SHIPS_RAD_SCIENCE_FIGHT">
+    <destroyed load="RAD_H_PIRATE_SCIENCE_DESTROYED"/>
+    <deadCrew load="RAD_H_PIRATE_SCIENCE_DEADCREW"/>
+  </ship>
+
+  <event name="RAD_H_PIRATE_SCIENCE_DESTROYED">
+    <text load="TEXT_DESTROYED_RAD_SCIENCE" />
+    <autoReward level="MED">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_H_PIRATE_SCIENCE_DEAD"/>
+    </choice>
+  </event>
+
+  <event name="RAD_H_PIRATE_SCIENCE_DEADCREW">
+    <text load="TEXT_DEAD_CREW_RAD_SCIENCE" />
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_H_PIRATE_SCIENCE_DEAD"/>
+    </choice>
+  </event>
+
+  <event name="RAD_H_PIRATE_SCIENCE_DEAD">
+    <text>As you search through the remains you find the location of the pirates who hired the scientists...</text>
+    <quest name="RAD_MINES_HOSTILE"/>
+  </event>
+
+  <event name="RAD_MINES_HOSTILE">
+    <preventQuest />
+    <preventFleet />
+    <beaconType id="map_icon_rad_mines_h" global="true">
+      <color r="255" g="55" b="55"/>
+    </beaconType>
+    <text>You arrive at the beacon face to face with a large pirate ship, it appears these must be the pirates who hired the scientists, they've probably got some pretty good stuff lying around, you'll just have to kill them for it.</text>
+    <ship load="RAD_H_MSHIP_PIRATE" hostile="true"/>
+    <choice>
+      <text>Continue...</text>
+      <event load="COMBAT_CHECK" />
+    </choice>
+  </event>
+
+  <ship name="RAD_H_MSHIP_PIRATE" auto_blueprint="RAD_B_MSHIP_PIRATE">
+    <destroyed load="RAD_H_PIRATE_MSHIP_DESTROYED"/>
+    <deadCrew load="RAD_H_PIRATE_MSHIP_DEADCREW"/>
+  </ship>
+
+  <event name="RAD_H_PIRATE_MSHIP_DESTROYED">
+    <text>After destroying the ship, you loot their remains for anything usable.</text>
+    <autoReward level="MED">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_B_PIRATE_SCIENCE_DEAD"/>
+    </choice>
+  </event>
+
+  <event name="RAD_H_PIRATE_MSHIP_DEADCREW">
+    <text>You've cleared all the pirates out of the ship, allowing you to collect eveything not tied down.</text>
+    <autoReward level="HIGH">standard</autoReward>
+    <choice>
+      <text>Continue...</text>
+      <event load="RAD_B_PIRATE_SCIENCE_DEAD"/>
     </choice>
   </event>
   

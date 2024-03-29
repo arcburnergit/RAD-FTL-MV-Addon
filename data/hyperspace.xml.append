@@ -54,11 +54,25 @@
 		<!-- -->
     <mod-append:ship>PLAYER_SHIP_RAD_CRYSTAL</mod-append:ship>
     <mod-append:ship>PLAYER_SHIP_RAD_MANTIS</mod-append:ship>
-    <mod-append:ship>PLAYER_SHIP_RAD_CUTTER</mod-append:ship>
-    <mod-append:ship>PLAYER_SHIP_RAD_CORVETTE</mod-append:ship>
+    <mod-append:ship>PLAYER_SHIP_RAD_MINE</mod-append:ship>
+    <mod-append:empty />
 
     <mod-append:ship>PLAYER_SHIP_RAD_FLAGSHIP</mod-append:ship>
+    <mod-append:empty />
+    
+    <mod-append:ship>PLAYER_SHIP_RAD_CORVETTE</mod-append:ship>
+    <mod-append:ship>PLAYER_SHIP_RAD_CUTTER</mod-append:ship>
+    <mod-append:empty />
+    <mod-append:empty />
+    <!-- -->
+    <mod-append:empty />
+    <mod-append:empty />
+    <mod-append:empty />
+    <mod-append:empty />
+
     <mod-append:ship>PLAYER_SHIP_RAD_CORVETTE_ELITE</mod-append:ship>
+    <mod-append:empty />
+    
 	</mod:findLike>
 
 	<!--PLAYER SHIPS -->
@@ -168,6 +182,24 @@
     <unlock variant="c" silent="false">
       <type>1</type>
       <shipReq>PLAYER_SHIP_RAD_MANTIS_2</shipReq>
+      <value>5</value>
+    </unlock>
+  </mod-append:ship>
+  <mod-append:ship name="PLAYER_SHIP_RAD_MINE" b="true" c="true" >
+    <unlock variant="a" silent="false">
+      <type>4</type>
+    </unlock>
+    <unlock variant="b" silent="false">
+      <type>4</type>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_MINE</shipReq>
+      <value>5</value>
+    </unlock>
+    <unlock variant="c" silent="false">
+      <type>1</type>
+      <shipReq>PLAYER_SHIP_RAD_MINE_2</shipReq>
       <value>5</value>
     </unlock>
   </mod-append:ship>
@@ -410,6 +442,32 @@
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
     <crewLimit>11</crewLimit>
   </mod-append:customShip>
+
+  <mod-append:customShip name="PLAYER_SHIP_RAD_MINE">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <hiddenAug>RAD_DRONE_FACTORY</hiddenAug>
+    <systemLimit>10</systemLimit>
+    <crew>
+      <human_engineer room="0" />
+      <human room="8" />
+    </crew>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_MINE_2">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+  </mod-append:customShip>
+  <mod-append:customShip name="PLAYER_SHIP_RAD_MINE_3">
+    <hiddenAug>SHIP_KESTREL</hiddenAug>
+    <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <hiddenAug>RAD_DRONE_FACTORY</hiddenAug>
+    <hiddenAug>RAD_DRONE_FACTORY_2</hiddenAug>
+    <systemLimit>10</systemLimit>
+    <crew>
+      <human_soldier room="0" />
+      <rad_scientist room="7" />
+    </crew>
+  </mod-append:customShip>
   
   <mod-append:customShip name="PLAYER_SHIP_RAD_FLAGSHIP">
     <hiddenAug>SHIP_KESTREL</hiddenAug>
@@ -462,6 +520,7 @@
   <mod-append:customShip name="PLAYER_SHIP_RAD_CORVETTE_ELITE_2">
     <hiddenAug>SHIP_KESTREL</hiddenAug>
     <hiddenAug>FOR_MULTIVERSE</hiddenAug>
+    <autoShipForce>true</autoShipForce>
   </mod-append:customShip>
 
 
@@ -544,6 +603,24 @@
     <shipIcons>
       <shipIcon>icon_threat</shipIcon>
     </shipIcons>
+  </mod-append:customShip>
+  <mod-append:customShip name="RAD_B_MSHIP_PIRATE">
+    <crew>
+      <rock room="5"/>
+      <mantis room="7"/>
+      <rock room="7"/>
+      <slug room="6"/>
+      <mantis room="3"/>
+      <orchid room="7"/>
+    </crew>
+  </mod-append:customShip>
+  <mod-append:customShip name="RAD_PIRATE_B_RIGGER">
+    <crew>
+      <rock room="5"/>
+      <mantis room="1"/>
+      <slug room="7"/>
+      <orchid room="1"/>
+    </crew>
   </mod-append:customShip>
 </mod:findLike>
 
@@ -723,6 +800,10 @@
   <aug name="RAD_LOW_SHIELD">
     <locked />
   </aug>
+  <aug name="RAD_SUPER_RANDOM">
+    <locked />
+    <function name="RAD_LOW_SHIELD" value="1" useForReqs="true" />
+  </aug>
   <aug name="RAD_SHRAPNEL_SHIELD">
     <locked />
   </aug>
@@ -816,6 +897,8 @@
   <metaVariable name="rad_q9" op="set" val="0"/>
   <metaVariable name="rad_q10" op="set" val="0"/>
   <metaVariable name="rad_q11" op="set" val="0"/>
+  <metaVariable name="rad_q12" op="set" val="0"/>
+  <metaVariable name="rad_q13" op="set" val="0"/>
   
   <variable name="rad_n_replace" op="set" val="0"/>
 
@@ -825,6 +908,28 @@
     </req>
     <req>
       <name>RAD_LOW_SHIELD</name>
+    </req>
+  </req>
+
+  <variable name="rad_n_replace_d" op="set" val="0"/>
+
+  <req name="rad_replace_drones" type="all">
+    <req lvl="1">
+      <name>rad_n_replace_d</name>
+    </req>
+    <req>
+      <name>RAD_SUPER_RANDOM</name>
+    </req>
+  </req>
+
+  <variable name="rad_n_replace_c" op="set" val="0"/>
+
+  <req name="rad_replace_crew" type="all">
+    <req lvl="1">
+      <name>rad_n_replace_c</name>
+    </req>
+    <req>
+      <name>RAD_SUPER_RANDOM</name>
     </req>
   </req>
   
@@ -916,6 +1021,24 @@
       <name>rad_q11</name>
     </req>
   </req>
+  <req name="rad_12" type="all">
+    <req lvl="1">
+      <name>rad_q11</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q12</name>
+    </req>
+  </req>
+  <req name="rad_13" type="all">
+    <req lvl="1">
+      <name>rad_q12</name>
+    </req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_q13</name>
+    </req>
+  </req>
+  
+  
   <req name="rad_total" type="sum">
     <name>rad_q1</name>
     <name>rad_q2</name>
@@ -928,6 +1051,8 @@
     <name>rad_q8</name>
     <name>rad_q9</name>
     <name>rad_q11</name>
+    <name>rad_q12</name>
+    <name>rad_q13</name>
   </req>
 
   <variable name="loc_rad_board_charged" op="set" val="1"/>
@@ -940,9 +1065,18 @@
   <variable name="rad_money_searched" op="set" val="0"/>
 
   <variable name="rad_arti_targetting" op="set" val="1"/>
+  
   <variable name="rad_arti_targeted" op="set" val="0"/>
 
   <variable name="rad_tracking_fake" op="set" val="0"/>
+
+  <variable name="rad_time_bomb" op="set" val="1"/>
+  <variable name="rad_time_bomb_2" op="set" val="1"/>
+
+  <variable name="rad_minelayer_fire" op="set" val="0"/>
+  <variable name="rad_minelayer_check" op="set" val="0"/>
+  
+  <variable name="rad_mine_4_hostile" op="set" val="0"/>
 
   <req name="LABRATORY_SPAWN_CHECK" type="all">
 		<req lvl="2" max_lvl="2">
@@ -1418,6 +1552,328 @@
       <repair req="12" />
       <combat req="7" />
     </skills>
+  </race>
+  <race name="drone_rad_missile">
+    <noClone>true</noClone>
+    <lowHealthThreshold>-1</lowHealthThreshold>
+    <noWarning>true</noWarning>
+    <noSlot>true</noSlot>
+    <selectable>false</selectable>
+    <canFight>true</canFight>
+    <canSabotage>true</canSabotage>
+    <canRepair>false</canRepair>
+    <canSuffocate>false</canSuffocate>
+    <canMan>false</canMan>
+    <maxHealth>60</maxHealth>
+    <stunMultiplier>0.25</stunMultiplier>
+    <resistsMindControl>true</resistsMindControl>
+    <damageMultiplier>0.5</damageMultiplier>
+    <fireDamageMultiplier>0.2</fireDamageMultiplier>
+    <moveSpeedMultiplier>0.5</moveSpeedMultiplier>
+    <controllable>false</controllable>
+    <powerEffect>
+      <cooldown>10</cooldown>
+      <jumpCooldown>reset</jumpCooldown>
+      <buttonText>BOOM</buttonText>
+      <tooltip>Explode.</tooltip>
+      <cooldownColor r="235" g="132" b="112" />
+      <effectAnim>explosion_random</effectAnim>
+      <activateWhenReady>true</activateWhenReady>
+      <damage>1</damage>
+      <persDamage>1</persDamage>
+      <sysDamage>1</sysDamage>
+      <breachChance>5</breachChance>
+      <friendlyFire>true</friendlyFire>
+      <shipFriendlyFire>true</shipFriendlyFire>
+      <selfHealth>-999999</selfHealth>
+    </powerEffect>
+  </race>
+  <race name="drone_rad_bomb">
+    <noClone>true</noClone>
+    <lowHealthThreshold>-1</lowHealthThreshold>
+    <noWarning>true</noWarning>
+    <noSlot>true</noSlot>
+    <selectable>true</selectable>
+    <canFight>true</canFight>
+    <canSabotage>true</canSabotage>
+    <canRepair>false</canRepair>
+    <canSuffocate>false</canSuffocate>
+    <canMan>false</canMan>
+    <maxHealth>100</maxHealth>
+    <stunMultiplier>0.25</stunMultiplier>
+    <resistsMindControl>true</resistsMindControl>
+    <damageMultiplier>0.5</damageMultiplier>
+    <fireDamageMultiplier>0.2</fireDamageMultiplier>
+    <moveSpeedMultiplier>0.5</moveSpeedMultiplier>
+    <controllable>true</controllable>
+    <passiveStatBoosts>
+      <statBoost name="healSpeed">
+        <!-- Heal in owner's drone room -->
+        <boostType>SET</boostType>
+        <amount>1.0</amount>
+        <shipTarget>ORIGINAL_SHIP</shipTarget>
+        <crewTarget>SELF</crewTarget>
+        <maxStacks>1</maxStacks>
+        <priority>0</priority>
+        <whiteList>
+          <drone_rad_bomb/>
+        </whiteList>
+        <systemRoomTarget>ALL</systemRoomTarget>
+        <systemPowerDependency>
+          <artillery/>
+        </systemPowerDependency>
+        <systemList>
+          <artillery/>
+        </systemList>
+        <systemPowerScaling>
+          <noSys>0</noSys>
+          <noPwr>1</noPwr>
+          <onePwr>1</onePwr>
+        </systemPowerScaling>
+      </statBoost>
+      <statBoost name="healAmount">
+        <boostType>FLAT</boostType>
+        <amount>2.0</amount>
+        <shipTarget>ORIGINAL_SHIP</shipTarget>
+        <crewTarget>SELF</crewTarget>
+        <maxStacks>1</maxStacks>
+        <priority>0</priority>
+        <whiteList>
+          <drone_rad_bomb/>
+        </whiteList>
+        <systemRoomTarget>ALL</systemRoomTarget>
+        <systemPowerDependency>
+          <artillery/>
+        </systemPowerDependency>
+        <systemList>
+          <artillery/>
+        </systemList>
+        <systemPowerScaling>
+          <noSys>0</noSys>
+          <hackedSys>0</hackedSys>
+          <noPwr>0</noPwr>
+          <onePwr>1</onePwr>
+        </systemPowerScaling>
+      </statBoost>
+      <statBoost name="trueHealAmount">
+        <boostType>SET</boostType>
+        <amount>-1</amount>
+        <shipTarget>CURRENT_ROOM</shipTarget>
+        <crewTarget>SELF</crewTarget>
+        <whiteList>
+          <drone_rad_bomb/>
+        </whiteList>
+      </statBoost>
+    </passiveStatBoosts>
+    <powerEffect>
+      <chargeReq>
+        <maxHealth>99</maxHealth>
+      </chargeReq>
+      <cooldown>10</cooldown>
+      <jumpCooldown>reset</jumpCooldown>
+      <buttonText>BOOM</buttonText>
+      <tooltip>Explode.</tooltip>
+      <cooldownColor r="235" g="132" b="112" />
+      <effectAnim>explosion_random</effectAnim>
+      <activateWhenReady>true</activateWhenReady>
+      <damage>2</damage>
+      <persDamage>2</persDamage>
+      <sysDamage>2</sysDamage>
+      <breachChance>10</breachChance>
+      <friendlyFire>true</friendlyFire>
+      <shipFriendlyFire>true</shipFriendlyFire>
+      <selfHealth>-999999</selfHealth>
+    </powerEffect>
+  </race>
+  <race name="drone_rad_bomb_2">
+    <noClone>true</noClone>
+    <lowHealthThreshold>-1</lowHealthThreshold>
+    <noWarning>true</noWarning>
+    <noSlot>true</noSlot>
+    <selectable>true</selectable>
+    <canFight>true</canFight>
+    <canSabotage>true</canSabotage>
+    <canRepair>false</canRepair>
+    <canSuffocate>false</canSuffocate>
+    <hasDeathExplosion>true</hasDeathExplosion>
+    <canMan>false</canMan>
+    <maxHealth>100</maxHealth>
+    <stunMultiplier>0.25</stunMultiplier>
+    <resistsMindControl>true</resistsMindControl>
+    <damageMultiplier>0.5</damageMultiplier>
+    <fireDamageMultiplier>0.2</fireDamageMultiplier>
+    <moveSpeedMultiplier>0.5</moveSpeedMultiplier>
+    <controllable>true</controllable>
+    <passiveStatBoosts>
+      <statBoost name="healSpeed">
+        <!-- Heal in owner's drone room -->
+        <boostType>SET</boostType>
+        <amount>1.0</amount>
+        <shipTarget>ORIGINAL_SHIP</shipTarget>
+        <crewTarget>SELF</crewTarget>
+        <maxStacks>1</maxStacks>
+        <priority>0</priority>
+        <whiteList>
+          <drone_rad_bomb/>
+        </whiteList>
+        <systemRoomTarget>ALL</systemRoomTarget>
+        <systemPowerDependency>
+          <artillery/>
+        </systemPowerDependency>
+        <systemList>
+          <artillery/>
+        </systemList>
+        <systemPowerScaling>
+          <noSys>0</noSys>
+          <noPwr>1</noPwr>
+          <onePwr>1</onePwr>
+        </systemPowerScaling>
+      </statBoost>
+      <statBoost name="healAmount">
+        <boostType>FLAT</boostType>
+        <amount>2.0</amount>
+        <shipTarget>ORIGINAL_SHIP</shipTarget>
+        <crewTarget>SELF</crewTarget>
+        <maxStacks>1</maxStacks>
+        <priority>0</priority>
+        <whiteList>
+          <drone_rad_bomb/>
+        </whiteList>
+        <systemRoomTarget>ALL</systemRoomTarget>
+        <systemPowerDependency>
+          <artillery/>
+        </systemPowerDependency>
+        <systemList>
+          <artillery/>
+        </systemList>
+        <systemPowerScaling>
+          <noSys>0</noSys>
+          <hackedSys>0</hackedSys>
+          <noPwr>0</noPwr>
+          <onePwr>1</onePwr>
+        </systemPowerScaling>
+      </statBoost>
+      <statBoost name="trueHealAmount">
+        <boostType>SET</boostType>
+        <amount>-1</amount>
+        <shipTarget>CURRENT_ROOM</shipTarget>
+        <crewTarget>SELF</crewTarget>
+        <whiteList>
+          <drone_rad_bomb/>
+        </whiteList>
+      </statBoost>
+    </passiveStatBoosts>
+    <powerEffect>
+      <cooldown>10</cooldown>
+      <jumpCooldown>reset</jumpCooldown>
+      <buttonText>BOOM</buttonText>
+      <tooltip>Explode.</tooltip>
+      <cooldownColor r="235" g="132" b="112" />
+      <effectAnim>explosion_random</effectAnim>
+      <selfHealth>-999999</selfHealth>
+    </powerEffect>
+    <deathEffect>
+      <damage>2</damage>
+      <sysDamage>1</sysDamage>
+      <breachChance>5</breachChance>
+      <friendlyFire>true</friendlyFire>
+      <shipFriendlyFire>true</shipFriendlyFire>
+    </deathEffect>
+  </race>
+  <race name="drone_rad_bomb_3">
+    <noClone>true</noClone>
+    <lowHealthThreshold>-1</lowHealthThreshold>
+    <noWarning>true</noWarning>
+    <noSlot>true</noSlot>
+    <selectable>true</selectable>
+    <canFight>true</canFight>
+    <canSabotage>true</canSabotage>
+    <canRepair>false</canRepair>
+    <canSuffocate>false</canSuffocate>
+    <canMan>false</canMan>
+    <maxHealth>100</maxHealth>
+    <stunMultiplier>0.25</stunMultiplier>
+    <resistsMindControl>true</resistsMindControl>
+    <damageMultiplier>0.5</damageMultiplier>
+    <fireDamageMultiplier>0</fireDamageMultiplier>
+    <controllable>true</controllable>
+    <passiveStatBoosts>
+      <statBoost name="healSpeed">
+        <!-- Heal in owner's drone room -->
+        <boostType>SET</boostType>
+        <amount>1.0</amount>
+        <shipTarget>ORIGINAL_SHIP</shipTarget>
+        <crewTarget>SELF</crewTarget>
+        <maxStacks>1</maxStacks>
+        <priority>0</priority>
+        <whiteList>
+          <drone_rad_bomb/>
+        </whiteList>
+        <systemRoomTarget>ALL</systemRoomTarget>
+        <systemPowerDependency>
+          <artillery/>
+        </systemPowerDependency>
+        <systemList>
+          <artillery/>
+        </systemList>
+        <systemPowerScaling>
+          <noSys>0</noSys>
+          <noPwr>1</noPwr>
+          <onePwr>1</onePwr>
+        </systemPowerScaling>
+      </statBoost>
+      <statBoost name="healAmount">
+        <boostType>FLAT</boostType>
+        <amount>2.0</amount>
+        <shipTarget>ORIGINAL_SHIP</shipTarget>
+        <crewTarget>SELF</crewTarget>
+        <maxStacks>1</maxStacks>
+        <priority>0</priority>
+        <whiteList>
+          <drone_rad_bomb/>
+        </whiteList>
+        <systemRoomTarget>ALL</systemRoomTarget>
+        <systemPowerDependency>
+          <artillery/>
+        </systemPowerDependency>
+        <systemList>
+          <artillery/>
+        </systemList>
+        <systemPowerScaling>
+          <noSys>0</noSys>
+          <hackedSys>0</hackedSys>
+          <noPwr>0</noPwr>
+          <onePwr>1</onePwr>
+        </systemPowerScaling>
+      </statBoost>
+      <statBoost name="trueHealAmount">
+        <boostType>SET</boostType>
+        <amount>-1</amount>
+        <shipTarget>CURRENT_ROOM</shipTarget>
+        <crewTarget>SELF</crewTarget>
+        <whiteList>
+          <drone_rad_bomb/>
+        </whiteList>
+      </statBoost>
+    </passiveStatBoosts>
+    <powerEffect>
+      <chargeReq>
+        <maxHealth>99</maxHealth>
+      </chargeReq>
+      <cooldown>10</cooldown>
+      <jumpCooldown>reset</jumpCooldown>
+      <buttonText>BOOM</buttonText>
+      <tooltip>Explode.</tooltip>
+      <cooldownColor r="235" g="132" b="112" />
+      <effectAnim>explosion_random</effectAnim>
+      <activateWhenReady>true</activateWhenReady>
+      <persDamage>1</persDamage>
+      <sysDamage>1</sysDamage>
+      <fireChance>10</fireChance>
+      <friendlyFire>true</friendlyFire>
+      <shipFriendlyFire>true</shipFriendlyFire>
+      <selfHealth>-999999</selfHealth>
+    </powerEffect>
   </race>
 </crew>
 

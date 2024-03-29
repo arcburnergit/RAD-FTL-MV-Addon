@@ -505,6 +505,16 @@
     <desc length="1" x="0" y="0"/>
     <time>0.01</time>
   </anim>
+  
+  <animSheet name="invisible_gun" w="1" h="1" fw="1" fh="1">misc/invisible.png</animSheet>
+  <weaponAnim name="invisible_gun">
+    <sheet>invisible_gun</sheet>
+    <desc length="1" x="0" y="0" />
+    <chargedFrame>0</chargedFrame>
+    <fireFrame>0</fireFrame>
+    <firePoint x="1" y="1" />
+    <mountPoint x="1" y="1" />
+  </weaponAnim>
 
   <animSheet name="rad_scientist" w="315" h="455" fw="35" fh="35">people/rad_scientist_base.png</animSheet>
   <anim name="rad_scientist_clone">
@@ -1083,6 +1093,350 @@
     <fireFrame>11</fireFrame>
     <firePoint x="19" y="16" />
     <mountPoint x="5" y="107" />
+  </weaponAnim>
+
+
+  <animSheet name="drone_rad_bomb" w="280" h="315" fw="35" fh="35">people/drone_rad_bomb_base.png</animSheet>
+  <animSheet name="drone_rad_bomb_death" w="320" h="32" fh="32" fw="32">effects/explosion1_strip10.png</animSheet>
+  <anim name="drone_rad_bomb_death_right">
+    <sheet>drone_rad_bomb_death</sheet>
+    <desc length="10" x="0" y="0" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_death_left">
+    <sheet>drone_rad_bomb_death</sheet>
+    <desc length="10" x="0" y="0" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_walk_down">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="8" x="0" y="8" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_walk_up">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="8" x="0" y="7" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_walk_right">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="8" x="0" y="6" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_walk_left">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="8" x="0" y="5" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_shoot_down">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="3" x="0" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_shoot_up">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="3" x="3" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_shoot_left">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="3" x="0" y="3" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_shoot_right">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="3" x="3" y="3" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_power_down">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="7" x="0" y="2" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_power_up">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="7" x="0" y="1" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_fly">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="1" x="5" y="2" />
+    <time>1</time>
+  </anim>
+  <anim name="drone_rad_bomb_portrait">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="1" x="0" y="0" />
+    <time>1</time>
+  </anim>
+  <anim name="drone_rad_bomb_punch_up">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="3" x="3" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_punch_down">
+    <sheet>drone_rad_bomb</sheet>
+    <desc length="3" x="0" y="4" />
+    <time>1.0</time>
+  </anim>
+
+  <animSheet name="drone_rad_bomb_3" w="280" h="315" fw="35" fh="35">people/drone_rad_bomb_3_base.png</animSheet>
+  <animSheet name="drone_rad_bomb_3_death" w="320" h="32" fh="32" fw="32">effects/explosion1_strip10.png</animSheet>
+  <anim name="drone_rad_bomb_3_death_right">
+    <sheet>drone_rad_bomb_3_death</sheet>
+    <desc length="10" x="0" y="0" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_death_left">
+    <sheet>drone_rad_bomb_3_death</sheet>
+    <desc length="10" x="0" y="0" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_walk_down">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="8" x="0" y="8" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_walk_up">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="8" x="0" y="7" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_walk_right">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="8" x="0" y="6" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_walk_left">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="8" x="0" y="5" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_shoot_down">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="3" x="0" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_shoot_up">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="3" x="3" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_shoot_left">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="3" x="0" y="3" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_shoot_right">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="3" x="3" y="3" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_power_down">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="7" x="0" y="2" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_power_up">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="7" x="0" y="1" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_fly">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="1" x="5" y="2" />
+    <time>1</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_portrait">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="1" x="0" y="0" />
+    <time>1</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_punch_up">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="3" x="3" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_3_punch_down">
+    <sheet>drone_rad_bomb_3</sheet>
+    <desc length="3" x="0" y="4" />
+    <time>1.0</time>
+  </anim>
+
+  <animSheet name="drone_rad_bomb_2" w="280" h="315" fw="35" fh="35">people/drone_rad_bomb_2_base.png</animSheet>
+  <animSheet name="drone_rad_bomb_2_death" w="320" h="32" fh="32" fw="32">effects/explosion1_strip10.png</animSheet>
+  <anim name="drone_rad_bomb_2_death_right">
+    <sheet>drone_rad_bomb_2_death</sheet>
+    <desc length="10" x="0" y="0" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_death_left">
+    <sheet>drone_rad_bomb_2_death</sheet>
+    <desc length="10" x="0" y="0" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_walk_down">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="8" x="0" y="8" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_walk_up">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="8" x="0" y="7" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_walk_right">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="8" x="0" y="6" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_walk_left">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="8" x="0" y="5" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_shoot_down">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="3" x="0" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_shoot_up">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="3" x="3" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_shoot_left">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="3" x="0" y="3" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_shoot_right">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="3" x="3" y="3" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_power_down">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="7" x="0" y="2" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_power_up">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="7" x="0" y="1" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_fly">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="1" x="5" y="2" />
+    <time>1</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_portrait">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="1" x="0" y="0" />
+    <time>1</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_punch_up">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="3" x="3" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_bomb_2_punch_down">
+    <sheet>drone_rad_bomb_2</sheet>
+    <desc length="3" x="0" y="4" />
+    <time>1.0</time>
+  </anim>
+
+  <animSheet name="drone_rad_missile" w="280" h="315" fw="35" fh="35">people/drone_rad_missile_base.png</animSheet>
+  <animSheet name="drone_rad_missile_death" w="320" h="32" fh="32" fw="32">effects/explosion1_strip10.png</animSheet>
+  <anim name="drone_rad_missile_death_right">
+    <sheet>drone_rad_missile_death</sheet>
+    <desc length="10" x="0" y="0" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_death_left">
+    <sheet>drone_rad_missile_death</sheet>
+    <desc length="10" x="0" y="0" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_walk_down">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="8" x="0" y="8" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_walk_up">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="8" x="0" y="7" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_walk_right">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="8" x="0" y="6" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_walk_left">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="8" x="0" y="5" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_shoot_down">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="3" x="0" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_shoot_up">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="3" x="3" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_shoot_left">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="3" x="0" y="3" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_shoot_right">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="3" x="3" y="3" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_power_down">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="7" x="0" y="2" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_power_up">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="7" x="0" y="1" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_fly">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="1" x="5" y="2" />
+    <time>1</time>
+  </anim>
+  <anim name="drone_rad_missile_portrait">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="1" x="0" y="0" />
+    <time>1</time>
+  </anim>
+  <anim name="drone_rad_missile_punch_up">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="3" x="3" y="4" />
+    <time>1.0</time>
+  </anim>
+  <anim name="drone_rad_missile_punch_down">
+    <sheet>drone_rad_missile</sheet>
+    <desc length="3" x="0" y="4" />
+    <time>1.0</time>
+  </anim>
+
+  <animSheet name="rad_minelayer" w="99" h="36" fw="33" fh="36">weapon_mines/rad_minelayer.png</animSheet>
+  <weaponAnim name="rad_minelayer">
+    <sheet>rad_minelayer</sheet>
+    <desc length="3" x="0" y="0" />
+    <chargedFrame>1</chargedFrame>
+    <fireFrame>2</fireFrame>
+    <firePoint x="16" y="8" />
+    <mountPoint x="4" y="29" />
+    <chargeImage>weapon_mines/rad_minelayer_glow.png</chargeImage>
   </weaponAnim>
   
 </FTL>

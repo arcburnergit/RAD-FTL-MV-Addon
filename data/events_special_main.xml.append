@@ -38,5 +38,24 @@
     <variable name="rad_arti_targetting" op="set" val="0"/>
     <variable name="rad_arti_targeted" op="set" val="0"/>
   </event>
+
+  <event name="RAD_DISABLE_TOGGLE">
+    <loadEventList seeded="false" first="true" generate="false">
+      <event req="RAD_SUPER_RANDOM" lvl="0" max_lvl="0">
+        <eventButton name="UI_TOGGLE_BUTTON">
+          <!--<event load="COMBAT_CHECK_TOGGLE_BUTTON"/>-->
+          <event load="COMBAT_CHECK_TOGGLE" />
+          <image border="12">statusUI/top_toggle</image>
+          <customLocation x="105" y="110" />
+          <tooltip>Toggle your equipment.</tooltip>
+          <inactiveTooltip>Unavailable!</inactiveTooltip>
+          <jumpClear>false</jumpClear>
+          <noDanger>false</noDanger>
+        </eventButton>
+      </event>
+      <event req="RAD_SUPER_RANDOM" lvl="1" max_lvl="99999">
+      </event>
+    </loadEventList>
+  </event>
   
 </FTL>

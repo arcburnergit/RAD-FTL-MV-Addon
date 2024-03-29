@@ -1172,6 +1172,13 @@ script.on_game_event("START_BEACON_EXPLAIN", false, function()
         --disableScrap = false
         shipManager:ModifyScrapCount(100,false)
     end
+    if shipManager:HasAugmentation("RAD_DRONE_FACTORY") > 0 then 
+        for crewmem in vter(shipManager.vCrewList) do 
+            if crewmem.iRoomId >= 16 then
+                crewmem.extend:InitiateTeleport(0,0,0)
+            end
+        end
+    end
 end)
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, evasion, friendlyfire) 
@@ -2280,25 +2287,92 @@ script.on_game_event("COMBAT_CHECK_REAL", false, function()
             end
         end
     end
+    if shipManager:HasAugmentation("RAD_SUPER_RANDOM") > 0 then
+        Hyperspace.playerVariables.rad_n_replace_d = 0
+        Hyperspace.playerVariables.rad_n_replace_c = 0
+        local droneList = shipManager:GetDroneList()
+        if not droneList then return end
+        for drone in vter(droneList) do
+            if drone and drone.blueprint then
+                shipManager:RemoveItem(drone.blueprint.name)
+                Hyperspace.playerVariables.rad_n_replace_d = Hyperspace.playerVariables.rad_n_replace_d + 1
+            end
+        end
+        for crew in vter(shipManager.vCrewList) do
+            if crew and crew.iShipId == 0 and (not crew:IsDrone()) and crew.blueprint then
+                --userdata_table(crew, "mods.rad.killtime").killTime = 0.15
+                print(crew.blueprint.name)
+                crew:Kill(true)
+                Hyperspace.playerVariables.rad_n_replace_c = Hyperspace.playerVariables.rad_n_replace_c + 1
+            end
+        end
+    end
+end)
+
+script.on_game_event("RAD_POWER_ROLL", false, function()
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+    if shipManager:HasAugmentation("RAD_SUPER_RANDOM") > 0 then 
+        for weapon in vter(shipManager:GetWeaponList()) do
+            weapon.requiredPower = math.floor(math.random(1, 8)/2)
+        end
+        for drone in vter(shipManager:GetDroneList()) do
+            drone.powerRequired = math.floor(math.random(1, 8)/2)
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
+    local teleTable = userdata_table(crewmem, "mods.rad.killtime")
+    if teleTable.killTime then
+        if crewmem.bDead then
+            teleTable.killTime = nil
+        else
+            local commandGui = Hyperspace.Global.GetInstance():GetCApp().gui
+            if not commandGui.bPaused then 
+                teleTable.killTime = math.max(teleTable.killTime - Hyperspace.FPS.SpeedFactor/16, 0)
+                if teleTable.killTime == 0 then
+                    crewmem:Kill(true)
+                    teleTable.killTime = nil
+                end
+            end
+        end
+    end
 end)
 
 script.on_game_event("COMBAT_CHECK_FAIL_REAL", false, function()
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
     if shipManager:HasAugmentation("RAD_LOW_SHIELD") > 0 then 
+        Hyperspace.playerVariables.rad_n_replace = 0
         local weaponList = shipManager:GetWeaponList()
         if not weaponList then return end
         for weapon in vter(weaponList) do
             if weapon and weapon.blueprint then
                 shipManager:RemoveItem(weapon.blueprint.name)
+                Hyperspace.playerVariables.rad_n_replace = Hyperspace.playerVariables.rad_n_replace + 1
             end
         end
     end
     if shipManager:HasAugmentation("RAD_SUPER_RANDOM") > 0 then
-        local weaponList = shipManager:GetWeaponList()
-        if not weaponList then return end
-        for weapon in vter(weaponList) do
-            if weapon and weapon.blueprint then
-                shipManager:RemoveItem(weapon.blueprint.name)
+        Hyperspace.playerVariables.rad_n_replace_d = 0
+        local droneList = shipManager:GetDroneList()
+        if not droneList then return end
+        for drone in vter(droneList) do
+            if drone and drone.blueprint then
+                shipManager:RemoveItem(drone.blueprint.name)
+                Hyperspace.playerVariables.rad_n_replace_d = Hyperspace.playerVariables.rad_n_replace_d + 1
+            end
+        end
+    end
+    if shipManager:HasAugmentation("RAD_SUPER_RANDOM") > 0 then
+        --Hyperspace.playerVariables.rad_n_replace_c = 0
+        local crewList = shipManager.vCrewList
+        if not crewList then return end
+        for crew in vter(crewList) do
+            if crew and crew.iShipId == 0 and crew.blueprint then
+                crew:Kill(true)
+                local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+                Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_REPLACEMENT_WEAPONS",false,-1)
+                --Hyperspace.playerVariables.rad_n_replace_c = Hyperspace.playerVariables.rad_n_replace_c + 1
             end
         end
     end
@@ -3215,5 +3289,121 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
                 weapon:SetCooldownModifier(-1)
             end
         end 
+    end
+end)
+
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    for weapon in vter(shipManager:GetWeaponList()) do
+        if (not weapon.powered) and weapon.blueprint.name == "WEAPON_NAME" then
+            weapon.cooldown.first = math.min(weapon.cooldown.first + (Hyperspace.FPS.SpeedFactor*(6 + (1*weapon.cooldownModifier)))/16, weapon.cooldown.second-0.01)
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then 
+        if shipManager:HasAugmentation("RAD_DRONE_FACTORY") > 0 then 
+            local droneSys = shipManager.droneSystem
+            if droneSys:CompletelyDestroyed() then
+                droneSys:PartialRepair(1,true)
+            end
+        end
+    end
+end)
+
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
+    if weaponBlueprint.name == "ARTILLERY_RAD_DD" then
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+        local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+        if Hyperspace.playerVariables.rad_time_bomb == 1 then 
+            Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_SPAWN_BOMB_1",false,-1)
+        elseif Hyperspace.playerVariables.rad_time_bomb == 2 then 
+            Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_SPAWN_BOMB_2",false,-1)
+        elseif Hyperspace.playerVariables.rad_time_bomb == 3 then 
+            Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_SPAWN_BOMB_3",false,-1)
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
+    if weaponBlueprint.name == "ARTILLERY_RAD_DD_2" then
+        local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+        local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+        if Hyperspace.playerVariables.rad_time_bomb_2 == 1 then 
+            Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_SPAWN_BOMB_1",false,-1)
+        elseif Hyperspace.playerVariables.rad_time_bomb_2 == 2 then 
+            Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_SPAWN_BOMB_2",false,-1)
+        elseif Hyperspace.playerVariables.rad_time_bomb_2 == 3 then 
+            Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_SPAWN_BOMB_3",false,-1)
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
+    if Hyperspace.Global.GetInstance():GetCApp().world.bStartedGame then
+        --local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
+        if crewmem.blueprint.name == "drone_rad_bomb" or crewmem.blueprint.name == "drone_rad_bomb_2" or crewmem.blueprint.name == "drone_rad_bomb_3" then 
+            --print(crewmem.blueprint.name)
+            if Hyperspace.ships.player:HasAugmentation("RAD_DRONE_FACTORY_2") > 0 then
+                if crewmem.iRoomId < 20 and crewmem.intruder == false then 
+                    crewmem:SetRoom(23)
+                end
+            else
+                if crewmem.iRoomId < 16 and crewmem.intruder == false then 
+                    crewmem:SetRoom(18)
+                end
+            end
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
+    for crewmem in vter(shipManager.vCrewList) do
+        if crewmem.blueprint.name == "drone_rad_bomb" or crewmem.blueprint.name == "drone_rad_bomb_2" or crewmem.blueprint.name == "drone_rad_bomb_3" then 
+            crewmem:Kill(true)
+        end
+    end
+end)
+local lastHitRoomMissile = 0
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
+    if projectile then
+        local otherShip = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+        if otherShip:HasAugmentation("RAD_MISSILE_BOMBS") > 0 then
+            if Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name).typeName == "MISSILES" or Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name).typeName == "BOMB" then
+                local room = get_room_at_location(shipManager,location,true)
+                lastHitRoomMissile = room
+                local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+                Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_SPAWN_BOMB_MISSILE",false,-1)
+            end
+        end
+    end
+end)
+
+script.on_game_event("RAD_SPAWN_BOMB_MISSILE_DELAY", false, function()
+    local shipManager = Hyperspace.ships.player
+    for crewmem in vter(shipManager.vCrewList) do
+        if crewmem.blueprint.name == "drone_rad_missile" then
+            --crewmem:SetCurrentShip(1)
+            --crewmem:SetRoom(lastHitRoomMissile)
+            
+            if pcall(function() crewmem.extend:InitiateTeleport(1, lastHitRoomMissile, 0) end) then
+                --print("teleport")
+            else
+                crewmem:Kill(true)
+            end
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
+    if weaponBlueprint.name == "RAD_MINELAYER" and Hyperspace.playerVariables.rad_minelayer_check == 1 then 
+        Hyperspace.playerVariables.rad_minelayer_fire = Hyperspace.playerVariables.rad_minelayer_fire + 1
+        if Hyperspace.playerVariables.rad_minelayer_fire >= 30 then
+            Hyperspace.playerVariables.rad_minelayer_check = 0
+            local worldManager = Hyperspace.Global.GetInstance():GetCApp().world
+            Hyperspace.CustomEventsParser.GetInstance():LoadEvent(worldManager,"RAD_MINES_2",false,-1)
+        end
     end
 end)

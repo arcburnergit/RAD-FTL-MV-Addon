@@ -2096,6 +2096,9 @@ The ship powers on it's weapons, looks like they don't like intruders in their s
   <event name="RAD_MINES_1">
     <text>"For once we don't actually need you to hunt anyone down, this time we require you to test a prototype weapon, specifically a minelauncher."</text>
     <weapon name="RAD_MINELAYER" />
+    <item_modify>
+      <item type="missiles" min="10" max="10" />
+    </item_modify>
     <choice>
       <text>Continue...</text>
       <event>
@@ -2430,10 +2433,10 @@ Before leaving however they did transmit where they were going incase you surviv
 
   <event name="RAD_H_PIRATE_SCIENCE_DEAD">
     <text>As you search through the remains you find the location of the pirates who hired the scientists...</text>
-    <quest name="RAD_MINES_HOSTILE"/>
+    <quest event="RAD_MINES_HOSTILE_QUEST"/>
   </event>
 
-  <event name="RAD_MINES_HOSTILE">
+  <event name="RAD_MINES_HOSTILE_QUEST">
     <preventQuest />
     <preventFleet />
     <beaconType id="map_icon_rad_mines_h" global="true">

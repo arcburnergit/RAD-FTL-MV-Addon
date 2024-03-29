@@ -313,15 +313,15 @@
       </otherUnlocks>
     </unlock>
     <unlock variant="a" silent="false">
-      <type>4</type>
-      <!--otherUnlocks>
+      <type>3</type>
+      <otherUnlocks>
         <ship>PLAYER_SHIP_RAD_CORVETTE</ship>
         <ship>PLAYER_SHIP_RAD_CORVETTE_2</ship>
         <ship>PLAYER_SHIP_RAD_CORVETTE_3</ship>
         <ship>PLAYER_SHIP_RAD_CUTTER</ship>
         <ship>PLAYER_SHIP_RAD_CUTTER_2</ship>
         <ship>PLAYER_SHIP_RAD_CUTTER_3</ship>
-      </otherUnlocks-->
+      </otherUnlocks>
     </unlock>
   </mod-append:ship>
   
@@ -754,6 +754,7 @@
     <function name="AUTO_COOLDOWN" value="-0.6" useForReqs="false" warning="false" />
   </aug>
   <aug name="IN_RAD_WM_MULTISHOT">
+    <function name="RAD_WM_MULTISHOT" value="1" useForReqs="true" warning="false"/>
   </aug>
   <aug name="IN_RAD_WM_RAILGUN">
   </aug>
@@ -761,6 +762,7 @@
   </aug>
   <aug name="IN_RAD_WM_BIGSHOT">
     <function name="AUTO_COOLDOWN" value="-0.6" useForReqs="false" warning="false" />
+    <function name="RAD_WM_BIGSHOT" value="1" useForReqs="true" warning="false"/>
   </aug>
   <aug name="RAD_CREVERSAL">
     <locked />
@@ -772,6 +774,8 @@
     <locked />
   </aug>
   <aug name="RAD_LOW_WEAPON">
+    <function name="RAD_WM_MULTISHOT" value="1" useForReqs="true"/>
+    <function name="RAD_WM_BIGSHOT" value="1" useForReqs="true"/>
     <locked />
   </aug>
   <aug name="RAD_HIGH_WEAPON">
@@ -802,7 +806,7 @@
   </aug>
   <aug name="RAD_SUPER_RANDOM">
     <locked />
-    <function name="RAD_LOW_SHIELD" value="1" useForReqs="true" />
+    <function name="RAD_LOW_SHIELD" value="1" useForReqs="true" warning="false"/>
   </aug>
   <aug name="RAD_SHRAPNEL_SHIELD">
     <locked />
@@ -812,7 +816,7 @@
   </aug>
   <aug name="RAD_LOW_SCRAP">
     <locked />
-    <function name="SCRAP_COLLECTOR" value="0.20" useForReqs="true" />
+    <function name="SCRAP_COLLECTOR" value="0.20" useForReqs="true" warning="false"/>
   </aug>
   <aug name="RAD_NO_DOOR">
     <locked />
@@ -840,7 +844,7 @@
   </aug>
   <aug name="RAD_SCRAP_HULL">
     <locked />
-    <function name="SCRAP_COLLECTOR" value="0.25" useForReqs="true" />
+    <function name="SCRAP_COLLECTOR" value="0.25" useForReqs="true" warning="false"/>
   </aug>
 </augments>
 

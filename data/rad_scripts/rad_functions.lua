@@ -168,7 +168,9 @@ script.on_game_event("RAD_MIRROR_3", false, function()
         if teleTable.tpTime then
             teleTable.tpTime = nil
         end
-        crewmem.extend:InitiateTeleport(1,0,0)
+        if not crewmem:IsDrone() then
+            crewmem.extend:InitiateTeleport(1,0,0)
+        end
     end
 end)
 
@@ -179,7 +181,9 @@ script.on_game_event("DEAD_CREW_RAD_REBELOUT", false, function()
         if teleTable.tpTime then
             teleTable.tpTime = nil
         end
-        crewmem.extend:InitiateTeleport(0,0,0)
+        if not crewmem:IsDrone() then
+            crewmem.extend:InitiateTeleport(0,0,0)
+        end
     end
 end)
 
@@ -189,10 +193,14 @@ script.on_game_event("RAD_MAIN_BOARD", false, function()
     local otherShip = Hyperspace.Global.GetInstance():GetShipManager(1)
     --crewList[0].extend:InitiateTeleport(1,0,0)
     for crewmem in vter(shipManager.vCrewList) do
-        crewmem.extend:InitiateTeleport(1,0,0)
+        if not crewmem:IsDrone() then
+            crewmem.extend:InitiateTeleport(1,0,0)
+        end
     end
     for crewmem in vter(otherShip.vCrewList) do
-        crewmem.extend:InitiateTeleport(1,11,0)
+        if not crewmem:IsDrone() then
+            crewmem.extend:InitiateTeleport(1,11,0)
+        end
     end
 end)
 
@@ -203,7 +211,9 @@ script.on_game_event("RAD_MAIN_DISABLE_DOORS", false, function()
         local otherShip = Hyperspace.Global.GetInstance():GetShipManager(1)
         --crewList[0].extend:InitiateTeleport(1,0,0)
         for crewmem in vter(shipManager.vCrewList) do
-            crewmem.extend:InitiateTeleport(1,0,0)
+            if not crewmem:IsDrone() then
+                crewmem.extend:InitiateTeleport(1,0,0)
+            end
         end
     end
 end)
@@ -215,7 +225,7 @@ script.on_game_event("RAD_CIVILIAN_TRANSFORM", false, function()
         if teleTable.tpTime then
             teleTable.tpTime = nil
         end
-        if crewmem.iShipId == 0 then 
+        if crewmem.iShipId == 0 and (not crewmem:IsDrone()) then 
             crewmem.extend:InitiateTeleport(0,0,0)
         end
     end
@@ -228,7 +238,7 @@ script.on_game_event("RAD_MAIN_RETURN", false, function()
         if teleTable.tpTime then
             teleTable.tpTime = nil
         end
-        if crewmem.iShipId == 0 then 
+        if crewmem.iShipId == 0 and (not crewmem:IsDrone()) then 
             crewmem.extend:InitiateTeleport(0,0,0)
         end
     end
@@ -1725,7 +1735,7 @@ bool bFriendlyFire;
 int iStun;]]--
 
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
-    print((projectile.destinationSpace+1)%2)
+    --print((projectile.destinationSpace+1)%2)
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager((projectile.destinationSpace+1)%2)
     if (shipManager:HasAugmentation("RAD_WM_BIGSHOT") > 0) and (shipManager:HasAugmentation("RAD_WM_MULTISHOT") <= 0) then
         local damage = projectile.damage
@@ -2953,12 +2963,12 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
     local weaponName = nil
     if pcall(function() weaponName = projectile.extend.name end) and weaponName == "RAD_COINGUN" then 
         local otherShip = Hyperspace.Global.GetInstance():GetShipManager((projectile.destinationSpace+1)%2)
-        otherShip:ModifyScrapCount(2,false)
+        otherShip:ModifyScrapCount(3,false)
     end
 end)
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
-    if shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 then 
+    if shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 and damage.iDamage + damage.iSystemDamage > 0 then 
         local hullDamage = damage.iDamage
         local scrap = shipManager.currentScrap
         local scrapLoss = (-1) * math.max(math.floor(0.1 * scrap), 10)
@@ -2967,7 +2977,7 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipMa
 end)
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
-    if shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 and beamHitType == Defines.BeamHit.NEW_ROOM then 
+    if shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 and beamHitType == Defines.BeamHit.NEW_ROOM and damage.iDamage + damage.iSystemDamage > 0 then 
         local hullDamage = damage.iDamage
         local scrap = shipManager.currentScrap
         local scrapLoss = (-1) * math.max(math.floor(0.1 * scrap), 10)
@@ -2980,8 +2990,11 @@ local scrapEnabled = false
 script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
     if shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 and shipManager.currentScrap <= 0 and scrapEnabled then
         shipManager:DamageHull(100,true)
-    elseif shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 then
+    elseif shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 and shipManager.ship.hullIntegrity.first < 20 then
         shipManager:DamageHull(-1,true)
+    elseif shipManager:HasAugmentation("RAD_SCRAP_HULL") > 0 and shipManager.ship.hullIntegrity.first > 20 then
+        shipManager:DamageHull(1,true)
+        shipManager:ModifyScrapCount(2,false)
     end
 end)
 

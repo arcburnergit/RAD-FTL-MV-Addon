@@ -4496,7 +4496,7 @@ Increases scrap gain by 25%</desc>
     <type>LASER</type>
     <title>Coin Cannon MK I</title>
     <short>Coin Gun I</short>
-    <desc>This weapon fires coins, each projectile removes 2 scrap from the ship, however if it successfully hits the ship it will return the scrap, doesn't return the scrap when hitting shields or drones.</desc>
+    <desc>This weapon fires coins, each projectile removes 2 scrap from the ship, however if it successfully hits the ship it will return the scrap plus an extra, doesn't return the scrap when hitting shields or drones.</desc>
     <tooltip>Uses 2 scrap when firing each projectile, each projectile that hits the enemy ship returns 2 scrap.</tooltip>
     <damage>1</damage>
     <shots>3</shots>

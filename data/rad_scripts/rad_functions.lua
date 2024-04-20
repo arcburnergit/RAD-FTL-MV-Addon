@@ -290,8 +290,10 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManage
         --log("teleControl True")
         for i, crewmem in ipairs(get_ship_crew_point(shipManager, location.x, location.y)) do
             --log("in crewmem for loop")
-            userdata_table(crewmem, "mods.tpbeam.time").tpTime = teleControl
-            crewmem.extend:InitiateTeleport(otherShip.iShipId,weaponRoomID,0)
+            if not crewmem:IsDrone() then
+                userdata_table(crewmem, "mods.tpbeam.time").tpTime = teleControl
+                crewmem.extend:InitiateTeleport(otherShip.iShipId,weaponRoomID,0)
+            end
         end
     end
     return Defines.Chain.CONTINUE, beamHitType
@@ -342,8 +344,10 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManage
         --log(tostring(hitRoomId))
         for i, crewmem in ipairs(get_ship_crew_room(shipManager, hitRoomId)) do
             --log("in crewmem for loop jail")
-            userdata_table(crewmem, "mods.tpbeam.time").tpTime = 30
-            crewmem.extend:InitiateTeleport(otherShip.iShipId,jailControl,0)
+            if not crewmem:IsDrone() then
+                userdata_table(crewmem, "mods.tpbeam.time").tpTime = 30
+                crewmem.extend:InitiateTeleport(otherShip.iShipId,jailControl,0)
+            end
         end
     end
     return Defines.Chain.CONTINUE, beamHitType

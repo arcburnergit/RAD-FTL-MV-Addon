@@ -754,7 +754,7 @@
     <function name="AUTO_COOLDOWN" value="-0.6" useForReqs="false" warning="false" />
   </aug>
   <aug name="IN_RAD_WM_MULTISHOT">
-    <function name="RAD_WM_MULTISHOT" value="1" useForReqs="true" warning="false"/>
+    <function name="RAD_WM_MULTISHOT" value="1" useForReqs="false" warning="false"/>
   </aug>
   <aug name="IN_RAD_WM_RAILGUN">
   </aug>
@@ -762,7 +762,7 @@
   </aug>
   <aug name="IN_RAD_WM_BIGSHOT">
     <function name="AUTO_COOLDOWN" value="-0.6" useForReqs="false" warning="false" />
-    <function name="RAD_WM_BIGSHOT" value="1" useForReqs="true" warning="false"/>
+    <function name="RAD_WM_BIGSHOT" value="1" useForReqs="false" warning="false"/>
   </aug>
   <aug name="RAD_CREVERSAL">
     <locked />
@@ -774,8 +774,8 @@
     <locked />
   </aug>
   <aug name="RAD_LOW_WEAPON">
-    <function name="RAD_WM_MULTISHOT" value="1" useForReqs="true"/>
-    <function name="RAD_WM_BIGSHOT" value="1" useForReqs="true"/>
+    <function name="RAD_WM_MULTISHOT" value="1" useForReqs="false"/>
+    <function name="RAD_WM_BIGSHOT" value="1" useForReqs="false"/>
     <locked />
   </aug>
   <aug name="RAD_HIGH_WEAPON">
@@ -869,12 +869,6 @@
 </mod:findLike>
 
 <events>
-	<!--<bossShip>MU_COLLECTOR</bossShip>
-	<bossShip>MU_CONTINUITY_BOSS</bossShip>
-	
-  
-	<variable name="addon_extraequipment_enabled" op="set" val="1"/-->
-
   <bossShip>SHIP_CIVILIAN_LAB</bossShip>
   <bossShip>MU_RAD_SCIENCE_OPERATOR</bossShip>
   <bossShip>MU_RAD_RICHSON</bossShip>
@@ -1575,6 +1569,9 @@
     <fireDamageMultiplier>0.2</fireDamageMultiplier>
     <moveSpeedMultiplier>0.5</moveSpeedMultiplier>
     <controllable>false</controllable>
+    <deathSounds>
+      <deathSound>technicianDroneDeath</deathSound>
+    </deathSounds>
     <powerEffect>
       <cooldown>10</cooldown>
       <jumpCooldown>reset</jumpCooldown>
@@ -1610,6 +1607,9 @@
     <fireDamageMultiplier>0.2</fireDamageMultiplier>
     <moveSpeedMultiplier>0.5</moveSpeedMultiplier>
     <controllable>true</controllable>
+    <deathSounds>
+      <deathSound>technicianDroneDeath</deathSound>
+    </deathSounds>
     <passiveStatBoosts>
       <statBoost name="healSpeed">
         <!-- Heal in owner's drone room -->
@@ -1708,6 +1708,9 @@
     <fireDamageMultiplier>0.2</fireDamageMultiplier>
     <moveSpeedMultiplier>0.5</moveSpeedMultiplier>
     <controllable>true</controllable>
+    <deathSounds>
+      <deathSound>technicianDroneDeath</deathSound>
+    </deathSounds>
     <passiveStatBoosts>
       <statBoost name="healSpeed">
         <!-- Heal in owner's drone room -->
@@ -1801,6 +1804,9 @@
     <damageMultiplier>0.5</damageMultiplier>
     <fireDamageMultiplier>0</fireDamageMultiplier>
     <controllable>true</controllable>
+    <deathSounds>
+      <deathSound>technicianDroneDeath</deathSound>
+    </deathSounds>
     <passiveStatBoosts>
       <statBoost name="healSpeed">
         <!-- Heal in owner's drone room -->

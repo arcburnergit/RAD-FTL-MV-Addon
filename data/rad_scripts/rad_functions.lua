@@ -758,8 +758,8 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManage
 end)
 
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
-    if shipManager:HasAugmentation("FLESH_HULL") > 0 then
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager((projectile.destinationSpace+1)%2)
+    if shipManager:HasAugmentation("FLESH_HULL") > 0 and projectile.ownerId == shipManager.iShipId then
         local weaponDamage = weaponBlueprint.damage;
         local hulldamage = weaponDamage.iDamage
         if weaponBlueprint.name == "BOMB_HEAL" then

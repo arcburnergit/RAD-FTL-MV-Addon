@@ -2360,6 +2360,7 @@ Before leaving however they did transmit where they were going incase you surviv
     <choice hidden="true">
       <text>Engage the federation cruiser.</text>
       <event>
+        <text>You power on your weapons and attack.</text>
         <ship hostile="true"/>
         <choice>
           <text>Continue...</text>

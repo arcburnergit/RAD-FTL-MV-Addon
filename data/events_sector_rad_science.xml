@@ -355,6 +355,7 @@
     <choice>
       <text>Accept their surrender.</text>
       <event name="SURRENDER_ACCEPT">
+        <text>The scientists are smart enough to know they're better off alive, even if a bit poorer</text>
         <ship hostile="false" />
         <autoReward level="RANDOM">stuff</autoReward>
         <choice req="rad_civilian" lvl="1" blue="false">

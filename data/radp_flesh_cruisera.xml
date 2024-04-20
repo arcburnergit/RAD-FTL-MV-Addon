@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--Copyright (c) 2012 by Subset Games. All rights reserved.-->
-<img x="-79" y="-92" w="440" h="440" />
+<img x="-76" y="-92" w="440" h="440" />
 <offsets>
-	<floor x="73" y="86" />
+	<floor x="70" y="86" />
 	<cloak x="-6" y="43" />
 </offsets>
 <weaponMounts>

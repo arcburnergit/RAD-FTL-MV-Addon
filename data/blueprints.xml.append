@@ -4157,7 +4157,7 @@ When the projectile splits each new projectile will deviate from the impact poin
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
     <sysDamage>0</sysDamage>
-    <shots>3</shots>
+    <shots>2</shots>
     <radius>40</radius>
     <sp>0</sp>
     <fireChance>0</fireChance>
@@ -4200,7 +4200,7 @@ When the projectile splits each new projectile will deviate from the impact poin
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
     <sysDamage>0</sysDamage>
-    <shots>5</shots>
+    <shots>3</shots>
     <radius>40</radius>
     <sp>0</sp>
     <fireChance>0</fireChance>

@@ -2739,7 +2739,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <augBlueprint name="RAD_WM_MULTISHOT">
     <title>Multishot Weapons</title>
-    <desc>Splits every projectile or beam you fire in two, however the hull damage, system damage, and ion damage are halved. In the case that the base value is odd, one projectile will have more damage than the other. When used with multishot all projectiles are doubled but retain their original damage.
+    <desc>Splits every projectile or beam you fire in two, however the hull damage, system damage, and ion damage are halved. In the case that the base value is odd, one projectile will have more damage than the other. When used with High Energy Weapons, all projectiles are doubled but retain their original damage.
     
 Can be installed internally for 20 scrap in the storage menu.</desc>
     <cost>60</cost>

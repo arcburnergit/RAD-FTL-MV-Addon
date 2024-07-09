@@ -1620,9 +1620,9 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
             newDamage.iIonDamage = damage.iIonDamage
             newDamage.iSystemDamage = damage.iSystemDamage
         else
-            newDamage.iDamage = math.ceil(damage.iDamage/2)
-            newDamage.iIonDamage = math.ceil(damage.iIonDamage/2)
-            newDamage.iSystemDamage = math.ceil(damage.iSystemDamage/2)
+            newDamage.iDamage = math.floor(damage.iDamage/2)
+            newDamage.iIonDamage = math.floor(damage.iIonDamage/2)
+            newDamage.iSystemDamage = math.floor(damage.iSystemDamage/2)
         end
 
         newDamage.fireChance = damage.fireChance

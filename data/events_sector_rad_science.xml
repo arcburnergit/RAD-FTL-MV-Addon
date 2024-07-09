@@ -133,7 +133,7 @@
   </eventList>
   <eventList name="GUARD_RAD_SCIENCE_SCIENTIST_TALK">
     <event>
-      <text>"Ah, a fellow scientist, you may pass through if you'd like, but the rest of your crew cannont."</text>
+      <text>"Ah, a fellow scientist, you may pass through if you'd like, but the rest of your crew cannot."</text>
       <ship hostile="true" />
       <choice hidden="true">
         <text>Continue...</text>
@@ -177,7 +177,7 @@
 <textList name="RAD_SCIENCE_FREE_DRONES">
 	<text>Nearby drifts the several discarded drones, they may not be functional however you're able to salvage a few drone parts from them.</text>
 	<text>You notice a mine drifting nearby, followed by several more. Most, if not all, are inactive, probably left over from some sort of training exercise. Fortunately, this means you can salvage them with relative ease.</text>
-	<text>A small craft appears on your scanners, it looks like it's coming straigh towards you. Your crew quickly moves into action and blasts it to pieces, you attempt to salvage it but the only thing that survived was a box of drone parts.</text>
+	<text>A small craft appears on your scanners, it looks like it's coming straight towards you. Your crew quickly moves into action and blasts it to pieces, you attempt to salvage it but the only thing that survived was a box of drone parts.</text>
 </textList>
 
 <event name="RAD_SCIENCE_SCIENTIST" unique="true">
@@ -251,7 +251,7 @@
     <noQuestText />
     <removeHazards />
     <clearCustomFleet />
-    <text>By killing the Scientist Guard you've definently pissed someone off, lets just hope word doesn't travel fast.</text>
+    <text>By killing the Scientist Guard you've definitely pissed someone off; let's just hope word doesn't travel fast.</text>
     <choice>
       <text>Do something onboard the ship.</text>
       <event load="STORAGE_CHECK" />
@@ -396,14 +396,14 @@
 </ship>
 
 <event name="RAD_SCIENCE_PIRATE_DEADCREW">
-	<text>You clear out the defense cruiser and tow it back to the station, You're thanked and recieve a large amount of scrap as a reward.
+	<text>You clear out the defense cruiser and tow it back to the station, You're thanked and receive a large amount of scrap as a reward.
 
 One of the crew on the station offer to join your crew.</text>
 	<choice hidden="false">
 		<text>Accept them onto your ship.</text>
 		<event>
 			<autoReward level="MED">scrap_only</autoReward>
-			<text>It turns out it's one of the soldier who was prevoisly stationed aboard the defense cruiser.</text>
+			<text>It turns out it's one of the soldiers who was previously stationed aboard the defense cruiser.</text>
 			<crewMember amount="1" class="human_soldier" />
 		</event>
 	</choice>
@@ -503,7 +503,7 @@ One of the crew on the station offer to join your crew.</text>
 </textList>
 
 <event name="RAD_SCIENCE_DEPOT" unique="true">
-	<text>A nearby scienctist vessel is acting as a supply depot, they offer you a resupply.</text>
+	<text>A nearby scientist vessel is acting as a supply depot, they offer you a resupply.</text>
 	<ship load="SHIP_RAD_SCIENCE_GENERIC" hostile="false" />
 	<choice>
 		<text>Submit your ID and get some supplies.</text>
@@ -568,7 +568,7 @@ One of the crew on the station offer to join your crew.</text>
 	<choice hidden="true" req="cloaking" lvl="2">
 		<text>(Upg. Cloaking) Cloak and scrap some of the station while they're defenseless.</text>
 		<event>
-			<text>With the defence cruiser stolen, there's no one around to guard the station. Under the veil of your cloak you tear off some of the plating and leave quickly.</text>
+			<text>With the defense cruiser stolen, there's no one around to guard the station. Under the veil of your cloak you tear off some of the plating and leave quickly.</text>
 			<autoReward level="MED">standard</autoReward>
 		</event>
 	</choice>
@@ -698,7 +698,7 @@ One of the crew on the station offer to join your crew.</text>
   <choice>
     <text>Continue...</text>
     <event>
-      <text>"Renegade, keep your distance, we have just apprehended two civilians we believe to members of a pirate organisation. We're just hoping we don't get any pirates showing up for revenge."</text>
+      <text>"Renegade, keep your distance, we have just apprehended two civilians we believe to members of a pirate organization. We're just hoping we don't get any pirates showing up for revenge."</text>
       <choice hidden="true">
         <text>Rescue the civilians.</text>
         <event>
@@ -797,7 +797,7 @@ One of the crew on the station offer to join your crew.</text>
     <choice hidden="true">
       <text>Investigate.</text>
       <event>
-        <text>As you move closer to the wreck it powers on. You recieve a transmission.
+        <text>As you move closer to the wreck it powers on. You receive a transmission.
 
 "Please help, We've been attacked by ghosts and my crew is dead. Either teleport me off this ship, or damage it enough that I can overload the reactor and teleport across via a personal teleporter."</text>
         <crewMember amount="1" class="unique_rad_scientist_tele">Dr. C. Swartwout</crewMember>
@@ -851,11 +851,11 @@ I don't suppose you can help me any further, my crew and I were in transit to on
     </beaconType>
     <text>You've arrived at the testing facility, it appears the cruiser is just being rolled out for testing now.
     
-Dr Swartwout joins you to watch the test, "All we're testing today is the capability for the cruiser to use it's weapons, we've brough over a rebel auto ship for the test."</text>
+Dr Swartwout joins you to watch the test, "All we're testing today is the capability for the cruiser to use it's weapons, we've brought over a rebel auto ship for the test."</text>
     <choice>
       <text>Continue...</text>
       <event>
-        <text>Just as the test fire is about to begin, the rebel autoship comes online and launches a hacking drone at the cruiser. You hear muffled suprise over the comms as the other scientists in the area realise what's happening.
+        <text>Just as the test fire is about to begin, the rebel autoship comes online and launches a hacking drone at the cruiser. You hear muffled surprise over the comms as the other scientists in the area realise what's happening.
         
 You move in to take out the drone before it does too much damage.</text>
         <ship load="SHIP_RAD_SCIENCE_REBELAUTO" hostile="true" />
@@ -881,8 +881,8 @@ You move in to take out the drone before it does too much damage.</text>
     </choice>
   </event>-->
   <event name="DESTROYED_RAD_SCIENCE_REBEL_AUTO">
-    <text>You managed to destroy the rebel autoship, however it apperas you were too slow, the hacking drone the rebel ship deployed succeeded in taking control of the science vessel and it's jumped away.
-The scientists were able to trace where it jumped off too though, hopefully you'll be able to recover the vessel, or atleast stop it falling into rebel hands.</text>
+    <text>You managed to destroy the rebel autoship, however it appears you were too slow, the hacking drone the rebel ship deployed succeeded in taking control of the science vessel and it's jumped away.
+The scientists were able to trace where it jumped off too though, hopefully you'll be able to recover the vessel, or at least stop it falling into rebel hands.</text>
     <autoReward level="MED">standard</autoReward>
     <quest event="RAD_SCIENCE_QUEST_SECOND"/>
   </event>
@@ -1003,7 +1003,7 @@ Just as you start moving towards the ship, it powers on it's weapons, looks like
 <textList name="TEXT_ENCOUNTER_PIRATE_RAD_SCIENCE_ONLY">
 	<text>The science fleet boasts a large amount of ships, but this also makes them a prime target for pirates in need of a new ride. A pirate controlled science ship approaches, weapons blazing.</text>
 	<text>A pirate ship, looking to test out the new gear they just stole from the Scientists, locks onto your ship and attacks!</text>
-	<text>At first you assume the ship here is just another ordinary scienctist ship, until you see the pirate paint decorating its hull. Pirates inbound!</text>
+	<text>At first you assume the ship here is just another ordinary scientist ship, until you see the pirate paint decorating its hull. Pirates inbound!</text>
 </textList>
 
 <event name="ENCOUNTER_REBEL_RAD_SCIENCE">
@@ -1016,7 +1016,7 @@ Just as you start moving towards the ship, it powers on it's weapons, looks like
 </event>
 <textList name="TEXT_ENCOUNTER_REBEL_RAD_SCIENCE">
 	<text>"The Rebellion shall never cease! All who ally with the Federation will be killed!" You doubt the moral superiority of murdering civilians only trying to protect their sectors, but if the Rebels want a fight, a fight they will get.</text>
-	<text>The Rebellion seem to hold a grudge against the Scientists, probably becuase they've lost their money at one too many Scientist Casinos. The Rebel ship here seems hell-bent on a fight, and since you're the only ship here they decide you will be a satisfactory opponent.</text>
+	<text>The Rebellion seem to hold a grudge against the Scientists, probably because they've lost their money at one too many Scientist Casinos. The Rebel ship here seems hell-bent on a fight, and since you're the only ship here they decide you will be a satisfactory opponent.</text>
 	<text>A Rebel ship has picked clean the remains of a Civilian station. Nearly seconds after you jump in they spot you and decide to make you their next target.</text>
 </textList>
 

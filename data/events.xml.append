@@ -54,11 +54,11 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 			
 			A scientist is waiting for you. "Uh, sorry about contacting you this way. We just couldn't risk this information leaking out. Your ship is fine, by the way."
 			The scientist gestures to the weapons console beside you. Your ship appears on the screen, unharmed.
-			"Oh right, I'm Goose. I'm the head of this labratory. You're the renegade we've been hearing about, right?"</text>
+			"Oh right, I'm Goose. I'm the head of this laboratory. You're the renegade we've been hearing about, right?"</text>
 			<choice hidden="true">
 				<text>Right.</text>
 				<event>
-					<text>"Excellent. We need your help with a certain issue regarding some rogue technology. However, we can't give you the details unless you're absolutly sure about helping."
+					<text>"Excellent. We need your help with a certain issue regarding some rogue technology. However, we can't give you the details unless you're absolutely sure about helping."
 					"Either way, feel free to browse our commercial technology, I'm sure someone like you could make use of it."</text>
 					<choice hidden="true">
 						<text>You'll help. [Random Quest]</text>
@@ -322,7 +322,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 	<text>"Most excellent. To begin with, understand that a lot of this is highly advanced, so try to keep it under wraps."
 	Goose walks you over to a terminal on the wall.
 	"Our current issue revolves this station design here." The scientist says, gesturing to the strange looking station design on the terminal screen.
-	"As you can see, we've equipped this station with a prototype jump drive, allowing us to move it between systems. It's not agile, but it works. Anyway, on a recent test drive, it was captured by pirates. Well... one pirate. And due to our overconfidence in the station defences, we have no way of tracking it down."
+	"As you can see, we've equipped this station with a prototype jump drive, allowing us to move it between systems. It's not agile, but it works. Anyway, on a recent test drive, it was captured by pirates. Well... one pirate. And due to our overconfidence in the station defenses, we have no way of tracking it down."
 	</text>
 	<choice hidden="true">
 		<text>Seems bleak. What do you want us to do?</text>
@@ -529,7 +529,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 </event>
 
 <event name="SURRENDER_RAD_DYNASTY_1">
-	<text>The ghosts hail you: "A most magnamonious display thou hast flourished upon our ship... What dost thou desire from us? Surely whatever thoust seek is not something we must perish over."</text>
+	<text>The ghosts hail you: "A most magnanimous display thou hast flourished upon our ship... What dost thou desire from us? Surely whatever thoust seek is not something we must perish over."</text>
 	<ship hostile="false"/>
 	<choice hidden="true">
 		<text>"We need any information you have about a spaceborne fire of some kind. Apparently it came through here recently."</text>
@@ -565,9 +565,9 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 </event>
 
 <event name="RAD_LAB_GHOST_1">
-	<text>"Most excellent, to begin with, understand that alot of this is highly advanced, so try to keep it under wraps."
+	<text>"Most excellent, to begin with, understand that a lot of this is highly advanced, so try to keep it under wraps."
 	Goose walks you over to a terminal on the wall.
-	"The problem is rather simple. One of our, uh, assets, ran away, and we'd like it back. We're prepared to pay hansomely for it's return."</text>
+	"The problem is rather simple. One of our, uh, assets, ran away, and we'd like it back. We're prepared to pay handsomely for it's return."</text>
 	<choice hidden="true">
 		<text>Seems simple enough, what's the catch?</text>
 		<event>
@@ -678,7 +678,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 			<choice>
 				<text>Who?</text>
 				<event>
-					<text>"The Dynasty. They're after me becuase I accidently set the break room on fire. I swear, I can't control it! Please take me back to your ship!"</text>
+					<text>"The Dynasty. They're after me because I accidentally set the break room on fire. I swear, I can't control it! Please take me back to your ship!"</text>
 					<choice hidden="true">
 						<text>Alright, we'll help.</text>
 						<event load="RAD_GHOST_BEFORE_FIGHT"/>
@@ -757,7 +757,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 							<text>Your crew cannot be cloned, as they are still alive.</text>
 					</removeCrew>
           <ship load="RAD_EXPERIMENT_ENEMY" hostile="true" />
-					<text>Just as you move to dock with the scientists, another large vessel jumps in, it imedietly fires some kinda of large net weapon at the scientist vessel, flinging them away, before turning to engage you.</text>
+					<text>Just as you move to dock with the scientists, another large vessel jumps in, it immediately fires some kinda of large net weapon at the scientist vessel, flinging them away, before turning to engage you.</text>
           <boarders min="1" max="1" class="phantom_experiment_alpha" />
           <choice>
             <text>Continue...</text>
@@ -850,7 +850,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 </event>
 
 <event name="RAD_LAB_ROGUE_1">
-	<text>Most excellent, to begin with, understand that alot of this is highly advanced, try to keep it underwraps."
+	<text>Most excellent, to begin with, understand that a lot of this is highly advanced, try to keep it under wraps."
 	Goose walks you over to a terminal on the wall.
 	"The issue we're facing is one of treachery. One of our own has made off with an advanced ship of ours. From what we've gathered they're looking to sell off the tech to the Zoltans. We need you to go intercept him and recover the ship, or at the very least stop it from getting sold off."</text>
 	<choice hidden="true">
@@ -896,7 +896,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 	<choice blue="true" req="zoltan">
 		<text>Request the Information under Exchange act 47-2 (Zoltan Crew)</text>
 		<event>
-			<text>After a quick scope out of the station, you identify a zoltan agent. After a quick exchange of scrap, you recieve the information you need and return to your ship.</text>
+			<text>After a quick scope out of the station, you identify a Zoltan agent. After a quick exchange of scrap, you receive the information you need and return to your ship.</text>
 			<item_modify>
 				<item type="scrap" min="-40" max="-40" />
 			</item_modify>
@@ -1031,7 +1031,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 		<event>
 			<text>You search through the office and find nothing useful.
 			The computer is locked up tight, and there's no convenient clues lying on the desk.
-			There is, however a nice hat hung up. Unfortunatly, it's not your size.</text>
+			There is, however a nice hat hung up. Unfortunately, it's not your size.</text>
 			<choice hidden="true">
 				<text>Go back.</text>
 				<event load="RAD_FLESH_RETURN"/>
@@ -1041,7 +1041,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 	<choice hidden="true">
 		<text>Look in the employee lounge.</text>
 		<event>
-			<text>The lounge was obvoisly in use before you came and interrupted them. There's a half eaten lunch sitting on the table, and someone made a mess of the space microwave. But it doesn't look like there's anything useful for you here.
+			<text>The lounge was obviously in use before you came and interrupted them. There's a half eaten lunch sitting on the table, and someone made a mess of the space microwave. But it doesn't look like there's anything useful for you here.
 			There's also a bathroom.</text>
 			<choice hidden="true" req="rad_flesh_quest">
 				<text>Check the bathroom.</text>
@@ -1103,7 +1103,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 		<event>
 			<text>You search through the office and find nothing useful.
 			The computer is locked up tight, and there's no convenient clues lying on his desk.
-			There is, however a nice hat hung up. Unfortunatly it's not your size.</text>
+			There is, however a nice hat hung up. Unfortunately it's not your size.</text>
 			<choice hidden="true">
 				<text>Go back.</text>
 				<event load="RAD_FLESH_RETURN"/>
@@ -1175,7 +1175,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 		<event>
 			<text>As you move closer, you notice the hull of the ship seems odd...
 			
-			You scan the ship, and discover the ship is alive! Or more accuratly, the hull is.
+			You scan the ship, and discover the ship is alive! Or more accurately, the hull is.
 			Just then the ship powers up their weapons. Looks like they've spotted you!
 			
 			Your scans indicate that the hull of the ship is able to heal itself. You'll need to stop it from healing itself if you want to kill it!</text>
@@ -1245,7 +1245,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
       <color r="0" g="255" b="255"/>
     </beaconType>
     <environment type="pulsar" />
-    <text>Unsuprisingly it's a pulsar.</text>
+    <text>Unsurprisingly it's a pulsar.</text>
     <variable name="rad_money_searched" op="add" val="1"/>
     <choice hidden="true" blue="false" req="rad_money_searched" lvl="0" max_lvl="2">
       <text>Continue</text>
@@ -1268,7 +1268,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 
   <event name="RAD_MONEY_3">
     <changeBackground>BG_DARK</changeBackground>
-    <text>You arrive at the beacon to find a planet with a small colony, it looks like they've been attacked recently as there is visable damage to the colony, and a large amount of scrap in orbit.
+    <text>You arrive at the beacon to find a planet with a small colony, it looks like they've been attacked recently as there is visible damage to the colony, and a large amount of scrap in orbit.
     You collect the scrap before peacefully landing at the colony.</text>
     <item_modify>
       <item type="scrap" min="15" max="25" />
@@ -1277,7 +1277,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
       <text>Continue...</text>
       <event>
         <changeBackground>BACK_EVENT_NEST</changeBackground>
-        <text>You're greeted by a member of the colony, "I hope you're not here to finish up what the last ship tried to do, we aren't defenceless you know."</text>
+        <text>You're greeted by a member of the colony, "I hope you're not here to finish up what the last ship tried to do, we aren't defenseless you know."</text>
         <choice hidden="true">
           <text>Explain why you're here.</text>
           <event>
@@ -1422,7 +1422,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
     <crewMember amount="1" class="slug_clansman">Reginald</crewMember>
     <ship load="MU_RAD_COLONY" hostile="true" />
     <changeBackground>BACK_EVENT_NEST</changeBackground>
-    <text>You pick up the captain of the ship, his name is reginald and he's the son of a rich tycoon.
+    <text>You pick up the captain of the ship; his name is Reginald and he's the son of a rich tycoon.
     
     You make your way back to the colony and power up your weapons, as soon as you do you receive a short communication from the colony.
     "I should have known you were one of them, come to finish us for good, well we can promiss you it won't be an easy fight!"
@@ -1438,7 +1438,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
     <text>You fly back down to the colony to report news of your success.
     
     "Excellent job Renegade, we won't question why you came, we're just glad you were able to help.
-    We've transfered some scrap up to you, additionally we've sent off our old training cruiser to the federation, it seems like it'll do them more good than it has done us."</text>
+    We've transferred some scrap up to you, additionally we've sent off our old training cruiser to the federation, it seems like it'll do them more good than it has done us."</text>
     <metaVariable name="rad_q6" op="set" val="1"/>
     <metaVariable name="rad_q10" op="add" val="1"/>
     <item_modify>
@@ -1479,8 +1479,8 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
   <!--FLESH B CRUISER-->
   
   <event name="RAD_SUPERGUN_1">
-    <text>"Ok, this task shouldn't be too complicated, One of our recent projects has been a collaboration with the engi, we were working on creating a ship capable of generating enough power to power up a zoltan shield without jumping.
-However the ship in question has gone missing, we suspect it's the work of the seperatists, however we aren't certain. We'll put you in contact with the engi incharge of the project, they should be able to help you figure out where they went."</text>
+    <text>"Ok, this task shouldn't be too complicated, One of our recent projects has been a collaboration with the Engi, we were working on creating a ship capable of generating enough power to power up a Zoltan shield without jumping.
+However the ship in question has gone missing, we suspect it's the work of the Separatists, however we aren't certain. We'll put you in contact with the Engi in charge of the project, they should be able to help you figure out where they went."</text>
     <choice>
       <text>I'll get on my way then.</text>
       <event>
@@ -1506,7 +1506,7 @@ However the ship in question has gone missing, we suspect it's the work of the s
   </event>
 
   <event name="DEAD_CREW_RAD_ENGIZOL">
-    <text>You've killed the crew of that Engi ship. It was suprising to see Zoltans crewing the ship, but you loot the remains either way.</text>
+    <text>You've killed the crew of that Engi ship. It was surprising to see Zoltans crewing the ship, but you loot the remains either way.</text>
     <autoReward level="HIGH">standard</autoReward>
     <choice>
       <text>Continue...</text>
@@ -1527,12 +1527,12 @@ However the ship in question has gone missing, we suspect it's the work of the s
     <choice>
       <text>Continue...</text>
       <event>
-        <text>A moment after you arrive you're hailed by an engi.
+        <text>A moment after you arrive, you're hailed by an Engi.
 "Greetings."
-"We were told of your arrival, It is well timed, we have just discovered where the seperatists escaped with the ship."
+"We were told of your arrival, It is well timed, we have just discovered where the Separatists escaped with the ship."
         </text>
         <choice>
-          <text>You're sure it's the seperatists?</text>
+          <text>You're sure it's the Separatists?</text>
           <event>
             <text>"Who else could have stolen the ship, except for one of our own."</text>
             <choice>
@@ -1545,9 +1545,9 @@ However the ship in question has gone missing, we suspect it's the work of the s
                 <choice>
                   <text>We'll be on our way...</text>
                   <event>
-                    <text>Just as you're leaving a ship jumps into the beacon, and immediately opens fire on any engi ships in the area.
+                    <text>Just as you're leaving a ship jumps into the beacon, and immediately opens fire on any Engi ships in the area.
 
-It appears to be an engi ship, but it has been painted weird colours.
+It appears to be an Engi ship, but it has been painted weird colours.
                     </text>
                     <ship load="MU_RAD_ENGIZOL" hostile="true" />
                     <choice hidden="true" max_group="1" blue="false">
@@ -1567,8 +1567,8 @@ It appears to be an engi ship, but it has been painted weird colours.
   <event name="RAD_SUPERGUN_6">
     <text>The Engi hail you again.
 "Excellent fighting captain."
-"During your fight we discovered that the ship was crewed by zoltans, and not the seperatists."
-"The seperatists must have struck a deal with the zoltans."
+"During your fight we discovered that the ship was crewed by Zoltans, and not the Separatists."
+"The Separatists must have struck a deal with the Zoltans."
 "We also managed to trace where the ship jumped from, we've uploaded the location to your ship."
 "Good Luck."
     </text>
@@ -1581,20 +1581,20 @@ It appears to be an engi ship, but it has been painted weird colours.
   </ship>
 
   <event name="DESTROYED_RAD_SEPSTAT">
-    <text>You've destroyed the seperatist ship. It seems like they had nothing to do with the missing ship, but you loot the remains either way.</text>
+    <text>You've destroyed the Separatist ship. It seems like they had nothing to do with the missing ship, but you loot the remains either way.</text>
     <autoReward level="MED">standard</autoReward>
   </event>
 
   <event name="DEAD_CREW_RAD_SEPSTAT">
-    <text>You've killed the crew of the seperatist ship. It seems like they had nothing to do with the missing ship, but you loot the remains either way.</text>
+    <text>You've killed the crew of the Separatist ship. It seems like they had nothing to do with the missing ship, but you loot the remains either way.</text>
     <autoReward level="HIGH">standard</autoReward>
   </event>
 
   <event name="RAD_SUPERGUN_3">
     <preventQuest />
     <preventFleet />
-    <text>You arrive at the beacon and discover something odd, it appears to be a seperatist education ship.
-You could attack the ship, they might have something to do with the missing ship, but it does seem like the engi just sent you here to destroy the seperatists.
+    <text>You arrive at the beacon and discover something odd, it appears to be a Separatist education ship.
+You could attack the ship, they might have something to do with the missing ship, but it does seem like the Engi just sent you here to destroy the Separatists.
     </text>
     <ship load="MU_RAD_SEPSTAT" hostile="false" />
     <choice>
@@ -1622,7 +1622,7 @@ You could attack the ship, they might have something to do with the missing ship
   </ship>
 
   <event name="DESTROYED_RAD_ENGIFINAL">
-    <text>You've destroyed the zoltan-engi ship. You send out a message to the scientists letting them know you've recovered the ship.</text>
+    <text>You've destroyed the Zoltan-Engi ship. You send out a message to the scientists letting them know you've recovered the ship.</text>
     <autoReward level="MED">standard</autoReward>
     <choice>
       <text>Continue...</text>
@@ -1631,7 +1631,7 @@ You could attack the ship, they might have something to do with the missing ship
   </event>
 
   <event name="DEAD_CREW_RAD_ENGIFINAL">
-    <text>You've killed the crew of the zoltan-engi ship. You send out a message to the scientists letting them know you've recovered the ship.</text>
+    <text>You've killed the crew of the Zoltan-Engi ship. You send out a message to the scientists letting them know you've recovered the ship.</text>
     <autoReward level="HIGH">standard</autoReward>
     <choice>
       <text>Continue...</text>
@@ -1642,8 +1642,8 @@ You could attack the ship, they might have something to do with the missing ship
   <event name="RAD_SUPERGUN_7">
     <preventQuest />
     <preventFleet />
-    <text>You arrive at the beacon, and immediately notice an odd looking engi ship. You scan it and discover it's the stolen ship, the ship appears to be offline, you can see drones working on it.
-However next to the ship is another one of the zoltan manned engi ships, it looks like you're going to have to take it out in order to recover the ship.
+    <text>You arrive at the beacon, and immediately notice an odd looking Engi ship. You scan it and discover it's the stolen ship, the ship appears to be offline, you can see drones working on it.
+However next to the ship is another one of the Zoltan manned Engi ships, it looks like you're going to have to take it out in order to recover the ship.
     </text>
     <ship load="MU_RAD_ENGIZOLTON" hostile="true" />
     <choice>
@@ -1669,8 +1669,8 @@ However next to the ship is another one of the zoltan manned engi ships, it look
   <!--UNDERSHIELD CRUISER-->
 
   <event name="RAD_UNDER_1">
-    <text>"This one is quick and simple, we were hired by wealthy mercenary group to design and build a special kind of super shield for them, one that is able to be deployed underneathe the regular shield, rather than on top of it"
-"We successfully created the technology and equiped it on a test ship for the mercenary group, with the intention of allowing them to test the shield before paying us to install it on their own ships."</text>
+    <text>"This one is quick and simple, we were hired by wealthy mercenary group to design and build a special kind of super shield for them, one that is able to be deployed underneath the regular shield, rather than on top of it"
+"We successfully created the technology and equipped it on a test ship for the mercenary group, with the intention of allowing them to test the shield before paying us to install it on their own ships."</text>
     <choice>
       <text>They stole the test ship didn't they.</text>
       <event>
@@ -1713,7 +1713,7 @@ However next to the ship is another one of the zoltan manned engi ships, it look
   <event name="RAD_UNDER_2">
     <preventQuest />
     <preventFleet />
-    <text>You arrive at the beacon, it looks like the scientist's tracker is reliable, infront of you is the test cruiser and you can an argument happening on an open frequency.
+    <text>You arrive at the beacon, it looks like the scientist's tracker is reliable, in front of you is the test cruiser and you can an argument happening on an open frequency.
 "What do you mean the ship will blow up!"
 "I mean if we take out the super shield the ship will blow up."
 "You mean to tell me the scientist designed the ship to stop us takin- wait that was probably a good decision on their part considering we stole the ship..."
@@ -1728,10 +1728,10 @@ It seems the mercs just noticed you, they shut off their communications and are 
   </event>
 
   <event name="RAD_UNDER_3">
-    <text>Instead of the scientists themselves, a small drone shows up and imedietly moves towards the wreck of the test ship.
+    <text>Instead of the scientists themselves, a small drone shows up and immediately moves towards the wreck of the test ship.
 The ship explodes.
 A few moments later the drone emerges from the debris and delivers you a augment, it appears it has extracted the super shield from the ship.
-You recieve a transmission. "We've taken the liberty of paying you with the super shield from the test ship, we've also sent along the design we made for the mercenaries to the federation, we have no use of it now."</text>
+You receive a transmission. "We've taken the liberty of paying you with the super shield from the test ship, we've also sent along the design we made for the mercenaries to the federation, we have no use of it now."</text>
     <augment name="RAD_ZS_UNDER"/>
     <metaVariable name="rad_q8" op="set" val="1"/>
     <metaVariable name="rad_q10" op="add" val="1"/>
@@ -1743,7 +1743,7 @@ You recieve a transmission. "We've taken the liberty of paying you with the supe
   <event name="RAD_MIRROR_1">
     <text>"You've heard of the Crystals right?"
 "Well anyway, we were working on a project with them to develop a special kind of crystal structure capable of reflecting beams."
-"We sold of the formula to the Crystals, however they've come back to us with a problem, somehow, during transit a group of rebels also managed to get their hands on the technology, they've been a problem for the cystals and as such the Crystals have hired us to take care of the rebels."</text>
+"We sold of the formula to the Crystals, however they've come back to us with a problem, somehow, during transit a group of rebels also managed to get their hands on the technology, they've been a problem for the crystals and as such the Crystals have hired us to take care of the rebels."</text>
     <choice>
       <text>Continue...</text>
       <event>
@@ -1888,7 +1888,7 @@ You tell them what happened and they begin firing on the base.
   <!--WARPED CRUISER-->
 
   <event name="RAD_WARPED_1">
-    <text>"Ok, well this is a bit embarrasing, but we lost a station."
+    <text>"Ok, well this is a bit embarrassing, but we lost a station."
 "Like we left a station at this one beacon, and then we went back and it was gone."
 "Anyway, we need you to work out what happened, we're a bit clueless on this occasion."</text>
     <choice>
@@ -1913,7 +1913,7 @@ You tell them what happened and they begin firing on the base.
   </ship>
 
   <event name="DESTROYED_RAD_CRYSTALENEMY2">
-    <text>You've destroyed the crystal ship, it appeares to be covered in some strange runes, however you're unable to translate the symbols.</text>
+    <text>You've destroyed the crystal ship, it appears to be covered in some strange runes, however you're unable to translate the symbols.</text>
     <autoReward level="MED">standard</autoReward>
     <choice hidden="true">
       <text>Continue...</text>
@@ -1926,7 +1926,7 @@ You tell them what happened and they begin firing on the base.
   </event>
 
   <event name="DEAD_CREW_RAD_CRYSTALENEMY2">
-    <text>You've killed the crew of the crystal ship, it appeares to be covered in some strange runes, however you're unable to translate the symbols.</text>
+    <text>You've killed the crew of the crystal ship, it appears to be covered in some strange runes, however you're unable to translate the symbols.</text>
     <autoReward level="HIGH">standard</autoReward>
     <choice hidden="true">
       <text>Continue...</text>
@@ -1979,11 +1979,11 @@ Unfortunately this doesn't seem to damage the ship much, and instead the ship is
       <text>Continue...</text>
       <event>
         <text>You board the station and find it empty.
-You search the ship and find it empty of anything useful, however in one of the computers you find the cooridinates of a strange sector, however they appear to be written in some strange characters that you can't decypher, you'll need some kind of translator to decypher it.</text>
+You search the ship and find it empty of anything useful, however in one of the computers you find the coordinates of a strange sector, however they appear to be written in some strange characters that you can't decipher, you'll need some kind of translator to decipher it.</text>
         <choice hidden="true" req="UPG_AETHER_TRANSLATOR" blue="true">
-          <text>(Runic Translator) Translate the cooridinates.</text>
+          <text>(Runic Translator) Translate the coordinates.</text>
           <event>
-            <text>You're able decypher the cooridinates, looks like you'll be able to reroute there at the next exit beacon.</text>
+            <text>You're able to decipher the coordinates; looks like you'll be able to reroute there at the next exit beacon.</text>
             <variable name="coords_rad_science" op="set" val="1"/>
             <choice>
               <text>Contact the scientists</text>
@@ -2011,7 +2011,7 @@ You search the ship and find it empty of anything useful, however in one of the 
     <choice>
       <text>"Simple enough."</text>
       <event>
-        <text>"Anyway, here's the coordinates to one of the transports they robbed, feel free to browse our commercial goods aswell."</text>
+        <text>"Anyway, here's the coordinates to one of the transports they robbed, feel free to browse our commercial goods as well."</text>
         <quest event="RAD_SCRAP_2"/>
         <store>STORE_RADLAB</store>
       </event>
@@ -2024,12 +2024,12 @@ You search the ship and find it empty of anything useful, however in one of the 
   </ship>
 
   <event name="DESTROYED_RAD_SCRAP_LANIUS1">
-    <text>You've cleared off the lanius, you take the scrap for yourself before searching for clues on the lanius ship...</text>
+    <text>You've cleared off the Lanius, you take the scrap for yourself before searching for clues on the Lanius ship...</text>
     <autoReward level="MED">standard</autoReward>
     <choice hidden="true">
       <text>Continue...</text>
       <event>
-        <text>You don't find much, but you're able to find the cooridinates to another beacon onboard, perhaps this will lead you to the center of the crime ring.</text>
+        <text>You don't find much, but you're able to find the coordinates to another beacon onboard, perhaps this will lead you to the center of the crime ring.</text>
         <quest event="RAD_SCRAP_3" />
       </event>
     </choice>
@@ -2042,11 +2042,11 @@ You search the ship and find it empty of anything useful, however in one of the 
       <color r="255" g="223" b="0"/>
     </beaconType>
     <ship load="RAD_SCRAP_LANIUS1" hostile ="false" />
-    <text>You've arrived at the beacon, the wreck of one of the scientist ships lies nearby. You notice a small but strange lanius vessel nearby, but it appears abandoned.</text>
+    <text>You've arrived at the beacon, the wreck of one of the scientist ships lies nearby. You notice a small but strange Lanius vessel nearby, but it appears abandoned.</text>
     <choice>
       <text>Investigate...</text>
       <event>
-        <text>Just as you begin to approach the two ships, the wreck of the science cruiser powers on, looks like you interrupted the lanius in the middle of their looting.</text>
+        <text>Just as you begin to approach the two ships, the wreck of the science cruiser powers on, looks like you interrupted the Lanius in the middle of their looting.</text>
         <ship hostile="true" />
         <choice>
           <text>Continue...</text>
@@ -2062,7 +2062,7 @@ You search the ship and find it empty of anything useful, however in one of the 
   </ship>
 
   <event name="DESTROYED_RAD_SCRAP_LANIUS2">
-    <text>With the massive cruiser dealt with the other lanius in the area scatter, looks like you've saved the day, for now atleast...</text>
+    <text>With the massive cruiser dealt with the other Lanius in the area scatter, looks like you've saved the day, for now at least...</text>
     <autoReward level="HIGH">standard</autoReward>
     <weapon name="RAD_COINGUN" />
     <unlockCustomShip silent="false">PLAYER_SHIP_RAD_MANTIS_2</unlockCustomShip>
@@ -2076,7 +2076,7 @@ You search the ship and find it empty of anything useful, however in one of the 
       <color r="255" g="223" b="0"/>
     </beaconType>
     <img back="BG_RAD_SCRAPYARD" planet="NONE" />
-    <text>You've arrived at the beacon to discover a massive scrapyard, you spot several small lanius vessels darting about, moving between pieces of scrap.</text>
+    <text>You've arrived at the beacon to discover a massive scrapyard, you spot several small Lanius vessels darting about, moving between pieces of scrap.</text>
     <choice>
       <text>Continue...</text>
       <event>
@@ -2094,7 +2094,7 @@ The ship powers on it's weapons, looks like they don't like intruders in their s
   
   <!-- MineLayer Quest -->
   <event name="RAD_MINES_1">
-    <text>"For once we don't actually need you to hunt anyone down, this time we require you to test a prototype weapon, specifically a minelauncher."</text>
+    <text>"For once we don't actually need you to hunt anyone down, this time we require you to test a prototype weapon, specifically a mine launcher."</text>
     <weapon name="RAD_MINELAYER" />
     <item_modify>
       <item type="missiles" min="10" max="10" />
@@ -2121,7 +2121,7 @@ The ship powers on it's weapons, looks like they don't like intruders in their s
     <beaconType id="map_icon_rad_science_meet" global="true">
       <color r="255" g="255" b="255"/>
     </beaconType>
-    <text>Just as you arrive you recieve another transmission from the scientists, it appears they've been waylaid enroute to the rendezvous location, they've uploaded a new location to meet up.</text>
+    <text>Just as you arrive you receive another transmission from the scientists, it appears they've been waylaid en route to the rendezvous location, they've uploaded a new location to meet up.</text>
     <quest event="RAD_MINES_5"/>
     <jumpEvent>RAD_MINES_4</jumpEvent>
   </event>
@@ -2180,7 +2180,7 @@ The pirate cuts off communications and powers up his weapons, However, It might 
   </event>
 
   <event name="RAD_B_PIRATE_RIGGER_DESTROYED">
-    <text>You've destroyed the pirates and any hope of peace with their boss, atleast you got their loot.</text>
+    <text>You've destroyed the pirates and any hope of peace with their boss, at least you got their loot.</text>
     <autoReward level="MED">standard</autoReward>
     <choice>
       <text>Continue...</text>
@@ -2219,7 +2219,7 @@ The pirate cuts off communications and powers up his weapons, However, It might 
       <text>Continue...</text>
       <!--HOSTILE QUEST -> Fight Scientist -> Hunt down pirate leader -> Profit?-->
       <event>
-        <text>"Hello Renegade, unfortunately we can't let you live, it wouldn't be good for buisness if we just let you go around killing our customers, prepare to die."</text>
+        <text>"Hello Renegade, unfortunately we can't let you live, it wouldn't be good for business if we just let you go around killing our customers, prepare to die."</text>
         <ship load="RAD_H_SCIENCE_PIRATE" hostile="true"/>
         <choice>
           <text>Continue...</text>
@@ -2266,7 +2266,7 @@ The scientists contact you "Listen, if you can buy us some time we'll be able to
   </event>
 
   <event name="RAD_B_PIRATE_MSHIP_DEADCREW">
-    <text>You've cleared all the pirates out of the ship, allowing you to collect eveything not tied down.</text>
+    <text>You've cleared all the pirates out of the ship, allowing you to collect everything not tied down.</text>
     <autoReward level="HIGH">standard</autoReward>
     <choice>
       <text>Continue...</text>
@@ -2289,7 +2289,7 @@ Before leaving however they did transmit where they were going incase you surviv
     <text>Suddenly the pirate ship deactivates their weapons, and the scientists tell you to hold your fire, it appears they were successful in convincing the pirates to hold off.
     
 "Well, we appreciate you not killing our men earlier, however you'ff still done a serious bit of damage to our shipss, and fur that you'f got to pay."
-"The Scientists have kindly volenteered your help with a problem of ours, specifically we need you to go deal with a federation cruiser that has been causin problems for us.</text>
+"The Scientists have kindly volunteered your help with a problem of ours, specifically we need you to go deal with a Federation cruiser that has been causin' problems for us.</text>
     <choice>
       <text>Continue...</text>
       <event>
@@ -2307,7 +2307,7 @@ Before leaving however they did transmit where they were going incase you surviv
     </beaconType>
     <text>You arrive at the beacon and immediately notice your engines have been remotely disabled.
     
-"Hello Renegade, unfortunately we can't let you live, it wouldn't be good for buisness if we just let you go around killing our customers, prepare to die."</text>
+"Hello Renegade, unfortunately we can't let you live, it wouldn't be good for business if we just let you go around killing our customers, prepare to die."</text>
     <status type="limit" target="player" system="engines" amount="0" />
     <ship load="RAD_B_SCIENCE_PIRATE" hostile="true"/>
     <choice>
@@ -2466,7 +2466,7 @@ Before leaving however they did transmit where they were going incase you surviv
   </event>
 
   <event name="RAD_H_PIRATE_MSHIP_DEADCREW">
-    <text>You've cleared all the pirates out of the ship, allowing you to collect eveything not tied down.</text>
+    <text>You've cleared all the pirates out of the ship, allowing you to collect everything not tied down.</text>
     <autoReward level="HIGH">standard</autoReward>
     <choice>
       <text>Continue...</text>

@@ -42,7 +42,7 @@ Click to see more info.</text>
 <text name="tip_lightning">Lightning Weapons jump to an adjacent room, and deal the same damage again. They repeat this again after the first jump.</text>
 
   <text name="rad_tip_combiner">Fires several projectiles at once with a small radius, similar to a flak weapon.</text>
-<text name="rad_tip_laser_smart">Smart weapons override your manual targetting based on some priority list.</text>
+<text name="rad_tip_laser_smart">Smart weapons override your manual targeting based on some priority list.</text>
 <text name="rad_tip_focus_burst">Tip: Burst pinpoint beams trade the high damage of most pinpoints for a burst of multiple consecutive low power beams, allowing for a shorter charge time when compared with normal pinpoint beams.</text>
 
 </FTL>

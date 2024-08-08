@@ -559,7 +559,7 @@
 	<tip>tip_focus</tip>
 	<title>Burst Beam Projectile</title>
 	<short>Burst Beam Projectile</short>
-	<desc>YOU SOULD NEVER SEE THIS</desc>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
 	<damage>1</damage>
   <shieldDamage damage="1" superDamage="1"/>
@@ -593,7 +593,7 @@
 	<tip>tip_focus</tip>
 	<title>Burst Beam Projectile</title>
 	<short>Burst Beam Projectile</short>
-	<desc>YOU SOULD NEVER SEE THIS</desc>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
 	<damage>0</damage>
   <shieldDamage damage="1" superDamage="1"/>
@@ -801,7 +801,7 @@
     <tip>rad_tip_laser_smart</tip>
     <title>Smart Laser</title> 
     <short>Smart Laser</short>
-    <desc>This weapon has a built in AI that takes targetting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines, and finally after that it will target the designated room.</desc>
+    <desc>This weapon has a built in AI that takes targeting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines, and finally after that it will target the designated room.</desc>
     <tooltip>Fires multiple lasers and automatically targets different systems.</tooltip> 
     <damage>1</damage>
     <accuracyMod>25</accuracyMod>
@@ -842,7 +842,7 @@
     <tip>rad_tip_laser_smart</tip>
     <title>Smart Laser</title>
     <short>Smart Laser</short>
-    <desc>This weapon has a built in AI that takes targetting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines, and finally after that it will target the designated room.</desc>
+    <desc>This weapon has a built in AI that takes targeting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines, and finally after that it will target the designated room.</desc>
     <tooltip>Fires multiple lasers and automatically targets different systems.</tooltip>
     <damage>1</damage>
     <shots>3</shots>
@@ -1021,7 +1021,7 @@
 	<tip>tip_crew</tip>
 	<title>Repulsor Drone</title>
 	<short>Repulsor</short>
-	<desc>Controllable utility drone that provides protection to the room it's in by repelling any projectiles targetting that room.
+	<desc>Controllable utility drone that provides protection to the room it's in by repelling any projectiles targeting that room.
     
 -75 HP, 2x movement speed</desc>
 	<power>2</power>
@@ -1046,7 +1046,7 @@
 	<tip>tip_crew</tip>
 	<title>Repulsor Drone</title>
 	<short>Repulsor</short>
-	<desc>Controllable utility drone that provides protection to the room it's in by repelling any projectiles targetting that room.
+	<desc>Controllable utility drone that provides protection to the room it's in by repelling any projectiles targeting that room.
     
 -75 HP, 2x movement speed</desc>
 	<power>2</power>
@@ -1509,7 +1509,7 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 	<type>LASER</type>
 	<title>Drone Zapper MK III</title>
 	<short>Zapper III</short>
-	<desc>This weapon won't do much to an enemy ship, but it will automatically target and fire apon both enemy combat, and defence drones.</desc>
+	<desc>This weapon won't do much to an enemy ship, but it will automatically target and fire upon both enemy combat, and defense drones.</desc>
 	<tooltip>Fires multiple lasers and automatically targets different systems.</tooltip> 
     <damage>0</damage>
     <shots>1</shots>
@@ -1546,7 +1546,7 @@ Luckily, this ship's teleporter is equipped with a special failsafe feature that
 	<tip>tip_focus</tip>
 	<title>Burst Beam Projectile</title>
 	<short>Burst Beam Projectile</short>
-	<desc>YOU SOULD NEVER SEE THIS</desc>
+	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
 	<damage>0</damage>
 	<sysDamage>0</sysDamage>
@@ -1864,7 +1864,7 @@ This is because the systems are designed for low skill crew members, and so high
     <class>Yacht Class Cruiser</class>
     <name>Expensive</name>
     <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
-    <desc>After a serious heist you've managed to secure alot of gold, however you still don't have anywhere to put your scrap.</desc>
+    <desc>After a serious heist you've managed to secure a lot of gold, however you still don't have anywhere to put your scrap.</desc>
     <systemList>
       <battery power="1" room="12" max="3" start="false" img="room_battery_13" />
       <cloaking power="1" room="10" start="false" img="room_cloaking" />
@@ -2028,7 +2028,7 @@ Weapons charge 50% faster.</desc>
     <title>Shield Drain Beam</title>
     <short>S-Drain Beam</short>
     <desc>YOU SHOULD NEVER SEE THIS</desc>
-    <descriptionOverride>This weapon completely drains the shield of the target, allowing your weapons to wreck havok on their systems.
+    <descriptionOverride>This weapon completely drains the shield of the target, allowing your weapons to wreck havoc on their systems.
 It will also completely destroy a super shield, however it will require a second shot to drain the shield after.
       
 Stats:
@@ -2242,7 +2242,7 @@ The shield generator now generates Super Shield layers instead of normal shield 
     <unlock id="ship_PLAYER_SHIP_RAD_GHOST_2_unlock"/>
     <desc>This ship is able to deploy a revolutionary Zoltan under-shield.&#xD;
 
-The 4 artillery weapons traditionally deployed on a vessel like this have been swapped out for special devices that allow the shield to be deployed outside of the zoltan shield.
+The 4 artillery weapons traditionally deployed on a vessel like this have been swapped out for special devices that allow the shield to be deployed outside of the Zoltan shield.
     </desc>
     <systemList>
       <battery power="1" room="11" start="false" img="room_battery_4" />
@@ -2520,7 +2520,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <tip>tip_focus</tip>
     <title>Lightning Beam Projectile</title>
     <short>Lightning Beam Projectile</short>
-    <desc>YOU SOULD NEVER SEE THIS</desc>
+    <desc>YOU SHOULD NEVER SEE THIS</desc>
     <tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
     <damage>0</damage>
     <shieldDamage damage="1" superDamage="1"/>
@@ -2914,7 +2914,7 @@ For every tile the beam hits, it pulls an asteroid in towards the tile.</desc>
     <class>Mirror Cruiser</class>
     <name>Inflection</name>
     <unlock id="ship_PLAYER_SHIP_RAD_CRYSTAL_unlock"/>
-    <desc>This Ship makes use of a mysterious crystaline structure able to reflect beams straight back at the enemy.&#xD;
+    <desc>This Ship makes use of a mysterious crystalline structure able to reflect beams straight back at the enemy.&#xD;
 It also provides 5 super hull points.
     </desc>
     <systemList>
@@ -3555,7 +3555,7 @@ The beam does 1 damage, and gains an additional half damage for each power in th
 	  <name>Sputnik</name>
     <unlock id="ship_PLAYER_SHIP_RAD_CORVETTE_unlock"/>
 	  <desc>On the smaller end of space craft, this machine is still a capable weapon with 6 weapon slots.&#xD;
-Due to the small size, the reactor is only powerful enough to provide for 1 power weapons, creatly limiting your options.</desc>
+Due to the small size, the reactor is only powerful enough to provide for 1 power weapons, greatly limiting your options.</desc>
 	  <systemList>
 		  <battery power="1" room="10" start="false" img="room_battery" />
 		  <cloaking power="1" room="6" start="false" img="room_cloaking_rad" />
@@ -4459,7 +4459,7 @@ When the projectile splits each new projectile will deviate from the impact poin
     <title>Hektar Modular Laser Artillery</title>
     <short>Hektar Modular Laser Artillery</short>
     <desc>
-      [BASE COOLDOWN: 15] Fires 3 lasers by defualt, can install an infinite number of modular components.
+      [BASE COOLDOWN: 15] Fires 3 lasers by default, can install an infinite number of modular components.
     </desc>
     <tooltip>Modular Laser.</tooltip>
     <damage>1</damage>
@@ -4485,7 +4485,7 @@ When the projectile splits each new projectile will deviate from the impact poin
   <augBlueprint name="RAD_DOCKING_DRILL">
     <title>Docking Drill</title>
     <desc>Enables you to attach yourself to the side of the enemy ship.
-When you do so your teleporter cooldown becomes instantanous, however this will also apply to the enemy.
+When you do so your teleporter cooldown becomes instantaneous, however this will also apply to the enemy.
 This will also disable the heal on teleportation effect if you choose to dock with the enemy.
 Additionally this will make projectiles undodgeable for both you and your enemy (excluding when cloaked).
 The enemy will be unable to run away for 2 minutes if you dock with them.</desc>
@@ -4820,7 +4820,7 @@ Increases scrap gain by 25%</desc>
     <tip>tip_combat</tip>
     <title>The WonderDrone+ (tm)</title>
     <short>WonderDrone+</short>
-    <desc>An upgraded varient of the wonderdrone, capable of powering all 4 weapons at once, those being a missile, an ion, a beam, and a laser.</desc>
+    <desc>An upgraded variant of the wonderdrone, capable of powering all 4 weapons at once, those being a missile, an ion, a beam, and a laser.</desc>
     <power>3</power>
     <cooldown>1000</cooldown>
     <dodge>0</dodge>
@@ -4856,7 +4856,7 @@ Increases scrap gain by 25%</desc>
     <tip>tip_combat</tip>
     <title>Burst Drone MK I</title>
     <short>Burst Drone I</short>
-    <desc>An upgraded varient of the wonderdrone, capable of powering all 4 weapons at once, those being a missile, an ion, a beam, and a laser.</desc>
+    <desc>An upgraded variant of the wonderdrone, capable of powering all 4 weapons at once, those being a missile, an ion, a beam, and a laser.</desc>
     <power>3</power>
     <cooldown>1000</cooldown>
     <dodge>0</dodge>
@@ -5278,7 +5278,7 @@ Every time it charges it will construct another time bomb.
 <shipBlueprint name="PLAYER_SHIP_RAD_MINE_2" layout="radp_minelayer_b" img="radp_minelayer_b">
 	<class>Payload Cruiser</class>
 	<name>The Howitzer</name>
-	<desc>A missile heavy cruiser designed wreck havok amonst the enemy crew with secondary payloads of walking bombs installed in every missile.</desc>
+	<desc>A missile heavy cruiser designed to wreak havoc amongst the enemy crew with secondary payloads of walking bombs installed in every missile.</desc>
   <unlock id="ship_PLAYER_SHIP_RAD_MINE_2_unlock"/>
 	<systemList>
 		<battery power="1" room="7" start="false" img="room_battery_3" />
@@ -5353,7 +5353,7 @@ Every time it charges it will construct another time bomb.
 <shipBlueprint name="PLAYER_SHIP_RAD_MINE_3" layout="radp_minelayer_c" img="radp_minelayer_c">
 	<class>Minelayer Cruiser</class>
 	<name>The Mine Flayer</name>
-	<desc>Able to sustain almost unparalled levels of destruction. This ship is unable to mount weapons, however it doesn't really need them when the twin drone factories can supply so many mines.</desc>
+	<desc>Able to sustain almost unparalleled levels of destruction. This ship is unable to mount weapons, however it doesn't really need them when the twin drone factories can supply so many mines.</desc>
   <unlock id="ship_PLAYER_SHIP_RAD_STATION_3_unlock"/>
 	<systemList>
 		<artillery power="1" room="22" start="true" weapon="ARTILLERY_RAD_DD" img="room_artillery" />

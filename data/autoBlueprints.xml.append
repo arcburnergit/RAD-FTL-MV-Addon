@@ -202,7 +202,7 @@
 
 <!--STATION-->
 <shipBlueprint name="MU_CIVILIAN_LAB" layout="mu_civilian_lab" img="mu_civilian_lab">
-	<class>Union Labratory</class>
+	<class>Union Laboratory</class>
 	<systemList>
 		<battery power="1" max="2" room="10" start="false" />
 		<doors power="1" max="3" room="8" start="true" />
@@ -351,7 +351,7 @@
 </shipBlueprint>
 
 <shipBlueprint name="MU_RADLAB_STATION" layout="mu_radlab_station" img="mu_radlab_station">
-	<class>R&amp;D Labratory</class>
+	<class>R&amp;D Laboratory</class>
 	<systemList>
 		<cloaking power="1" max="1" room="4" start="true" />
 		<clonebay power="1" max="3" room="2" start="false" />
@@ -816,7 +816,7 @@
   </shipBlueprint>
 
   <shipBlueprint name="RAD_SCIENCE_ASSUALT" layout="rad_science_assualt" img="rad_science_assualt">
-    <class>Scientist Assualt Cruiser</class>
+    <class>Scientist Assault Cruiser</class>
     <minSector>1</minSector>
     <maxSector>8</maxSector>
     <systemList>
@@ -846,7 +846,7 @@
   </shipBlueprint>
 
   <shipBlueprint name="RAD_SCIENCE_ASSUALT_ELITE" layout="rad_science_assualt_elite" img="rad_science_assualt_elite">
-    <class>Elite Scientist Assualt Cruiser</class>
+    <class>Elite Scientist Assault Cruiser</class>
     <minSector>1</minSector>
     <maxSector>8</maxSector>
     <systemList>

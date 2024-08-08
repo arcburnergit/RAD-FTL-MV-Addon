@@ -9,7 +9,7 @@
     </choice>
   </event>
   <event name="RAD_SCIENCE_WARP">
-    <text>Name: Scienctist Sector
+    <text>Name: Scientist Sector
 Type: Neutral
 Unique: True
 Dominant Faction: N/A
@@ -44,7 +44,7 @@ INSERT LORE HERE
 
   <event name="LIGHTSPEED_SECTOR_WARP_RAD_SCIENCE">
     <text>You are about to reroute. Below is the Atlas entry for this sector.
-Name: Scienctist Sector
+Name: Scientist Sector
 Type: Neutral
 Unique: True
 Dominant Faction: N/A
@@ -78,7 +78,7 @@ The main base of operations for the scientists. The scientists keep to themselve
   
   <event name="LIGHTSPEED_SECTOR_WARP_RAD_SCIENCE_BOSS">
     <text>You are about to reroute. Below is the Atlas entry for this sector.
-Name: Scienctist Sector
+Name: Scientist Sector
 Type: Neutral
 Unique: True
 Dominant Faction: N/A

@@ -1939,7 +1939,7 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManage
         local weaponCount = 0
         for weapon in vter(shipManager:GetWeaponList()) do
             --log(weapon.name)
-            if not weapon:IsChargedGoal() then 
+            if (not weapon:IsChargedGoal()) and weapon.powered then
                 log("Add weapon")
                 table.insert(weaponList, weapon)
                 weaponCount = weaponCount + 1

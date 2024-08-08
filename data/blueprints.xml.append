@@ -2404,19 +2404,20 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <stackable>false</stackable>
   </augBlueprint>
 
-
   <weaponBlueprint name="RAD_ZSGUN_3">
-    <type>LASER</type>
+    <type>BOMB</type>
     <title>Super Shield MK III</title>
     <short>Shield III</short>
     <desc>This weapon won't do much to an enemy ship, but it will recharge 3 energy shield layers every time it charges and fires. </desc>
     <tooltip>Generates 3 Zoltan Shield Layers.</tooltip>
     <damage>0</damage>
+    <missiles>0</missiles>
+    <accuracyMod>200</accuracyMod>
     <shots>1</shots>
     <sp>0</sp>
     <fireChance>0</fireChance>
     <breachChance>0</breachChance>
-    <cooldown>20</cooldown>
+    <cooldown>18</cooldown>
     <power>3</power>
     <cost>80</cost>
     <bp>4</bp>
@@ -2442,12 +2443,14 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
   </weaponBlueprint>
 
   <weaponBlueprint name="RAD_ZSGUN_2">
-    <type>LASER</type>
+    <type>BOMB</type>
     <title>Super Shield MK II</title>
     <short>Shield II</short>
     <desc>This weapon won't do much to an enemy ship, but it will recharge 2 energy shield layers every time it charges and fires. </desc>
     <tooltip>Generates 2 Zoltan Shield Layers.</tooltip>
     <damage>0</damage>
+    <missiles>0</missiles>
+    <accuracyMod>200</accuracyMod>
     <shots>1</shots>
     <sp>0</sp>
     <fireChance>0</fireChance>
@@ -2479,12 +2482,14 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
   </weaponBlueprint>
   
   <weaponBlueprint name="RAD_ZSGUN_1">
-    <type>LASER</type>
+    <type>BOMB</type>
     <title>Super Shield MK I</title>
     <short>Shield I</short>
     <desc>This weapon won't do much to an enemy ship, but it will recharge an energy shield layer every time it charges and fires. </desc>
     <tooltip>Generates a Zoltan Shield Layer.</tooltip>
     <damage>0</damage>
+    <missiles>0</missiles>
+    <accuracyMod>200</accuracyMod>
     <shots>1</shots>
     <sp>0</sp>
     <fireChance>0</fireChance>

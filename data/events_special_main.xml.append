@@ -3,7 +3,7 @@
   <mod:findName type="event" name="START_BEACON_REAL" limit="1">
     <mod-append:eventButton name="ADDON_RAD">
       <event load="ADDON_RAD_INFO" />
-      <image border="0">addons/rad</image>
+      <image border="0">addons/rad2</image>
       <customLocation x="355" y="7" />
       <tooltip id="addon_hover_rad2" />
       <jumpClear>false</jumpClear>

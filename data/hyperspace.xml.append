@@ -667,16 +667,16 @@
   </aug>
   <aug name="RAD_REFLECT_HULL">
     <function name="ROCK_ARMOR" value="0" useForReqs="true" warning="false" />
-    <function name="RAD_SUPERHULL" value="5" useForReqs="false" warning="false" />
+    <function name="ARC_SUPER_HULL" value="5" useForReqs="false" warning="false" />
     <locked />
   </aug>
   <aug name="RAD_TIME_HULL">
-    <function name="RAD_SUPERHULL" value="1" useForReqs="false" warning="false" />
+    <function name="ARC_SUPER_HULL" value="1" useForReqs="false" warning="false" />
     <function name="AUTO_COOLDOWN" value="-0.25" useForReqs="false" warning="false" />
     <locked />
   </aug>
   <aug name="RAD_SUPER_HULL">
-    <function name="RAD_SUPERHULL" value="5" useForReqs="false" warning="false" />
+    <function name="ARC_SUPER_HULL" value="5" useForReqs="false" warning="false" />
   </aug>
   <aug name="RAD_BULLET_HELL">
     <function name="ROCK_ARMOR" value="1" useForReqs="true" warning="false" />
@@ -1076,10 +1076,14 @@
   
   <variable name="rad_mine_4_hostile" op="set" val="0"/>
 
+  <variable name="rad_lab_met" op="set" val="0"/>
   <req name="LABRATORY_SPAWN_CHECK" type="all">
 		<req lvl="2" max_lvl="2">
 			<name>loc_sector_count</name>
 		</req>
+    <req lvl="0" max_lvl="0">
+      <name>rad_lab_met</name>
+    </req>
 	</req>
 	
 	<req name="RAD_JUMP_TRACER" type="all">

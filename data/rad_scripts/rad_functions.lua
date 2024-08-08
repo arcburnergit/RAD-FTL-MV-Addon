@@ -246,7 +246,7 @@ end)
 
 mods.rad.aoeWeapons = {}
 local aoeWeapons = mods.rad.aoeWeapons
-aoeWeapons["RAD_CLUSTER_MISSILE"] = Hyperspace.Damage()
+--[[aoeWeapons["RAD_CLUSTER_MISSILE"] = Hyperspace.Damage()
 aoeWeapons["RAD_CLUSTER_MISSILE"].iSystemDamage = 2
 aoeWeapons["RAD_CLUSTER_MISSILE"].iPersDamage = 1
 aoeWeapons["RAD_CLUSTER_MISSILE_2"] = Hyperspace.Damage()
@@ -257,7 +257,7 @@ aoeWeapons["RAD_CLUSTER_MISSILE_3"] = Hyperspace.Damage()
 aoeWeapons["RAD_CLUSTER_MISSILE_3"].iDamage = 2
 aoeWeapons["RAD_CLUSTER_MISSILE_3"].iSystemDamage = 1
 aoeWeapons["RAD_CLUSTER_MISSILE_3"].iPersDamage = 2
-aoeWeapons["RAD_CLUSTER_MISSILE_3"].bLockdown = true
+aoeWeapons["RAD_CLUSTER_MISSILE_3"].bLockdown = true]]
 --aoeWeapons["RAD_SHRAPNEL_DAMAGE"] = Hyperspace.Damage()
 --aoeWeapons["RAD_SHRAPNEL_DAMAGE"].iSystemDamage = 2
 
@@ -276,9 +276,9 @@ end)
 
 mods.rad.teleWeapons = {}
 local teleWeapons = mods.rad.teleWeapons
-teleWeapons["RAD_ABDUCTOR"] = 15
+--[[teleWeapons["RAD_ABDUCTOR"] = 15
 teleWeapons["RAD_ABDUCTOR_ENEMY"] = 10
-teleWeapons["RAD_JAILERBEAM_PLAYER"] = 30
+teleWeapons["RAD_JAILERBEAM_PLAYER"] = 30]]
 
 -- Handle teleportation beams
 script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManager, projectile, location, damage, realNewTile, beamHitType)
@@ -373,7 +373,7 @@ end)
 
 mods.rad.overheatWeapons = {}
 local overheatWeapons = mods.rad.overheatWeapons
-overheatWeapons["RAD_GATLING"] = {
+--[[overheatWeapons["RAD_GATLING"] = {
     maxShots = 17,
     power = 3,
     cDown = 1
@@ -439,11 +439,11 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
             end
         end
     end
-end)
+end)]]
 
 mods.rad.popWeapons = {}
 local popWeapons = mods.rad.popWeapons
-popWeapons["RAD_GATLING"] = {
+--[[popWeapons["RAD_GATLING"] = {
     count = 1,
     countSuper = 1,
     delete = false
@@ -467,7 +467,7 @@ popWeapons["RAD_LIGHTNING_FIRE"] = {
     count = 1,
     countSuper = 1,
     delete = false
-}
+}]]
 
 script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
     local shieldPower = shipManager.shieldSystem.shields.power
@@ -525,7 +525,7 @@ script.on_internal_event(Defines.InternalEvents.CREW_LOOP, function(crewmem)
 
     end
 end)]]
-local pinpoint0 = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_PROJECTILE_BEAM_FOCUS_0")
+--[[local pinpoint0 = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_PROJECTILE_BEAM_FOCUS_0")
 local pinpoint1 = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_PROJECTILE_BEAM_FOCUS_1")
 --local pinpoint2 = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_PROJECTILE_BEAM_FOCUS_2")
 local burstsToBeams = {}
@@ -568,7 +568,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         end
         projectile:Kill()
     end
-end)
+end)]]
 
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
     if weaponBlueprint.name == "RAD_LASER_SMART" then
@@ -622,7 +622,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_PRE, function(project
     end
 end)
 
-script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
+--[[script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
     
     --log("RENDERSTART")
     local slot1X = 106
@@ -730,11 +730,11 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
             end
         end
     end
-end, function() end)
+end, function() end)]]
 
 --script.on_internal_event(Defines)
 
-script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
+--[[script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
     local weaponData = nil
     --log("shiploop")
     for weapon in vter(shipManager:GetWeaponList()) do
@@ -747,7 +747,7 @@ script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManage
             end
         end
     end
-end)
+end)]]
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA, function(shipManager, projectile, location, damage, evasion, friendlyfire) 
     local roomId = get_room_at_location(shipManager, location, true)
@@ -920,11 +920,11 @@ script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
             shipManager.teleportSystem.fDamageOverTime = 0
         end
     end
-end)]]--
+end)
 
 script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(ship)
     destroyededCode = false
-end)
+end)]]--
 
 script.on_internal_event(Defines.InternalEvents.DRONE_FIRE,
 function(Projectile, Drone)
@@ -1114,11 +1114,11 @@ end)
 
 mods.rad.droneWeapons = {}
 local droneWeapons = mods.rad.droneWeapons
-droneWeapons["RAD_SWARM_GUN_DEF"] = {
+--[[droneWeapons["RAD_SWARM_GUN_DEF"] = --[[{
     drone = "RAD_SWARMER_DEF",
     shots = -1,
     max = 20
-}
+}]]
 
 local function spawn_temp_drone(name, ownerShip, targetShip, targetLocation, shots, position)
     local drone = ownerShip:CreateSpaceDrone(Hyperspace.Global.GetInstance():GetBlueprints():GetDroneBlueprint(name))
@@ -1598,20 +1598,21 @@ multiExclusions["ARTILLERY_RAD_CORVETTE"] = true
 
 --local multiProj = {}
 
-script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager((projectile.destinationSpace+1)%2)
     local weaponName = nil
     pcall(function() weaponName = Hyperspace.Get_Projectile_Extend(projectile).name end)
+    --print(projectile.missed)
     local excludedWeapons = multiExclusions[weaponName]
-    if (shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0) and (not excludedWeapons) then
-        --print("split")
-        --[[if multiProj[projectile:GetSelfId()] then
+    if (shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0) and (not excludedWeapons) and (not projectile.missed) then
+        --[[print("split")
+        if multiProj[projectile:GetSelfId()] then
             print("END multiProj")
             multiProj[projectile:GetSelfId()] = nil
             return
         end]]
         local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
-        local weaponType = weapon.blueprint.typeName
+        local weaponType = weaponBlueprint.typeName
         --log(weaponType)
         local damage = projectile.damage
         local newDamage = Hyperspace.Damage()
@@ -1620,9 +1621,9 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
             newDamage.iIonDamage = damage.iIonDamage
             newDamage.iSystemDamage = damage.iSystemDamage
         else
-            newDamage.iDamage = math.ceil(damage.iDamage/2)
-            newDamage.iIonDamage = math.ceil(damage.iIonDamage/2)
-            newDamage.iSystemDamage = math.ceil(damage.iSystemDamage/2)
+            newDamage.iDamage = math.floor(damage.iDamage/2)
+            newDamage.iIonDamage = math.floor(damage.iIonDamage/2)
+            newDamage.iSystemDamage = math.floor(damage.iSystemDamage/2)
         end
 
         newDamage.fireChance = damage.fireChance
@@ -1674,7 +1675,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
         --log(newDamage2.iDamage)
         if weaponType == "LASER" or weaponType == "BURST" then 
             local laser = spaceManager:CreateLaserBlast(
-                weapon.blueprint,
+                weaponBlueprint,
                 projectile.position,
                 projectile.currentSpace,
                 projectile.ownerId,
@@ -1682,10 +1683,11 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.destinationSpace,
                 projectile.heading)
             laser:SetDamage(newDamage2)
+            laser.missed = true
             --multiProj[laser:GetSelfId()] = true
         elseif weaponType == "MISSILES" then 
             local missile = spaceManager:CreateMissile(
-                weapon.blueprint,
+                weaponBlueprint,
                 projectile.position,
                 projectile.currentSpace,
                 projectile.ownerId,
@@ -1693,19 +1695,21 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.destinationSpace,
                 projectile.heading)
             missile:SetDamage(newDamage2)
+            missile.missed = true
             --multiProj[missile:GetSelfId()] = true
         elseif weaponType == "BOMB" then 
             local bomb = spaceManager:CreateBomb(
-                weapon.blueprint,
+                weaponBlueprint,
                 projectile.ownerId,
                 projectile.target,
                 projectile.destinationSpace)
             bomb:SetDamage(newDamage2)
+            bomb.missed = true
             --multiProj[bomb:GetSelfId()] = true
         elseif weaponType == "BEAM" then 
             --log("BEAM")
             local beam = spaceManager:CreateBeam(
-                weapon.blueprint,
+                weaponBlueprint,
                 projectile.position,
                 projectile.currentSpace,
                 projectile.ownerId,
@@ -1715,9 +1719,12 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.length,
                 projectile.heading)
             beam:SetDamage(newDamage2)
+            beam.missed = true
             --multiProj[beam:GetSelfId()] = true
         end
         projectile:SetDamage(newDamage)
+    elseif projectile.missed then
+        projectile.missed = false
     end
 end)
 
@@ -2905,10 +2912,10 @@ end)
 
 mods.rad.diffuseWeapons = {}
 local diffuseWeapons = mods.rad.diffuseWeapons
-diffuseWeapons["RAD_DIFFUSE_1"] = "rad_diff_shot"
+--[[diffuseWeapons["RAD_DIFFUSE_1"] = "rad_diff_shot"
 diffuseWeapons["RAD_DIFFUSE_2"] = "rad_diff_shot"
 diffuseWeapons["RAD_DIFFUSE_3"] = "rad_diff_shot"
-diffuseWeapons["RAD_DIFFUSE_ION"] = "ion_4_shot"
+diffuseWeapons["RAD_DIFFUSE_ION"] = "ion_4_shot"]]
 
 script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response) 
     local diffData = nil
@@ -3468,3 +3475,70 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(
         end
     end
 end)
+
+--[[mods.arc.teleportProj = {}
+local teleportProj = mods.arc.teleportProj
+teleportProj["GUN_NAME"] = {
+    delay = 1,
+    distance = 20
+}
+
+script.on_internal_event(Defines.InternalEvents.ON_TICK, function()
+    local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+    for projectile in vter(spaceManager.projectiles) do
+        local projectileData = teleportProj[projectile.extend.name]
+        if projectileData then
+            local projectileTable = userdata_table(projectile, "mods.arc.teleportProj")
+            if projectileTable.delay then
+                projectileTable.delay = math.max(projectileTable.delay - Hyperspace.FPS.SpeedFactor/16, 0)
+                if projectileTable.delay == 0 then
+                    projectileTable.delay = projectileData.delay
+                    if projectile.currentSpace == 1 then
+                        projectile.position = Hyperspace.Pointf(projectile.position.x + projectileData.distance, projectile.position.y)
+                    else
+                        projectile.position = get_point_local_offset(projectile.position, projectile.target, projectileData.distance, 0)
+                    end
+                end
+            else
+                projectileTable.delay = projectileData.delay
+            end
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.GET_DODGE_FACTOR, function(shipManager, value)
+    if shipManager:HasAugmentation("RVS_ANTI_GRAVITY_ENGINE") > 0 then
+        local dodgeTable = userdata_table(shipManager, "mods.ai.grav_engine")
+        local valueAdd = 0
+        if dodgeTable.addDodge then
+            valueAdd = math.Round(dodgeTable.addDodge, 0)
+        end
+        value = math.max(value - 5 + valueAdd, 0)
+    end
+    return Defines.Chain.CONTINUE, value
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
+    if shipManager:HasAugmentation("RVS_ANTI_GRAVITY_ENGINE") > 0 then
+        if response.damage > 0 or response.superDamage > 0 then
+            local dodgeTable = userdata_table(shipManager, "mods.ai.grav_engine")
+            if dodgeTable.addDodge then
+                dodgeTable.addDodge = math.min(dodgeTable.addDodge + 5, 40)
+            else
+                dodgeTable.addDodge = 5
+            end
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    if shipManager:HasAugmentation("RVS_ANTI_GRAVITY_ENGINE") > 0 then
+        local dodgeTable = userdata_table(shipManager, "mods.ai.grav_engine")
+        if dodgeTable.addDodge then
+            dodgeTable.addDodge = math.max(dodgeTable.addDodge - Hyperspace.FPS.SpeedFactor/16, 0)
+            if dodgeTable.addDodge == 0 then
+                dodgeTable.addDodge = nil
+            end
+        end
+    end
+end)]]

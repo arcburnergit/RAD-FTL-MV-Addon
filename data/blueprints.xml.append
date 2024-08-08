@@ -40,7 +40,7 @@
 	<type>MISSILES</type>
 	<tip>tip_cascade</tip>
 	<title>Cluster Missile MK I</title>
-	<short>Cluster II</short>
+	<short>Cluster I</short>
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<descriptionOverride>In an attempt to create more widespread destruction, this missile houses several smaller warheads that are spun out to hit adjacent rooms. Unfortunately, this left no room in the main missile for any explosives.
 
@@ -61,6 +61,7 @@
 	</descriptionOverride>
 	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
+  <aoeDamage sysDamage="2" persDamage="1" />
 	<missiles>1</missiles>
 	<speed>50</speed>
 	<shots>1</shots>
@@ -119,6 +120,7 @@
 	</descriptionOverride>
 	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
+  <aoeDamage damage="1" sysDamage="1" persDamage="1" />
 	<missiles>1</missiles>
 	<speed>50</speed>
 	<shots>1</shots>
@@ -178,6 +180,7 @@
 	</descriptionOverride>
 	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
+  <aoeDamage damage="2" sysDamage="1" persDamage="1" lockdown="true" />
 	<missiles>1</missiles>
 	<speed>50</speed>
 	<shots>1</shots>
@@ -233,6 +236,7 @@
 	</descriptionOverride>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>0</damage>
+  <teleportBeam duration="15"/>
 	<sp>10</sp>
 	<fireChance>0</fireChance>
 	<breachChance>3</breachChance>
@@ -263,6 +267,7 @@
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>0</damage>
+  <teleportBeam duration="10"/>
 	<fireChance>0</fireChance>
 	<breachChance>1</breachChance>
 	<cooldown>8</cooldown>
@@ -342,6 +347,7 @@
 	</descriptionOverride>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>1</damage>
+  <teleportBeam duration="30"/>
 	<fireChance>6</fireChance>
 	<breachChance>6</breachChance>
 	<cooldown>20</cooldown>
@@ -374,6 +380,8 @@
 	<tooltip>Cooldown drops the more it fires, until it overheats and turns off.</tooltip>
 	<radius>35</radius>
 	<damage>0</damage>
+  <overheat maxShots="20" cooldown="5"/>
+  <shieldDamage damage="1" superDamage="1"/>
 	<sysDamage>1</sysDamage>
 	<shots>1</shots>
 	<sp>0</sp>
@@ -421,6 +429,7 @@
 	<desc>Laser weapon that adapts to its situation, increasing its damage with every 2 volleys shot.</desc>
 	<tooltip>Fires two lasers that deal 1 damage each. Cooldown drops the more it fires.</tooltip>
 	<damage>1.25</damage>
+  <overheat maxShots="6" cooldown="5"/>
 	<shots>1</shots>
 	<sp>0</sp>
 	<fireChance>1</fireChance>
@@ -553,6 +562,7 @@
 	<desc>YOU SOULD NEVER SEE THIS</desc>
 	<tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
 	<damage>1</damage>
+  <shieldDamage damage="1" superDamage="1"/>
 	<sysDamage>-1</sysDamage>
 	<sp>0</sp>
     <fireChance>1</fireChance> 
@@ -586,6 +596,7 @@
 	<desc>YOU SOULD NEVER SEE THIS</desc>
 	<tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
 	<damage>0</damage>
+  <shieldDamage damage="1" superDamage="1"/>
 	<sysDamage>1</sysDamage>
 	<sp>0</sp>
     <fireChance>1</fireChance> 
@@ -621,7 +632,8 @@
     <tooltip>Fires pulses of a beam quickly.</tooltip>
     <radius>10</radius> 
     <damage>1</damage>
-	<sysDamage>-1</sysDamage>
+    <beamReplacement beam="RAD_PROJECTILE_BEAM_FOCUS_0"/>
+	  <sysDamage>-1</sysDamage>
     <shots>1</shots>
     <sp>0</sp>
     <fireChance>1</fireChance> 
@@ -652,7 +664,8 @@
     <tooltip>Fires a pair of beams across a small area doing up to 2 damage.</tooltip>
     <radius>10</radius> 
     <damage>0</damage>
-	<sysDamage>1</sysDamage>
+    <beamReplacement beam="RAD_PROJECTILE_BEAM_FOCUS_1"/>
+	  <sysDamage>1</sysDamage>
     <shots>2</shots>
     <sp>0</sp>
     <fireChance>1</fireChance> 
@@ -683,7 +696,8 @@
     <tooltip>Fires a trio of beams across a small area doing up to 3 damage.</tooltip>
     <radius>10</radius> 
     <damage>0</damage>
-	<sysDamage>1</sysDamage>
+    <beamReplacement beam="RAD_PROJECTILE_BEAM_FOCUS_1"/>
+	  <sysDamage>1</sysDamage>
     <shots>3</shots>
     <sp>0</sp>
     <fireChance>1</fireChance> 
@@ -714,7 +728,8 @@
     <tooltip>Fires multiple beams across a small area doing up to 5 damage.</tooltip>
     <radius>10</radius> 
     <damage>0</damage>
-	<sysDamage>1</sysDamage>
+    <beamReplacement beam="RAD_PROJECTILE_BEAM_FOCUS_1"/>
+	  <sysDamage>1</sysDamage>
     <shots>5</shots>
     <sp>0</sp>
     <fireChance>1</fireChance> 
@@ -2029,6 +2044,7 @@ Default Price: 80~ - Selling Price:40~
     </descriptionOverride>
     <tooltip>Abducts enemy crew into your weapons room.</tooltip>
     <damage>0</damage>
+    <shieldDamage damage="16" superDamage="16"/>
     <sp>0</sp>
     <fireChance>0</fireChance>
     <breachChance>0</breachChance>
@@ -2507,6 +2523,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <desc>YOU SOULD NEVER SEE THIS</desc>
     <tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
     <damage>0</damage>
+    <shieldDamage damage="1" superDamage="1"/>
     <sysDamage>0</sysDamage>
     <sp>0</sp>
     <fireChance>0</fireChance>
@@ -2835,7 +2852,7 @@ This plating also provides 5 Super Hull point, this stops 5 hits per battle from
     <title>Warped Hull Plating</title>
     <desc>Each time this ship will take hull damage, the cooldown on the temporal system is ended and one random weapon has it's cooldown finished, also reduces weapon recharge rate by 25%.
 
-This plating also provides 5 Super Hull point, this stops 5 hits per battle from dealing damage to the hull.
+This plating also provides 1 Super Hull point, this stops 1 hull damage per battle from dealing damage to the hull.
     </desc>
     <cost>0</cost>
     <rarity>0</rarity>
@@ -4113,6 +4130,7 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
+    <diffusion number="2" image="rad_diff_shot"/>
     <sysDamage>0</sysDamage>
     <shots>1</shots>
     <radius>40</radius>
@@ -4156,6 +4174,7 @@ When the projectile splits each new projectile will deviate from the impact poin
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
+    <diffusion number="2" image="rad_diff_shot"/>
     <sysDamage>0</sysDamage>
     <shots>2</shots>
     <radius>40</radius>
@@ -4199,6 +4218,7 @@ When the projectile splits each new projectile will deviate from the impact poin
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
+    <diffusion number="2" image="rad_diff_shot"/>
     <sysDamage>0</sysDamage>
     <shots>3</shots>
     <radius>40</radius>
@@ -4242,6 +4262,7 @@ When the projectile splits each new projectile will deviate from the impact poin
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>0</damage>
+    <diffusion number="2" image="ion_4_shot"/>
     <sysDamage>0</sysDamage>
     <ion>1</ion>
     <radius>40</radius>
@@ -5447,4 +5468,61 @@ Every time it charges it will construct another time bomb.
 	<crewSpawnChance>10</crewSpawnChance>
 </weaponBlueprint>
 
+</FTL>
+
+<FTL>
+  <weaponBlueprint name="RAD_CM"> 
+    <type>MISSILES</type>
+    <tip>tip_cascade</tip>
+    <title>Cluster Missile MK I</title>
+    <short>Cluster II</short>
+    <desc>YOU SHOULD NEVER SEE THIS</desc>
+    <descriptionOverride>In an attempt to create more widespread destruction, this missile houses several smaller warheads that are spun out to hit adjacent rooms. Unfortunately, this left no room in the main missile for any explosives.
+  
+      Stats:
+      Required Power: 2
+      Charge Time: 14 seconds
+      Missile Consumption: 1
+  
+      Shots Per Charge: 1
+      
+      Base Hull Damage: 0
+      Shield Piercing: 10
+      Adjacent System Damage: 2
+      
+      Default Price: 50~   -   Selling Price:25~
+    </descriptionOverride>
+    <tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
+    <damage>0</damage>
+    <aoeDamage sysDamage="2" persDamage="2" />
+    <missiles>1</missiles>
+    <speed>50</speed>
+    <shots>1</shots>
+    <sp>10</sp>
+    <fireChance>0</fireChance>
+    <breachChance>0</breachChance>
+    <cooldown>14</cooldown>
+    <power>2</power>
+    <cost>50</cost>
+    <bp>2</bp>
+    <rarity>5</rarity>
+    <image>missile_cluster</image>
+    <launchSounds>
+      <sound>smallMissile1</sound>
+      <sound>smallMissile2</sound>
+    </launchSounds>
+    <hitShipSounds>
+      <sound>explosion_heavy</sound>
+    </hitShipSounds>
+    <hitShieldSounds>
+      <sound>hitShield1</sound>
+      <sound>hitShield2</sound>
+      <sound>hitShield3</sound>
+    </hitShieldSounds>
+    <missSounds>
+      <sound>miss</sound>
+    </missSounds>
+    <weaponArt>missiles_cluster</weaponArt>
+    <iconImage>missile</iconImage>
+  </weaponBlueprint>
 </FTL>

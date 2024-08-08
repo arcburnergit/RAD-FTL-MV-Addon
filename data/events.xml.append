@@ -46,6 +46,7 @@ An addon designed around the use of Lua to create fun and unique gimmicks, this 
 	</quest>
 	<ship load="SHIP_CIVILIAN_LAB" hostile="false"/>
 	<text> You come across a strange laboratory. As soon as you arrive, it powers up what looks like a weapon, aimed right at your ship...</text>
+  <variable name="rad_lab_met" op="set" val="1"/>
 	<choice hidden="true">
 		<text>Wait.</text>
 		<event>

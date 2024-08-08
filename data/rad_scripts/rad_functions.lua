@@ -1598,13 +1598,16 @@ multiExclusions["ARTILLERY_RAD_CORVETTE"] = true
 
 --local multiProj = {}
 
-script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager((projectile.destinationSpace+1)%2)
     local weaponName = nil
     pcall(function() weaponName = Hyperspace.Get_Projectile_Extend(projectile).name end)
     --print(projectile.missed)
     local excludedWeapons = multiExclusions[weaponName]
-    if (shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0) and (not excludedWeapons) and (not projectile.missed) then
+    if shipManager:HasAugmentation("RAD_WM_BIGSHOT") then
+        excludedWeapons = nil
+    end
+    if (shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0) and (not excludedWeapons) --[[and (not projectile.missed)]] then
         --[[print("split")
         if multiProj[projectile:GetSelfId()] then
             print("END multiProj")
@@ -1612,7 +1615,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(
             return
         end]]
         local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
-        local weaponType = weaponBlueprint.typeName
+        local weaponType = weapon.blueprint.typeName
         --log(weaponType)
         local damage = projectile.damage
         local newDamage = Hyperspace.Damage()
@@ -1675,7 +1678,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(
         --log(newDamage2.iDamage)
         if weaponType == "LASER" or weaponType == "BURST" then 
             local laser = spaceManager:CreateLaserBlast(
-                weaponBlueprint,
+                weapon.blueprint,
                 projectile.position,
                 projectile.currentSpace,
                 projectile.ownerId,
@@ -1687,7 +1690,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(
             --multiProj[laser:GetSelfId()] = true
         elseif weaponType == "MISSILES" then 
             local missile = spaceManager:CreateMissile(
-                weaponBlueprint,
+                weapon.blueprint,
                 projectile.position,
                 projectile.currentSpace,
                 projectile.ownerId,
@@ -1699,7 +1702,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(
             --multiProj[missile:GetSelfId()] = true
         elseif weaponType == "BOMB" then 
             local bomb = spaceManager:CreateBomb(
-                weaponBlueprint,
+                weapon.blueprint,
                 projectile.ownerId,
                 projectile.target,
                 projectile.destinationSpace)
@@ -1709,7 +1712,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(
         elseif weaponType == "BEAM" then 
             --log("BEAM")
             local beam = spaceManager:CreateBeam(
-                weaponBlueprint,
+                weapon.blueprint,
                 projectile.position,
                 projectile.currentSpace,
                 projectile.ownerId,
@@ -1723,8 +1726,8 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(
             --multiProj[beam:GetSelfId()] = true
         end
         projectile:SetDamage(newDamage)
-    elseif projectile.missed then
-        projectile.missed = false
+    --[[elseif projectile.missed then
+        projectile.missed = false]]
     end
 end)
 

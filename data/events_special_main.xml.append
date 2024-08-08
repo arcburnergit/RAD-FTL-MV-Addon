@@ -9,11 +9,54 @@
       <jumpClear>false</jumpClear>
       <noDanger>false</noDanger>
     </mod-append:eventButton>
-    <mod:findLike type="eventButton" start="1">
+    <mod:findLike type="eventButton">
       <mod:selector name="ADDON_RAD"/>
       <mod:removeTag/>
     </mod:findLike>
     <mod-append:triggeredEvent event="RAD_ARTILLERY_TARGET" seeded="false" loops="1" minTime="0.1" maxTime="0.1" />
+    
+
+    
+    <mod:findLike type="eventButton">
+      <mod:selector name="ADDON_FMCORE"/>
+      <mod:removeTag/>
+    </mod:findLike>
+    <mod:findLike type="eventButton">
+      <mod:selector name="ADDON_FORGEMASTER"/>
+      <mod:removeTag/>
+    </mod:findLike>
+    <mod:findLike type="eventButton">
+      <mod:selector name="ADDON_GB"/>
+      <mod:removeTag/>
+    </mod:findLike>
+    <mod:findLike type="eventButton">
+      <mod:selector name="ADDON_CNC"/>
+      <mod:removeTag/>
+    </mod:findLike>
+    <mod:findLike type="eventButton">
+      <mod:selector name="ADDON_FR"/>
+      <mod:removeTag/>
+    </mod:findLike>
+    <mod:findLike type="eventButton">
+      <mod:selector name="ADDON_BAG"/>
+      <mod:removeTag/>
+    </mod:findLike>
+    <mod:findLike type="eventButton">
+      <mod:selector name="ADDON_AA"/>
+      <mod:removeTag/>
+    </mod:findLike>
+    <mod:findLike type="eventButton">
+      <mod:selector name="ADDON_PIP"/>
+      <mod:removeTag/>
+    </mod:findLike>
+    <mod:findLike type="eventButton">
+      <mod:selector name="ADDON_TCC"/>
+      <mod:removeTag/>
+    </mod:findLike>
+    <mod:findLike type="eventButton">
+      <mod:selector name="ADDON_PIP"/>
+      <mod:removeTag/>
+    </mod:findLike>
   </mod:findName>
 
   <event name="RAD_ARTILLERY_TARGET">

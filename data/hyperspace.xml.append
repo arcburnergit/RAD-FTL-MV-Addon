@@ -1905,6 +1905,7 @@
 
 <mod:findLike type="scripts">
     <mod-append:script>data/rad_scripts/rad_functions.lua</mod-append:script>
+    <mod-append:script>data/rad_scripts/radIcon.lua</mod-append:script>
 </mod:findLike>
 
 <!-- end of chunk -->

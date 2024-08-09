@@ -1624,6 +1624,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
             newDamage.iIonDamage = damage.iIonDamage
             newDamage.iSystemDamage = damage.iSystemDamage
         else
+            --print("round down")
             newDamage.iDamage = math.floor(damage.iDamage/2)
             newDamage.iIonDamage = math.floor(damage.iIonDamage/2)
             newDamage.iSystemDamage = math.floor(damage.iSystemDamage/2)
@@ -1655,6 +1656,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
             newDamage2.iIonDamage = damage.iIonDamage
             newDamage2.iSystemDamage = damage.iSystemDamage
         else
+            --print("round up")
             newDamage2.iDamage = math.ceil(damage.iDamage/2)
             newDamage2.iIonDamage = math.ceil(damage.iIonDamage/2)
             newDamage2.iSystemDamage = math.ceil(damage.iSystemDamage/2)
@@ -1686,7 +1688,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.destinationSpace,
                 projectile.heading)
             laser:SetDamage(newDamage2)
-            laser.missed = true
+            --laser.missed = true
             --multiProj[laser:GetSelfId()] = true
         elseif weaponType == "MISSILES" then 
             local missile = spaceManager:CreateMissile(
@@ -1698,7 +1700,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.destinationSpace,
                 projectile.heading)
             missile:SetDamage(newDamage2)
-            missile.missed = true
+            --missile.missed = true
             --multiProj[missile:GetSelfId()] = true
         elseif weaponType == "BOMB" then 
             local bomb = spaceManager:CreateBomb(
@@ -1707,7 +1709,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.target,
                 projectile.destinationSpace)
             bomb:SetDamage(newDamage2)
-            bomb.missed = true
+            --bomb.missed = true
             --multiProj[bomb:GetSelfId()] = true
         elseif weaponType == "BEAM" then 
             --log("BEAM")
@@ -1722,7 +1724,7 @@ script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projec
                 projectile.length,
                 projectile.heading)
             beam:SetDamage(newDamage2)
-            beam.missed = true
+            --beam.missed = true
             --multiProj[beam:GetSelfId()] = true
         end
         projectile:SetDamage(newDamage)

@@ -98,6 +98,12 @@ local function get_adjacent_rooms(shipId, roomId, diagonals)
     return adjacentRooms
 end
 
+local function offset_point_direction(oldX, oldY, angle, distance)
+    local newX = oldX + (distance * math.cos(math.rad(angle)))
+    local newY = oldY + (distance * math.sin(math.rad(angle)))
+    return Hyperspace.Pointf(newX, newY)
+end
+
 --[[
 int iDamage;
 int iShieldPiercing;
@@ -119,37 +125,6 @@ int iStun;]]--
 -- LOGIC --
 -----------
 
-script.on_game_event("RAD_PIRATE_FIGHT_TRIGGER", false, function()
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(1)
-    for i, crewmem in ipairs(get_ship_crew_room(shipManager, 9)) do
-        --log("in crewmem for loop jail")
-        --userdata_table(crewmem, "mods.tpbeam.time").tpTime = 30
-        crewmem.extend:InitiateTeleport(shipManager.iShipId,0,0)
-    end
-end)
-
-script.on_game_event("RAD_JAILER_RETURN_CREW", false, function()
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(1)
-    for crewmem in vter(shipManager.vCrewList) do
-        if crewmem.intruder == true then
-            local teleTable = userdata_table(crewmem, "mods.tpbeam.time")
-            if teleTable.tpTime then
-                teleTable.tpTime = nil
-            end
-            crewmem.extend:InitiateTeleport(0,0,0)
-        end
-    end
-end)
-
---[[script.on_game_event("RAD_GHOST_BEFORE_FIGHT", false, function()
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(1)
-    for i=1,10 do 
-        location = shipManager:GetRandomRoomCenter() 
-        local damage = Hyperspace.Damage()
-        damage.fireChance = 2
-        shipManager:DamageArea(location, damage, true)
-    end
-end)]]
 
 mods.rad.aoeWeapons = {}
 local aoeWeapons = mods.rad.aoeWeapons
@@ -165,8 +140,6 @@ aoeWeapons["RAD_CLUSTER_MISSILE_3"].iDamage = 2
 aoeWeapons["RAD_CLUSTER_MISSILE_3"].iSystemDamage = 1
 aoeWeapons["RAD_CLUSTER_MISSILE_3"].iPersDamage = 2
 aoeWeapons["RAD_CLUSTER_MISSILE_3"].bLockdown = true
---aoeWeapons["RAD_SHRAPNEL_DAMAGE"] = Hyperspace.Damage()
---aoeWeapons["RAD_SHRAPNEL_DAMAGE"].iSystemDamage = 2
 
 script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
     local weaponName = nil
@@ -192,43 +165,13 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManage
     local teleControl = teleWeapons[projectile.extend.name]
     local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2)
     local weaponRoomID = otherShip:GetSystemRoom(3)
-    --log("DAMAGE_BEAM ---------------------------------------------")
     if teleControl then
-        --log("teleControl True")
         for i, crewmem in ipairs(get_ship_crew_point(shipManager, location.x, location.y)) do
-            --log("in crewmem for loop")
             userdata_table(crewmem, "mods.tpbeam.time").tpTime = teleControl
             crewmem.extend:InitiateTeleport(otherShip.iShipId,weaponRoomID,0)
         end
     end
     return Defines.Chain.CONTINUE, beamHitType
-end)
-
-script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
-    local teleControl = nil
-    pcall(function() teleControl = teleWeapons[projectile.extend.name] end)
-    --[[if false then
-        local otherShip = Hyperspace.Global.GetInstance():GetShipManager((projectile.ownerId + 1)%2)
-        local weaponRoomID = otherShip:GetSystemRoom(3)
-        local roomId = get_room_at_location(shipManager, location, true)
-        local mindControlledCrew = 0
-        for crewmem in vter(shipManager.vCrewList) do
-            local doControl = crewmem.iRoomId == roomId and
-                              crewmem.currentShipId == shipManager.iShipId and
-                              crewmem.iShipId ~= projectile.ownerId
-            if doControl then
-                if can_be_mind_controlled(crewmem) then
-                    crewmem:SetMindControl(true)
-                    local mcTable = userdata_table(crewmem, "mods.trc.crewStuff")
-                    mcTable.mcTime = math.max(mindControl.duration, mcTable.mcTime or 0)
-                    mindControlledCrew = mindControlledCrew + 1
-                    if mindControl.limit and mindControlledCrew >= mindControl.limit then break end
-                elseif resists_mind_control(crewmem) then
-                    crewmem.bResisted = true
-                end
-            end
-        end
-    end]]
 end)
 
 --make list, make local version of list, set value in list to the room that you want to teleport them to, with a key of a weapon name
@@ -241,14 +184,9 @@ script.on_internal_event(Defines.InternalEvents.DAMAGE_BEAM, function(shipManage
     local jailControl = jailEnemyWeapons[projectile.extend.name]
     local otherShip = Hyperspace.Global.GetInstance():GetShipManager((shipManager.iShipId + 1)%2)
     local weaponRoomID = otherShip:GetSystemRoom(3)
-    --log("DAMAGE_BEAM jail ---------------------------------------------")
     if jailControl then
-        --log("jailControl True")
         local hitRoomId = get_room_at_location(shipManager,location,false)
-        --log("WHY WON'T YOU WORKKKKKKKKKKKKKKKKKKKKKKKKK")
-        --log(tostring(hitRoomId))
         for i, crewmem in ipairs(get_ship_crew_room(shipManager, hitRoomId)) do
-            --log("in crewmem for loop jail")
             userdata_table(crewmem, "mods.tpbeam.time").tpTime = 30
             crewmem.extend:InitiateTeleport(otherShip.iShipId,jailControl,0)
         end
@@ -273,85 +211,78 @@ end)
 
 mods.rad.overheatWeapons = {}
 local overheatWeapons = mods.rad.overheatWeapons
-overheatWeapons["RAD_GATLING"] = {
-    maxShots = 17,
-    power = 3,
-    cDown = 5
-}
+overheatWeapons["RAD_GATLING"] = true
+
+script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManager)
+    for weapon in vter(shipManager:GetWeaponList()) do
+        pcall(function() weaponData = overheatWeapons[weapon.blueprint.name] end)
+        if weaponData then
+            weapon.boostLevel = 1
+            userdata_table(weapon, "mods.rad.overHeatShots").amount = weapon.boostLevel
+            userdata_table(weapon, "mods.rad.overHeatShots").timer = 1
+            userdata_table(weapon, "mods.rad.overHeatShots").timerLast = 1
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function (shipManager)
+    for weapon in vter(shipManager:GetWeaponList()) do
+        pcall(function() weaponData = overheatWeapons[weapon.blueprint.name] end)
+        if weaponData then
+            local oHTable = userdata_table(weapon, "mods.rad.overHeatShots")
+            if oHTable.amount then
+                if weapon.boostLevel ~= oHTable.amount then
+                    weapon.boostLevel = oHTable.amount
+                end
+                if weapon.boostLevel > 0 and weapon:IsChargedGoal() and oHTable.timer then
+                    oHTable.timer = oHTable.timer - Hyperspace.FPS.SpeedFactor/16
+                    if oHTable.timer <= 0 then
+                        userdata_table(weapon, "mods.rad.overHeatShots").timer = math.max(oHTable.timerLast * 0.8, 0.05)
+                        userdata_table(weapon, "mods.rad.overHeatShots").timerLast = math.max(oHTable.timerLast * 0.8, 0.05)
+                        weapon.boostLevel = weapon.boostLevel - 1
+                        userdata_table(weapon, "mods.rad.overHeatShots").amount = weapon.boostLevel
+                    end
+                else
+                    userdata_table(weapon, "mods.rad.overHeatShots").timer = 1
+                    userdata_table(weapon, "mods.rad.overHeatShots").timerLast = 1
+                end
+            else
+                userdata_table(weapon, "mods.rad.overHeatShots").amount = weapon.boostLevel
+                userdata_table(weapon, "mods.rad.overHeatShots").timer = 1
+                userdata_table(weapon, "mods.rad.overHeatShots").timerLast = 1
+            end
+        end
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.WEAPON_RENDERBOX, function(weapon, cooldown, maxCooldown, firstLine, secondLine, thirdLine)
+    --print(firstLine.."|"..secondLine.."|"..thirdLine)
+    pcall(function() weaponData = overheatWeapons[weapon.blueprint.name] end)
+    if weaponData then
+        local oHTable = userdata_table(weapon, "mods.rad.overHeatShots")
+        if oHTable.timer then
+            if oHTable.timer < oHTable.timerLast then
+                secondLine = tostring(math.ceil(oHTable.timer*10)/10).."s to Cooldown"
+            end
+        end
+    end
+    return Defines.Chain.CONTINUE, firstLine, secondLine, thirdLine
+end)
 
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
     local overHeatData = nil
     pcall(function() overHeatData = overheatWeapons[weapon.blueprint.name] end)
     if overHeatData then
-        --log("cooldown multiplyer, time | changeLevel | goalChargeLevel | IsChargeGoal | shot")
-        local cooldown = weapon.cooldown
-        --log(tostring(cooldown.first))
-        --log(tostring(cooldown.second))
-        --log(tostring(weapon.chargeLevel))
-        --log(tostring(weapon.goalChargeLevel))
-        --log(tostring(weapon:IsChargedGoal()))
-        local oHTable = userdata_table(weapon, "mods.overheatweapons.shots")
-        --log("oHTable.oHShots")
-        --log(tostring(oHTable.oHShots))
-        if oHTable.oHShots then
-            local ship = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
-            local weaponPower = ship:GetSystemPower(3)
-            local weaponSystem = ship:GetSystem(3)
-            oHTable.oHShots = math.max(oHTable.oHShots - 1, 0)
-            log("shots -------------------------------------------------------------------------------------------")
-            log(tostring(oHTable.oHShots))
-            --oHTable.oHper = 1 - (oHTable.oHShots/overHeatData.maxShots)
-            if oHTable.oHShots == 0 then
-                oHTable.oHShots = nil
-                weapon.powered = false
-                weapon.requiredPower = 10
-                oHTable.oHCDown = overHeatData.cDown
+        local oHTable = userdata_table(weapon, "mods.rad.overHeatShots")
+        if oHTable.amount then
+            if weapon.boostLevel < 50 then
+                weapon.boostLevel = weapon.boostLevel + 1
+                userdata_table(weapon, "mods.rad.overHeatShots").amount = weapon.boostLevel
             end
         else
-            userdata_table(weapon, "mods.overheatweapons.shots").oHShots = overHeatData.maxShots
-        end
-    end
-end)
-
-script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
-    local weaponData = nil
-    --log("shiploop")
-    for weapon in vter(shipManager:GetWeaponList()) do
-        --log(tostring(weapon.blueprint.name))
-        pcall(function() weaponData = overheatWeapons[weapon.blueprint.name] end)
-        if weaponData then
-            local oHTable = userdata_table(weapon, "mods.overheatweapons.shots")
-            if oHTable.oHCDown then
-                oHTable.oHCDown = math.max(oHTable.oHCDown - Hyperspace.FPS.SpeedFactor/16, 0)
-                if oHTable.oHCDown == 0 then
-                    oHTable.oHCDown = nil
-                    weapon.requiredPower = weaponData.power
-                    weapon.powered = true
-                end
-            end
-        end
-    end
-end)
-
-mods.rad.popWeapons = {}
-local popWeapons = mods.rad.popWeapons
-popWeapons["RAD_GATLING"] = {
-    count = 1,
-    countSuper = 1
-}
-
-script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
-    local shieldPower = shipManager.shieldSystem.shields.power
-    local popData = nil
-    if pcall(function() popData = popWeapons[Hyperspace.Get_Projectile_Extend(projectile).name] end) and popData then
-        if shieldPower.super.first > 0 then
-            if popData.countSuper > 0 then
-                shipManager.shieldSystem:CollisionReal(projectile.position.x, projectile.position.y, Hyperspace.Damage(), true)
-                shieldPower.super.first = math.max(0, shieldPower.super.first - popData.countSuper)
-            end
-        else
-            shipManager.shieldSystem:CollisionReal(projectile.position.x, projectile.position.y, Hyperspace.Damage(), true)
-            shieldPower.first = math.max(0, shieldPower.first - popData.count)
+            userdata_table(weapon, "mods.rad.overHeatShots").amount = weapon.boostLevel
+            userdata_table(weapon, "mods.rad.overHeatShots").timer = 1
+            userdata_table(weapon, "mods.rad.overHeatShots").timerLast = 1
         end
     end
 end)
@@ -386,105 +317,261 @@ fireSpreaders["phantom_experiment_alpha"] = 1
     end
 end)]]
 
-script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
-    local slot1X = 106
-    local slotY = 623
-    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
-    for system in vter(shipManager.vSystemList) do
-        if (system.iSystemType == 0 or system.iSystemType == 1 or system.iSystemType == 2 or system.iSystemType == 5 or system.iSystemType == 13) then
-            slot1X = slot1X + 36
-        elseif (system.iSystemType == 9 or system.iSystemType == 10 or system.iSystemType == 11 or system.iSystemType == 14 or system.iSystemType >= 15) then
-            slot1X = slot1X + 54
-        end
-    end
-    local slot2X = slot1X+97
-    local slot3X = slot2X+97
-    local slot4X = slot3X+97
-    local weaponlist = {}
-    local weaponData = nil
-    weaponlist = shipManager:GetWeaponList()  
-    --log("before")
-    --log(weaponlist[0].blueprint.name)
-    --if not weaponlist[0] then return end
-    if weaponlist[0] then
-        log("render")
-        pcall(function() weaponData = overheatWeapons[weaponlist[0].blueprint.name] end)
-        if weaponData then
-            log("pass name check")
-            local oHTable = userdata_table(weaponlist[0], "mods.overheatweapons.shots")
-            if oHTable.oHShots then
-                if oHTable.oHShots <= 10 then
-                    local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
-                    log(renderString)
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot1X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                end
-            elseif oHTable.oHCDown then
-                log("on cooldown")
-                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot1X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-            end
-        end
-    end
+mods.rad.burstPinpoints = {}
+local burstPinpoints = mods.rad.burstPinpoints
+burstPinpoints["RAD_BEAM_BURST_1"] = "RAD_PROJECTILE_BEAM_FOCUS_1"
+burstPinpoints["RAD_BEAM_BURST_2"] = "RAD_PROJECTILE_BEAM_FOCUS_1"
+burstPinpoints["RAD_BEAM_BURST_3"] = "RAD_PROJECTILE_BEAM_FOCUS_1"
+burstPinpoints["RAD_LIGHT_BEAM"] = "RAD_PROJECTILE_BEAM_FOCUS_0"
 
-    if weaponlist[1] then
-        log("render")
-        pcall(function() weaponData = overheatWeapons[weaponlist[1].blueprint.name] end)
-        if weaponData then
-            log("pass name check")
-            local oHTable = userdata_table(weaponlist[1], "mods.overheatweapons.shots")
-            if oHTable.oHShots then
-                if oHTable.oHShots <= 10 then
-                    local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
-                    log(renderString)
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot2X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot2X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                end
-            elseif oHTable.oHCDown then
-                log("on cooldown")
-                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot2X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
+    if weapon.blueprint and burstPinpoints[weapon.blueprint.name] then
+        local burstPinpointBlueprint = Hyperspace.Blueprints:GetWeaponBlueprint(burstPinpoints[weapon.blueprint.name])
+
+        local spaceManager = Hyperspace.App.world.space
+        local beam = spaceManager:CreateBeam(
+            burstPinpointBlueprint, 
+            projectile.position, 
+            projectile.currentSpace, 
+            projectile.ownerId, 
+            projectile.target, 
+            Hyperspace.Pointf(projectile.target.x, projectile.target.y + 1), 
+            projectile.destinationSpace, 
+            1, 
+            -0.1)
+        beam.sub_start = offset_point_direction(projectile.target.x, projectile.target.y, projectile.entryAngle, 600)
+        projectile:Kill()
+    end
+end)
+
+mods.rad.popPinpoints = {}
+local burstPinpoints = mods.rad.popPinpoints
+burstPinpoints["RAD_PROJECTILE_BEAM_FOCUS_1"] = {count = 1, countSuper = 1}
+burstPinpoints["RAD_PROJECTILE_BEAM_FOCUS_0"] = {count = 1, countSuper = 1}
+-- Pop shield bubbles
+script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
+    local shieldPower = shipManager.shieldSystem.shields.power
+    local popData = burstPinpoints[projectile and projectile.extend and projectile.extend.name]
+    if popData then
+        if shieldPower.super.first > 0 then
+            if popData.countSuper > 0 then
+                shipManager.shieldSystem:CollisionReal(projectile.position.x, projectile.position.y, Hyperspace.Damage(), true)
+                shieldPower.super.first = math.max(0, shieldPower.super.first - popData.countSuper)
             end
+        else
+            shipManager.shieldSystem:CollisionReal(projectile.position.x, projectile.position.y, Hyperspace.Damage(), true)
+            shieldPower.first = math.max(0, shieldPower.first - popData.count)
+        end
+        projectile:Kill()
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint)
+    if weaponBlueprint.name == "RAD_LASER_SMART" then
+        local ship = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+        local otherShip = Hyperspace.Global.GetInstance():GetShipManager((projectile.ownerId + 1)%2)
+        local targetRoom = nil
+
+        if not otherShip:GetSystem(0):CompletelyDestroyed() then
+            targetRoom = otherShip:GetSystemRoom(0)
+        elseif not otherShip:GetSystem(3):CompletelyDestroyed() then
+            targetRoom = otherShip:GetSystemRoom(3)
+        elseif not otherShip:GetSystem(4):CompletelyDestroyed() then
+            targetRoom = otherShip:GetSystemRoom(4)
+        elseif not otherShip:GetSystem(10):CompletelyDestroyed() then
+            targetRoom = otherShip:GetSystemRoom(10)
+        elseif not otherShip:GetSystem(1):CompletelyDestroyed() then
+            targetRoom = otherShip:GetSystemRoom(1)
+        end
+        
+        -- Retarget the bomb to that room
+        if targetRoom then
+            projectile.target = otherShip:GetRoomCenter(targetRoom)
+            userdata_table(projectile, "mods.radsmartlaser.comhead").notComputed = true
         end
     end
+end)
 
-    if weaponlist[2] then
-        log("render")
-        pcall(function() weaponData = overheatWeapons[weaponlist[2].blueprint.name] end)
-        if weaponData then
-            log("pass name check")
-            local oHTable = userdata_table(weaponlist[2], "mods.overheatweapons.shots")
-            if oHTable.oHShots then
-                if oHTable.oHShots <= 10 then
-                    local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
-                    log(renderString)
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot3X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                end
-            elseif oHTable.oHCDown then
-                log("on cooldown")
-                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot3X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-            end
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_PRE, function(projectile)
+    local weaponName = projectile.extend.name
+    if weaponName == "RAD_LASER_SMART" then
+        local chTable = userdata_table(projectile, "mods.radsmartlaser.comhead")
+        if projectile.currentSpace == projectile.destinationSpace and chTable.notComputed then 
+            chTable.notComputed = nil
+            projectile:ComputeHeading()
         end
     end
+end)
 
-    if weaponlist[3] then
-        log("render")
-        pcall(function() weaponData = overheatWeapons[weaponlist[3].blueprint.name] end)
-        if weaponData then
-            log("pass name check")
-            local oHTable = userdata_table(weaponlist[3], "mods.overheatweapons.shots")
-            if oHTable.oHShots then
-                if oHTable.oHShots <= 10 then
-                    local renderString = "statusUI/rad_overheat_"..tostring(oHTable.oHShots)..".png"
-                    log(renderString)
-                    Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-                    --Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString(renderString, slot4X, 500, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
+mods.rad.zsWeapons = {}
+local zsWeapons = mods.rad.zsWeapons
+zsWeapons["RAD_ZSGUN_1"] = 1
+zsWeapons["RAD_ZSGUN_2"] = 2
+zsWeapons["RAD_ZSGUN_3"] = 3
+
+script.on_internal_event(Defines.InternalEvents.PROJECTILE_INITIALIZE, function(projectile, weaponBlueprint) 
+    local shipManager = Hyperspace.Global.GetInstance():GetShipManager(projectile.ownerId)
+    local zsData = nil
+    if pcall(function() zsData = zsWeapons[Hyperspace.Get_Projectile_Extend(projectile).name] end) and zsData then
+        sRecover = zsData
+        while sRecover > 0 do 
+            shipManager.shieldSystem:AddSuperShield(shipManager.shieldSystem.superUpLoc)
+            sRecover = sRecover - 1
+        end
+        projectile:Kill()
+    end
+end)
+
+mods.rad.lightningWeapons = {}
+local lightningWeapons = mods.rad.lightningWeapons
+lightningWeapons["RAD_LIGHTNING_1"] = Hyperspace.Damage()
+lightningWeapons["RAD_LIGHTNING_1"].iSystemDamage = 1
+lightningWeapons["RAD_LIGHTNING_1"].iShieldPiercing = 5
+lightningWeapons["RAD_LIGHTNING_2"] = Hyperspace.Damage()
+lightningWeapons["RAD_LIGHTNING_2"].iDamage = 1
+lightningWeapons["RAD_LIGHTNING_2"].iShieldPiercing = 3
+lightningWeapons["RAD_LIGHTNING_3"] = Hyperspace.Damage()
+lightningWeapons["RAD_LIGHTNING_3"].iIonDamage = 1
+lightningWeapons["RAD_LIGHTNING_3"].iDamage = 2
+lightningWeapons["RAD_LIGHTNING_3"].iShieldPiercing = 2
+lightningWeapons["RAD_LIGHTNING_ION"] = Hyperspace.Damage()
+lightningWeapons["RAD_LIGHTNING_ION"].iIonDamage = 2
+lightningWeapons["RAD_LIGHTNING_ION"].iShieldPiercing = 3
+lightningWeapons["RAD_LIGHTNING_FIRE"] = Hyperspace.Damage()
+lightningWeapons["RAD_LIGHTNING_FIRE"].fireChance = 5
+lightningWeapons["RAD_LIGHTNING_FIRE"].iShieldPiercing = 3
+
+local lightningBeam = Hyperspace.Blueprints:GetWeaponBlueprint("RAD_LIGHTNING_BEAM")
+--local lastLocation = nil
+
+script.on_internal_event(Defines.InternalEvents.DAMAGE_AREA_HIT, function(shipManager, projectile, location, damage, shipFriendlyFire)
+    local weaponName = nil
+    pcall(function() weaponName = Hyperspace.Get_Projectile_Extend(projectile).name end)
+    local aoeDamage = lightningWeapons[weaponName]
+    if aoeDamage then
+        --log("lightning Hit")
+        local lastLocation = location
+        local loopCount = 0
+        --userdata_table(shipManager, "mods.rad.lightning").jumps = aoeDamage.iShieldPiercing
+        --userdata_table(shipManager, "mods.rad.lightning").damage = aoeDamage
+        local jumptable = userdata_table(shipManager, "mods.rad.lightning")
+        if jumptable.table == nil then
+            jumptable.table = {}
+        end
+        --log("hit")
+        --log(shipManager.iShipId)
+        table.insert(jumptable.table, {aoeDamage, aoeDamage.iShieldPiercing, location.x, location.y, 0.1, projectile.currentSpace})
+    end
+end)
+
+script.on_internal_event(Defines.InternalEvents.SHIP_LOOP, function(shipManager)
+    local jumptable = userdata_table(shipManager, "mods.rad.lightning")
+
+    if jumptable.table then 
+        --log("jumptable.table exists")
+        --log(shipManager.iShipId)
+        local removeTable = {}
+        for k,v in pairs(jumptable.table) do
+            --log("Inner Table Exists")
+            local timer = v[5]
+            timer = math.max(timer - Hyperspace.FPS.SpeedFactor/16, 0)
+            --log(timer)
+            if timer == 0 then
+                --log("timer hits 0")
+                local lastLocation = Hyperspace.Pointf(v[3],v[4])
+                local aoeDamage = v[1]
+                local countDown = v[2]
+                local spaceSpace = v[6]
+
+                local roomPositions = {}
+                local tblSize = 0
+                --log(lastLocation.x)
+                --log(lastLocation.y)
+                --log(get_room_at_location(shipManager,lastLocation,false))
+                --Hyperspace.Get_Projectile_Extend(projectile).name = ""
+                for roomId, roomPos in pairs(get_adjacent_rooms(shipManager.iShipId, get_room_at_location(shipManager, lastLocation, false), false)) do
+                    table.insert(roomPositions, roomPos)
+                    --log("add room")
+                    tblSize = tblSize + 1
                 end
-            elseif oHTable.oHCDown then
-                log("on cooldown")
-                Graphics.CSurface.GL_RenderPrimitive(Hyperspace.Resources:CreateImagePrimitiveString("statusUI/rad_overheat_0.png", slot4X, slotY, 0, Graphics.GL_Color(1, 1, 1, 1), 1.0, false))
-            end
+                --log(tblSize)
+
+                if tblSize > 0 then
+                    local randomNumber = math.random(1, tblSize)
+                    --log(randomNumber)
+                    local randomRoom = roomPositions[randomNumber]
+
+                    local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+                    local alpha = math.atan((randomRoom.y-lastLocation.y), (randomRoom.x-lastLocation.x))
+                    local newX1 = randomRoom.x - 5 * math.cos(alpha)
+                    local newX2 = randomRoom.x + 5 * math.cos(alpha)
+                    local newY1 = randomRoom.y - 5 * math.sin(alpha)
+                    local newY2 = randomRoom.y + 5 * math.sin(alpha)
+
+                    local beam = spaceManager:CreateBeam(
+                        lightningBeam, lastLocation, spaceSpace, ((shipManager.iShipId + 1)%2),
+                        Hyperspace.Pointf(newX1, newY1), Hyperspace.Pointf(newX2, newY2),
+                        spaceSpace, 10, 1.0)
+                    --log(beam.timer)
+                    --beam.lifespan = 10.0
+                    --log(beam.lifespan)]]
+
+                    shipManager:DamageArea(randomRoom, aoeDamage, true)
+                    --Hyperspace.Get_Projectile_Extend(projectile).name = weaponName
+                    --lastLocation = randomRoom
+                    countDown = countDown - 1
+                    if countDown == 0 then 
+                        --log("TABLE fail no more jumps")
+                        table.remove(jumptable.table, k)
+                    else
+                        local newEntry = {aoeDamage, countDown, randomRoom.x, randomRoom.y,0.4, spaceSpace}
+                        jumptable.table[k] = newEntry
+                    end
+                else
+                    --log("TABLE fail no rooms")
+                    table.remove(jumptable.table, k)
+                end
+            else 
+                jumptable.table[k][5] = timer 
+            end 
         end
     end
-end, function() end)
+end)
 
---script.on_internal_event(Defines)
+mods.rad.diffuseWeapons = {}
+local diffuseWeapons = mods.rad.diffuseWeapons
+diffuseWeapons["RAD_DIFFUSE_1"] = "rad_diff_shot"
+diffuseWeapons["RAD_DIFFUSE_2"] = "rad_diff_shot"
+diffuseWeapons["RAD_DIFFUSE_3"] = "rad_diff_shot"
+diffuseWeapons["RAD_DIFFUSE_ION"] = "ion_4_shot"
+
+script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response) 
+    local diffData = nil
+    --local otherShip = Hyperspace.Global.GetInstance():GetShipManager()
+    if pcall(function() diffData = diffuseWeapons[Hyperspace.Get_Projectile_Extend(projectile).name] end) and diffData and shipManager.shieldSystem.shields.power.super.first <= 0 then
+        local damage = projectile.damage
+        local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+        local proj1 = spaceManager:CreateBurstProjectile(
+            Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name),
+            diffData,
+            false,
+            projectile.position,
+            projectile.currentSpace,
+            projectile.ownerId,
+            get_random_point_in_radius(projectile.target, 10),
+            projectile.destinationSpace,
+            projectile.heading)
+        local proj2 = spaceManager:CreateBurstProjectile(
+            Hyperspace.Blueprints:GetWeaponBlueprint(projectile.extend.name),
+            diffData,
+            false,
+            projectile.position,
+            projectile.currentSpace,
+            projectile.ownerId,
+            get_random_point_in_radius(projectile.target, 10),
+            projectile.destinationSpace,
+            projectile.heading)
+        proj1:SetDamage(damage)
+        proj2:SetDamage(damage)
+    end
+end)

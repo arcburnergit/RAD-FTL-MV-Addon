@@ -61,7 +61,7 @@
 	</descriptionOverride>
 	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
-  <aoeDamage sysDamage="2" persDamage="1" />
+  <!--aoeDamage sysDamage="2" persDamage="1" /-->
 	<missiles>1</missiles>
 	<speed>50</speed>
 	<shots>1</shots>
@@ -120,7 +120,7 @@
 	</descriptionOverride>
 	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
-  <aoeDamage damage="1" sysDamage="1" persDamage="1" />
+  <!--aoeDamage damage="1" sysDamage="1" persDamage="1" /-->
 	<missiles>1</missiles>
 	<speed>50</speed>
 	<shots>1</shots>
@@ -180,7 +180,7 @@
 	</descriptionOverride>
 	<tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
 	<damage>0</damage>
-  <aoeDamage damage="2" sysDamage="1" persDamage="1" lockdown="true" />
+  <!--aoeDamage damage="2" sysDamage="1" persDamage="1" lockdown="true" /-->
 	<missiles>1</missiles>
 	<speed>50</speed>
 	<shots>1</shots>
@@ -236,7 +236,7 @@
 	</descriptionOverride>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>0</damage>
-  <teleportBeam duration="15"/>
+  <!--teleportBeam duration="15"/-->
 	<sp>10</sp>
 	<fireChance>0</fireChance>
 	<breachChance>3</breachChance>
@@ -267,7 +267,7 @@
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>0</damage>
-  <teleportBeam duration="10"/>
+  <!--teleportBeam duration="10"/-->
 	<fireChance>0</fireChance>
 	<breachChance>1</breachChance>
 	<cooldown>8</cooldown>
@@ -347,7 +347,7 @@
 	</descriptionOverride>
 	<tooltip>Abducts enemy crew into your weapons room.</tooltip>
 	<damage>1</damage>
-  <teleportBeam duration="30"/>
+  <!--teleportBeam duration="30"/-->
 	<fireChance>6</fireChance>
 	<breachChance>6</breachChance>
 	<cooldown>20</cooldown>
@@ -380,22 +380,26 @@
 	<tooltip>Cooldown drops the more it fires, until it overheats and turns off.</tooltip>
 	<radius>35</radius>
 	<damage>0</damage>
-  <overheat maxShots="20" cooldown="5"/>
-  <shieldDamage damage="1" superDamage="1"/>
+  <!--overheat maxShots="20" cooldown="5"/>
+  <shieldDamage damage="1" superDamage="1"/-->
+  <mv-pop>
+    <count>1</count>
+    <countSuper>1</countSuper>
+  </mv-pop>
 	<sysDamage>1</sysDamage>
 	<shots>1</shots>
 	<sp>0</sp>
 	<fireChance>1</fireChance>
 	<breachChance>0</breachChance>
-	<cooldown>8.5</cooldown>
+	<cooldown>0.8</cooldown>
 	<power>3</power>
 	<cost>95</cost>
 	<bp>2</bp>
 	<rarity>5</rarity>
 	<boost>
 		<type>cooldown</type>
-		<amount>2</amount>
-		<count>4</count>
+		<amount>-0.1</amount>
+		<count>50</count>
 	</boost>
 	<projectiles>
 		<projectile count="1" fake="false">laser_burst</projectile>
@@ -429,7 +433,6 @@
 	<desc>Laser weapon that adapts to its situation, increasing its damage with every 2 volleys shot.</desc>
 	<tooltip>Fires two lasers that deal 1 damage each. Cooldown drops the more it fires.</tooltip>
 	<damage>1.25</damage>
-  <overheat maxShots="6" cooldown="5"/>
 	<shots>1</shots>
 	<sp>0</sp>
 	<fireChance>1</fireChance>
@@ -562,7 +565,7 @@
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
 	<damage>1</damage>
-  <shieldDamage damage="1" superDamage="1"/>
+  
 	<sysDamage>-1</sysDamage>
 	<sp>0</sp>
     <fireChance>1</fireChance> 
@@ -596,7 +599,7 @@
 	<desc>YOU SHOULD NEVER SEE THIS</desc>
 	<tooltip>YOU SHOULD NEVER SEE THIS</tooltip>
 	<damage>0</damage>
-  <shieldDamage damage="1" superDamage="1"/>
+  
 	<sysDamage>1</sysDamage>
 	<sp>0</sp>
     <fireChance>1</fireChance> 
@@ -623,35 +626,33 @@
 </weaponBlueprint>
 
 <weaponBlueprint name="RAD_LIGHT_BEAM">
-    <type>BURST</type>
-    <flavorType>Pinpoint</flavorType>
-    <!--tip>rad_tip_focus_burst</tip-->
-    <title>Light Pinpoint</title>
-    <short>Light Pinpoint</short>
-    <desc>This beam makes more efficient use of power by firing a short low power beam that pops shields.</desc>
-    <tooltip>Fires pulses of a beam quickly.</tooltip>
-    <radius>10</radius> 
-    <damage>1</damage>
-    <beamReplacement beam="RAD_PROJECTILE_BEAM_FOCUS_0"/>
-	  <sysDamage>-1</sysDamage>
-    <shots>1</shots>
-    <sp>0</sp>
-    <fireChance>1</fireChance> 
-    <breachChance>1</breachChance>
-    <cooldown>4</cooldown>
-    <power>1</power>
-    <cost>45</cost>
-    <bp>2</bp>
-    <speed>0</speed> 
-    <rarity>5</rarity>	
-    <projectiles>
-        <projectile count="1" fake="false">laser_burst</projectile> 
-    </projectiles>
-    
+  <type>BURST</type>
+  <flavorType>Pinpoint</flavorType>
+  <!--tip>rad_tip_focus_burst</tip-->
+  <title>Light Pinpoint</title>
+  <short>Light Pinpoint</short>
+  <desc>This beam makes more efficient use of power by firing a short low power beam that pops shields.</desc>
+  <tooltip>Fires pulses of a beam quickly.</tooltip>
+  <radius>10</radius> 
+  <damage>1</damage>
+  <sysDamage>-1</sysDamage>
+  <shots>1</shots>
+  <sp>0</sp>
+  <fireChance>1</fireChance> 
+  <breachChance>1</breachChance>
+  <cooldown>4</cooldown>
+  <power>1</power>
+  <cost>45</cost>
+  <bp>2</bp>
+  <speed>0</speed> 
+  <rarity>5</rarity>	
+  <projectiles>
+    <projectile count="1" fake="false">laser_burst</projectile> 
+  </projectiles>
 	<launchSounds>
 		<sound>focus_weak</sound>
 	</launchSounds>
-    <weaponArt>beam_burst_1</weaponArt>
+  <weaponArt>beam_burst_1</weaponArt>
 </weaponBlueprint>
 
 <weaponBlueprint name="RAD_BEAM_BURST_1">
@@ -664,7 +665,6 @@
     <tooltip>Fires a pair of beams across a small area doing up to 2 damage.</tooltip>
     <radius>10</radius> 
     <damage>0</damage>
-    <beamReplacement beam="RAD_PROJECTILE_BEAM_FOCUS_1"/>
 	  <sysDamage>1</sysDamage>
     <shots>2</shots>
     <sp>0</sp>
@@ -696,7 +696,6 @@
     <tooltip>Fires a trio of beams across a small area doing up to 3 damage.</tooltip>
     <radius>10</radius> 
     <damage>0</damage>
-    <beamReplacement beam="RAD_PROJECTILE_BEAM_FOCUS_1"/>
 	  <sysDamage>1</sysDamage>
     <shots>3</shots>
     <sp>0</sp>
@@ -719,65 +718,63 @@
 </weaponBlueprint>
 
 <weaponBlueprint name="RAD_BEAM_BURST_3">
-    <type>BURST</type>
-    <flavorType>Pinpoint</flavorType>
-    <tip>rad_tip_focus_burst</tip>
-    <title>Burst Pinpoint Mark III</title> 
-    <short>Burst Pin III</short>
-    <desc>This beam makes more efficient use of power by firing multiple short low power beams that pop shields.</desc>
-    <tooltip>Fires multiple beams across a small area doing up to 5 damage.</tooltip>
-    <radius>10</radius> 
-    <damage>0</damage>
-    <beamReplacement beam="RAD_PROJECTILE_BEAM_FOCUS_1"/>
-	  <sysDamage>1</sysDamage>
-    <shots>5</shots>
-    <sp>0</sp>
-    <fireChance>1</fireChance> 
-    <breachChance>1</breachChance>
-    <cooldown>15</cooldown>
-    <power>3</power>
-    <cost>72</cost>
-    <bp>2</bp>
-    <speed>0</speed> 
-    <rarity>5</rarity>	
-    <projectiles>
-        <projectile count="1" fake="false">laser_burst</projectile>
-    </projectiles>
-    
+  <type>BURST</type>
+  <flavorType>Pinpoint</flavorType>
+  <tip>rad_tip_focus_burst</tip>
+  <title>Burst Pinpoint Mark III</title> 
+  <short>Burst Pin III</short>
+  <desc>This beam makes more efficient use of power by firing multiple short low power beams that pop shields.</desc>
+  <tooltip>Fires multiple beams across a small area doing up to 5 damage.</tooltip>
+  <radius>10</radius> 
+  <damage>0</damage>
+  <sysDamage>1</sysDamage>
+  <shots>5</shots>
+  <sp>0</sp>
+  <fireChance>1</fireChance> 
+  <breachChance>1</breachChance>
+  <cooldown>15</cooldown>
+  <power>3</power>
+  <cost>72</cost>
+  <bp>2</bp>
+  <speed>0</speed> 
+  <rarity>5</rarity>	
+  <projectiles>
+      <projectile count="1" fake="false">laser_burst</projectile>
+  </projectiles>
 	<launchSounds>
 		<sound>focus_weak</sound>
 	</launchSounds>
-    <weaponArt>beam_burst_5</weaponArt>
+  <weaponArt>beam_burst_5</weaponArt>
 </weaponBlueprint>
 
 <weaponBlueprint name="RAD_LASER_COMBINER">
-    <type>BURST</type>
-    <flavorType>Laser</flavorType>
-    <tip>rad_tip_combiner</tip>
-    <title>Multi-Laser</title> 
-    <short>Multi-Laser</short>
-    <desc>This laser is actually multiple lasers forced into the one barrel.</desc>
-    <tooltip>Fires multiple lasers across a small area doing up to 4 damage.</tooltip>
-    <radius>10</radius> 
-    <damage>1</damage>
-	<!--sysDamage>1</sysDamage-->
-    <shots>1</shots>
-    <sp>0</sp>
-    <fireChance>1</fireChance> 
-    <breachChance>1</breachChance>
-    <cooldown>15</cooldown>
-    <power>3</power>
-    <cost>72</cost>
-    <bp>2</bp>
-    <speed>0</speed> 
-    <rarity>5</rarity>	
-    <projectiles>
-        <projectile count="4" fake="false">laser_burst</projectile>
-    </projectiles>
-    <launchSounds>
-		<sound>lightLaser1</sound>
-		<sound>lightLaser2</sound>
-		<sound>lightLaser3</sound>
+  <type>BURST</type>
+  <flavorType>Laser</flavorType>
+  <tip>rad_tip_combiner</tip>
+  <title>Multi-Laser</title> 
+  <short>Multi-Laser</short>
+  <desc>This laser is actually multiple lasers forced into the one barrel.</desc>
+  <tooltip>Fires multiple lasers across a small area doing up to 4 damage.</tooltip>
+  <radius>10</radius> 
+  <damage>1</damage>
+<!--sysDamage>1</sysDamage-->
+  <shots>1</shots>
+  <sp>0</sp>
+  <fireChance>1</fireChance> 
+  <breachChance>1</breachChance>
+  <cooldown>15</cooldown>
+  <power>3</power>
+  <cost>72</cost>
+  <bp>2</bp>
+  <speed>0</speed> 
+  <rarity>5</rarity>	
+  <projectiles>
+      <projectile count="4" fake="false">laser_burst</projectile>
+  </projectiles>
+  <launchSounds>
+  <sound>lightLaser1</sound>
+  <sound>lightLaser2</sound>
+  <sound>lightLaser3</sound>
 	</launchSounds>
 	<hitShipSounds>
 		<sound>hitHull2</sound>
@@ -791,21 +788,21 @@
 	<missSounds>
 		<sound>miss</sound>
 	</missSounds>
-    <weaponArt>laser_rad_combiner</weaponArt>
+  <weaponArt>laser_rad_combiner</weaponArt>
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
 
 <weaponBlueprint name="RAD_LASER_SMART">
-    <type>LASER</type>
-    <flavorType>Laser</flavorType>
-    <tip>rad_tip_laser_smart</tip>
-    <title>Smart Laser</title> 
-    <short>Smart Laser</short>
-    <desc>This weapon has a built in AI that takes targeting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines, and finally after that it will target the designated room.</desc>
-    <tooltip>Fires multiple lasers and automatically targets different systems.</tooltip> 
-    <damage>1</damage>
-    <accuracyMod>25</accuracyMod>
-    <shots>4</shots>
+  <type>LASER</type>
+  <flavorType>Laser</flavorType>
+  <tip>rad_tip_laser_smart</tip>
+  <title>Smart Laser</title> 
+  <short>Smart Laser</short>
+  <desc>This weapon has a built in AI that takes targeting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines, and finally after that it will target the designated room.</desc>
+  <tooltip>Fires multiple lasers and automatically targets different systems.</tooltip> 
+  <damage>1</damage>
+  <accuracyMod>25</accuracyMod>
+  <shots>4</shots>
 	<sp>0</sp>
 	<fireChance>3</fireChance>
 	<breachChance>2</breachChance>
@@ -836,127 +833,45 @@
 	<iconImage>laser</iconImage>
 </weaponBlueprint>
 
-  <weaponBlueprint name="RAD_LASER_SMART_ENEMY">
-    <type>LASER</type>
-    <flavorType>Laser</flavorType>
-    <tip>rad_tip_laser_smart</tip>
-    <title>Smart Laser</title>
-    <short>Smart Laser</short>
-    <desc>This weapon has a built in AI that takes targeting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines, and finally after that it will target the designated room.</desc>
-    <tooltip>Fires multiple lasers and automatically targets different systems.</tooltip>
-    <damage>1</damage>
-    <shots>3</shots>
-    <sp>0</sp>
-    <fireChance>1</fireChance>
-    <breachChance>0</breachChance>
-    <cooldown>14</cooldown>
-    <power>2</power>
-    <cost>80</cost>
-    <bp>4</bp>
-    <rarity>0</rarity>
-    <image>laser_burst</image>
-    <launchSounds>
-      <sound>lightLaser1</sound>
-      <sound>lightLaser2</sound>
-      <sound>lightLaser3</sound>
-    </launchSounds>
-    <hitShipSounds>
-      <sound>hitHull2</sound>
-      <sound>hitHull3</sound>
-    </hitShipSounds>
-    <hitShieldSounds>
-      <sound>hitShield1</sound>
-      <sound>hitShield2</sound>
-      <sound>hitShield3</sound>
-    </hitShieldSounds>
-    <missSounds>
-      <sound>miss</sound>
-    </missSounds>
-    <weaponArt>laser_rad_smart</weaponArt>
-    <iconImage>laser</iconImage>
-  </weaponBlueprint>
-
-<shipBlueprint name="PLAYER_SHIP_RADLAB_1" layout="rdp_lab_a" img="rdp_lab_a">
-	<class>R&amp;D Laboratory</class>
-	<name>Station 37-A</name>
-	<desc>A heavily modified civilian station. The Scientists installed a pair of engines to it. However, they're barely enough to make the station jump capable. It's unlikely you'll be able to dodge much with it.</desc>
-	<systemList>
-		<battery power="1" room="27" start="false" img="room_battery_16" />
-		<cloaking power="1" room="11" start="false" img="radlab_cloaking" />
-		<clonebay power="1" max="3" room="7" start="false">
-			<slot>
-				<number>1</number>
-			</slot>
-		</clonebay>
-		<doors power="1" room="3" start="true" img="room_doors_2">
-			<slot>
-				<direction>down</direction>
-				<number>0</number>
-			</slot>
-		</doors>
-		<drones power="1" room="11" start="false" img="room_drones_9" />
-		<engines power="1" max="1" room="24" start="true" img="room_engines_radlab_a">
-			<slot>
-				<direction>down</direction>
-				<number>3</number>
-			</slot>
-		</engines>
-		<hacking power="1" room="11" start="false" img="room_hacking_7" />
-		<medbay power="1" room="7" start="true" img="room_medbay">
-			<slot>
-				<number>1</number>
-			</slot>
-		</medbay>
-		<mind power="1" room="11" start="false" img="room_mind_4" />
-		<oxygen power="1" room="12" start="true" img="room_oxygen_13" />
-		<pilot power="1" room="16" start="true" img="room_pilot_radlab_a">
-			<slot>
-				<direction>right</direction>
-				<number>0</number>
-			</slot>
-		</pilot>
-		<sensors power="2" room="26" start="true" img="room_sensors_2">
-			<slot>
-				<direction>up</direction>
-				<number>0</number>
-			</slot>
-		</sensors>
-		<shields power="2" max="8" room="6" start="true" img="room_shields_radlab_a">
-			<slot>
-				<direction>down</direction>
-				<number>3</number>
-			</slot>
-		</shields>
-		<teleporter power="1" room="8" start="false" />
-		<weapons power="3" max="8" room="15" start="true" img="room_weapons_radlab_a">
-			<slot>
-				<direction>up</direction>
-				<number>0</number>
-			</slot>
-		</weapons>
-	</systemList>
-	<weaponSlots>4</weaponSlots>
-	<droneSlots>2</droneSlots>
-	<weaponList missiles="12" count="4">
-		<weapon name="RAD_CLUSTER_MISSILE" />
-		<weapon name="LASER_BURST_2" />
-	</weaponList>
-	<droneList drones="0" count="2" />
-	<health amount="30" />
-	<maxPower amount="6" />
-	<crewCount amount="1" class="human_engineer" />
-	<crewCount amount="1" class="human" />
-	<crewCount amount="1" class="human" />
-	<aug name="RAD_LOCKED_SHRAPNEL_COATING" />
-</shipBlueprint>
-
-<augBlueprint name="RAD_SHRAPNEL_COATING">
-	<title>Shrapnel Coating</title>
-	<desc>Allows you to apply a shrapnel coating to the ammo of one weapon, or weapon class, granting that weapon 1 system damage to adjacent rooms.</desc>
-	<cost>80</cost>
-	<rarity>0</rarity>
-	<stackable>false</stackable>
-</augBlueprint>
+<weaponBlueprint name="RAD_LASER_SMART_ENEMY">
+  <type>LASER</type>
+  <flavorType>Laser</flavorType>
+  <tip>rad_tip_laser_smart</tip>
+  <title>Smart Laser</title>
+  <short>Smart Laser</short>
+  <desc>This weapon has a built in AI that takes targeting control out of your hands. It will prioritize taking down Shields, then Weapons, and then Piloting/Engines, and finally after that it will target the designated room.</desc>
+  <tooltip>Fires multiple lasers and automatically targets different systems.</tooltip>
+  <damage>1</damage>
+  <shots>3</shots>
+  <sp>0</sp>
+  <fireChance>1</fireChance>
+  <breachChance>0</breachChance>
+  <cooldown>14</cooldown>
+  <power>2</power>
+  <cost>80</cost>
+  <bp>4</bp>
+  <rarity>0</rarity>
+  <image>laser_burst</image>
+  <launchSounds>
+    <sound>lightLaser1</sound>
+    <sound>lightLaser2</sound>
+    <sound>lightLaser3</sound>
+  </launchSounds>
+  <hitShipSounds>
+    <sound>hitHull2</sound>
+    <sound>hitHull3</sound>
+  </hitShipSounds>
+  <hitShieldSounds>
+    <sound>hitShield1</sound>
+    <sound>hitShield2</sound>
+    <sound>hitShield3</sound>
+  </hitShieldSounds>
+  <missSounds>
+    <sound>miss</sound>
+  </missSounds>
+  <weaponArt>laser_rad_smart</weaponArt>
+  <iconImage>laser</iconImage>
+</weaponBlueprint>
 
 <augBlueprint name="RAD_JUMP_TRACKER">
 	<title>Jump Tracer</title>
@@ -969,17 +884,8 @@
 <augBlueprint name="FLESH_HULL">
 	<title>Flesh Hull Plating</title>
 	<desc>Through use of advanced bio-engineering, your hull is able to repair itself over time. However, it's quite unstable.
-	Whenever you fire a weapon, your hull takes 1 damage, or damage equal to the hull damage of the weapon, whichever is higher.
-  At the start of battle you'll heal 10 hull damage automatically
-</desc>
-	<cost>0</cost>
-	<rarity>0</rarity>
-	<stackable>false</stackable>
-</augBlueprint>
-
-<augBlueprint name="LOCKED_RAD_SHRAPNEL_COATING">
-	<title>Shrapnel Coating</title>
-	<desc>Allows you to apply a shrapnel coating to the ammo of one weapon, or weapon class, granting that weapon 1 system damage to adjacent rooms.</desc>
+Whenever you fire a weapon, your hull takes 1 damage, or damage equal to the hull damage of the weapon, whichever is higher.
+At the start of battle you'll heal 10 hull damage automatically</desc>
 	<cost>0</cost>
 	<rarity>0</rarity>
 	<stackable>false</stackable>
@@ -1306,50 +1212,28 @@ The meaty exterior isn't very strong, but repairs itself quickly. You'll have to
   <image>invisible</image>
   <weaponArt>invisible_gun</weaponArt>
 </weaponBlueprint>
-
-  <weaponBlueprint name="ARTILLERY_RAD_ZS">
-    <type>LASER</type>
-    <title>Zoltan Shield Generator</title>
-    <short>Zoltan Shield Generator</short>
-    <desc>
-[BASE COOLDOWN: 12] Generates a Super Shield Layer every time the artillery fires.
-    </desc>
-    <tooltip>Creates a Super Shield.</tooltip>
-    <damage>0</damage>
-    <shots>1</shots>
-    <sp>0</sp>
-    <fireChance>0</fireChance>
-    <breachChance>0</breachChance>
-    <cooldown>12</cooldown>
-    <power>1</power>
-    <cost>80</cost>
-    <bp>4</bp>
-    <rarity>0</rarity>
-    <image>invisible</image>
-    <weaponArt>invisible_gun</weaponArt>
-  </weaponBlueprint>
   
-  <weaponBlueprint name="ARTILLERY_RAD_SWTCH">
-    <type>LASER</type>
-    <title>Switch Drive</title>
-    <short>Switch Drive</short>
-    <desc>
+<weaponBlueprint name="ARTILLERY_RAD_SWTCH">
+  <type>LASER</type>
+  <title>Switch Drive</title>
+  <short>Switch Drive</short>
+  <desc>
 [BASE COOLDOWN: 25] Each time it fires all the crew on each ship are teleported across to the other ship, regardless of which ship they originate from.
-    </desc>
-    <tooltip>Creates a Super Shield.</tooltip>
-    <damage>0</damage>
-    <shots>1</shots>
-    <sp>0</sp>
-    <fireChance>0</fireChance>
-    <breachChance>0</breachChance>
-    <cooldown>25</cooldown>
-    <power>1</power>
-    <cost>80</cost>
-    <bp>4</bp>
-    <rarity>0</rarity>
-    <image>invisible</image>
-    <weaponArt>invisible_gun</weaponArt>
-  </weaponBlueprint>
+  </desc>
+  <tooltip>Creates a Super Shield.</tooltip>
+  <damage>0</damage>
+  <shots>1</shots>
+  <sp>0</sp>
+  <fireChance>0</fireChance>
+  <breachChance>0</breachChance>
+  <cooldown>25</cooldown>
+  <power>1</power>
+  <cost>80</cost>
+  <bp>4</bp>
+  <rarity>0</rarity>
+  <image>invisible</image>
+  <weaponArt>invisible_gun</weaponArt>
+</weaponBlueprint>
 
 <weaponBlueprint name="ARTILLERY_FLESH_ENEMY">
 	<type>LASER</type>
@@ -2044,7 +1928,10 @@ Default Price: 80~ - Selling Price:40~
     </descriptionOverride>
     <tooltip>Abducts enemy crew into your weapons room.</tooltip>
     <damage>0</damage>
-    <shieldDamage damage="16" superDamage="16"/>
+    <mv-pop>
+			<count>1</count>
+			<countSuper>1</countSuper>
+		</mv-pop>
     <sp>0</sp>
     <fireChance>0</fireChance>
     <breachChance>0</breachChance>
@@ -2085,7 +1972,6 @@ The shield generator now generates Super Shield layers instead of normal shield 
     <unlock id="ship_PLAYER_SHIP_RAD_FLESH_2_unlock"/>
     <desc>A combination of Zoltan and Engi technology, this ship combines the Engi power generation technology with that of the Zoltan shield technology, allowing the ship to generate a super shield layer every few seconds.</desc>
     <systemList>
-      <!--artillery power="1" room="0"  start="true" max="4" weapon="ARTILLERY_RAD_ZS" img="Sprite-0005" />-->
       <shields power="2" room="0" start="true" max="8" img="room_shields_4">
         <slot>
           <direction>left</direction>
@@ -3425,7 +3311,7 @@ The beam does 1 damage, and gains an additional half damage for each power in th
     <desc>NO</desc>
     <tooltip></tooltip>
     <damage>0</damage>
-    <hack duration="5" immuneAfterHack="7" />
+    <mv-hack duration="5" immuneAfterHack="7" />
     <roomStatBoosts>
       <statBoost name="trueHealAmount">
         <boostType>FLAT</boostType>
@@ -3471,7 +3357,7 @@ The beam does 1 damage, and gains an additional half damage for each power in th
     <desc>NO</desc>
     <tooltip></tooltip>
     <damage>0</damage>
-    <hack duration="10" immuneAfterHack="7" />
+    <mv-hack duration="10" immuneAfterHack="7" />
     <roomStatBoosts>
       <statBoost name="trueHealAmount">
         <boostType>FLAT</boostType>
@@ -3517,7 +3403,7 @@ The beam does 1 damage, and gains an additional half damage for each power in th
     <desc>NO</desc>
     <tooltip></tooltip>
     <damage>0</damage>
-    <hack duration="15" immuneAfterHack="7" />
+    <mv-hack duration="15" immuneAfterHack="7" />
     <roomStatBoosts>
       <statBoost name="trueHealAmount">
         <boostType>FLAT</boostType>
@@ -4135,7 +4021,7 @@ Inherited Human stats: minor suffocation resistance, learns skills faster</desc>
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
-    <diffusion number="2" image="rad_diff_shot"/>
+    <!--diffusion number="2" image="rad_diff_shot"/-->
     <sysDamage>0</sysDamage>
     <shots>1</shots>
     <radius>40</radius>
@@ -4179,7 +4065,7 @@ When the projectile splits each new projectile will deviate from the impact poin
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
-    <diffusion number="2" image="rad_diff_shot"/>
+    <!--diffusion number="2" image="rad_diff_shot"/-->
     <sysDamage>0</sysDamage>
     <shots>2</shots>
     <radius>40</radius>
@@ -4223,7 +4109,7 @@ When the projectile splits each new projectile will deviate from the impact poin
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>1</damage>
-    <diffusion number="2" image="rad_diff_shot"/>
+    <!--diffusion number="2" image="rad_diff_shot"/-->
     <sysDamage>0</sysDamage>
     <shots>3</shots>
     <radius>40</radius>
@@ -4267,7 +4153,7 @@ When the projectile splits each new projectile will deviate from the impact poin
 When the projectile splits each new projectile will deviate from the impact point by up to 10 pixels. Does not work through Super Shields.</desc>
     <tooltip>Pierces all shields and splits on contact with shields.</tooltip>
     <damage>0</damage>
-    <diffusion number="2" image="ion_4_shot"/>
+    <!--diffusion number="2" image="ion_4_shot"/-->
     <sysDamage>0</sysDamage>
     <ion>1</ion>
     <radius>40</radius>
@@ -5420,7 +5306,15 @@ Every time it charges it will construct another time bomb.
 	<health amount="30" />
 	<maxPower amount="8" />
 </shipBlueprint>
-  
+
+<augBlueprint name="ARC_SUPER_HULL">
+	<title>Super hull</title>
+	<desc> </desc>
+	<cost>0</cost>
+	<rarity>0</rarity>
+	<stackable>true</stackable>
+</augBlueprint>
+
 <weaponBlueprint name="RAD_MINELAYER">
 	<type>BURST</type>
 	<tip>tip_mine</tip>
@@ -5499,7 +5393,7 @@ Every time it charges it will construct another time bomb.
     </descriptionOverride>
     <tooltip>Fires 1 missile; Only damages adjacent rooms; Pierces all shields.</tooltip>
     <damage>0</damage>
-    <aoeDamage sysDamage="2" persDamage="2" />
+    <!--aoeDamage sysDamage="2" persDamage="2" /-->
     <missiles>1</missiles>
     <speed>50</speed>
     <shots>1</shots>
@@ -5510,7 +5404,7 @@ Every time it charges it will construct another time bomb.
     <power>2</power>
     <cost>50</cost>
     <bp>2</bp>
-    <rarity>5</rarity>
+    <rarity>0</rarity>
     <image>missile_cluster</image>
     <launchSounds>
       <sound>smallMissile1</sound>

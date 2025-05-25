@@ -1151,7 +1151,7 @@ Just as you start moving towards the ship, it powers on it's weapons, looks like
       <req>loc_rad_board_charged</req>
       <jumpClear>true</jumpClear>
     </eventButton>
-    <triggeredEvent event="RAD_MAIN_DISABLE_DOORS" loop="1" thisFight="false" minTime="120" maxTime="120">
+    <triggeredEvent event="RAD_MAIN_DISABLE_DOORS" loop="1" thisFight="false" minTime="120" maxTime="120" clearOnJump="true" >
       <triggeredEventBox load="DEFAULT_TIMER">
         <warning time="5.0" flash="true" />
         <tooltip>The enemy's door system will be disabled after this time.</tooltip>

@@ -625,13 +625,6 @@
 </mod:findLike>
 
 <augments>
-	<aug name="LOCKED_RAD_SHRAPNEL_COATING">
-		<function name="SHRAPNEL_COATING" value="1" useForReqs="true" warning="false"/>
-    	<locked />
-	</aug>
-	<aug name="RAD_SHRAPNEL_COATING">
-		<function name="SHRAPNEL_COATING" value="1" useForReqs="true" warning="false"/>
-	</aug>
 	<aug name="RAD_JUMP_TRACKER"/>
   <aug name="RAD_SYSTEM_DUMB">
     <locked />
@@ -1905,6 +1898,7 @@
 
 <mod:findLike type="scripts">
     <mod-append:script>data/rad_scripts/rad_functions.lua</mod-append:script>
+    <mod-append:script>data/rad_scripts/rad_weaponFunctions.lua</mod-append:script>
     <mod-append:script>data/rad_scripts/radIcon.lua</mod-append:script>
 </mod:findLike>
 

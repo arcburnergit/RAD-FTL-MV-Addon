@@ -738,15 +738,17 @@
     <locked />
   </aug>
   <aug name="RAD_WM_MULTISHOT">    
+    <function name="AUTO_COOLDOWN" value="-0.5" useForReqs="false" warning="false" />
   </aug>
   <aug name="RAD_WM_RAILGUN">
   </aug>
   <aug name="RAD_MOD_SUS">
   </aug>
   <aug name="RAD_WM_BIGSHOT">
-    <function name="AUTO_COOLDOWN" value="-0.6" useForReqs="false" warning="false" />
+    <function name="AUTO_COOLDOWN" value="-0.5" useForReqs="false" warning="false" />
   </aug>
   <aug name="IN_RAD_WM_MULTISHOT">
+    <function name="AUTO_COOLDOWN" value="-0.5" useForReqs="false" warning="false" />
     <function name="RAD_WM_MULTISHOT" value="1" useForReqs="false" warning="false"/>
   </aug>
   <aug name="IN_RAD_WM_RAILGUN">
@@ -754,7 +756,7 @@
   <aug name="IN_RAD_MOD_SUS">
   </aug>
   <aug name="IN_RAD_WM_BIGSHOT">
-    <function name="AUTO_COOLDOWN" value="-0.6" useForReqs="false" warning="false" />
+    <function name="AUTO_COOLDOWN" value="-0.5" useForReqs="false" warning="false" />
     <function name="RAD_WM_BIGSHOT" value="1" useForReqs="false" warning="false"/>
   </aug>
   <aug name="RAD_CREVERSAL">

@@ -2647,9 +2647,9 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
 
   <augBlueprint name="RAD_WM_MULTISHOT">
     <title>Multishot Weapons</title>
-    <desc>Splits every projectile or beam you fire in two, however the hull damage, system damage, and ion damage are halved. In the case that the base value is odd, one projectile will have more damage than the other. When used with High Energy Weapons, all projectiles are doubled but retain their original damage.
+    <desc>All weapons fire twice as many projectiles/shots/beams, but reduces weapon recharge rate by 50%.
     
-Can be installed internally for 20 scrap in the storage menu.</desc>
+Can be installed internally for 20 scrap in the storage menu, does not stack.</desc>
     <cost>60</cost>
     <rarity>0</rarity>
     <stackable>false</stackable>
@@ -2657,7 +2657,7 @@ Can be installed internally for 20 scrap in the storage menu.</desc>
 
   <augBlueprint name="RAD_WM_BIGSHOT">
     <title>High Energy Weapons</title>
-    <desc>Doubles the hull damage, system damage, and ion damage of all projectiles or beams you fire, but reduces weapon recharge rate by 60%. When used with multishot all projectiles are doubled but retain their original damage.
+    <desc>Doubles the hull damage, system damage, and ion damage of all projectiles or beams you fire, but reduces weapon recharge rate by 50%.
 
 Can be installed internally for 20 scrap in the storage menu, does not stack.</desc>
     <cost>60</cost>

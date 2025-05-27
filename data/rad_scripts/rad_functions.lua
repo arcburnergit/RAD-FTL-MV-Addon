@@ -572,21 +572,39 @@ script.on_internal_event(Defines.InternalEvents.JUMP_ARRIVE, function(shipManage
 end)
 
 local function createLaserBlast(projectile, weapon)
-    local newProj = Hyperspace.LaserBlast(projectile.position, projectile.ownerId, projectile.targetId, projectile.target)
-    if projectile.hitSolidSound then newProj.hitSolidSound = projectile.hitSolidSound end
-    if projectile.hitShieldSound then newProj.hitShieldSound = projectile.hitShieldSound end
-    --[[if projectile.missSound then newProj.missSound = projectile.missSound end]]
+    --local newProj = Hyperspace.LaserBlast(projectile.position, projectile.ownerId, projectile.targetId, projectile.target)
+    local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+    local newProj = spaceManager:CreateLaserBlast(
+        weapon.blueprint,
+        projectile.position,
+        projectile.currentSpace,
+        projectile.ownerId,
+        projectile.target,
+        projectile.destinationSpace,
+        projectile.heading)
+    spaceManager.projectiles:pop_back()
     newProj.entryAngle = projectile.entryAngle
-    newProj.flight_animation = projectile.flight_animation
-    newProj.death_animation = projectile.death_animation
-    newProj.heading = projectile.heading
-    newProj.speed = projectile.speed
-    newProj:SetDamage(projectile.damage)
-    newProj.spinAngle = projectile.spinAngle
-    newProj.spinSpeed = projectile.spinSpeed
     return newProj
 end
 local function createLaserBurst(projectile, weapon)
+    local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
+    local fake = true
+    if projectile.damage.iDamage > 0 or projectile.damage.iSystemDamage > 0 or projectile.damage.iIonDamage > 0 or projectile.damage.iPersDamage > 0 or
+    projectile.damage.fireChance > 0 or projectile.damage.breachChance > 0 or projectile.damage.stunChance > 0 then fake = false end
+    --print("FAKE:"..tostring(fake))
+    local newProj = spaceManager:CreateBurstProjectile(
+        weapon.blueprint,
+        projectile.flight_animation.animName,
+        fake,
+        projectile.position,
+        projectile.currentSpace,
+        projectile.ownerId,
+        projectile.target,
+        projectile.destinationSpace,
+        projectile.heading)
+    spaceManager.projectiles:pop_back()
+    newProj.entryAngle = projectile.entryAngle
+    return newProj
 end
 local function createMissile(projectile, weapon)
     local spaceManager = Hyperspace.App.world.space
@@ -598,36 +616,82 @@ local function createMissile(projectile, weapon)
         projectile.target,
         projectile.destinationSpace,
         projectile.heading)
+    spaceManager.projectiles:pop_back()
+    missile.entryAngle = projectile.entryAngle
     return missile
 end
 local function createBomb(projectile, weapon)
+    local spaceManager = Hyperspace.App.world.space
+    local bomb = spaceManager:CreateBomb(
+        weapon.blueprint,
+        projectile.ownerId,
+        projectile.target,
+        projectile.destinationSpace)
+    spaceManager.projectiles:pop_back()
+    return bomb
 end
 local function createBeam(projectile, weapon)
+    local spaceManager = Hyperspace.App.world.space
+    local beam = spaceManager:CreateBeam(
+        weapon.blueprint,
+        projectile.position,
+        projectile.currentSpace,
+        projectile.ownerId,
+        projectile.target1,
+        projectile.target2,
+        projectile.destinationSpace,
+        projectile.length,
+        projectile.heading)
+    spaceManager.projectiles:pop_back()
+    beam.sub_start = projectile.sub_start
+    return beam
 end
+
+mods.rad.multiExclusions = {}
+local multiExclusions = mods.rad.multiExclusions
+multiExclusions["RAD_CLUSTER_MISSILE"] = true
+multiExclusions["RAD_CLUSTER_MISSILE_2"] = true
+multiExclusions["RAD_CLUSTER_MISSILE_3"] = true
+multiExclusions["RAD_LIGHTNING_1"] = true
+multiExclusions["RAD_LIGHTNING_2"] = true
+multiExclusions["RAD_LIGHTNING_3"] = true
+multiExclusions["RAD_LIGHTNING_ION"] = true
+multiExclusions["RAD_LIGHTNING_FIRE"] = true
+multiExclusions["RAD_BEAM_BURST_1"] = true
+multiExclusions["RAD_BEAM_BURST_2"] = true
+multiExclusions["RAD_BEAM_BURST_3"] = true
+multiExclusions["RAD_LIGHT_BEAM"] = true
+multiExclusions["RAD_TRASH_BEAM"] = true
+multiExclusions["DRONE_LASER_DEFENSE_INVIS"] = true
+multiExclusions["ARTILLERY_FLESH"] = true
+multiExclusions["ARTILLERY_RAD_ZS"] = true
+multiExclusions["ARTILLERY_RAD_SWTCH"] = true
+multiExclusions["ARTILLERY_FLESH_ENEMY"] = true
+multiExclusions["ARTILLERY_RAD_CORVETTE"] = true
 
 script.on_internal_event(Defines.InternalEvents.PROJECTILE_FIRE, function(projectile, weapon)
     local shipManager = Hyperspace.ships(weapon.iShipId)
-    if shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0 then
-        if not userdata_table(projectile, "mods.rad.multishot").wasDuplicated then
+    if shipManager:HasAugmentation("RAD_WM_MULTISHOT") > 0 and weapon then
+        if not multiExclusions[projectile.extend.name] and not userdata_table(projectile, "mods.rad.multishot").wasDuplicated then
             local projectileNew = nil
             if weapon.blueprint.typeName == "LASER" then
-                print("CREATE LASER")
+                --print("CREATE LASER")
                 projectileNew = createLaserBlast(projectile, weapon)
             elseif weapon.blueprint.typeName == "BURST" then
-                print("CREATE LASER BURST")
+                --print("CREATE LASER BURST")
                 projectileNew = createLaserBurst(projectile, weapon)
             elseif weapon.blueprint.typeName == "MISSILES" then
-                print("CREATE MISSILE")
+                --print("CREATE MISSILE")
                 projectileNew = createMissile(projectile, weapon)
             elseif weapon.blueprint.typeName == "BOMB" then
-                print("CREATE BOMB")
+                --print("CREATE BOMB")
                 projectileNew = createBomb(projectile, weapon)
             elseif weapon.blueprint.typeName == "BEAM" then
-                print("CREATE BEAM")
+                --print("CREATE BEAM")
                 projectileNew = createBeam(projectile, weapon)
             end
             if projectileNew then
-                print("ADD PROJECTILE")
+                --print("ADD PROJECTILE")
                 userdata_table(projectileNew, "mods.rad.multishot").wasDuplicated = true
                 weapon.queuedProjectiles:push_back(projectileNew)
             end

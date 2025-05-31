@@ -104,6 +104,12 @@ local function offset_point_direction(oldX, oldY, angle, distance)
     return Hyperspace.Pointf(newX, newY)
 end
 
+local function get_random_point_in_radius(center, radius)
+    r = radius * math.sqrt(math.random())
+    theta = math.random() * 2 * math.pi
+    return Hyperspace.Pointf(center.x + r * math.cos(theta), center.y + r * math.sin(theta))
+end
+
 --[[
 int iDamage;
 int iShieldPiercing;
@@ -546,9 +552,9 @@ diffuseWeapons["RAD_DIFFUSE_3"] = "rad_diff_shot"
 diffuseWeapons["RAD_DIFFUSE_ION"] = "ion_4_shot"
 
 script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response) 
-    local diffData = nil
     --local otherShip = Hyperspace.Global.GetInstance():GetShipManager()
-    if pcall(function() diffData = diffuseWeapons[Hyperspace.Get_Projectile_Extend(projectile).name] end) and diffData and shipManager.shieldSystem.shields.power.super.first <= 0 then
+    if projectile and diffuseWeapons[projectile.extend.name] and shipManager.shieldSystem.shields.power.super.first <= 0 then
+        local diffData = diffuseWeapons[projectile.extend.name]
         local damage = projectile.damage
         local spaceManager = Hyperspace.Global.GetInstance():GetCApp().world.space
         local proj1 = spaceManager:CreateBurstProjectile(

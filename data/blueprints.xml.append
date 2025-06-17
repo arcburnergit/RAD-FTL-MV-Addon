@@ -1918,6 +1918,7 @@ It will also completely destroy a super shield, however it will require a second
 Stats:
 Required Power: 2
 Charge Time: 15 seconds
+Max Shots: 2
 
 Shots Per Charge: 1
 
@@ -1928,6 +1929,7 @@ Default Price: 80~ - Selling Price:40~
     </descriptionOverride>
     <tooltip>Abducts enemy crew into your weapons room.</tooltip>
     <damage>0</damage>
+	  <shotLimit>2</shotLimit>
     <mv-pop>
 			<count>1</count>
 			<countSuper>1</countSuper>
@@ -2619,7 +2621,7 @@ The 4 artillery weapons traditionally deployed on a vessel like this have been s
     <fireChance>5</fireChance>
     <breachChance>0</breachChance>
     <cooldown>18</cooldown>
-    <power>2</power>
+    <power>3</power>
     <cost>60</cost>
     <bp>2</bp>
     <rarity>5</rarity>

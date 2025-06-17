@@ -581,3 +581,48 @@ script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipM
         proj2:SetDamage(damage)
     end
 end)
+
+mods.rad.popWeapons = {}
+local popWeapons = mods.rad.popWeapons
+popWeapons["RAD_PROJECTILE_BEAM_FOCUS_1"] = {
+    count =1,
+    countSuper =1,
+    delete = true
+}
+popWeapons["RAD_PROJECTILE_BEAM_FOCUS_0"] = {
+    count =1,
+    countSuper =1,
+    delete = true
+}
+popWeapons["RAD_SDRAIN"] = {
+    count = 16,
+    countSuper = 16,
+    delete = true
+}
+popWeapons["RAD_LIGHTNING_FIRE"] = {
+    count = 1,
+    countSuper = 1,
+    delete = false
+}
+
+script.on_internal_event(Defines.InternalEvents.SHIELD_COLLISION, function(shipManager, projectile, damage, response)
+    local shieldPower = shipManager.shieldSystem.shields.power
+    local popData = popWeapons[projectile.extend.name]
+    if popData then
+        if shieldPower.super.first > 0 then
+            if popData.countSuper > 0 then
+                shipManager.shieldSystem:CollisionReal(projectile.position.x, projectile.position.y, Hyperspace.Damage(), true)
+                shieldPower.super.first = math.max(0, shieldPower.super.first - popData.countSuper)
+                if popData.delete == true then
+                    projectile:Kill()
+                end
+            end
+        else
+            shipManager.shieldSystem:CollisionReal(projectile.position.x, projectile.position.y, Hyperspace.Damage(), true)
+            shieldPower.first = math.max(0, shieldPower.first - popData.count)
+            if popData.delete == true then
+                projectile:Kill()
+            end
+        end
+    end
+end)

@@ -1514,10 +1514,10 @@ script.on_game_event("RAD_POWER_ROLL", false, function()
     local shipManager = Hyperspace.Global.GetInstance():GetShipManager(0)
     if shipManager:HasAugmentation("RAD_SUPER_RANDOM") > 0 then 
         for weapon in vter(shipManager:GetWeaponList()) do
-            weapon.requiredPower = math.floor(math.random(1, 8)/2)
+            weapon.requiredPower = math.floor(math.random(2, 8)/2)
         end
         for drone in vter(shipManager:GetDroneList()) do
-            drone.powerRequired = math.floor(math.random(1, 8)/2)
+            drone.powerRequired = math.floor(math.random(2, 8)/2)
         end
     end
 end)
@@ -2703,3 +2703,22 @@ script.on_render_event(Defines.RenderEvents.MOUSE_CONTROL, function()
         end
     end
 end, function() end)
+
+-- Remove OE blue options if you have FR's narrator augment
+script.on_internal_event(Defines.InternalEvents.PRE_CREATE_CHOICEBOX, function(event)
+  local ShipManager = Hyperspace.ships.player
+  if ShipManager and true then
+    local startEventOE = string.sub(event.eventName, 1, 4) == "AEA_" or string.match(event.eventName, "_AEA_")
+    Choices = event:GetChoices()
+    for choice in vter(Choices) do
+      local choiceEventOE = string.sub(choice.event.eventName, 1, 4) == "AEA_" or string.match(choice.event.eventName, "_AEA_")
+      if choice.requirement.blue or choice.requirement.object == "FR_NARRATIVE_SHIELD" and (startEventOE or choiceEventOE) then
+        choice.hiddenReward = true
+        choice.text.literal = true
+        choice.text.data = "Outer Expansion Blue Option removed."
+        choice.event.stuff.missiles = -999
+        choice.event.stuff.scrap = -9999
+      end
+    end
+  end
+end)
